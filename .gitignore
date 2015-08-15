@@ -80,7 +80,6 @@ coverage.xml
 
 # Translations
 *.mo
-*.pot
 
 # Django stuff:
 *.log
@@ -97,3 +96,4 @@ target/
 # Hangups
 cache/
 ui/experimental/
+refresh_token.txt

@@ -1,0 +1,188 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-08-15 19:17+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ui/AboutConversationPage.qml:5 ui/AboutConversationPage.qml:11
+#: ui/LoginPage.qml:45 ui/ConversationsPage.qml:25 ui/AboutPage.qml:5
+msgid "About"
+msgstr ""
+
+#: ui/AboutConversationPage.qml:26 ui/SettingsPage.qml:7
+#: ui/ConversationsPage.qml:20
+msgid "Settings"
+msgstr ""
+
+#: ui/AboutConversationPage.qml:41
+msgid "Quiet"
+msgstr ""
+
+#: ui/AboutConversationPage.qml:46
+msgid "Users"
+msgstr ""
+
+#: ui/LoadingPage.qml:19 ui/LoginPage.qml:145
+msgid "Loading, please wait ..."
+msgstr ""
+
+#: ui/SettingsPage.qml:19
+msgid "Cache"
+msgstr ""
+
+#: ui/SettingsPage.qml:24
+msgid ""
+"It is recommended to cache images offline so that they only get downloaded "
+"once."
+msgstr ""
+
+#: ui/SettingsPage.qml:49
+msgid "Cache images"
+msgstr ""
+
+#: ui/SettingsPage.qml:54 ui/SettingsPage.qml:69
+msgid "Clear cache"
+msgstr ""
+
+#: ui/SettingsPage.qml:70
+msgid ""
+"Are you sure to clear the cache? All images will have to be redownloaded."
+msgstr ""
+
+#: ui/SettingsPage.qml:73
+msgid "Clear now"
+msgstr ""
+
+#: ui/SettingsPage.qml:78
+msgid "Working ..."
+msgstr ""
+
+#: ui/SettingsPage.qml:88
+msgid "Cancel"
+msgstr ""
+
+#: ui/SettingsPage.qml:99
+msgid "Cache cleared"
+msgstr ""
+
+#: ui/SettingsPage.qml:100
+msgid ""
+"The cache was cleared successful. Please restart the application to continue."
+msgstr ""
+
+#: ui/SettingsPage.qml:104
+msgid "Okay"
+msgstr ""
+
+#: ui/ContactsPage.qml:5 ui/ConversationsPage.qml:15
+msgid "Contacts"
+msgstr ""
+
+#: ui/ContactsPage.qml:81
+msgid "No contacts"
+msgstr ""
+
+#: ui/LoginPage.qml:7
+msgid "Authenticate with Google"
+msgstr ""
+
+#: ui/LoginPage.qml:36
+msgid "In order to use Hangups you need to authenticate this app with Google"
+msgstr ""
+
+#: ui/LoginPage.qml:51
+msgid "Got it"
+msgstr ""
+
+#: ui/LoginPage.qml:192
+msgid "Welcome to Hangups!"
+msgstr ""
+
+#: ui/LoginPage.qml:205
+msgid "Get started"
+msgstr ""
+
+#: ui/ConversationsPage.qml:5
+msgid "Conversations"
+msgstr ""
+
+#: ui/ConversationsPage.qml:131
+msgid "Nothing here, yet"
+msgstr ""
+
+#: ui/AboutPage.qml:27
+msgid "Inofficial Google Hangouts client for Ubuntu Touch"
+msgstr ""
+
+#: ui/AboutPage.qml:31
+msgid ""
+"Source code available on <a href='https://github.com/tim-sueberkrueb/ubuntu-"
+"hangups'>GitHub</a>"
+msgstr ""
+
+#: ui/AboutPage.qml:36
+msgid "Third-party Software"
+msgstr ""
+
+#: ui/AboutPage.qml:41
+msgid ""
+"The application icon was created using <a href='https://github.com/"
+"halfsail'>Kevin Feyder</a>'s <a href='https://github.com/halfsail/Ubuntu-UI-"
+"Toolkit#suru-icon-template-kit'>Suru Icon Template kit</a>"
+msgstr ""
+
+#: ui/AboutPage.qml:46
+msgid ""
+"This application uses <a href='https://github.com/tdryer'>Tom Dryer</a>'s "
+"inofficial Google Hangouts Python library <a href='https://github.com/tdryer/"
+"hangups'>Hangups</a>. Hangups is released under the MIT license."
+msgstr ""
+
+#: ui/AboutPage.qml:51
+msgid ""
+"Powered by <a href='https://github.com/thp'>Thomas Perl's</a> <a "
+"href='https://github.com/thp/pyotherside'>PyOtherSide</a>"
+msgstr ""
+
+#: ui/AboutPage.qml:56
+msgid ""
+"This application is not endorsed by or affiliated with Ubuntu or Canonical. "
+"Ubuntu and Canonical are registered trademarks of Canonical Ltd."
+msgstr ""
+
+#: ui/ViewImagePage.qml:35
+msgid "Save"
+msgstr ""
+
+#: ui/ViewImagePage.qml:42
+msgid "Share"
+msgstr ""
+
+#: ui/ChatPage.qml:20
+msgid "Info"
+msgstr ""
+
+#: ui/ChatPage.qml:54
+msgid "Pull to load more"
+msgstr ""
+
+#: ui/ChatPage.qml:54
+msgid "Release to load more"
+msgstr ""
+
+#: ui/ChatPage.qml:85
+msgid "Write a message"
+msgstr ""

@@ -208,7 +208,7 @@ import com.canonical.Oxide 1.0
             webview.getAuthCode(function callback(code) {
                 pageStack.clear();
                 pageStack.push(loadingPage);
-                py.call('main.auth_with_code', [code])
+                py.call('backend.auth_with_code', [code])
             });
         }
 

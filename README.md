@@ -1,4 +1,5 @@
-# Ubuntu Hangups
+<h1><img src="https://raw.githubusercontent.com/tim-sueberkrueb/ubuntu-hangups/master/ubuntu-hangups.png" width="64"> Ubuntu Hangups</h1>
+
 
 An inofficial Google Hangouts client for Ubuntu Touch
 

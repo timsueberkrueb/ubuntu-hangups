@@ -1,0 +1,12 @@
+#!/bin/bash
+
+if [[ -z `which autopilot` ]]; then
+  echo "Autopilot is not installed. Skip"
+  exit
+fi
+
+SCRIPTPATH=`dirname $0`
+pushd ${SCRIPTPATH}
+autopilot3 run hangups
+popd
+

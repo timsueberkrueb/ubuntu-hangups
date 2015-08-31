@@ -9,6 +9,7 @@ Page {
 
     property string conv_name
     property string conv_id
+    property string status_message: ""
     property bool first_message_loaded: false
 
     property alias listView: listView
@@ -25,6 +26,34 @@ Page {
             text: i18n.tr("Add")
         }*/
     ]
+
+    head.contents: Item {
+        height: units.gu(5)
+        width: parent ? parent.width - units.gu(2) : undefined
+        Label {
+            anchors.verticalCenter: parent.verticalCenter
+            text: title
+            fontSize: "x-large"
+            visible: status_message == ""
+        }
+
+        Label {
+            anchors.top: parent.top
+            text: title
+            fontSize: "large"
+            visible: status_message != ""
+        }
+
+        Label {
+            opacity: status_message != "" ? 1.0: 0
+            color: UbuntuColors.green
+            anchors.bottom: parent.bottom
+            text: status_message
+            Behavior on opacity {
+                NumberAnimation { duration: 500 }
+            }
+        }
+    }
 
     UbuntuListView {
         id: listView
@@ -88,7 +117,32 @@ Page {
                 if (messageField.text !== "") {
                     py.call('backend.send_message', [conv_id, messageField.text]);
                     messageField.text = "";
+                    py.call('backend.set_typing', [conv_id, "stopped"]);
+                    pausedTypingTimer.stop();
+                    stoppedTypingTimer.stop();
                 }
+            }
+
+            Timer {
+                id: pausedTypingTimer
+                interval: 1500
+                onTriggered: {
+                    py.call('backend.set_typing', [conv_id, "paused"]);
+                    stoppedTypingTimer.start();
+                }
+            }
+
+            Timer {
+                id: stoppedTypingTimer
+                interval: 3000
+                onTriggered: py.call('backend.set_typing', [conv_id, "stopped"]);
+            }
+
+            onTextChanged: {
+                py.call('backend.set_typing', [conv_id, "typing"]);
+                pausedTypingTimer.stop();
+                stoppedTypingTimer.stop();
+                pausedTypingTimer.start();
             }
         }
 
@@ -136,8 +190,16 @@ Page {
                 anchors.fill: parent
                 onClicked: {
                     if (messageField.text !== "") {
-                        py.call('backend.send_message', [conv_id, messageField.text]);
-                        messageField.text = "";
+                        Qt.inputMethod.invokeAction(Qt.inputMethod.Click, -1);
+                        Qt.inputMethod.hide();
+                        Qt.inputMethod.visibleChanged.connect(function(){
+                            py.call('backend.send_message', [conv_id, messageField.text]);
+                            messageField.text = "";
+                            Qt.inputMethod.visibleChanged.disconnect();
+                            py.call('backend.set_typing', [conv_id, "stopped"]);
+                            pausedTypingTimer.stop();
+                            stoppedTypingTimer.stop();
+                        });
                     }
                 }
 

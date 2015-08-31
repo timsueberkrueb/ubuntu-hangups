@@ -34,34 +34,48 @@ ListItem {
     }
 
     Component {
-        id: imagesListView
-        ListView {
-            visible: modelData.attachments.count > 0
+        id: attachedImage
+        UbuntuShape {
             width: parent.width
-            height: childrenRect.height
-            interactive: false
+            height: img.height || units.gu(24)
+            backgroundColor: "white"
 
-            model:  modelData.attachments
+            property string url
 
-            delegate: UbuntuShape {
+            source: Image {
+                id: img
+                fillMode: Image.PreserveAspectFit
                 width: parent.width
-                height: img.height || units.gu(24)
-                backgroundColor: "white"
-
-                source: Image {
-                    id: img
-                    fillMode: Image.PreserveAspectFit
-                    width: parent.width
-                    source: url
-                }
-
-                ActivityIndicator {
-                    anchors.centerIn: parent
-                    visible: img.progress != 1.0
-                    running: true
-                }
-
+                source: url
             }
+
+            Icon {
+                id: imageErrorIcon
+                anchors.centerIn: parent
+                anchors.margins: units.gu(1)
+                name: "dialog-warning-symbolic"
+                visible: img.status == Image.Error
+                width: units.dp(48)
+                height: width
+            }
+
+            FlexibleLabel {
+                anchors.verticalCenter: parent.horizontalCenter
+                anchors.left: parent.left
+                anchors.right: parent.right
+                anchors.top: imageErrorIcon.bottom
+                anchors.margins: units.gu(1)
+                text: i18n.tr("An error occurred while loading the image.")
+                visible: img.status == Image.Error
+            }
+
+
+            ActivityIndicator {
+                anchors.centerIn: parent
+                visible: img.status == Image.Loading
+                running: true
+            }
+
         }
     }
 
@@ -143,14 +157,14 @@ ListItem {
                     }
 
                     Item {
-                        id: listViewContainer
+                        id: imageContainer
                         width: parent.width
                         height: childrenRect.height
                     }
 
                     Component.onCompleted: {
                         if (modelData.attachments.count  > 0) {
-                            imagesListView.createObject(listViewContainer, {});
+                            attachedImage.createObject(imageContainer, {url: modelData.attachments.get(0).url});
                         }
                     }
 
@@ -165,7 +179,6 @@ ListItem {
                     }
 
                 }
-
 
             }
         }

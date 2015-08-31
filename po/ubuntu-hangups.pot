@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-08-15 19:37+0200\n"
+"POT-Creation-Date: 2015-08-31 14:22+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -123,6 +123,17 @@ msgstr ""
 msgid "Nothing here, yet"
 msgstr ""
 
+#: ui/NetworkErrorDialog.qml:8
+msgid "Network Error"
+msgstr ""
+
+#: ui/NetworkErrorDialog.qml:14
+#, qt-format
+msgid ""
+"A network error (%1) has occurred: %2 \n"
+"Please make sure that you are connected to a network."
+msgstr ""
+
 #: ui/AboutPage.qml:27
 msgid "Inofficial Google Hangouts client for Ubuntu Touch"
 msgstr ""
@@ -171,18 +182,22 @@ msgstr ""
 msgid "Share"
 msgstr ""
 
-#: ui/ChatPage.qml:20
+#: ui/ChatListItem.qml:68
+msgid "An error occurred while loading the image."
+msgstr ""
+
+#: ui/ChatPage.qml:21
 msgid "Info"
 msgstr ""
 
-#: ui/ChatPage.qml:54
+#: ui/ChatPage.qml:83
 msgid "Pull to load more"
 msgstr ""
 
-#: ui/ChatPage.qml:54
+#: ui/ChatPage.qml:83
 msgid "Release to load more"
 msgstr ""
 
-#: ui/ChatPage.qml:85
+#: ui/ChatPage.qml:114
 msgid "Write a message"
 msgstr ""

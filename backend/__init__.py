@@ -13,6 +13,9 @@ import os
 import hangups
 from hangups.ui.utils import get_conv_name
 from hangups.ui.notify import Notifier
+import hangups.schemas
+
+import requests.adapters
 from .utils import get_conv_icon, get_message_timestr, get_message_html, get_unread_messages_count
 
 try:
@@ -42,8 +45,12 @@ class ConversationController:
 
         self.loading = False
         self.first_loaded = False
+        self.typing_statuses = {}
+        self.status_message = ""
 
         conv.on_event.add_observer(self.on_event)
+        conv.on_watermark_notification.add_observer(self.on_watermark_notification)
+        conv.on_typing.add_observer(self.on_typing)
         print(conv.events)
         for event in conv.events:
             self.on_event(event)
@@ -82,10 +89,31 @@ class ConversationController:
         if set_title:
             self.set_title()
 
+    def on_watermark_notification(self, watermark_notification):
+        print("watermark_notification", self.conv.latest_read_timestamp)
+
+    def on_typing(self, typing_message):
+        self.typing_statuses[typing_message.user_id] = typing_message.status
+        self.update_typing()
+
+    def update_typing(self):
+        typers = [self.conv.get_user(user_id).first_name
+          for user_id, status in self.typing_statuses.items()
+          if status == hangups.TypingStatus.TYPING]
+        if len(typers) > 0:
+            typing_message = '{} {} typing...'.format(
+                ', '.join(sorted(typers)),
+                'is' if len(typers) == 1 else 'are'
+            )
+        else:
+            typing_message = ''
+        self.status_message = typing_message
+        self.set_title()
+
     def set_title(self, future=None):
         title = get_conv_name(self.conv, show_unread=False,
                               truncate=True)
-        pyotherside.send('set-conversation-title', self.conv.id_, title, get_unread_messages_count(self.conv))
+        pyotherside.send('set-conversation-title', self.conv.id_, title, get_unread_messages_count(self.conv), self.status_message)
         if future:
             future.result()
 
@@ -100,12 +128,25 @@ class ConversationController:
         global loop
         try:
             future.result()
+            asyncio.async(client.setfocus(self.conv.id_))
             print('Message sent successful')
         except hangups.NetworkError:
             print('Failed to send message')
 
     def load_more(self):
         asyncio.async(self._load_more())
+
+    def set_typing(self, typing):
+        global client
+        if typing == "typing":
+            t = hangups.schemas.TypingStatus.TYPING
+        elif typing == "paused":
+            t = hangups.schemas.TypingStatus.PAUSED
+        else:
+            t = hangups.schemas.TypingStatus.STOPPED
+
+        asyncio.async(client.settyping(self.conv.id_, t))
+
 
     @asyncio.coroutine
     def _load_more(self):
@@ -115,7 +156,7 @@ class ConversationController:
                 conv_events = yield from self.conv.get_events(
                     self.conv.events[0].id_
                 )
-                for conv_event in conv_events:
+                for conv_event in reversed(conv_events):
                     if (isinstance(conv_event, hangups.ChatMessageEvent)):
                         user = self.conv.get_user(conv_event.user_id)
                         self.handle_message(conv_event, user, False, "top")
@@ -132,9 +173,18 @@ class ConversationController:
         future = asyncio.async(client.set_active())
         future.add_done_callback(lambda future: future.result())
 
-        # Mark the newest event as read.
         future = asyncio.async(self.conv.update_read_timestamp())
         future.add_done_callback(self.set_title)
+
+        asyncio.async(client.setfocus(self.conv.id_))
+
+    def on_leave(self):
+        global client
+
+
+    def on_messages_read(self):
+        # Mark the newest event as read.
+        future = asyncio.async(self.conv.update_read_timestamp())
 
 
 def get_login_url():
@@ -205,6 +255,7 @@ def on_connect(initial_data):
     for conv in convs:
         conv_data = {
             "title": get_conv_name(conv),
+            "status_message": "",
             "icon": get_conv_icon(conv),
             "id_": conv.id_,
             "first_message_loaded": False,
@@ -238,6 +289,14 @@ def entered_conversation(conv_id):
     call_threadsafe(conv_controllers[conv_id].on_entered)
 
 
+def left_conversation(conv_id):
+    call_threadsafe(conv_controllers[conv_id].on_leave)
+
+
+def read_messages(conv_id):
+    call_threadsafe(conv_controllers[conv_id].on_messages_read)
+
+
 def send_message(conv_id, text):
     call_threadsafe(conv_controllers[conv_id].send_message, text)
 
@@ -250,6 +309,10 @@ def send_image(conv_id, filename):
 
 def load_more_messages(conv_id):
     call_threadsafe(conv_controllers[conv_id].load_more)
+
+
+def set_typing(conv_id, typing):
+    call_threadsafe(conv_controllers[conv_id].set_typing, typing);
 
 
 def cache_get_image(url):
@@ -298,7 +361,12 @@ def load(cookies):
 
 def start():
     # Authenticate and connect
-    auth_with_token()
+    try:
+        auth_with_token()
+    except requests.exceptions.ConnectionError as e:
+        error_title = e.args[0].args[0]
+        error_description = e.args[0].args[1]
+        pyotherside.send('show-network-error', "ConnectionError", error_title, str(error_description))
 
 
 def on_quit():

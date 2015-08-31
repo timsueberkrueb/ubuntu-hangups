@@ -1,7 +1,7 @@
 {
     "name": "ubuntu-hangups.timsueberkrueb",
     "description": "Inofficial Google Hangouts client for Ubuntu Touch",
-    "architecture": "all",
+    "architecture": ["armhf", "i386", "amd64"],
     "title": "Hangups",
     "hooks": {
         "ubuntu-hangups.timsueberkrueb": {

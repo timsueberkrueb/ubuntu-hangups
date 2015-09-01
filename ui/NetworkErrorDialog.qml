@@ -13,7 +13,7 @@ Component {
 
          text: i18n.tr("A network error (%1) has occurred: %2 \nPlease make sure that you are connected to a network.").arg(errorType).arg( errorTitle + ' ' + errorMessage)
          Button {
-             text: "Close"
+             text: i18n.tr("Close")
              onClicked:  {
                  PopupUtils.close(dialog);
                  Qt.quit();

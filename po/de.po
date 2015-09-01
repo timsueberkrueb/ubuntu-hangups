@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-08-15 18:52+0200\n"
-"PO-Revision-Date: 2015-08-15 19:46+0100\n"
+"POT-Creation-Date: 2015-09-01 16:59+0200\n"
+"PO-Revision-Date: 2015-09-01 17:24+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: de\n"
@@ -18,13 +18,51 @@ msgstr ""
 "X-Generator: Poedit 1.7.5\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
+#: Main.qml:173
+#, qt-format
+msgid "%1 is typing ..."
+msgstr "%1 schreibt ..."
+
+#: Main.qml:269
+msgid "Error"
+msgstr "Fehler"
+
+#: Main.qml:273
+#, qt-format
+msgid "An error has occured: %1"
+msgstr "Ein Fehler ist aufgetreten: %1"
+
+#: Main.qml:279 ui/NetworkErrorDialog.qml:16
+msgid "Close"
+msgstr "Schließen"
+
+#: ui/NewConversationWelcomeDialog.qml:8 ui/ConversationsPage.qml:14
+msgid "New Conversation"
+msgstr "Neue Unterhaltung"
+
+#: ui/NewConversationWelcomeDialog.qml:9
+msgid "Send a welcoming message to invite the conversations members"
+msgstr "Sende eine Begrüßungsnachricht, um die Gesprächsteilnehmer einzuladen"
+
+#: ui/NewConversationWelcomeDialog.qml:15
+msgid "Write message"
+msgstr "Schreibe eine Nachricht"
+
+#: ui/NewConversationWelcomeDialog.qml:16
+msgid "Hi there :)"
+msgstr "Hallo :)"
+
+#: ui/NewConversationWelcomeDialog.qml:20
+msgid "Send"
+msgstr "Senden"
+
 #: ui/AboutConversationPage.qml:5 ui/AboutConversationPage.qml:11
-#: ui/LoginPage.qml:45 ui/ConversationsPage.qml:25 ui/AboutPage.qml:5
+#: ui/LoginPage.qml:45 ui/ConversationsPage.qml:31 ui/AboutPage.qml:5
 msgid "About"
 msgstr "Über"
 
 #: ui/AboutConversationPage.qml:26 ui/SettingsPage.qml:7
-#: ui/ConversationsPage.qml:20
+#: ui/ConversationsPage.qml:26
 msgid "Settings"
 msgstr "Einstellungen"
 
@@ -36,7 +74,7 @@ msgstr "Stummgeschaltet"
 msgid "Users"
 msgstr "Teilnehmer"
 
-#: ui/LoadingPage.qml:19 ui/LoginPage.qml:145
+#: ui/LoadingPage.qml:79 ui/LoginPage.qml:145
 msgid "Loading, please wait ..."
 msgstr "Lädt, bitte warten ..."
 
@@ -75,7 +113,7 @@ msgstr "Jetzt leeren"
 msgid "Working ..."
 msgstr "Arbeite ..."
 
-#: ui/SettingsPage.qml:88
+#: ui/SettingsPage.qml:88 ui/ConversationsPage.qml:172
 msgid "Cancel"
 msgstr "Abbrechen"
 
@@ -94,11 +132,11 @@ msgstr ""
 msgid "Okay"
 msgstr "Okay"
 
-#: ui/ContactsPage.qml:5 ui/ConversationsPage.qml:15
+#: ui/ContactsPage.qml:5 ui/ConversationsPage.qml:21
 msgid "Contacts"
 msgstr "Kontakte"
 
-#: ui/ContactsPage.qml:81
+#: ui/ContactsPage.qml:81 ui/SelectUsersPage.qml:140
 msgid "No contacts"
 msgstr "Keine Kontakte"
 
@@ -124,13 +162,50 @@ msgstr "Willkommen zu Hangups!"
 msgid "Get started"
 msgstr "Los geht's"
 
-#: ui/ConversationsPage.qml:5
+#: ui/ConversationsPage.qml:6
 msgid "Conversations"
 msgstr "Unterhaltungen"
 
-#: ui/ConversationsPage.qml:131
+#: ui/ConversationsPage.qml:12 ui/ChatPage.qml:26
+msgid "Add"
+msgstr "Hinzufügen"
+
+#: ui/ConversationsPage.qml:134 ui/ChatPage.qml:33
+msgid "Add users"
+msgstr "Teilnehmer hinzufügen"
+
+#: ui/ConversationsPage.qml:156
+msgid "Delete Conversation"
+msgstr "Unterhaltung löschen"
+
+#: ui/ConversationsPage.qml:157
+msgid "Are you really sure to delete this conversation?"
+msgstr "Wollen Sie diese Unterhaltung wirklich löschen?"
+
+#: ui/ConversationsPage.qml:162
+msgid "Delete"
+msgstr "Löschen"
+
+#: ui/ConversationsPage.qml:181
 msgid "Nothing here, yet"
 msgstr "Hier ist noch nichts"
+
+#: ui/SelectUsersPage.qml:7
+msgid "Select users"
+msgstr "Teilnehmer auswählen"
+
+#: ui/NetworkErrorDialog.qml:8
+msgid "Network Error"
+msgstr "Netzwerkfehler"
+
+#: ui/NetworkErrorDialog.qml:14
+#, qt-format
+msgid ""
+"A network error (%1) has occurred: %2 \n"
+"Please make sure that you are connected to a network."
+msgstr ""
+"Ein Netzwerkfehler (%1) ist aufgetreten %2\n"
+"Bitte "
 
 #: ui/AboutPage.qml:27
 msgid "Inofficial Google Hangouts client for Ubuntu Touch"
@@ -176,6 +251,24 @@ msgstr ""
 "Ubuntu Hangups nutzt <a href='https://github.com/thp'>Thomas Perls</a> <a "
 "href='https://github.com/thp/pyotherside'>PyOtherSide</a>"
 
+#: ui/AboutPage.qml:56
+#, qt-format
+msgid "The loading animation was created by %1."
+msgstr "Die Ladeanimation wurde von %1 erstellt."
+
+#: ui/AboutPage.qml:60
+msgid ""
+"This application is not endorsed by or affiliated with Ubuntu or Canonical. "
+"Ubuntu and Canonical are registered trademarks of Canonical Ltd."
+msgstr ""
+"Diese Anwendung wird wird weder von Canonical oder Ubuntu unterstützt, noch "
+"ist Sie mit letzteren verbunden. Ubuntu und Canonical sind Warenzeichen der "
+"Canonical Ltd."
+
+#: ui/ViewImagePage.qml:10
+msgid "Image"
+msgstr "Bild"
+
 #: ui/ViewImagePage.qml:35
 msgid "Save"
 msgstr "Speichern"
@@ -184,19 +277,31 @@ msgstr "Speichern"
 msgid "Share"
 msgstr "Teilen"
 
-#: ui/ChatPage.qml:20
+#: ui/ViewImagePage.qml:83
+msgid "Retrieving image"
+msgstr "Lade Bild"
+
+#: ui/ViewImagePage.qml:84
+msgid "Retrieving image, please wait ..."
+msgstr "Bild wird geladen, bitte warten ..."
+
+#: ui/ChatListItem.qml:68
+msgid "An error occurred while loading the image."
+msgstr "Ein Fehler ist beim Laden des Bildes aufgetreten."
+
+#: ui/ChatPage.qml:21
 msgid "Info"
 msgstr "Info"
 
-#: ui/ChatPage.qml:54
+#: ui/ChatPage.qml:93
 msgid "Pull to load more"
 msgstr "Ziehen, um mehr zu laden"
 
-#: ui/ChatPage.qml:54
+#: ui/ChatPage.qml:93
 msgid "Release to load more"
 msgstr "Loslassen, um mehr zu laden"
 
-#: ui/ChatPage.qml:85
+#: ui/ChatPage.qml:124
 msgid "Write a message"
 msgstr "Eine Nachricht schreiben"
 

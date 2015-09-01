@@ -7,7 +7,7 @@ import Ubuntu.Components.Popups 1.0
 
 Page {
     id: viewImagePage
-    title: "Image"
+    title: i18n.tr("Image")
     visible: false
 
     property var images
@@ -80,8 +80,8 @@ Page {
     Component {
          id: downloadProgressDialog
          Dialog {
-             title: "Retrieving image"
-             text: "Retrieving image, please wait ..."
+             title: i18n.tr("Retrieving image")
+             text: i18n.tr("Retrieving image, please wait ...")
 
              ProgressBar {
                 indeterminate: true

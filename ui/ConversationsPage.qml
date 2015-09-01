@@ -1,15 +1,21 @@
 import QtQuick 2.0
 import Ubuntu.Components 1.2
+import Ubuntu.Components.Popups 1.0
 
 Page {
     title: i18n.tr("Conversations")
     visible: false
 
     head.actions: [
-        /*Action {
+        Action {
             iconName: "add"
             text: i18n.tr("Add")
-        },*/
+            onTriggered: {
+                pageStack.push(selectUsersPage, {headTitle: i18n.tr("New Conversation"), callback: function callback(users){
+                    py.call('backend.create_conversation', [users]);
+                }});
+            }
+        },
         Action {
             iconName: "contact-group"
             text: i18n.tr("Contacts")
@@ -99,10 +105,14 @@ Page {
                 }
             }
 
-            /*leadingActions: ListItemActions {
+            leadingActions: ListItemActions {
                 actions: [
                     Action {
                         iconName: "delete"
+                        onTriggered: {
+                            var  dialog = PopupUtils.open(deleteConversationDialog);
+                            dialog.id_ = modelData.id_;
+                        }
                     }
                 ]
             }
@@ -110,10 +120,24 @@ Page {
             trailingActions: ListItemActions {
                 actions: [
                     Action {
-                        iconName: "edit"
+                        iconName: "info"
+                        onTriggered: pageStack.push(aboutConversationPage, {mData: conversationsModel.get(getConversationModelIndexById(modelData.id_))});
+                    },
+                    Action {
+                        iconName: "add"
+                        onTriggered: {
+                            var user_ids = [];
+                            var users = modelData.users
+                            for (var i=0; i<users.count; i++) {
+                                user_ids.push(users.get(i).id_.toString());
+                            }
+                            pageStack.push(selectUsersPage, {headTitle: i18n.tr("Add users"), excludedUsers: user_ids, callback: function onUsersSelected(users){
+                                py.call('backend.add_users', [modelData.id_, users]);
+                            }});
+                        }
                     }
                 ]
-            }*/
+            }
 
             onClicked: {
                 setCurrentConversation(modelData.id_);
@@ -123,6 +147,32 @@ Page {
             }
         }
 
+    }
+
+    Component {
+         id: deleteConversationDialog
+         Dialog {
+             id: dialog
+             title: i18n.tr("Delete Conversation")
+             text: i18n.tr("Are you really sure to delete this conversation?")
+
+             property string id_
+
+             Button {
+                 text: i18n.tr("Delete")
+                 color: UbuntuColors.orange
+                 onClicked: {
+                     py.call('backend.delete_conversation', [id_]);
+                     PopupUtils.close(dialog);
+                 }
+             }
+
+             Button {
+                 id: cancelButton
+                 text: i18n.tr("Cancel")
+                 onClicked: PopupUtils.close(dialog)
+             }
+         }
     }
 
     Label {

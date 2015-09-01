@@ -91,6 +91,10 @@ MainView {
             id: chatPage
         }
 
+        SelectUsersPage {
+            id: selectUsersPage
+        }
+
     }
 
     Audio {
@@ -128,12 +132,20 @@ MainView {
                 conversationsModel.move(getConversationModelIndexById(conv_id), 0, 1);
             });
 
-            setHandler('add-conversation', function(data) {
+            setHandler('add-conversation', function(data, sound) {
                 console.log("add conversation", data.id_)
                 conversationsModel.append(data);
                 var chatModel = chatModelComponent.createObject(root);
                 chatModels[data.id_] = chatModel;
+                if (sound)
+                    notificationSound.play();
             });
+
+            setHandler('delete-conversation', function(conv_id) {
+                console.log("delete conversation", conv_id)
+                conversationsModel.remove(getConversationModelIndexById(conv_id));
+            });
+
 
             setHandler('set-conversation-title', function(conv_id, title, unread_count, status_message) {
                 console.log("set conversation title of ", conv_id, "to", title, "|", status_message)
@@ -153,6 +165,26 @@ MainView {
                 }
             });
 
+            setHandler('set-conversation-status', function(conv_id, status_message, typers){
+                console.log('set-conversation-status of', conv_id)
+                if (pageStack.currentPage == chatPage && chatPage.conv_id == conv_id) {
+                    if (typers) {
+                        if (typers.length === 1) {
+                            status_message = i18n.tr("%1 is typing ...").arg(typers[0]);
+                        }
+                        else if (typers.length > 1) {
+                            var t = ""
+                            for (var i=0; i<typers.length; i++) {
+                                t += typers[i] + ', '
+                            }
+                            t = t.slice(0, t.length-2);
+                            status_message = i18n.tr('%1 are typing ...').arg(t);
+                        }
+                    }
+                    chatPage.status_message = status_message;
+                }
+            });
+
             setHandler('add-conversation-message', function(conv_id, data, insert_mode){
                 console.log('add-conversation-message to ', conv_id, data.text)
                 if (insert_mode === "bottom") {
@@ -164,6 +196,20 @@ MainView {
                 else if (insert_mode === "top") {
                     chatModels[conv_id].insert(0, data);
                     chatPage.pullToRefresh.refreshing = false;
+                }
+            });
+
+            setHandler('clear-conversation-messages', function(conv_id){
+                console.log('clear-conversation-messages of ', conv_id)
+                chatModels[conv_id].clear();
+            });
+
+            setHandler('set-conversation-users', function(conv_id, users){
+                console.log('set-conversation-users of ', conv_id, users)
+                var users_model = conversationsModel.get(getConversationModelIndexById(conv_id)).users;
+                users_model.clear();
+                for (var i=0; i<users.length; i++) {
+                    users_model.append(users[i]);
                 }
             });
 
@@ -192,12 +238,48 @@ MainView {
 
             });
 
+            setHandler('on-new-conversation-created', function(conv_id){
+                console.log('on-new-conversation-created');
+                var dialog = PopupUtils.open(newConversationWelcomeDialog);
+                dialog.conv_id = conv_id;
+
+            });
+
             importModule('backend', function(){
                 console.log("python loaded");
                 call('backend.start')
             });
         }
-        onError: console.log('Error: ' + traceback)
+        onError: {
+            console.log('Error: ' + traceback);
+            var dialog = PopupUtils.open(errorDialog);
+            dialog.traceback = traceback;
+        }
+    }
+
+
+    NewConversationWelcomeDialog {
+        id: newConversationWelcomeDialog
+    }
+
+    Component {
+         id: errorDialog
+         Dialog {
+             id: dialog
+             title: i18n.tr("Error")
+
+             property string traceback: ""
+
+             text: i18n.tr("An error has occured: %1").arg(traceback)
+
+             property string id_
+
+             Button {
+                 id: cancelButton
+                 text: i18n.tr("Close")
+                 onClicked: PopupUtils.close(dialog)
+             }
+         }
     }
 
 

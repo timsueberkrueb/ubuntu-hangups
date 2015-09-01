@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from re import fullmatch
 
 __author__ = 'Tim Süberkrüb'
 __version__ = '0.1'
@@ -17,6 +18,7 @@ import hangups.schemas
 
 import requests.adapters
 from .utils import get_conv_icon, get_message_timestr, get_message_html, get_unread_messages_count
+from . import model
 
 try:
     APP_ID = os.environ['APP_ID']
@@ -36,6 +38,7 @@ cache.initialize(app_data_path + 'cache/')
 disable_notifier = True
 refresh_token_filename = app_data_path + 'refresh_token.txt'
 conv_controllers = {}
+last_newly_created_conv_id = None
 
 
 class ConversationController:
@@ -74,6 +77,8 @@ class ConversationController:
 
     def handle_membership_change(self, conv_event, user):
         self.set_title()
+        users = model.get_conv_users(self.conv)
+        pyotherside.send('set-conversation-users', self.conv.id_, users)
 
     def on_event(self, conv_event, set_title=True, set_unread=True):
         user = self.conv.get_user(conv_event.user_id)
@@ -97,9 +102,10 @@ class ConversationController:
         self.update_typing()
 
     def update_typing(self):
+        global user_list
         typers = [self.conv.get_user(user_id).first_name
-          for user_id, status in self.typing_statuses.items()
-          if status == hangups.TypingStatus.TYPING]
+                  for user_id, status in self.typing_statuses.items()
+                  if status == hangups.TypingStatus.TYPING and user_id != user_list._self_user.id_]
         if len(typers) > 0:
             typing_message = '{} {} typing...'.format(
                 ', '.join(sorted(typers)),
@@ -107,13 +113,15 @@ class ConversationController:
             )
         else:
             typing_message = ''
-        self.status_message = typing_message
-        self.set_title()
+        if self.status_message != typing_message:
+            self.status_message = typing_message
+            pyotherside.send('set-conversation-status', self.conv.id_, typing_message, sorted(typers))
 
     def set_title(self, future=None):
         title = get_conv_name(self.conv, show_unread=False,
                               truncate=True)
-        pyotherside.send('set-conversation-title', self.conv.id_, title, get_unread_messages_count(self.conv), self.status_message)
+        pyotherside.send('set-conversation-title', self.conv.id_, title, get_unread_messages_count(self.conv),
+                         self.status_message)
         if future:
             future.result()
 
@@ -146,7 +154,6 @@ class ConversationController:
             t = hangups.schemas.TypingStatus.STOPPED
 
         asyncio.async(client.settyping(self.conv.id_, t))
-
 
     @asyncio.coroutine
     def _load_more(self):
@@ -181,11 +188,28 @@ class ConversationController:
     def on_leave(self):
         global client
 
-
     def on_messages_read(self):
         # Mark the newest event as read.
         future = asyncio.async(self.conv.update_read_timestamp())
 
+    def add_users(self, users):
+        global client
+        asyncio.async(client.adduser(self.conv.id_, users))
+
+    def delete(self):
+        global client
+        users_len = len(self.conv.users)
+        if users_len == 2:
+            asyncio.async(client.deleteconversation(self.conv.id_)).add_done_callback(self.on_deleted)
+        elif users_len > 2:
+            asyncio.async(client.removeuser(self.conv.id_)).add_done_callback(self.on_deleted)
+
+    def on_deleted(self, future):
+        pyotherside.send('delete-conversation', self.conv.id_)
+        self.conv.on_event.remove_observer(self.on_event)
+        self.conv.on_watermark_notification.remove_observer(self.on_watermark_notification)
+        del conv_controllers[self.conv.id_]
+        future.result()
 
 def get_login_url():
     return hangups.auth.OAUTH2_LOGIN_URL
@@ -262,7 +286,7 @@ def on_connect(initial_data):
             "unread_count": get_unread_messages_count(conv),
             "is_quiet": conv.is_quiet,
             "users": [{
-                          "id_": user.id_,
+                          "id_": user.id_[0],
                           "full_name": user.full_name,
                           "first_name": user.first_name,
                           "photo_url": "https:" + user.photo_url if user.photo_url else None,
@@ -278,11 +302,39 @@ def on_connect(initial_data):
 
 
 def on_event(conv_event):
-    global conv_list
+    global conv_list, conv_controllers
     conv = conv_list.get(conv_event.conversation_id)
     user = conv.get_user(conv_event.user_id)
-    print(conv, user)
-    pyotherside.send('move-conversation-to-top', conv_event.conversation_id)
+    # is this a new conversation?
+    if conv_event.conversation_id not in conv_controllers.keys():
+        convs = sorted(conv_list.get_all(), reverse=True,
+                       key=lambda c: c.last_modified)
+        for conv in convs:
+            if conv.id_ == conv_event.conversation_id:
+                break
+        conv_data = {
+            "title": get_conv_name(conv),
+            "status_message": "",
+            "icon": get_conv_icon(conv),
+            "id_": conv.id_,
+            "first_message_loaded": False,
+            "unread_count": get_unread_messages_count(conv),
+            "is_quiet": conv.is_quiet,
+            "users": [{
+                          "id_": user.id_[0],
+                          "full_name": user.full_name,
+                          "first_name": user.first_name,
+                          "photo_url": "https:" + user.photo_url if user.photo_url else None,
+                          "emails": user.emails,
+                          "is_self": user.is_self
+                      } for user in conv.users]
+        }
+        pyotherside.send('add-conversation', conv_data, True)
+        ctrl = ConversationController(conv)
+        conv_controllers[conv.id_] = ctrl
+        pyotherside.send('move-conversation-to-top', conv_event.conversation_id)
+    else:
+        pyotherside.send('move-conversation-to-top', conv_event.conversation_id)
 
 
 def entered_conversation(conv_id):
@@ -297,8 +349,49 @@ def read_messages(conv_id):
     call_threadsafe(conv_controllers[conv_id].on_messages_read)
 
 
+def add_users(conv_id, users):
+    call_threadsafe(conv_controllers[conv_id].add_users, users)
+
+
+def delete_conversation(conv_id):
+    call_threadsafe(conv_controllers[conv_id].delete)
+
+
 def send_message(conv_id, text):
     call_threadsafe(conv_controllers[conv_id].send_message, text)
+
+
+def create_conversation(users):
+    call_threadsafe(_create_conversation, users)
+
+
+def _create_conversation(users):
+    global client
+    future = asyncio.async(client.createconversation(users))
+    future.add_done_callback(on_conversation_created)
+
+def on_conversation_created(future):
+    global conv_list
+    conv_id = future.result()['conversation']['id']['id']
+    pyotherside.send('on-new-conversation-created', conv_id)
+
+
+def send_new_conversation_welcome_message(conv_id, text):
+    call_threadsafe(_send_new_conversation_welcome_message, conv_id, text)
+
+
+def _send_new_conversation_welcome_message(conv_id, text):
+    global last_newly_created_conv_id
+    last_newly_created_conv_id = conv_id
+    segments = hangups.ChatMessageSegment.from_str(text)
+    asyncio.async(
+        client.sendchatmessage(conv_id, [seg.serialize() for seg in segments])
+    ).add_done_callback(on_new_conversation_welcome_message_sent)
+
+
+def on_new_conversation_welcome_message_sent(future):
+    global last_newly_created_conv_id
+    pyotherside.send('clear-conversation-messages', last_newly_created_conv_id)
 
 
 def send_image(conv_id, filename):

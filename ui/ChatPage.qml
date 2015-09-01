@@ -20,11 +20,21 @@ Page {
             iconName: "info"
             text: i18n.tr("Info")
             onTriggered: pageStack.push(aboutConversationPage, {mData: conversationsModel.get(getConversationModelIndexById(conv_id))})
-        }
-        /*Action {
+        },
+        Action {
             iconName: "add"
             text: i18n.tr("Add")
-        }*/
+            onTriggered: {
+                var user_ids = [];
+                var users = conversationsModel.get(getConversationModelIndexById(conv_id)).users;
+                for (var i=0; i<users.count; i++) {
+                    user_ids.push(users.get(i).id_.toString());
+                }
+                pageStack.push(selectUsersPage, {headTitle: i18n.tr("Add users"), excludedUsers: user_ids, callback: function onUsersSelected(users){
+                    py.call('backend.add_users', [conv_id, users]);
+                }});
+            }
+        }
     ]
 
     head.contents: Item {
@@ -173,6 +183,8 @@ Page {
         Icon {
             id: sendIcon
 
+            property bool send_icon_clicked: false
+
             anchors.top: parent.top
             anchors.right: parent.right
             anchors.bottom: parent.bottom
@@ -190,17 +202,31 @@ Page {
                 anchors.fill: parent
                 onClicked: {
                     if (messageField.text !== "") {
-                        Qt.inputMethod.invokeAction(Qt.inputMethod.Click, -1);
-                        Qt.inputMethod.hide();
-                        Qt.inputMethod.visibleChanged.connect(function(){
+                        if (Qt.inputMethod.visible) {
+                            // Workaround: last word doesn't get send (auto correction)
+                            Qt.inputMethod.invokeAction(Qt.inputMethod.Click, -1);
+                            Qt.inputMethod.hide();
+                            sendIcon.send_icon_clicked = true;
+                        }
+                        else {
                             py.call('backend.send_message', [conv_id, messageField.text]);
                             messageField.text = "";
-                            Qt.inputMethod.visibleChanged.disconnect();
+                        }
+                    }
+                }
+
+                // Workaround: last word doesn't get send (auto correction)
+                Component.onCompleted: {
+                    Qt.inputMethod.visibleChanged.connect(function() {
+                        if (sendIcon.send_icon_clicked) {
+                            py.call('backend.send_message', [conv_id, messageField.text]);
+                            messageField.text = "";
                             py.call('backend.set_typing', [conv_id, "stopped"]);
                             pausedTypingTimer.stop();
                             stoppedTypingTimer.stop();
-                        });
-                    }
+                            sendIcon.send_icon_clicked = false;
+                        }
+                    });
                 }
 
             }

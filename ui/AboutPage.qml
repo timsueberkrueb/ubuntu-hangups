@@ -53,6 +53,10 @@ Page {
            }
 
            FlexibleLabel {
+               text: i18n.tr("The loading animation was created by %1.").arg("Fabian Süberkrüb")
+           }
+
+           FlexibleLabel {
                text: i18n.tr("This application is not endorsed by or affiliated with Ubuntu or Canonical. Ubuntu and Canonical are registered trademarks of Canonical Ltd.")
            }
 

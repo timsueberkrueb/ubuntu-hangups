@@ -20,6 +20,71 @@ Ubuntu Hangups uses the gettext localization system (i18n). You can create new t
 ## Contact
 Contact me via Gitter: https://gitter.im/tim-sueberkrueb/
 
+# Installation on Ubuntu
+
+## Dependencies
+* ubuntu-ui-toolkit 1.2
+* pyotherside (https://thp.io/2011/pyotherside/)
+* hangups (https://github.com/tdryer/hangups)
+  * aiohttp
+  * purplex
+  * requests
+  * reparser
+* pymmh3 (or another python MurmurHash3 implementation, e.g. mmh3)
+
+## Install and run on Ubuntu Desktop
+
+Clone ubuntu-hangups
+
+```
+git clone https://github.com/tim-sueberkrueb/ubuntu-hangups
+```
+
+### Installation
+* Install PyOtherSide
+
+ ```
+  sudo apt-get install pyotherside
+  ```
+* Download and install hangups
+
+  ```
+  pip3 install hangups
+  ```
+* Install a MurmurHash3 implementation
+
+  ```
+  sudo pip3 install mmh3
+  ```
+* Make sure that all python dependencies (see above) are installed.
+
+### Run
+Inside the ubuntu-hangups directory run:
+
+```
+qmlscene Main.qml
+```
+
+
+## Build for Ubuntu Touch
+* Make sure you have the Ubuntu SDK installed
+  https://developer.ubuntu.com/en/start/ubuntu-sdk/installing-the-sdk/
+* Run from the ubuntu-hangups directory:
+  
+  ```
+  python3 get_libs.py
+  ```
+* Download the sources of the following python packages and include them in lib/py/:
+  * aiohttp (https://github.com/KeepSafe/aiohttp)
+  * purplex (https://github.com/mtomwing/purplex)
+  * requests (https://github.com/kennethreitz/requests)
+  * pymmh3.py (https://github.com/wc-duck/pymmh3)
+  * reparser (https://github.com/xmikos/reparser)
+
+### Build and run
+* Open ubuntu-hangups.qmlproject with the Ubuntu-SDK, add the appropriate build kit and run!
+
+
 ## Copyright and License
 (C) Copyright 2015 by Tim Süberkrüb
 

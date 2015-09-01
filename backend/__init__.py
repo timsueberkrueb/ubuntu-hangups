@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-from re import fullmatch
 
 __author__ = 'Tim Süberkrüb'
 __version__ = '0.1'
@@ -26,6 +25,9 @@ try:
     app_data_path = os.environ['XDG_DATA_HOME'] + '/' + APP_PKGNAME + '/'
 except KeyError:
     app_data_path = './'
+
+if not os.path.exists(app_data_path):
+    os.makedirs(app_data_path)
 
 import backend.settings as settings
 

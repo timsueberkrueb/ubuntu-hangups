@@ -14,6 +14,10 @@ Project {
         directory: "."
     }
     Files {
+        directory: "backend"
+        filter: "*"
+    }
+    Files {
         directory: "ui/UbuntuHangupsTheme"
         filter: "*"
     }

@@ -14,6 +14,12 @@ Ubuntu Hangups includes the following third-party software:
 
 The application icon was created using <a href='https://github.com/halfsail'>Kevin Feyder</a>'s <a href='https://github.com/halfsail/Ubuntu-UI-Toolkit#suru-icon-template-kit'>Suru Icon Template kit</a>
 
+## Translations
+Ubuntu Hangups uses the gettext localization system (i18n). You can create new translations using the i18n editor of your choice (e.g. Poedit) Please help me translating this app and send me a pull request or contact me via Gitter!
+
+## Contact
+Contact me via Gitter: https://gitter.im/tim-sueberkrueb/
+
 ## Copyright and License
 (C) Copyright 2015 by Tim Süberkrüb
 

@@ -4,6 +4,7 @@ __author__ = 'Tim Süberkrüb'
 
 
 import urllib.request
+import urllib.error
 import os
 import glob
 import shutil
@@ -53,7 +54,11 @@ def cache_image(url):
 
 def get_image_cached(url, refresh=False):
     if not is_image_cached(url) or refresh:
-        cache_image(url)
+        try:
+            cache_image(url)
+        except urllib.error.HTTPError as e:
+            print("Error while retrieving image: ", str(e))
+            return url
     return os.path.abspath(images_path + get_image_cache_name(url))
 
 

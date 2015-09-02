@@ -35,8 +35,12 @@ def get_cached_images():
 
 
 def get_image_cache_name(url):
-    extension = url.split('.')[-1]
-    return 'img' + str(mmh3.hash(url.encode('utf-8'))) + '.' + extension.lower()
+    last_segment = url.split('/')[-1]
+    if last_segment.count('.') == 1:
+        extension = '.' + url.split('.')[-1]
+    else:
+        extension = ""
+    return 'img' + str(mmh3.hash(url.encode('utf-8'))) + extension.lower()
 
 
 def is_image_cached(url):

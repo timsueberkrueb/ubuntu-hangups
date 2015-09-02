@@ -68,6 +68,7 @@ qmlscene Main.qml
 
 ## Build for Ubuntu Touch
 * Make sure you have the Ubuntu SDK installed
+
   https://developer.ubuntu.com/en/start/ubuntu-sdk/installing-the-sdk/
 * Run from the ubuntu-hangups directory:
   

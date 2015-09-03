@@ -183,12 +183,12 @@ class ConversationController:
         future.add_done_callback(lambda future: future.result())
 
         future = asyncio.async(self.conv.update_read_timestamp())
-        future.add_done_callback(self.set_title)
+        future.add_done_callback(lambda future: future.result())
 
         asyncio.async(client.setfocus(self.conv.id_))
 
     def on_leave(self):
-        global client
+        self.set_title()
 
     def on_messages_read(self):
         # Mark the newest event as read.
@@ -212,6 +212,15 @@ class ConversationController:
         self.conv.on_watermark_notification.remove_observer(self.on_watermark_notification)
         del conv_controllers[self.conv.id_]
         future.result()
+
+    def set_quiet(self, quiet):
+        level = hangups.schemas.ClientNotificationLevel.QUIET if quiet else hangups.schemas.ClientNotificationLevel.RING
+        asyncio.async(self.conv.set_notification_level(level)).add_done_callback(self.on_quiet_set)
+
+    def on_quiet_set(self, future):
+        pyotherside.send('set-conversation-is-quiet', self.conv.id_, self.conv.is_quiet)
+        future.result()
+
 
 def get_login_url():
     return hangups.auth.OAUTH2_LOGIN_URL
@@ -407,7 +416,11 @@ def load_more_messages(conv_id):
 
 
 def set_typing(conv_id, typing):
-    call_threadsafe(conv_controllers[conv_id].set_typing, typing);
+    call_threadsafe(conv_controllers[conv_id].set_typing, typing)
+
+
+def set_conversation_quiet(conv_id, quiet):
+    call_threadsafe(conv_controllers[conv_id].set_quiet, quiet)
 
 
 def cache_get_image(url):

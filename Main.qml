@@ -158,11 +158,16 @@ MainView {
                     chatPage.status_message = status_message;
                 }
                 else {
-                    if (unread_count > conversationsModel.get(getConversationModelIndexById(conv_id)).unread_count) {
+                    if (unread_count > conversationsModel.get(getConversationModelIndexById(conv_id)).unread_count && !conversationsModel.get(getConversationModelIndexById(conv_id)).is_quiet) {
                         notificationSound.play();
                     }
                     conversationsModel.get(getConversationModelIndexById(conv_id)).unread_count = unread_count;
                 }
+            });
+
+            setHandler('set-conversation-is-quiet', function(conv_id, is_quiet) {
+                console.log("set conversation is quiet ", conv_id, is_quiet)
+                conversationsModel.get(getConversationModelIndexById(conv_id)).is_quiet = is_quiet;
             });
 
             setHandler('set-conversation-status', function(conv_id, status_message, typers){

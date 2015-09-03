@@ -8,7 +8,7 @@ Page {
 
     onVisibleChanged: {
         if (visible) {
-            title = mData.title + " - " + i18n.tr("About");
+            //title = mData.title + " - " + i18n.tr("About");
             isQuietCheckbox.checked = mData.is_quiet;
             listView.model = mData.users;
         }
@@ -33,7 +33,9 @@ Page {
             CheckBox {
                 anchors.verticalCenter: parent.verticalCenter
                 id: isQuietCheckbox
-                enabled: false
+                onClicked: {
+                    py.call('backend.set_conversation_quiet', [mData.id_, checked]);
+                }
             }
 
             Label {

@@ -93,7 +93,7 @@ Page {
 
                 width: unreadMessagesLabel.paintedWidth + units.gu(1)
                 height: width
-                color: UbuntuColors.green
+                color: !modelData.is_quiet ? UbuntuColors.green : UbuntuColors.darkGrey
                 radius: width*0.5
 
                 Label {

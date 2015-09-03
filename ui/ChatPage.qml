@@ -15,6 +15,12 @@ Page {
     property alias listView: listView
     property alias pullToRefresh: pullToRefresh
 
+    onActiveChanged: {
+        if (!active) {
+            py.call('backend.left_conversation', [conv_id]);
+        }
+    }
+
     head.actions: [
         Action {
             iconName: "info"

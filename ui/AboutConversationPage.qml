@@ -2,7 +2,7 @@ import QtQuick 2.0
 import Ubuntu.Components 1.2
 
 Page {
-    title: i18n.tr("About")
+    title: i18n.tr("About Conversation")
     visible: false
     property var mData
 

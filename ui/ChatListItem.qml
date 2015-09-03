@@ -42,7 +42,7 @@ ListItem {
 
             property string url
 
-            source: Image {
+            source: AnimatedImage {
                 id: img
                 fillMode: Image.PreserveAspectFit
                 width: parent.width

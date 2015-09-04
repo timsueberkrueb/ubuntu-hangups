@@ -60,7 +60,7 @@ ListItem {
             }
 
             FlexibleLabel {
-                anchors.verticalCenter: parent.horizontalCenter
+                anchors.verticalCenter: parent.verticalCenter
                 anchors.left: parent.left
                 anchors.right: parent.right
                 anchors.top: imageErrorIcon.bottom

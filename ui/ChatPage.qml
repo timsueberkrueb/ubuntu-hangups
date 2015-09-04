@@ -19,6 +19,9 @@ Page {
         if (!active) {
             py.call('backend.left_conversation', [conv_id]);
         }
+        else {
+            listView.positionViewAtEnd();
+        }
     }
 
     head.actions: [

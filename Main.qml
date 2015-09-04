@@ -152,7 +152,8 @@ MainView {
                 conversationsModel.get(getConversationModelIndexById(conv_id)).title = title;
                 conversationsModel.get(getConversationModelIndexById(conv_id)).status_message = status_message;
 
-                if (pageStack.currentPage == chatPage && chatPage.conv_id == conv_id) {
+                if ((pageStack.currentPage == chatPage && chatPage.conv_id == conv_id) ||
+                        (pageStack.currentPage == aboutConversationPage && aboutConversationPage.mData.id_ == conv_id)) {
                     py.call("backend.read_messages", [conv_id]);
                     chatPage.title = title;
                     chatPage.status_message = status_message;

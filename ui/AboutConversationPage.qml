@@ -27,6 +27,25 @@ Page {
             fontSize: "x-large"
         }
 
+        Row  {
+            spacing: units.gu(1)
+
+            TextField {
+                id: conversationNameField
+                text: mData.title
+            }
+
+            Button {
+                id: renameButton
+                text: i18n.tr("Rename")
+                color: UbuntuColors.green
+                enabled: conversationNameField.text !== mData.title
+                onClicked: {
+                    py.call('backend.rename_conversation', [mData.id_, conversationNameField.text]);
+                }
+            }
+        }
+
         Row {
             spacing: units.gu(1)
 

@@ -221,6 +221,10 @@ class ConversationController:
         pyotherside.send('set-conversation-is-quiet', self.conv.id_, self.conv.is_quiet)
         future.result()
 
+    def rename(self, name):
+        global client
+        asyncio.async(client.setchatname(self.conv.id_, name))
+
 
 def get_login_url():
     return hangups.auth.OAUTH2_LOGIN_URL
@@ -381,6 +385,7 @@ def _create_conversation(users):
     future = asyncio.async(client.createconversation(users))
     future.add_done_callback(on_conversation_created)
 
+
 def on_conversation_created(future):
     global conv_list
     conv_id = future.result()['conversation']['id']['id']
@@ -421,6 +426,10 @@ def set_typing(conv_id, typing):
 
 def set_conversation_quiet(conv_id, quiet):
     call_threadsafe(conv_controllers[conv_id].set_quiet, quiet)
+
+
+def rename_conversation(conv_id, name):
+    call_threadsafe(conv_controllers[conv_id].rename, name)
 
 
 def cache_get_image(url):

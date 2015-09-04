@@ -93,6 +93,9 @@ target/
 # PyCharm
 .idea
 
+# Ubuntu SDK
+.ubuntu-sdk-deploy
+
 # Hangups
 cache/
 ui/experimental/

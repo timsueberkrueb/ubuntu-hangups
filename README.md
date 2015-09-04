@@ -91,7 +91,9 @@ qmlscene Main.qml
 
 
 ## Copyright and License
-(C) Copyright 2015 by Tim Süberkrüb
+(C) Copyright 2015 by Tim Süberkrüb and contributors
+
+See CONTRIBUTORS.md for a full list of contributors.
 
 This application is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by

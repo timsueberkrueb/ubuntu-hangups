@@ -1,8 +1,0 @@
-[Desktop Entry]
-Name=Hangups
-Exec=qmlscene $@ Main.qml
-Icon=ubuntu-hangups.png
-Terminal=false
-Type=Application
-X-Ubuntu-Touch=true
-

@@ -47,24 +47,30 @@ Page {
         height: units.gu(5)
         width: parent ? parent.width - units.gu(2) : undefined
         Label {
+            width: parent.width
             anchors.verticalCenter: parent.verticalCenter
             text: title
             fontSize: "x-large"
+            elide: Text.ElideRight
             visible: status_message == ""
         }
 
         Label {
+            width: parent.width
             anchors.top: parent.top
             text: title
             fontSize: "large"
+            elide: Text.ElideRight
             visible: status_message != ""
         }
 
         Label {
+            width: parent.width
             opacity: status_message != "" ? 1.0: 0
             color: UbuntuColors.green
             anchors.bottom: parent.bottom
             text: status_message
+            elide: Text.ElideRight
             Behavior on opacity {
                 NumberAnimation { duration: 500 }
             }

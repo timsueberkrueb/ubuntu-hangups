@@ -1,0 +1,20 @@
+{
+    "name": "ubuntu-hangups.timsueberkrueb",
+    "description": "Inofficial Google Hangouts client for Ubuntu Touch",
+    "architecture": [
+        "armhf",
+        "i386",
+        "amd64"
+    ],
+    "title": "Hangups",
+    "hooks": {
+        "ubuntu-hangups.timsueberkrueb": {
+            "apparmor": "ubuntu-hangups.timsueberkrueb.apparmor",
+            "desktop": "ubuntu-hangups.timsueberkrueb.desktop",
+            "content-hub": "content-hub.json"
+        }
+    },
+    "version": "0.1.6",
+    "maintainer": "Tim Süberkrüb <tim.sueberkrueb@web.de>",
+    "framework": "ubuntu-sdk-15.04"
+}

@@ -213,14 +213,13 @@ Page {
             MouseArea {
                 anchors.fill: parent
                 onClicked: {
-                    if (messageField.text !== "") {
-                        if (Qt.inputMethod.visible) {
-                            // Workaround: last word doesn't get send (auto correction)
-                            Qt.inputMethod.invokeAction(Qt.inputMethod.Click, -1);
-                            Qt.inputMethod.hide();
-                            sendIcon.send_icon_clicked = true;
-                        }
-                        else {
+                    if (Qt.inputMethod.visible) {
+                        // Workaround: last word doesn't get send (auto correction)
+                        Qt.inputMethod.hide();
+                        sendIcon.send_icon_clicked = true;
+                    }
+                    else {
+                        if (messageField.text !== "") {
                             py.call('backend.send_message', [conv_id, messageField.text]);
                             messageField.text = "";
                         }
@@ -230,7 +229,7 @@ Page {
                 // Workaround: last word doesn't get send (auto correction)
                 Component.onCompleted: {
                     Qt.inputMethod.visibleChanged.connect(function() {
-                        if (sendIcon.send_icon_clicked) {
+                        if (sendIcon.send_icon_clicked && messageField.text !== "") {
                             py.call('backend.send_message', [conv_id, messageField.text]);
                             messageField.text = "";
                             py.call('backend.set_typing', [conv_id, "stopped"]);

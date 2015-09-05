@@ -3,218 +3,217 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
-# Tim Süberkrüb <tim.sueberkrueb@gmail.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: Ubuntu Hangups\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-09-03 15:53+0200\n"
-"PO-Revision-Date: 2015-09-03 14:09+0000\n"
+"PO-Revision-Date: 2015-09-03 14:00+0000\n"
 "Last-Translator: Tim Süberkrüb <tim.sueberkrueb@gmail.com>\n"
-"Language-Team: German (http://www.transifex.com/tim-sueberkrueb/ubuntu-hangups/language/de/)\n"
+"Language-Team: Romanian (http://www.transifex.com/tim-sueberkrueb/ubuntu-hangups/language/ro/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: de\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Language: ro\n"
+"Plural-Forms: nplurals=3; plural=(n==1?0:(((n%100>19)||((n%100==0)&&(n!=0)))?2:1));\n"
 
 #: Main.qml:173
 #, qt-format
 msgid "%1 is typing ..."
-msgstr "%1 schreibt ..."
+msgstr ""
 
 #: Main.qml:269
 msgid "Error"
-msgstr "Fehler"
+msgstr ""
 
 #: Main.qml:273
 #, qt-format
 msgid "An error has occured: %1"
-msgstr "Ein Fehler ist aufgetreten: %1"
+msgstr ""
 
 #: Main.qml:279 ui/NetworkErrorDialog.qml:16
 msgid "Close"
-msgstr "Schließen"
+msgstr ""
 
 #: ui/NewConversationWelcomeDialog.qml:8 ui/ConversationsPage.qml:14
 msgid "New Conversation"
-msgstr "Neue Unterhaltung"
+msgstr ""
 
 #: ui/NewConversationWelcomeDialog.qml:9
 msgid "Send a welcoming message to invite the conversations members"
-msgstr "Sende eine Begrüßungsnachricht, um die Gesprächsteilnehmer einzuladen"
+msgstr ""
 
 #: ui/NewConversationWelcomeDialog.qml:15
 msgid "Write message"
-msgstr "Schreibe eine Nachricht"
+msgstr ""
 
 #: ui/NewConversationWelcomeDialog.qml:16
 msgid "Hi there :)"
-msgstr "Hallo :)"
+msgstr ""
 
 #: ui/NewConversationWelcomeDialog.qml:20
 msgid "Send"
-msgstr "Senden"
+msgstr ""
 
 #: ui/AboutConversationPage.qml:5
 msgid "About Conversation"
-msgstr "Über die Unterhaltung"
+msgstr ""
 
 #: ui/AboutConversationPage.qml:11 ui/LoginPage.qml:45
 #: ui/ConversationsPage.qml:31 ui/AboutPage.qml:5
 msgid "About"
-msgstr "Über"
+msgstr ""
 
 #: ui/AboutConversationPage.qml:26 ui/SettingsPage.qml:7
 #: ui/ConversationsPage.qml:26
 msgid "Settings"
-msgstr "Einstellungen"
+msgstr ""
 
 #: ui/AboutConversationPage.qml:41
 msgid "Quiet"
-msgstr "Stummgeschaltet"
+msgstr ""
 
 #: ui/AboutConversationPage.qml:46
 msgid "Users"
-msgstr "Teilnehmer"
+msgstr ""
 
 #: ui/LoadingPage.qml:79 ui/LoginPage.qml:145
 msgid "Loading, please wait ..."
-msgstr "Lädt, bitte warten ..."
+msgstr ""
 
 #: ui/SettingsPage.qml:19
 msgid "Cache"
-msgstr "Cache"
+msgstr ""
 
 #: ui/SettingsPage.qml:24
 msgid ""
 "It is recommended to cache images offline so that they only get downloaded "
 "once."
-msgstr "Es ist empfohlen, Bilder im Cache zu speichern, da Sie sonst jedes mal erneut heruntergeladen werden müssen."
+msgstr ""
 
 #: ui/SettingsPage.qml:49
 msgid "Cache images"
-msgstr "Bilder im Cache speichern"
+msgstr ""
 
 #: ui/SettingsPage.qml:54 ui/SettingsPage.qml:69
 msgid "Clear cache"
-msgstr "Cache leeren"
+msgstr ""
 
 #: ui/SettingsPage.qml:70
 msgid ""
 "Are you sure to clear the cache? All images will have to be redownloaded."
-msgstr "Sind Sie sicher, dass Sie den Cache leeren wollen? Alle Bilder müssen dann erneut heruntergeladen werden."
+msgstr ""
 
 #: ui/SettingsPage.qml:73
 msgid "Clear now"
-msgstr "Jetzt leeren"
+msgstr ""
 
 #: ui/SettingsPage.qml:78
 msgid "Working ..."
-msgstr "Arbeite ..."
+msgstr ""
 
 #: ui/SettingsPage.qml:88 ui/ConversationsPage.qml:172
 msgid "Cancel"
-msgstr "Abbrechen"
+msgstr ""
 
 #: ui/SettingsPage.qml:99
 msgid "Cache cleared"
-msgstr "Cache geleert"
+msgstr ""
 
 #: ui/SettingsPage.qml:100
 msgid ""
 "The cache was cleared successful. Please restart the application to "
 "continue."
-msgstr "Der Cache wurde erfolgreich geleert. Sie müssen die Anwendung nun neu starten."
+msgstr ""
 
 #: ui/SettingsPage.qml:104
 msgid "Okay"
-msgstr "Okay"
+msgstr ""
 
 #: ui/ContactsPage.qml:5 ui/ConversationsPage.qml:21
 msgid "Contacts"
-msgstr "Kontakte"
+msgstr ""
 
 #: ui/ContactsPage.qml:81 ui/SelectUsersPage.qml:140
 msgid "No contacts"
-msgstr "Keine Kontakte"
+msgstr ""
 
 #: ui/LoginPage.qml:7
 msgid "Authenticate with Google"
-msgstr "Mit Google anmelden"
+msgstr ""
 
 #: ui/LoginPage.qml:36
 msgid "In order to use Hangups you need to authenticate this app with Google"
-msgstr "Um Hangups nutzten zu können, müssen Sie diese App mit Google authentifizieren."
+msgstr ""
 
 #: ui/LoginPage.qml:51
 msgid "Got it"
-msgstr "Verstanden"
+msgstr ""
 
 #: ui/LoginPage.qml:192
 msgid "Welcome to Hangups!"
-msgstr "Willkommen zu Hangups!"
+msgstr ""
 
 #: ui/LoginPage.qml:205
 msgid "Get started"
-msgstr "Los geht's"
+msgstr ""
 
 #: ui/ConversationsPage.qml:6
 msgid "Conversations"
-msgstr "Unterhaltungen"
+msgstr ""
 
 #: ui/ConversationsPage.qml:12 ui/ChatPage.qml:26
 msgid "Add"
-msgstr "Hinzufügen"
+msgstr ""
 
 #: ui/ConversationsPage.qml:134 ui/ChatPage.qml:33
 msgid "Add users"
-msgstr "Teilnehmer hinzufügen"
+msgstr ""
 
 #: ui/ConversationsPage.qml:156
 msgid "Delete Conversation"
-msgstr "Unterhaltung löschen"
+msgstr ""
 
 #: ui/ConversationsPage.qml:157
 msgid "Are you really sure to delete this conversation?"
-msgstr "Wollen Sie diese Unterhaltung wirklich löschen?"
+msgstr ""
 
 #: ui/ConversationsPage.qml:162
 msgid "Delete"
-msgstr "Löschen"
+msgstr ""
 
 #: ui/ConversationsPage.qml:181
 msgid "Nothing here, yet"
-msgstr "Hier ist noch nichts"
+msgstr ""
 
 #: ui/SelectUsersPage.qml:7
 msgid "Select users"
-msgstr "Teilnehmer auswählen"
+msgstr ""
 
 #: ui/NetworkErrorDialog.qml:8
 msgid "Network Error"
-msgstr "Netzwerkfehler"
+msgstr ""
 
 #: ui/NetworkErrorDialog.qml:14
 #, qt-format
 msgid ""
 "A network error (%1) has occurred: %2 \n"
 "Please make sure that you are connected to a network."
-msgstr "Ein Netzwerkfehler (%1) ist aufgetreten %2\nBitte "
+msgstr ""
 
 #: ui/AboutPage.qml:27
 msgid "Inofficial Google Hangouts client for Ubuntu Touch"
-msgstr "Inoffizieller Google Hangouts Client für Ubuntu Touch"
+msgstr ""
 
 #: ui/AboutPage.qml:31
 msgid ""
 "Source code available on <a href='https://github.com/tim-sueberkrueb/ubuntu-"
 "hangups'>GitHub</a>"
-msgstr "Quelltext verfügbar auf <a href='https://github.com/tim-sueberkrueb/ubuntu-hangups'>GitHub</a>"
+msgstr ""
 
 #: ui/AboutPage.qml:36
 msgid "Third-party Software"
-msgstr "Software von Drittanbietern"
+msgstr ""
 
 #: ui/AboutPage.qml:41
 msgid ""
@@ -222,7 +221,7 @@ msgid ""
 "href='https://github.com/halfsail'>Kevin Feyder</a>'s <a "
 "href='https://github.com/halfsail/Ubuntu-UI-Toolkit#suru-icon-template-"
 "kit'>Suru Icon Template kit</a>"
-msgstr "Das Anwendungsicon wurde mit Hilfe von <a href='https://github.com/halfsail'>Kevin Feyders</a> <a href='https://github.com/halfsail/Ubuntu-UI-Toolkit#suru-icon-template-kit'>Suru Icon Template kit</a> erstellt."
+msgstr ""
 
 #: ui/AboutPage.qml:46
 msgid ""
@@ -230,61 +229,61 @@ msgid ""
 "inofficial Google Hangouts Python library <a "
 "href='https://github.com/tdryer/hangups'>Hangups</a>. Hangups is released "
 "under the MIT license."
-msgstr "Diese Anwendung verwendet <a href='https://github.com/tdryer'>Tom Dryers</a> inoffizielle Google Hangouts Python-Bibliothek <a href='https://github.com/tdryer/hangups'>Hangups</a>. Hangups steht unter der MIT-Lizenz."
+msgstr ""
 
 #: ui/AboutPage.qml:51
 msgid ""
 "Powered by <a href='https://github.com/thp'>Thomas Perl's</a> <a "
 "href='https://github.com/thp/pyotherside'>PyOtherSide</a>"
-msgstr "Ubuntu Hangups nutzt <a href='https://github.com/thp'>Thomas Perls</a> <a href='https://github.com/thp/pyotherside'>PyOtherSide</a>"
+msgstr ""
 
 #: ui/AboutPage.qml:56
 #, qt-format
 msgid "The loading animation was created by %1."
-msgstr "Die Ladeanimation wurde von %1 erstellt."
+msgstr ""
 
 #: ui/AboutPage.qml:60
 msgid ""
 "This application is not endorsed by or affiliated with Ubuntu or Canonical. "
 "Ubuntu and Canonical are registered trademarks of Canonical Ltd."
-msgstr "Diese Anwendung wird wird weder von Canonical oder Ubuntu unterstützt, noch ist Sie mit letzteren verbunden. Ubuntu und Canonical sind Warenzeichen der Canonical Ltd."
+msgstr ""
 
 #: ui/ViewImagePage.qml:8
 msgid "Image"
-msgstr "Bild"
+msgstr ""
 
 #: ui/ViewImagePage.qml:33
 msgid "Save"
-msgstr "Speichern"
+msgstr ""
 
 #: ui/ViewImagePage.qml:40
 msgid "Share"
-msgstr "Teilen"
+msgstr ""
 
 #: ui/ViewImagePage.qml:81
 msgid "Retrieving image"
-msgstr "Lade Bild"
+msgstr ""
 
 #: ui/ViewImagePage.qml:82
 msgid "Retrieving image, please wait ..."
-msgstr "Bild wird geladen, bitte warten ..."
+msgstr ""
 
 #: ui/ChatListItem.qml:68
 msgid "An error occurred while loading the image."
-msgstr "Ein Fehler ist beim Laden des Bildes aufgetreten."
+msgstr ""
 
 #: ui/ChatPage.qml:21
 msgid "Info"
-msgstr "Info"
+msgstr ""
 
 #: ui/ChatPage.qml:93
 msgid "Pull to load more"
-msgstr "Ziehen, um mehr zu laden"
+msgstr ""
 
 #: ui/ChatPage.qml:93
 msgid "Release to load more"
-msgstr "Loslassen, um mehr zu laden"
+msgstr ""
 
 #: ui/ChatPage.qml:124
 msgid "Write a message"
-msgstr "Eine Nachricht schreiben"
+msgstr ""

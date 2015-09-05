@@ -1,8 +1,8 @@
 [main]
 host = https://www.transifex.com
 
-[tim.sueberkrueb.ubuntu-hangups]
-file_filter = po/<lang><lang>.po
-source_file = po/ubuntu-hangups.pot
+[ubuntu-hangups.ubuntu-hangupspot]
+file_filter = translations/ubuntu-hangups.ubuntu-hangupspot/<lang>.po
 source_lang = en
 type = PO
+

@@ -97,9 +97,6 @@ target/
 .ubuntu-sdk-deploy
 *.click
 
-# Transifex
-translations/
-
 # Hangups
 cache/
 ui/experimental/

@@ -2,7 +2,7 @@
 host = https://www.transifex.com
 
 [ubuntu-hangups.ubuntu-hangupspot]
-file_filter = translations/ubuntu-hangups.ubuntu-hangupspot/<lang>.po
+file_filter = po/<lang>.po
 source_lang = en
 type = PO
 

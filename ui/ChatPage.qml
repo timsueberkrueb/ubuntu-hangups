@@ -1,6 +1,7 @@
 import QtQuick 2.0
 import Ubuntu.Components 1.2
 import Ubuntu.Content 1.1
+import QtGraphicalEffects 1.0
 
 Page {
     id: chatPage
@@ -195,7 +196,7 @@ Page {
 
         }
 
-        Icon {
+        Image {
             id: sendIcon
 
             property bool send_icon_clicked: false
@@ -207,11 +208,9 @@ Page {
             anchors.rightMargin: units.gu(2)
             anchors.leftMargin: units.gu(2)
 
-            source: Qt.resolvedUrl("../media/fontawesome-paper-plane-blue.png")
+            source: Qt.resolvedUrl("../media/google-md-send-icon.svg")
             width: height
             height: parent.height - units.gu(1)
-
-            Component.onCompleted: {console.log(UbuntuColors.blue)}
 
             MouseArea {
                 anchors.fill: parent
@@ -245,6 +244,12 @@ Page {
 
             }
 
+        }
+
+        ColorOverlay {
+            anchors.fill: sendIcon
+            source: sendIcon
+            color: UbuntuColors.blue
         }
 
     }

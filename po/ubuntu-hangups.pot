@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-09-06 14:21+0200\n"
+"POT-Creation-Date: 2015-09-06 14:46+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,21 +17,21 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: Main.qml:179 .ubuntu-sdk-deploy/Main.qml:179
+#: Main.qml:178 .ubuntu-sdk-deploy/Main.qml:179
 #, qt-format
 msgid "%1 is typing ..."
 msgstr ""
 
-#: Main.qml:280 .ubuntu-sdk-deploy/Main.qml:280
+#: Main.qml:279 .ubuntu-sdk-deploy/Main.qml:280
 msgid "Error"
 msgstr ""
 
-#: Main.qml:284 .ubuntu-sdk-deploy/Main.qml:284
+#: Main.qml:283 .ubuntu-sdk-deploy/Main.qml:284
 #, qt-format
 msgid "An error has occured: %1"
 msgstr ""
 
-#: Main.qml:290 ui/NetworkErrorDialog.qml:16 .ubuntu-sdk-deploy/Main.qml:290
+#: Main.qml:289 ui/NetworkErrorDialog.qml:16 .ubuntu-sdk-deploy/Main.qml:290
 #: .ubuntu-sdk-deploy/ui/NetworkErrorDialog.qml:16
 msgid "Close"
 msgstr ""

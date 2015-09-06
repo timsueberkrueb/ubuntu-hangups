@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-09-06 14:07+0200\n"
+"POT-Creation-Date: 2015-09-06 14:21+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -203,13 +203,13 @@ msgstr ""
 
 #: ui/ConversationsPage.qml:12 ui/ChatPage.qml:36
 #: .ubuntu-sdk-deploy/ui/ConversationsPage.qml:12
-#: .ubuntu-sdk-deploy/ui/ChatPage.qml:35
+#: .ubuntu-sdk-deploy/ui/ChatPage.qml:36
 msgid "Add"
 msgstr ""
 
 #: ui/ConversationsPage.qml:157 ui/ChatPage.qml:43
 #: .ubuntu-sdk-deploy/ui/ConversationsPage.qml:157
-#: .ubuntu-sdk-deploy/ui/ChatPage.qml:42
+#: .ubuntu-sdk-deploy/ui/ChatPage.qml:43
 msgid "Add users"
 msgstr ""
 
@@ -318,18 +318,18 @@ msgstr ""
 msgid "An error occurred while loading the image."
 msgstr ""
 
-#: ui/ChatPage.qml:31 .ubuntu-sdk-deploy/ui/ChatPage.qml:30
+#: ui/ChatPage.qml:31 .ubuntu-sdk-deploy/ui/ChatPage.qml:31
 msgid "Info"
 msgstr ""
 
-#: ui/ChatPage.qml:109 .ubuntu-sdk-deploy/ui/ChatPage.qml:108
+#: ui/ChatPage.qml:109 .ubuntu-sdk-deploy/ui/ChatPage.qml:109
 msgid "Pull to load more"
 msgstr ""
 
-#: ui/ChatPage.qml:109 .ubuntu-sdk-deploy/ui/ChatPage.qml:108
+#: ui/ChatPage.qml:109 .ubuntu-sdk-deploy/ui/ChatPage.qml:109
 msgid "Release to load more"
 msgstr ""
 
-#: ui/ChatPage.qml:140 .ubuntu-sdk-deploy/ui/ChatPage.qml:139
+#: ui/ChatPage.qml:140 .ubuntu-sdk-deploy/ui/ChatPage.qml:140
 msgid "Write a message"
 msgstr ""

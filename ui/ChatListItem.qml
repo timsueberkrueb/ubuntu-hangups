@@ -8,7 +8,7 @@ ListItem {
     property bool is_self: modelData.user_is_self
 
     property color backgroundColor: "white" //is_self ? "#3fb24f" : "white"
-    property color foregroundColor: "black "//is_self ? "white" : "black"
+    property color foregroundColor: "black" //is_self ? "white" : "black"
 
     divider.visible: false
     height: rect.height
@@ -18,10 +18,10 @@ ListItem {
         actions: [
             Action {
                 iconName: "edit-copy"
-                enabled: testMimeData.text !== ""
-                visible: testMimeData.text !== ""
+                enabled: textMimeData.text !== ""
+                visible: textMimeData.text !== ""
                 onTriggered: {
-                    Clipboard.push(testMimeData);
+                    Clipboard.push(textMimeData);
                 }
             }
         ]
@@ -131,7 +131,7 @@ ListItem {
                     anchors.left: parent.left
                     anchors.right: parent.right
                     anchors.margins: units.gu(1)
-                    spacing: units.gu(1)
+                    spacing: (units.gu(1) / 2)
                     height: childrenRect.height + spacing + 2*anchors.margins
 
                     Label {
@@ -139,6 +139,7 @@ ListItem {
                         visible: !modelData.user_is_self
                         color: UbuntuColors.green
                         text: modelData.username
+                        font.pixelSize: units.dp(14)
                     }
 
                     FlexibleLabel {
@@ -148,10 +149,11 @@ ListItem {
                         width: parent.width
                         color: foregroundColor
                         text: modelData.text
+                        font.pixelSize: units.dp(14)
                     }
 
                     MimeData {
-                        id: testMimeData
+                        id: textMimeData
                         color: "green"
                         text: messageLabel.text
                     }
@@ -175,6 +177,7 @@ ListItem {
                         Label {
                             color: UbuntuColors.darkGrey
                             text: modelData.time
+                            font.pixelSize: units.dp(14)
                         }
                     }
 

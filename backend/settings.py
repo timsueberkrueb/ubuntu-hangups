@@ -9,6 +9,7 @@ import os.path
 
 default_settings = {
     'cache_images': True,
+    'check_routine_timeout': 30,
 }
 settings = default_settings
 filename = "settings.json"
@@ -32,7 +33,7 @@ def load(path='settings.json'):
         return
 
     with open(filename, 'r') as file:
-        settings = json.loads(file.read())
+        settings.update(json.loads(file.read()))
 
 
 def get(key):

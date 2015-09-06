@@ -191,6 +191,11 @@ MainView {
                 }
             });
 
+            setHandler('set-conversation-online', function(conv_id, online){
+                console.log('set-conversation-online of', conv_id)
+                conversationsModel.get(getConversationModelIndexById(conv_id)).online = online;
+            });
+
             setHandler('add-conversation-message', function(conv_id, data, insert_mode){
                 console.log('add-conversation-message to ', conv_id, data.text)
                 if (insert_mode === "bottom") {

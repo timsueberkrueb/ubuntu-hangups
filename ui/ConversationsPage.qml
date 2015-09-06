@@ -84,20 +84,43 @@ Page {
             }
 
             Rectangle {
+                id: onlineCircle
+
+                visible: false
+
+                x: rowItem.x + units.dp(24)
+                y: rowItem.y + units.dp(24)
+
+                width: units.gu(2)
+                height: width
+                color: UbuntuColors.green
+                radius: width*0.5
+
+                Icon {
+                    anchors.centerIn: parent
+                    width: parent.width
+                    height: parent.height
+                    name: "stock_website"
+                    color: "white"
+                }
+            }
+
+            Rectangle {
                 id: unreadCircle
 
-                visible: modelData.unread_count > 0
+                visible: modelData.unread_count > 0 || modelData.online
 
                 x: rowItem.x + units.dp(24)
                 y: rowItem.y + units.dp(32) - unreadMessagesLabel.height * 0.6
 
                 width: unreadMessagesLabel.paintedWidth + units.gu(1)
                 height: width
-                color: !modelData.is_quiet ? UbuntuColors.green : UbuntuColors.darkGrey
+                color: !modelData.is_quiet ? modelData.online ? UbuntuColors.green : UbuntuColors.blue : UbuntuColors.darkGrey
                 radius: width*0.5
 
                 Label {
                     id: unreadMessagesLabel
+                    visible: modelData.unread_count > 0
                     anchors.centerIn: parent
                     fontSize: "x-small"
                     color: "white"

@@ -60,6 +60,15 @@ class ConversationController:
         for event in conv.events:
             self.on_event(event)
 
+        # Start timer routine
+        threading.Timer(settings.get('check_routine_timeout'), self.check_routine).start()
+
+    def check_routine(self):
+        print("Running check routine of ", self.conv.id_)
+        call_threadsafe(self.update_online_status)
+        # Start new timer
+        threading.Timer(settings.get('check_routine_timeout'), self.check_routine).start()
+
     def handle_message(self, conv_event, user, set_unread, insert_mode="bottom"):
         message = get_message_html(conv_event.segments)
         pyotherside.send('add-conversation-message',
@@ -225,6 +234,17 @@ class ConversationController:
         global client
         asyncio.async(client.setchatname(self.conv.id_, name))
 
+    def update_online_status(self):
+        if len(self.conv.users) == 2:
+            for user in self.conv.users:
+                if not user.is_self:
+                    asyncio.async(client.querypresence(user.id_.chat_id)).add_done_callback(self.online_status_updated)
+                    break
+
+    def online_status_updated(self, future):
+        res = future.result()
+        pyotherside.send('set-conversation-online', self.conv.id_, dict(future.result())["presence_result"][0]["presence"]['available'])
+
 
 def get_login_url():
     return hangups.auth.OAUTH2_LOGIN_URL
@@ -260,6 +280,7 @@ def auth_with_token():
 def on_connect(initial_data):
     """Handle connecting for the first time."""
     global client, disable_notifier, conv_list, user_list
+
     print("Building user list")
     user_list = yield from hangups.build_user_list(
         client, initial_data
@@ -300,6 +321,7 @@ def on_connect(initial_data):
             "first_message_loaded": False,
             "unread_count": get_unread_messages_count(conv),
             "is_quiet": conv.is_quiet,
+            "online": False,
             "users": [{
                           "id_": user.id_[0],
                           "full_name": user.full_name,
@@ -311,7 +333,11 @@ def on_connect(initial_data):
         }
         pyotherside.send('add-conversation', conv_data)
         ctrl = ConversationController(conv)
+        ctrl.update_online_status()
         conv_controllers[conv.id_] = ctrl
+
+    print("Setting presence")
+    set_client_presence(True)
 
     pyotherside.send('show-conversations-page')
 
@@ -335,6 +361,7 @@ def on_event(conv_event):
             "first_message_loaded": False,
             "unread_count": get_unread_messages_count(conv),
             "is_quiet": conv.is_quiet,
+            "online": False,
             "users": [{
                           "id_": user.id_[0],
                           "full_name": user.full_name,
@@ -346,11 +373,23 @@ def on_event(conv_event):
         }
         pyotherside.send('add-conversation', conv_data, True)
         ctrl = ConversationController(conv)
+        ctrl.update_online_status()
         conv_controllers[conv.id_] = ctrl
         pyotherside.send('move-conversation-to-top', conv_event.conversation_id)
     else:
         pyotherside.send('move-conversation-to-top', conv_event.conversation_id)
 
+
+def set_client_presence(online):
+    print("/!\ FIXME: presence wasn't set")
+    return
+    # Currently disabled because of error:
+    # hangups.exceptions.NetworkError: Unexpected status: ERROR_INVALID_REQUEST
+    global client
+    try:
+        asyncio.async(client.setpresence(online))
+    except hangups.exceptions.NetworkError as e:
+        print("Failed to set presence:", str(e))
 
 def entered_conversation(conv_id):
     call_threadsafe(conv_controllers[conv_id].on_entered)
@@ -490,6 +529,8 @@ def on_quit():
     print("Exiting ...")
     print('Saving settings ...')
     settings.save()
+    print("Setting presence")
+    call_threadsafe(set_client_presence, False)
     client.disconnect()
     loop.close()
 

@@ -215,31 +215,15 @@ Page {
             MouseArea {
                 anchors.fill: parent
                 onClicked: {
-                    if (Qt.inputMethod.visible) {
-                        // Workaround: last word doesn't get send (auto correction)
-                        Qt.inputMethod.hide();
-                        sendIcon.send_icon_clicked = true;
+                    Qt.inputMethod.commit();
+                    Qt.inputMethod.hide();
+                    if (messageField.text !== "") {
+                        py.call('backend.send_message', [conv_id, messageField.text]);
+                        messageField.text = "";
+                        py.call('backend.set_typing', [conv_id, "stopped"]);
+                        pausedTypingTimer.stop();
+                        stoppedTypingTimer.stop();
                     }
-                    else {
-                        if (messageField.text !== "") {
-                            py.call('backend.send_message', [conv_id, messageField.text]);
-                            messageField.text = "";
-                        }
-                    }
-                }
-
-                // Workaround: last word doesn't get send (auto correction)
-                Component.onCompleted: {
-                    Qt.inputMethod.visibleChanged.connect(function() {
-                        if (sendIcon.send_icon_clicked && messageField.text !== "") {
-                            py.call('backend.send_message', [conv_id, messageField.text]);
-                            messageField.text = "";
-                            py.call('backend.set_typing', [conv_id, "stopped"]);
-                            pausedTypingTimer.stop();
-                            stoppedTypingTimer.stop();
-                            sendIcon.send_icon_clicked = false;
-                        }
-                    });
                 }
 
             }

@@ -74,6 +74,7 @@ class ConversationController:
         pyotherside.send('add-conversation-message',
                          self.conv.id_,
                          {
+                             "type": "chat/message",
                              "text": message,
                              "attachments": [{'url': cache.get_image_cached(a) if settings.get('cache_images') else a}
                                              for a in conv_event.attachments],
@@ -85,11 +86,49 @@ class ConversationController:
 
     def handle_rename(self, conv_event, user):
         self.set_title()
+        pyotherside.send('add-conversation-message',
+                 self.conv.id_,
+                 {
+                     "type": "chat/rename",
+                     "new_name": conv_event.new_name,
+                     "user_is_self": user.is_self,
+                     "username": user.full_name,
+                     "time": get_message_timestr(conv_event.timestamp)
+                 },
+                 "bottom")
+
 
     def handle_membership_change(self, conv_event, user):
         self.set_title()
         users = model.get_conv_users(self.conv)
         pyotherside.send('set-conversation-users', self.conv.id_, users)
+        event_users = [self.conv.get_user(user_id) for user_id in conv_event.participant_ids]
+        names = [user.full_name for user in event_users]
+        if conv_event.type_ == hangups.MembershipChangeType.JOIN:
+            for name in names:
+                pyotherside.send('add-conversation-message',
+                     self.conv.id_,
+                     {
+                         "type": "chat/add",
+                         "name": name,
+                         "user_is_self": user.is_self,
+                         "username": user.full_name,
+                         "time": get_message_timestr(conv_event.timestamp)
+                     },
+                     "bottom")
+        else:
+            for name in names:
+                pyotherside.send('add-conversation-message',
+                 self.conv.id_,
+                 {
+                     "type": "chat/leave",
+                     "name": name,
+                     "user_is_self": user.is_self,
+                     "username": user.full_name,
+                     "time": get_message_timestr(conv_event.timestamp)
+                 },
+                 "bottom")
+
 
     def on_event(self, conv_event, set_title=True, set_unread=True):
         user = self.conv.get_user(conv_event.user_id)

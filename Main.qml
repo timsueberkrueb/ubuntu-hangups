@@ -196,7 +196,7 @@ MainView {
             });
 
             setHandler('add-conversation-message', function(conv_id, data, insert_mode){
-                console.log('add-conversation-message to ', conv_id, data.text)
+                console.log('add-conversation-message to ', conv_id, data.type)
                 if (insert_mode === "bottom") {
                     chatModels[conv_id].append(data);
                     if (pageStack.currentPage === chatPage && chatPage.conv_id === conv_id) {

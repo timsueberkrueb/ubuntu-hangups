@@ -8,10 +8,12 @@
     ],
     "title": "Hangups",
     "hooks": {
-        "ubuntu-hangups.timsueberkrueb": {
+        "Hangups": {
             "apparmor": "ubuntu-hangups.timsueberkrueb.apparmor",
             "desktop": "ubuntu-hangups.timsueberkrueb.desktop",
-            "content-hub": "content-hub.json"
+            "content-hub": "content-hub.json",
+            "account-application": "ubuntu-hangups.timsueberkrueb_Hangups.application",
+            "account-service": "ubuntu-hangups.timsueberkrueb_Hangups.service"
         }
     },
     "version": "0.2",

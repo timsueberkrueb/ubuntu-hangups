@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-09-07 22:56+0200\n"
+"POT-Creation-Date: 2015-09-08 10:50+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -90,9 +90,7 @@ msgstr ""
 msgid "Users"
 msgstr ""
 
-#: ui/LoadingPage.qml:79 ui/LoginPage.qml:145
-#: .ubuntu-sdk-deploy/ui/LoadingPage.qml:79
-#: .ubuntu-sdk-deploy/ui/LoginPage.qml:145
+#: ui/LoadingPage.qml:79 .ubuntu-sdk-deploy/ui/LoadingPage.qml:79
 msgid "Loading, please wait ..."
 msgstr ""
 
@@ -170,30 +168,30 @@ msgstr ""
 msgid "No contacts"
 msgstr ""
 
-#: ui/LoginPage.qml:7 .ubuntu-sdk-deploy/ui/LoginPage.qml:7
+#: ui/LoginPage.qml:10 .ubuntu-sdk-deploy/ui/LoginPage.qml:10
 msgid "Authenticate with Google"
 msgstr ""
 
-#: ui/LoginPage.qml:36 .ubuntu-sdk-deploy/ui/LoginPage.qml:36
+#: ui/LoginPage.qml:41 .ubuntu-sdk-deploy/ui/LoginPage.qml:41
 msgid "In order to use Hangups you need to authenticate this app with Google"
 msgstr ""
 
-#: ui/LoginPage.qml:45 ui/ConversationsPage.qml:31 ui/AboutPage.qml:5
-#: .ubuntu-sdk-deploy/ui/LoginPage.qml:45
+#: ui/LoginPage.qml:50 ui/ConversationsPage.qml:31 ui/AboutPage.qml:5
+#: .ubuntu-sdk-deploy/ui/LoginPage.qml:50
 #: .ubuntu-sdk-deploy/ui/ConversationsPage.qml:31
 #: .ubuntu-sdk-deploy/ui/AboutPage.qml:5
 msgid "About"
 msgstr ""
 
-#: ui/LoginPage.qml:51 .ubuntu-sdk-deploy/ui/LoginPage.qml:51
+#: ui/LoginPage.qml:56 .ubuntu-sdk-deploy/ui/LoginPage.qml:56
 msgid "Got it"
 msgstr ""
 
-#: ui/LoginPage.qml:192 .ubuntu-sdk-deploy/ui/LoginPage.qml:192
+#: ui/LoginPage.qml:187 .ubuntu-sdk-deploy/ui/LoginPage.qml:186
 msgid "Welcome to Hangups!"
 msgstr ""
 
-#: ui/LoginPage.qml:205 .ubuntu-sdk-deploy/ui/LoginPage.qml:205
+#: ui/LoginPage.qml:200 .ubuntu-sdk-deploy/ui/LoginPage.qml:199
 msgid "Get started"
 msgstr ""
 

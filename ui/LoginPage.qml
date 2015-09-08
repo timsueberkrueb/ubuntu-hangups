@@ -2,12 +2,17 @@ import QtQuick 2.0
 import Ubuntu.Components 1.2
 //import Ubuntu.Web 0.2
 import com.canonical.Oxide 1.0
+import Ubuntu.OnlineAccounts 0.1
+import Ubuntu.OnlineAccounts.Client 0.1
+
 
  Page {
     title: i18n.tr("Authenticate with Google")
     visible: false
 
     property string usContext: "messaging://"
+    property var refreshToken
+    property var accessToken
 
     Column {
         id: infoContainer
@@ -61,89 +66,79 @@ import com.canonical.Oxide 1.0
     }
 
     Item {
-        id: webviewContainer
+        id: loginContainer
         anchors.top: infoContainer.bottom
         anchors.bottom: parent.bottom
         anchors.left: parent.left
         anchors.right: parent.right
 
-        WebView {
-            id: webview
-            visible: !loading
+        AccountServiceModel {
+          id: accounts
+          applicationId: "ubuntu-hangups.timsueberkrueb_Hangups"
+          provider : "google"
+        }
+
+        Setup {
+          id: setup
+          applicationId: accounts.applicationId
+          providerId: "google"
+        }
+
+        UbuntuListView {
+            id: accountsView
             anchors.fill: parent
-            property bool approved: false
-            context: webcontext
+            model: accounts
+            spacing: units.gu(2)
+            delegate: ListItem {
+                width: parent.width
+                id: rect
 
-            function getHTML(callback) {
-                var req = webview.rootFrame.sendMessage(usContext, "GET_HTML", {})
-                req.onreply = function (msg) {
-                    callback(msg.html);
+                Row {
+                    anchors.fill: parent
+                    spacing: units.gu(2)
+                    anchors.margins: units.gu(2)
+
+                    Icon {
+                        anchors.verticalCenter: parent.verticalCenter
+                        name: "google"
+                        width: units.dp(32)
+                        height: units.dp(32)
+                    }
+
+                    Label {
+                        anchors.verticalCenter: parent.verticalCenter
+                        text: model.displayName
+                    }
                 }
-                req.onerror = function (code, explanation) {
-                    console.log("Error " + code + ": " + explanation)
+
+                AccountService {
+                    id: accountService
+                    objectHandle: model.accountServiceHandle
+                    onAuthenticated: {
+                        console.log(JSON.stringify(reply))
+                        successLabel.text = reply.toString()
+                        refreshToken = reply.RefreshToken;
+                        accessToken = reply.AccessToken;
+                        accountsView.visible = false;
+                        finishedIcon.opacity = 1;
+                    }
+                    onAuthenticationError: {
+                        console.log("Authentication failed, code " + error.code); l.text="Authentication failed, code "  +error.code.toString() + ' -> \n”' + error.message }
+                }
+
+                onClicked: {
+                    accountService.authenticate();
                 }
             }
 
-            function getAuthCode(callback) {
-                var req = webview.rootFrame.sendMessage(usContext, "GET_AUTH_CODE", {})
-                req.onreply = function (msg) {
-                    callback(msg.code);
-                }
-                req.onerror = function (code, explanation) {
-                    console.log("Error " + code + ": " + explanation)
-                }
+            Button {
+                anchors.centerIn: parent
+                visible: accounts.count === 0
+                text: "Authorize a Google account"
+                color: UbuntuColors.green
+                onClicked: setup.exec()
             }
 
-            function onApproved() {
-                if (!approved) {
-                    finishedIcon.opacity = 1;
-                    infoContainer.opacity = 0;
-                    approved = true;
-                    visible = false;
-                }
-            }
-
-            Component.onCompleted: {
-                py.call('backend.get_login_url', [], function(result){
-                    webview.url = result;
-                });
-            }
-
-            onLoadingChanged: {
-                if (loadProgress === 100 && url.toString().lastIndexOf('https://accounts.google.com/o/oauth2/approval', 0) === 0) {
-                    onApproved();
-                }
-            }
-
-            onLoadProgressChanged: {
-            }
-
-        }
-
-        WebContext {
-            id: webcontext
-            userScripts: [
-                UserScript {
-                    context: usContext
-                    url: Qt.resolvedUrl("oxide-user.js")
-                }
-            ]
-        }
-
-        ActivityIndicator {
-            id: loadingIndicator
-            anchors.bottom: loadingInfo.top
-            anchors.bottomMargin: units.gu(1)
-            anchors.horizontalCenter: parent.horizontalCenter
-            running: webview.loading
-            visible: webview.loading
-        }
-
-        Label {
-            id: loadingInfo
-            anchors.centerIn: parent
-            text: i18n.tr("Loading, please wait ...")
-            visible: webview.loading
         }
 
     }
@@ -205,11 +200,9 @@ import com.canonical.Oxide 1.0
         text: i18n.tr("Get started")
         color: UbuntuColors.green
         onClicked: {
-            webview.getAuthCode(function callback(code) {
-                pageStack.clear();
-                pageStack.push(loadingPage);
-                py.call('backend.auth_with_code', [code])
-            });
+            pageStack.clear();
+            pageStack.push(loadingPage);
+            py.call('backend.auth_with_code', [refreshToken, accessToken]);
         }
 
     }

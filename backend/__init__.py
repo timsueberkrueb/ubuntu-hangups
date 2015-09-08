@@ -250,15 +250,17 @@ def get_login_url():
     return hangups.auth.OAUTH2_LOGIN_URL
 
 
-def auth_with_code(code):
+def auth_with_code(refresh_token, access_token):
     def get_code_f():
-        return code
+        return refresh_token
 
     try:
-        access_token = hangups.auth._auth_with_code(get_code_f, refresh_token_filename)
+        hangups.auth._save_oauth2_refresh_token(refresh_token_filename, refresh_token)
+        #access_token = hangups.auth._auth_with_code(get_code_f, refresh_token_filename)
         print('Authentication successful')
-        cookies = hangups.auth._get_session_cookies(access_token)
-        load(cookies)
+        #cookies = hangups.auth._get_session_cookies(access_token)
+        #load(cookies)
+        auth_with_token()
     except hangups.GoogleAuthError as e:
         print('Failed to authenticate using refresh token: {}'.format(e))
 

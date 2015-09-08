@@ -47,6 +47,14 @@ Project {
     }
     Files {
         directory: "."
+        filter: "*.service"
+    }
+    Files {
+        directory: "."
+        filter: "*.application"
+    }
+    Files {
+        directory: "."
         paths: ["manifest.json",".excludes"]
     }
     Files {

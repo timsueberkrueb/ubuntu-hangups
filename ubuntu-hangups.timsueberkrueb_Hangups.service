@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<service>
+  <name>Google</name>
+  <type>ubuntu-hangups.timsueberkrueb_Hangups</type>
+  <provider>google</provider>
+  <template>
+    <group name="auth/oauth2/user_agent">
+      <setting name="ClientId">936475272427.apps.googleusercontent.com</setting>
+      <setting name="ClientSecret">KWsJlkaMn1jGLxQpWxMnOox-</setting>
+      <setting name="Scope" type="as">['https://www.google.com/accounts/OAuthLogin']</setting>
+      <setting name="RedirectUri">urn:ietf:wg:oauth:2.0:oob</setting>
+    </group>
+  </template>
+</service>

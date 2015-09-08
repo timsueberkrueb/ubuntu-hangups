@@ -6,7 +6,9 @@
         "content_exchange",
         "connectivity",
         "audio",
-        "microphone"
+        "microphone",
+        "accounts",
+        "camera"
     ],
     "policy_version": 1.3
 }

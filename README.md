@@ -1,9 +1,9 @@
 <h1><img src="https://raw.githubusercontent.com/tim-sueberkrueb/ubuntu-hangups/master/ubuntu-hangups.png" width="64"> Ubuntu Hangups</h1>
 
 
-An inofficial Google Hangouts client for Ubuntu Touch
+An unofficial Google Hangouts client for Ubuntu Touch
 
-This application uses <a href='https://github.com/tdryer'>Tom Dryer</a>'s inofficial Google Hangouts Python library <a href='https://github.com/tdryer/hangups'>Hangups</a>.
+This application uses <a href='https://github.com/tdryer'>Tom Dryer</a>'s unofficial Google Hangouts Python library <a href='https://github.com/tdryer/hangups'>Hangups</a>.
 Powered by <a href='https://github.com/thp'>Thomas Perl's</a> <a href='https://github.com/thp/pyotherside'>PyOtherSide</a>
 
 ## Third-party software

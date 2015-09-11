@@ -3,12 +3,13 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
+# Alejandro vera <alejandro.vera@gmail.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: Ubuntu Hangups\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-09-06 14:46+0200\n"
-"PO-Revision-Date: 2015-09-06 12:53+0000\n"
+"POT-Creation-Date: 2015-09-08 16:15+0200\n"
+"PO-Revision-Date: 2015-09-08 14:21+0000\n"
 "Last-Translator: Tim Süberkrüb <tim.sueberkrueb@gmail.com>\n"
 "Language-Team: Spanish (Chile) (http://www.transifex.com/tim-sueberkrueb/ubuntu-hangups/language/es_CL/)\n"
 "MIME-Version: 1.0\n"
@@ -17,55 +18,55 @@ msgstr ""
 "Language: es_CL\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: Main.qml:178 .ubuntu-sdk-deploy/Main.qml:179
+#: Main.qml:178 .ubuntu-sdk-deploy/Main.qml:178
 #, qt-format
 msgid "%1 is typing ..."
-msgstr ""
+msgstr "%1 está escribiendo ..."
 
-#: Main.qml:279 .ubuntu-sdk-deploy/Main.qml:280
+#: Main.qml:279 .ubuntu-sdk-deploy/Main.qml:279
 msgid "Error"
-msgstr ""
+msgstr "Error"
 
-#: Main.qml:283 .ubuntu-sdk-deploy/Main.qml:284
+#: Main.qml:283 .ubuntu-sdk-deploy/Main.qml:283
 #, qt-format
 msgid "An error has occured: %1"
-msgstr ""
+msgstr "Ha ocurrido un error: %1"
 
-#: Main.qml:289 ui/NetworkErrorDialog.qml:16 .ubuntu-sdk-deploy/Main.qml:290
+#: Main.qml:289 ui/NetworkErrorDialog.qml:16 .ubuntu-sdk-deploy/Main.qml:289
 #: .ubuntu-sdk-deploy/ui/NetworkErrorDialog.qml:16
 msgid "Close"
-msgstr ""
+msgstr "Cerrar"
 
 #: ui/NewConversationWelcomeDialog.qml:8 ui/ConversationsPage.qml:14
 #: .ubuntu-sdk-deploy/ui/NewConversationWelcomeDialog.qml:8
 #: .ubuntu-sdk-deploy/ui/ConversationsPage.qml:14
 msgid "New Conversation"
-msgstr ""
+msgstr "Nueva conversación"
 
 #: ui/NewConversationWelcomeDialog.qml:9
 #: .ubuntu-sdk-deploy/ui/NewConversationWelcomeDialog.qml:9
 msgid "Send a welcoming message to invite the conversations members"
-msgstr ""
+msgstr "Enviar un mensaje de bienvenida para invitar a los miembros de la conversación"
 
 #: ui/NewConversationWelcomeDialog.qml:15
 #: .ubuntu-sdk-deploy/ui/NewConversationWelcomeDialog.qml:15
 msgid "Write message"
-msgstr ""
+msgstr "Escribir mensaje"
 
 #: ui/NewConversationWelcomeDialog.qml:16
 #: .ubuntu-sdk-deploy/ui/NewConversationWelcomeDialog.qml:16
 msgid "Hi there :)"
-msgstr ""
+msgstr "Hola :)"
 
 #: ui/NewConversationWelcomeDialog.qml:20
 #: .ubuntu-sdk-deploy/ui/NewConversationWelcomeDialog.qml:20
 msgid "Send"
-msgstr ""
+msgstr "Enviar"
 
 #: ui/AboutConversationPage.qml:5
 #: .ubuntu-sdk-deploy/ui/AboutConversationPage.qml:5
 msgid "About Conversation"
-msgstr ""
+msgstr "Acerca de la conversación"
 
 #: ui/AboutConversationPage.qml:26 ui/SettingsPage.qml:7
 #: ui/ConversationsPage.qml:26
@@ -73,58 +74,57 @@ msgstr ""
 #: .ubuntu-sdk-deploy/ui/SettingsPage.qml:7
 #: .ubuntu-sdk-deploy/ui/ConversationsPage.qml:26
 msgid "Settings"
-msgstr ""
+msgstr "Configuraciones"
 
 #: ui/AboutConversationPage.qml:40
 #: .ubuntu-sdk-deploy/ui/AboutConversationPage.qml:40
 msgid "Rename"
-msgstr ""
+msgstr "Cambiar nombre"
 
 #: ui/AboutConversationPage.qml:62
 #: .ubuntu-sdk-deploy/ui/AboutConversationPage.qml:62
 msgid "Quiet"
-msgstr ""
+msgstr "Silenciar"
 
 #: ui/AboutConversationPage.qml:67
 #: .ubuntu-sdk-deploy/ui/AboutConversationPage.qml:67
 msgid "Users"
-msgstr ""
+msgstr "Usuarios"
 
 #: ui/LoadingPage.qml:79 ui/LoginPage.qml:145
 #: .ubuntu-sdk-deploy/ui/LoadingPage.qml:79
-#: .ubuntu-sdk-deploy/ui/LoginPage.qml:145
 msgid "Loading, please wait ..."
-msgstr ""
+msgstr "Cargando, por favor espera ..."
 
 #: ui/SettingsPage.qml:23 .ubuntu-sdk-deploy/ui/SettingsPage.qml:23
 msgid "Cache"
-msgstr ""
+msgstr "Caché"
 
 #: ui/SettingsPage.qml:28 .ubuntu-sdk-deploy/ui/SettingsPage.qml:28
 msgid ""
 "It is recommended to cache images offline so that they only get downloaded "
 "once."
-msgstr ""
+msgstr "Se recomendado mantener las imágenes en el caché para que solo se descarguen una vez"
 
 #: ui/SettingsPage.qml:53 .ubuntu-sdk-deploy/ui/SettingsPage.qml:53
 msgid "Cache images"
-msgstr ""
+msgstr "Imágenes del caché"
 
 #: ui/SettingsPage.qml:58 ui/SettingsPage.qml:104
 #: .ubuntu-sdk-deploy/ui/SettingsPage.qml:58
 #: .ubuntu-sdk-deploy/ui/SettingsPage.qml:104
 msgid "Clear cache"
-msgstr ""
+msgstr "Limpiar caché"
 
 #: ui/SettingsPage.qml:67 .ubuntu-sdk-deploy/ui/SettingsPage.qml:67
 msgid "Routine Timer"
-msgstr ""
+msgstr "Tiempo entre llamadas a la rutina"
 
 #: ui/SettingsPage.qml:72 .ubuntu-sdk-deploy/ui/SettingsPage.qml:72
 msgid ""
 "Specify the timeout period of the status update routine called periodically "
 "in seconds."
-msgstr ""
+msgstr "Especificar en segundos el tiempo de llamada de la función de actualización de estados."
 
 #: ui/SettingsPage.qml:105 .ubuntu-sdk-deploy/ui/SettingsPage.qml:105
 msgid ""
@@ -133,114 +133,114 @@ msgstr ""
 
 #: ui/SettingsPage.qml:108 .ubuntu-sdk-deploy/ui/SettingsPage.qml:108
 msgid "Clear now"
-msgstr ""
+msgstr "Limpiar ahora"
 
 #: ui/SettingsPage.qml:113 .ubuntu-sdk-deploy/ui/SettingsPage.qml:113
 msgid "Working ..."
-msgstr ""
+msgstr "Trabajando ..."
 
 #: ui/SettingsPage.qml:123 ui/ConversationsPage.qml:195
 #: .ubuntu-sdk-deploy/ui/SettingsPage.qml:123
 #: .ubuntu-sdk-deploy/ui/ConversationsPage.qml:195
 msgid "Cancel"
-msgstr ""
+msgstr "Cancelar"
 
 #: ui/SettingsPage.qml:134 .ubuntu-sdk-deploy/ui/SettingsPage.qml:134
 msgid "Cache cleared"
-msgstr ""
+msgstr "Caché vaciado"
 
 #: ui/SettingsPage.qml:135 .ubuntu-sdk-deploy/ui/SettingsPage.qml:135
 msgid ""
 "The cache was cleared successful. Please restart the application to "
 "continue."
-msgstr ""
+msgstr "El caché fue vaciado exitosamente."
 
 #: ui/SettingsPage.qml:139 .ubuntu-sdk-deploy/ui/SettingsPage.qml:139
 msgid "Okay"
-msgstr ""
+msgstr "Ok"
 
 #: ui/ContactsPage.qml:5 ui/ConversationsPage.qml:21
 #: .ubuntu-sdk-deploy/ui/ContactsPage.qml:5
 #: .ubuntu-sdk-deploy/ui/ConversationsPage.qml:21
 msgid "Contacts"
-msgstr ""
+msgstr "Contactos"
 
 #: ui/ContactsPage.qml:81 ui/SelectUsersPage.qml:140
 #: .ubuntu-sdk-deploy/ui/ContactsPage.qml:81
 #: .ubuntu-sdk-deploy/ui/SelectUsersPage.qml:140
 msgid "No contacts"
-msgstr ""
+msgstr "No hay contactos"
 
-#: ui/LoginPage.qml:7 .ubuntu-sdk-deploy/ui/LoginPage.qml:7
+#: ui/LoginPage.qml:7 .ubuntu-sdk-deploy/ui/LoginPage.qml:10
 msgid "Authenticate with Google"
 msgstr ""
 
-#: ui/LoginPage.qml:36 .ubuntu-sdk-deploy/ui/LoginPage.qml:36
+#: ui/LoginPage.qml:36 .ubuntu-sdk-deploy/ui/LoginPage.qml:41
 msgid "In order to use Hangups you need to authenticate this app with Google"
-msgstr ""
+msgstr "Para usar Hangups necesitas autenticar esta aplicación con Google"
 
 #: ui/LoginPage.qml:45 ui/ConversationsPage.qml:31 ui/AboutPage.qml:5
-#: .ubuntu-sdk-deploy/ui/LoginPage.qml:45
+#: .ubuntu-sdk-deploy/ui/LoginPage.qml:50
 #: .ubuntu-sdk-deploy/ui/ConversationsPage.qml:31
 #: .ubuntu-sdk-deploy/ui/AboutPage.qml:5
 msgid "About"
-msgstr ""
+msgstr "Acerca de"
 
-#: ui/LoginPage.qml:51 .ubuntu-sdk-deploy/ui/LoginPage.qml:51
+#: ui/LoginPage.qml:51 .ubuntu-sdk-deploy/ui/LoginPage.qml:56
 msgid "Got it"
-msgstr ""
+msgstr "Entiendo"
 
-#: ui/LoginPage.qml:192 .ubuntu-sdk-deploy/ui/LoginPage.qml:192
+#: ui/LoginPage.qml:192 .ubuntu-sdk-deploy/ui/LoginPage.qml:187
 msgid "Welcome to Hangups!"
-msgstr ""
+msgstr "Bienvenido a Hangups!"
 
-#: ui/LoginPage.qml:205 .ubuntu-sdk-deploy/ui/LoginPage.qml:205
+#: ui/LoginPage.qml:205 .ubuntu-sdk-deploy/ui/LoginPage.qml:200
 msgid "Get started"
-msgstr ""
+msgstr "Comenzar"
 
 #: ui/ConversationsPage.qml:6 .ubuntu-sdk-deploy/ui/ConversationsPage.qml:6
 msgid "Conversations"
-msgstr ""
+msgstr "Conversaciones"
 
 #: ui/ConversationsPage.qml:12 ui/ChatPage.qml:36
 #: .ubuntu-sdk-deploy/ui/ConversationsPage.qml:12
 #: .ubuntu-sdk-deploy/ui/ChatPage.qml:36
 msgid "Add"
-msgstr ""
+msgstr "Agregar"
 
 #: ui/ConversationsPage.qml:157 ui/ChatPage.qml:43
 #: .ubuntu-sdk-deploy/ui/ConversationsPage.qml:157
 #: .ubuntu-sdk-deploy/ui/ChatPage.qml:43
 msgid "Add users"
-msgstr ""
+msgstr "Agregar usuarios"
 
 #: ui/ConversationsPage.qml:179
 #: .ubuntu-sdk-deploy/ui/ConversationsPage.qml:179
 msgid "Delete Conversation"
-msgstr ""
+msgstr "Borrar conversación"
 
 #: ui/ConversationsPage.qml:180
 #: .ubuntu-sdk-deploy/ui/ConversationsPage.qml:180
 msgid "Are you really sure to delete this conversation?"
-msgstr ""
+msgstr "¿Estás seguro de borrar esta conversación?"
 
 #: ui/ConversationsPage.qml:185
 #: .ubuntu-sdk-deploy/ui/ConversationsPage.qml:185
 msgid "Delete"
-msgstr ""
+msgstr "Borrar"
 
 #: ui/ConversationsPage.qml:204
 #: .ubuntu-sdk-deploy/ui/ConversationsPage.qml:204
 msgid "Nothing here, yet"
-msgstr ""
+msgstr "Todavía no hay nada"
 
 #: ui/SelectUsersPage.qml:7 .ubuntu-sdk-deploy/ui/SelectUsersPage.qml:7
 msgid "Select users"
-msgstr ""
+msgstr "Seleccionar usuarios"
 
 #: ui/NetworkErrorDialog.qml:8 .ubuntu-sdk-deploy/ui/NetworkErrorDialog.qml:8
 msgid "Network Error"
-msgstr ""
+msgstr "Error de red"
 
 #: ui/NetworkErrorDialog.qml:14
 #: .ubuntu-sdk-deploy/ui/NetworkErrorDialog.qml:14
@@ -252,17 +252,17 @@ msgstr ""
 
 #: ui/AboutPage.qml:27 .ubuntu-sdk-deploy/ui/AboutPage.qml:27
 msgid "Inofficial Google Hangouts client for Ubuntu Touch"
-msgstr ""
+msgstr "Cliente no-oficial de Google Hangouts para Ubuntu Touch"
 
 #: ui/AboutPage.qml:31 .ubuntu-sdk-deploy/ui/AboutPage.qml:31
 msgid ""
 "Source code available on <a href='https://github.com/tim-sueberkrueb/ubuntu-"
 "hangups'>GitHub</a>"
-msgstr ""
+msgstr "Código fuente disponible en <a href='https://github.com/tim-sueberkrueb/ubuntu-hangups'>GitHub</a>"
 
 #: ui/AboutPage.qml:36 .ubuntu-sdk-deploy/ui/AboutPage.qml:36
 msgid "Third-party Software"
-msgstr ""
+msgstr "Software de terceros"
 
 #: ui/AboutPage.qml:41 .ubuntu-sdk-deploy/ui/AboutPage.qml:41
 msgid ""
@@ -270,7 +270,7 @@ msgid ""
 "href='https://github.com/halfsail'>Kevin Feyder</a>'s <a "
 "href='https://github.com/halfsail/Ubuntu-UI-Toolkit#suru-icon-template-"
 "kit'>Suru Icon Template kit</a>"
-msgstr ""
+msgstr "Esta aplicación fue creada usando el <a href='https://github.com/halfsail/Ubuntu-UI-Toolkit#suru-icon-template-kit'>Suru Icon Template kit</a> de <a href='https://github.com/halfsail'>Kevin Feyder</a>"
 
 #: ui/AboutPage.qml:46 .ubuntu-sdk-deploy/ui/AboutPage.qml:46
 msgid ""
@@ -289,50 +289,65 @@ msgstr ""
 #: ui/AboutPage.qml:56 .ubuntu-sdk-deploy/ui/AboutPage.qml:56
 #, qt-format
 msgid "The loading animation was created by %1."
-msgstr ""
+msgstr "La imagen de \"cargando\" fue creada pro %1"
 
 #: ui/AboutPage.qml:60 .ubuntu-sdk-deploy/ui/AboutPage.qml:60
 msgid ""
 "This application is not endorsed by or affiliated with Ubuntu or Canonical. "
 "Ubuntu and Canonical are registered trademarks of Canonical Ltd."
-msgstr ""
+msgstr "Esta aplicación no está apoyada o afiliada con Ubuntu o Canonical. Ubuntu y Canonical son marcas registradas de Canonical Ltd."
 
 #: ui/ViewImagePage.qml:8 .ubuntu-sdk-deploy/ui/ViewImagePage.qml:8
 msgid "Image"
-msgstr ""
+msgstr "Imagen"
 
 #: ui/ViewImagePage.qml:33 .ubuntu-sdk-deploy/ui/ViewImagePage.qml:33
 msgid "Save"
-msgstr ""
+msgstr "Guardar"
 
 #: ui/ViewImagePage.qml:40 .ubuntu-sdk-deploy/ui/ViewImagePage.qml:40
 msgid "Share"
-msgstr ""
+msgstr "Compartir"
 
 #: ui/ViewImagePage.qml:81 .ubuntu-sdk-deploy/ui/ViewImagePage.qml:81
 msgid "Retrieving image"
-msgstr ""
+msgstr "Recuperando imagen"
 
 #: ui/ViewImagePage.qml:82 .ubuntu-sdk-deploy/ui/ViewImagePage.qml:82
 msgid "Retrieving image, please wait ..."
-msgstr ""
+msgstr "Recuperando imagen, por favor espere"
 
 #: ui/ChatListItem.qml:68 .ubuntu-sdk-deploy/ui/ChatListItem.qml:68
 msgid "An error occurred while loading the image."
+msgstr "Ha ocurrido un error mientras se cargaba la imagen."
+
+#: ui/ChatListItem.qml:207
+#, qt-format
+msgid "%1 renamed the conversation to %2"
+msgstr ""
+
+#: ui/ChatListItem.qml:210
+#, qt-format
+msgid "%1 added %2 to the conversation"
+msgstr ""
+
+#: ui/ChatListItem.qml:213
+#, qt-format
+msgid "%1 left the conversation"
 msgstr ""
 
 #: ui/ChatPage.qml:31 .ubuntu-sdk-deploy/ui/ChatPage.qml:31
 msgid "Info"
-msgstr ""
+msgstr "Información"
 
 #: ui/ChatPage.qml:109 .ubuntu-sdk-deploy/ui/ChatPage.qml:109
 msgid "Pull to load more"
-msgstr ""
+msgstr "Tirar para cargar más"
 
 #: ui/ChatPage.qml:109 .ubuntu-sdk-deploy/ui/ChatPage.qml:109
 msgid "Release to load more"
-msgstr ""
+msgstr "Soltar para cargar más"
 
 #: ui/ChatPage.qml:140 .ubuntu-sdk-deploy/ui/ChatPage.qml:140
 msgid "Write a message"
-msgstr ""
+msgstr "Escribir mensaje"

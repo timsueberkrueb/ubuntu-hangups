@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-09-08 16:15+0200\n"
+"POT-Creation-Date: 2015-09-11 12:24+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -319,17 +319,17 @@ msgstr ""
 
 #: ui/ChatListItem.qml:207
 #, qt-format
-msgid "%1 renamed the conversation to %2"
+msgid "%1 renamed the conversation to %2."
 msgstr ""
 
 #: ui/ChatListItem.qml:210
 #, qt-format
-msgid "%1 added %2 to the conversation"
+msgid "%1 added %2 to the conversation."
 msgstr ""
 
 #: ui/ChatListItem.qml:213
 #, qt-format
-msgid "%1 left the conversation"
+msgid "%1 left the conversation."
 msgstr ""
 
 #: ui/ChatPage.qml:31 .ubuntu-sdk-deploy/ui/ChatPage.qml:31

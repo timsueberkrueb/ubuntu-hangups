@@ -16,6 +16,8 @@ Page {
     property alias listView: listView
     property alias pullToRefresh: pullToRefresh
 
+    property bool scrolledToBottom: false
+
     onActiveChanged: {
         if (!active) {
             py.call('backend.left_conversation', [conv_id]);
@@ -83,16 +85,18 @@ Page {
 
     UbuntuListView {
         id: listView
+
         anchors.top: parent.top
         anchors.left: parent.left
         anchors.right: parent.right
         anchors.bottom: bottomContainer.top
-        anchors.bottomMargin: units.gu(1)
-        anchors.topMargin: units.gu(1)
 
         model: currentChatModel
         spacing: units.gu(1)
         delegate: ChatListItem {}
+
+        // Workaround for "positionViewAtEnd" not scrolling to the very bottom
+        footer: Component {Item { height: units.gu(14) }}
 
         PullToRefresh {
             id: pullToRefresh

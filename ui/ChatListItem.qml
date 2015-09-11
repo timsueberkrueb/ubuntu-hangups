@@ -197,22 +197,17 @@ ListItem {
         anchors.fill: parent
         anchors.margins: units.gu(4)
 
-        UbuntuShape {
-            anchors.fill: parent
-            anchors.margins: units.gu(2)
-
-            FlexibleLabel {
-                anchors.verticalCenter: parent.verticalCenter
-                text: if (modelData.type === "chat/rename") {
-                          i18n.tr("%1 renamed the conversation to %2.").arg(modelData.username).arg(modelData.new_name)
-                      }
-                      else if (modelData.type === "chat/add") {
-                          i18n.tr("%1 added %2 to the conversation.").arg(modelData.username).arg(modelData.name)
-                      }
-                      else if (modelData.type === "chat/leave") {
-                          i18n.tr("%1 left the conversation.").arg(modelData.name)
-                      }
-            }
+        FlexibleLabel {
+            anchors.verticalCenter: parent.verticalCenter
+            text: if (modelData.type === "chat/rename") {
+                      i18n.tr("%1 renamed the conversation to %2.").arg(modelData.username).arg(modelData.new_name)
+                  }
+                  else if (modelData.type === "chat/add") {
+                      i18n.tr("%1 added %2 to the conversation.").arg(modelData.username).arg(modelData.name)
+                  }
+                  else if (modelData.type === "chat/leave") {
+                      i18n.tr("%1 left the conversation.").arg(modelData.name)
+                  }
         }
     }
 

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-09-11 12:24+0200\n"
+"POT-Creation-Date: 2015-09-11 17:24+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -200,13 +200,13 @@ msgstr ""
 msgid "Conversations"
 msgstr ""
 
-#: ui/ConversationsPage.qml:12 ui/ChatPage.qml:36
+#: ui/ConversationsPage.qml:12 ui/ChatPage.qml:38
 #: .ubuntu-sdk-deploy/ui/ConversationsPage.qml:12
 #: .ubuntu-sdk-deploy/ui/ChatPage.qml:36
 msgid "Add"
 msgstr ""
 
-#: ui/ConversationsPage.qml:157 ui/ChatPage.qml:43
+#: ui/ConversationsPage.qml:157 ui/ChatPage.qml:45
 #: .ubuntu-sdk-deploy/ui/ConversationsPage.qml:157
 #: .ubuntu-sdk-deploy/ui/ChatPage.qml:43
 msgid "Add users"
@@ -317,33 +317,33 @@ msgstr ""
 msgid "An error occurred while loading the image."
 msgstr ""
 
-#: ui/ChatListItem.qml:207
+#: ui/ChatListItem.qml:203
 #, qt-format
 msgid "%1 renamed the conversation to %2."
 msgstr ""
 
-#: ui/ChatListItem.qml:210
+#: ui/ChatListItem.qml:206
 #, qt-format
 msgid "%1 added %2 to the conversation."
 msgstr ""
 
-#: ui/ChatListItem.qml:213
+#: ui/ChatListItem.qml:209
 #, qt-format
 msgid "%1 left the conversation."
 msgstr ""
 
-#: ui/ChatPage.qml:31 .ubuntu-sdk-deploy/ui/ChatPage.qml:31
+#: ui/ChatPage.qml:33 .ubuntu-sdk-deploy/ui/ChatPage.qml:31
 msgid "Info"
 msgstr ""
 
-#: ui/ChatPage.qml:109 .ubuntu-sdk-deploy/ui/ChatPage.qml:109
+#: ui/ChatPage.qml:113 .ubuntu-sdk-deploy/ui/ChatPage.qml:109
 msgid "Pull to load more"
 msgstr ""
 
-#: ui/ChatPage.qml:109 .ubuntu-sdk-deploy/ui/ChatPage.qml:109
+#: ui/ChatPage.qml:113 .ubuntu-sdk-deploy/ui/ChatPage.qml:109
 msgid "Release to load more"
 msgstr ""
 
-#: ui/ChatPage.qml:140 .ubuntu-sdk-deploy/ui/ChatPage.qml:140
+#: ui/ChatPage.qml:144 .ubuntu-sdk-deploy/ui/ChatPage.qml:140
 msgid "Write a message"
 msgstr ""

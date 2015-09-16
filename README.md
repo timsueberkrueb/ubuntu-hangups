@@ -32,6 +32,7 @@ Contact me via Gitter: https://gitter.im/tim-sueberkrueb/
   * purplex
   * requests
   * reparser
+  * google.protobuf
 * pymmh3 (or another python MurmurHash3 implementation, e.g. mmh3)
 
 ## Install and run on Ubuntu Desktop
@@ -83,6 +84,7 @@ qmlscene Main.qml
   * requests (https://github.com/kennethreitz/requests)
   * pymmh3.py (https://github.com/wc-duck/pymmh3)
   * reparser (https://github.com/xmikos/reparser)
+  * google.protobuf (https://github.com/google/protobuf)
 
 ### Build and run
 * Open ubuntu-hangups.qmlproject with the Ubuntu-SDK, add the appropriate build kit and run!

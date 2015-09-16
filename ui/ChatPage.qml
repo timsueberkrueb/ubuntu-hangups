@@ -12,11 +12,12 @@ Page {
     property string conv_id
     property string status_message: ""
     property bool first_message_loaded: false
+    property bool loaded: false
 
     property alias listView: listView
     property alias pullToRefresh: pullToRefresh
 
-    property bool scrolledToBottom: false
+    property bool initialMessagesLoaded: false
 
     onActiveChanged: {
         if (!active) {
@@ -24,6 +25,9 @@ Page {
         }
         else {
             listView.positionViewAtEnd();
+            if (!loaded) {
+                py.call('backend.load_conversation', [conv_id])
+            }
         }
     }
 
@@ -96,7 +100,38 @@ Page {
         delegate: ChatListItem {}
 
         // Workaround for "positionViewAtEnd" not scrolling to the very bottom
-        footer: Component {Item { height: units.gu(14) }}
+
+        header: Component {
+            Item {
+                height: units.gu(5)
+                width: parent.height
+            }
+        }
+
+
+        footer: Component {
+            Item {
+                height: units.gu(5)
+                width: parent.height
+
+                Row {
+                    visible: !loaded
+                    anchors.fill: parent
+                    anchors.margins: units.gu(2)
+                    spacing: units.gu(2)
+
+                    ActivityIndicator {
+                        running: !loaded
+                        anchors.verticalCenter: parent.verticalCenter
+                    }
+
+                    Label {
+                        text: i18n.tr("Loading messages ...")
+                        anchors.verticalCenter: parent.verticalCenter
+                    }
+                }
+            }
+        }
 
         PullToRefresh {
             id: pullToRefresh
@@ -120,6 +155,7 @@ Page {
                 py.call('backend.load_more_messages', [conv_id]);
             }
         }
+
     }
 
     Rectangle {

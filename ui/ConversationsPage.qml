@@ -165,7 +165,7 @@ Page {
             onClicked: {
                 setCurrentConversation(modelData.id_);
                 py.call('backend.entered_conversation', [modelData.id_]);
-                pageStack.push(chatPage, {conv_id: modelData.id_, conv_name: modelData.title, first_message_loaded: modelData.first_message_loaded, status_message: modelData.status_message})
+                pageStack.push(chatPage, {conv_id: modelData.id_, conv_name: modelData.title, first_message_loaded: modelData.first_message_loaded, status_message: modelData.status_message, loaded: modelData.loaded})
                 //chatPage.listView.positionViewAtEnd();
             }
         }

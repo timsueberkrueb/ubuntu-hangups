@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-09-11 17:24+0200\n"
+"POT-Creation-Date: 2015-09-16 20:05+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -22,16 +22,16 @@ msgstr ""
 msgid "%1 is typing ..."
 msgstr ""
 
-#: Main.qml:279 .ubuntu-sdk-deploy/Main.qml:279
+#: Main.qml:290 .ubuntu-sdk-deploy/Main.qml:290
 msgid "Error"
 msgstr ""
 
-#: Main.qml:283 .ubuntu-sdk-deploy/Main.qml:283
+#: Main.qml:294 .ubuntu-sdk-deploy/Main.qml:294
 #, qt-format
 msgid "An error has occured: %1"
 msgstr ""
 
-#: Main.qml:289 ui/NetworkErrorDialog.qml:16 .ubuntu-sdk-deploy/Main.qml:289
+#: Main.qml:300 ui/NetworkErrorDialog.qml:16 .ubuntu-sdk-deploy/Main.qml:300
 #: .ubuntu-sdk-deploy/ui/NetworkErrorDialog.qml:16
 msgid "Close"
 msgstr ""
@@ -92,6 +92,7 @@ msgstr ""
 
 #: ui/LoadingPage.qml:79 ui/LoginPage.qml:145
 #: .ubuntu-sdk-deploy/ui/LoadingPage.qml:79
+#: .ubuntu-sdk-deploy/ui/LoginPage.qml:145
 msgid "Loading, please wait ..."
 msgstr ""
 
@@ -169,30 +170,30 @@ msgstr ""
 msgid "No contacts"
 msgstr ""
 
-#: ui/LoginPage.qml:7 .ubuntu-sdk-deploy/ui/LoginPage.qml:10
+#: ui/LoginPage.qml:7 .ubuntu-sdk-deploy/ui/LoginPage.qml:7
 msgid "Authenticate with Google"
 msgstr ""
 
-#: ui/LoginPage.qml:36 .ubuntu-sdk-deploy/ui/LoginPage.qml:41
+#: ui/LoginPage.qml:36 .ubuntu-sdk-deploy/ui/LoginPage.qml:36
 msgid "In order to use Hangups you need to authenticate this app with Google"
 msgstr ""
 
 #: ui/LoginPage.qml:45 ui/ConversationsPage.qml:31 ui/AboutPage.qml:5
-#: .ubuntu-sdk-deploy/ui/LoginPage.qml:50
+#: .ubuntu-sdk-deploy/ui/LoginPage.qml:45
 #: .ubuntu-sdk-deploy/ui/ConversationsPage.qml:31
 #: .ubuntu-sdk-deploy/ui/AboutPage.qml:5
 msgid "About"
 msgstr ""
 
-#: ui/LoginPage.qml:51 .ubuntu-sdk-deploy/ui/LoginPage.qml:56
+#: ui/LoginPage.qml:51 .ubuntu-sdk-deploy/ui/LoginPage.qml:51
 msgid "Got it"
 msgstr ""
 
-#: ui/LoginPage.qml:192 .ubuntu-sdk-deploy/ui/LoginPage.qml:187
+#: ui/LoginPage.qml:192 .ubuntu-sdk-deploy/ui/LoginPage.qml:192
 msgid "Welcome to Hangups!"
 msgstr ""
 
-#: ui/LoginPage.qml:205 .ubuntu-sdk-deploy/ui/LoginPage.qml:200
+#: ui/LoginPage.qml:205 .ubuntu-sdk-deploy/ui/LoginPage.qml:205
 msgid "Get started"
 msgstr ""
 
@@ -200,15 +201,15 @@ msgstr ""
 msgid "Conversations"
 msgstr ""
 
-#: ui/ConversationsPage.qml:12 ui/ChatPage.qml:38
+#: ui/ConversationsPage.qml:12 ui/ChatPage.qml:42
 #: .ubuntu-sdk-deploy/ui/ConversationsPage.qml:12
-#: .ubuntu-sdk-deploy/ui/ChatPage.qml:36
+#: .ubuntu-sdk-deploy/ui/ChatPage.qml:42
 msgid "Add"
 msgstr ""
 
-#: ui/ConversationsPage.qml:157 ui/ChatPage.qml:45
+#: ui/ConversationsPage.qml:157 ui/ChatPage.qml:49
 #: .ubuntu-sdk-deploy/ui/ConversationsPage.qml:157
-#: .ubuntu-sdk-deploy/ui/ChatPage.qml:43
+#: .ubuntu-sdk-deploy/ui/ChatPage.qml:49
 msgid "Add users"
 msgstr ""
 
@@ -317,33 +318,37 @@ msgstr ""
 msgid "An error occurred while loading the image."
 msgstr ""
 
-#: ui/ChatListItem.qml:203
+#: ui/ChatListItem.qml:203 .ubuntu-sdk-deploy/ui/ChatListItem.qml:203
 #, qt-format
 msgid "%1 renamed the conversation to %2."
 msgstr ""
 
-#: ui/ChatListItem.qml:206
+#: ui/ChatListItem.qml:206 .ubuntu-sdk-deploy/ui/ChatListItem.qml:206
 #, qt-format
 msgid "%1 added %2 to the conversation."
 msgstr ""
 
-#: ui/ChatListItem.qml:209
+#: ui/ChatListItem.qml:209 .ubuntu-sdk-deploy/ui/ChatListItem.qml:209
 #, qt-format
 msgid "%1 left the conversation."
 msgstr ""
 
-#: ui/ChatPage.qml:33 .ubuntu-sdk-deploy/ui/ChatPage.qml:31
+#: ui/ChatPage.qml:37 .ubuntu-sdk-deploy/ui/ChatPage.qml:37
 msgid "Info"
 msgstr ""
 
-#: ui/ChatPage.qml:113 .ubuntu-sdk-deploy/ui/ChatPage.qml:109
+#: ui/ChatPage.qml:129 .ubuntu-sdk-deploy/ui/ChatPage.qml:120
+msgid "Loading messages ..."
+msgstr ""
+
+#: ui/ChatPage.qml:148 .ubuntu-sdk-deploy/ui/ChatPage.qml:139
 msgid "Pull to load more"
 msgstr ""
 
-#: ui/ChatPage.qml:113 .ubuntu-sdk-deploy/ui/ChatPage.qml:109
+#: ui/ChatPage.qml:148 .ubuntu-sdk-deploy/ui/ChatPage.qml:139
 msgid "Release to load more"
 msgstr ""
 
-#: ui/ChatPage.qml:144 .ubuntu-sdk-deploy/ui/ChatPage.qml:140
+#: ui/ChatPage.qml:180 .ubuntu-sdk-deploy/ui/ChatPage.qml:171
 msgid "Write a message"
 msgstr ""

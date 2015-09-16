@@ -14,7 +14,7 @@
             "content-hub": "content-hub.json"
         }
     },
-    "version": "0.2.1",
+    "version": "0.2.2",
     "maintainer": "Tim Süberkrüb <tim.sueberkrueb@web.de>",
     "framework": "ubuntu-sdk-15.04"
 }

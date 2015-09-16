@@ -13,7 +13,7 @@ import os
 import hangups
 from hangups.ui.utils import get_conv_name
 from hangups.ui.notify import Notifier
-import hangups.schemas
+from hangups import hangouts_pb2
 
 import requests.adapters
 from .utils import get_conv_icon, get_message_timestr, get_message_html, get_unread_messages_count
@@ -48,6 +48,7 @@ class ConversationController:
         self.conv = conv
         self.title = ''
 
+        self.initial_messages_loaded = False
         self.loading = False
         self.first_loaded = False
         self.typing_statuses = {}
@@ -62,6 +63,11 @@ class ConversationController:
 
         # Start timer routine
         threading.Timer(settings.get('check_routine_timeout'), self.check_routine).start()
+
+    def load(self):
+        def loaded(future):
+            pyotherside.send('on-conversation-loaded', self.conv.id_)
+        self.load_more(loaded)
 
     def check_routine(self):
         print("Running check routine of ", self.conv.id_)
@@ -87,16 +93,15 @@ class ConversationController:
     def handle_rename(self, conv_event, user):
         self.set_title()
         pyotherside.send('add-conversation-message',
-                 self.conv.id_,
-                 {
-                     "type": "chat/rename",
-                     "new_name": conv_event.new_name,
-                     "user_is_self": user.is_self,
-                     "username": user.full_name,
-                     "time": get_message_timestr(conv_event.timestamp)
-                 },
-                 "bottom")
-
+                         self.conv.id_,
+                         {
+                             "type": "chat/rename",
+                             "new_name": conv_event.new_name,
+                             "user_is_self": user.is_self,
+                             "username": user.full_name,
+                             "time": get_message_timestr(conv_event.timestamp)
+                         },
+                         "bottom")
 
     def handle_membership_change(self, conv_event, user):
         self.set_title()
@@ -104,31 +109,30 @@ class ConversationController:
         pyotherside.send('set-conversation-users', self.conv.id_, users)
         event_users = [self.conv.get_user(user_id) for user_id in conv_event.participant_ids]
         names = [user.full_name for user in event_users]
-        if conv_event.type_ == hangups.MembershipChangeType.JOIN:
+        if conv_event.type_ == hangouts_pb2.MEMBERSHIP_CHANGE_TYPE_JOIN:
             for name in names:
                 pyotherside.send('add-conversation-message',
-                     self.conv.id_,
-                     {
-                         "type": "chat/add",
-                         "name": name,
-                         "user_is_self": user.is_self,
-                         "username": user.full_name,
-                         "time": get_message_timestr(conv_event.timestamp)
-                     },
-                     "bottom")
+                                 self.conv.id_,
+                                 {
+                                     "type": "chat/add",
+                                     "name": name,
+                                     "user_is_self": user.is_self,
+                                     "username": user.full_name,
+                                     "time": get_message_timestr(conv_event.timestamp)
+                                 },
+                                 "bottom")
         else:
             for name in names:
                 pyotherside.send('add-conversation-message',
-                 self.conv.id_,
-                 {
-                     "type": "chat/leave",
-                     "name": name,
-                     "user_is_self": user.is_self,
-                     "username": user.full_name,
-                     "time": get_message_timestr(conv_event.timestamp)
-                 },
-                 "bottom")
-
+                                 self.conv.id_,
+                                 {
+                                     "type": "chat/leave",
+                                     "name": name,
+                                     "user_is_self": user.is_self,
+                                     "username": user.full_name,
+                                     "time": get_message_timestr(conv_event.timestamp)
+                                 },
+                                 "bottom")
 
     def on_event(self, conv_event, set_title=True, set_unread=True):
         user = self.conv.get_user(conv_event.user_id)
@@ -155,7 +159,7 @@ class ConversationController:
         global user_list
         typers = [self.conv.get_user(user_id).first_name
                   for user_id, status in self.typing_statuses.items()
-                  if status == hangups.TypingStatus.TYPING and user_id != user_list._self_user.id_]
+                  if status == hangouts_pb2.TYPING_TYPE_STARTED and user_id != user_list._self_user.id_]
         if len(typers) > 0:
             typing_message = '{} {} typing...'.format(
                 ', '.join(sorted(typers)),
@@ -191,17 +195,17 @@ class ConversationController:
         except hangups.NetworkError:
             print('Failed to send message')
 
-    def load_more(self):
-        asyncio.async(self._load_more())
+    def load_more(self, callback=lambda future: future.result()):
+        asyncio.async(self._load_more()).add_done_callback(callback)
 
     def set_typing(self, typing):
         global client
         if typing == "typing":
-            t = hangups.schemas.TypingStatus.TYPING
+            t = hangouts_pb2.TYPING_TYPE_STARTED
         elif typing == "paused":
-            t = hangups.schemas.TypingStatus.PAUSED
+            t = hangouts_pb2.TYPING_TYPE_PAUSED
         else:
-            t = hangups.schemas.TypingStatus.STOPPED
+            t = hangouts_pb2.TYPING_TYPE_STOPPED
 
         asyncio.async(client.settyping(self.conv.id_, t))
 
@@ -262,7 +266,7 @@ class ConversationController:
         future.result()
 
     def set_quiet(self, quiet):
-        level = hangups.schemas.ClientNotificationLevel.QUIET if quiet else hangups.schemas.ClientNotificationLevel.RING
+        level = hangouts_pb2.NOTIFICATION_LEVEL_QUIET if quiet else hangouts_pb2.NOTIFICATION_LEVEL_RING
         asyncio.async(self.conv.set_notification_level(level)).add_done_callback(self.on_quiet_set)
 
     def on_quiet_set(self, future):
@@ -271,7 +275,7 @@ class ConversationController:
 
     def rename(self, name):
         global client
-        asyncio.async(client.setchatname(self.conv.id_, name))
+        asyncio.async(self.conv.rename(name))
 
     def update_online_status(self):
         if len(self.conv.users) == 2:
@@ -282,7 +286,7 @@ class ConversationController:
 
     def online_status_updated(self, future):
         res = future.result()
-        pyotherside.send('set-conversation-online', self.conv.id_, dict(future.result())["presence_result"][0]["presence"]['available'])
+        pyotherside.send('set-conversation-online', self.conv.id_, res.presence_result[0].presence.available)
 
 
 def get_login_url():
@@ -316,13 +320,13 @@ def auth_with_token():
 
 
 @asyncio.coroutine
-def on_connect(initial_data):
+def on_connect():
     """Handle connecting for the first time."""
     global client, disable_notifier, conv_list, user_list
 
-    print("Building user list")
-    user_list = yield from hangups.build_user_list(
-        client, initial_data
+    print("Building converstion and user list")
+    user_list, conv_list = (
+        yield from hangups.build_user_conversation_list(client)
     )
 
     print("Adding contacts")
@@ -337,11 +341,6 @@ def on_connect(initial_data):
         if not user.is_self:
             pyotherside.send('add-contact', user_data)
 
-    print("Creating conversations list")
-    conv_list = hangups.ConversationList(
-        client, initial_data.conversation_states, user_list,
-        initial_data.sync_timestamp
-    )
     print("Added conversations oveserver")
     conv_list.on_event.add_observer(on_event)
     if not disable_notifier:
@@ -361,6 +360,7 @@ def on_connect(initial_data):
             "unread_count": get_unread_messages_count(conv),
             "is_quiet": conv.is_quiet,
             "online": False,
+            "loaded": False,
             "users": [{
                           "id_": user.id_[0],
                           "full_name": user.full_name,
@@ -401,6 +401,7 @@ def on_event(conv_event):
             "unread_count": get_unread_messages_count(conv),
             "is_quiet": conv.is_quiet,
             "online": False,
+            "loaded": False,
             "users": [{
                           "id_": user.id_[0],
                           "full_name": user.full_name,
@@ -420,15 +421,13 @@ def on_event(conv_event):
 
 
 def set_client_presence(online):
-    print("/!\ FIXME: presence wasn't set")
-    return
-    # Currently disabled because of error:
-    # hangups.exceptions.NetworkError: Unexpected status: ERROR_INVALID_REQUEST
+    print("Trying to set presence ...")
     global client
     try:
         asyncio.async(client.setpresence(online))
     except hangups.exceptions.NetworkError as e:
         print("Failed to set presence:", str(e))
+
 
 def entered_conversation(conv_id):
     call_threadsafe(conv_controllers[conv_id].on_entered)
@@ -524,6 +523,10 @@ def settings_set(key, value):
 
 def clear_cache():
     return cache.clear()
+
+
+def load_conversation(conv_id):
+    call_threadsafe(conv_controllers[conv_id].load)
 
 
 def run_asyncio_loop_in_thread(loop):

@@ -195,17 +195,20 @@ MainView {
                 conversationsModel.get(getConversationModelIndexById(conv_id)).online = online;
             });
 
-            setHandler('add-conversation-message', function(conv_id, data, insert_mode){
+            setHandler('add-conversation-message', function(conv_id, data, insert_mode) {
                 console.log('add-conversation-message to ', conv_id, data.type)
                 if (insert_mode === "bottom") {
                     chatModels[conv_id].append(data);
                     if (pageStack.currentPage === chatPage && chatPage.conv_id === conv_id) {
-                        pageStack.currentPage.listView.positionViewAtEnd();
+                        chatPage.listView.positionViewAtEnd();
                     }
                 }
                 else if (insert_mode === "top") {
                     chatModels[conv_id].insert(0, data);
                     chatPage.pullToRefresh.refreshing = false;
+                    if (pageStack.currentPage === chatPage && chatPage.conv_id === conv_id) {
+                        chatPage.listView.positionViewAtEnd();
+                    }
                 }
             });
 
@@ -253,6 +256,14 @@ MainView {
                 var dialog = PopupUtils.open(newConversationWelcomeDialog);
                 dialog.conv_id = conv_id;
 
+            });
+
+            setHandler('on-conversation-loaded', function(conv_id){
+                console.log('on-conversation-loaded');
+                conversationsModel.get(getConversationModelIndexById(conv_id)).loaded = true;
+                if (pageStack.currentPage === chatPage && chatPage.conv_id === conv_id) {
+                    chatPage.loaded = true;
+                }
             });
 
             importModule('backend', function(){

@@ -124,7 +124,8 @@ Page {
                     anchors.centerIn: parent
                     fontSize: "x-small"
                     color: "white"
-                    text: modelData.unread_count
+                    text: (modelData.unread_count === 5 && chatModels[modelData.id_].count === 5) ? "5+" : modelData.unread_count
+                    // Max. 5 messages loaded at startup.
                 }
             }
 

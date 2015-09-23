@@ -4,6 +4,7 @@ __author__ = 'Tim Süberkrüb'
 
 import datetime
 import hangups
+from dateutil import tz
 
 
 def get_conv_icon(conv):
@@ -39,6 +40,11 @@ def get_message_html(segments):
 
 
 def get_message_timestr(timestamp):
+    from_zone = tz.tzutc()
+    to_zone = tz.tzlocal()
+    utc = timestamp.replace(tzinfo=from_zone)
+    timestamp = utc.astimezone(to_zone)
+
     now = datetime.datetime.now()
     f = "%H:%M"
     if (now.year != timestamp.year):

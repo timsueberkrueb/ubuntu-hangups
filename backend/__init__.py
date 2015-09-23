@@ -61,6 +61,9 @@ class ConversationController:
         for event in conv.events:
             self.on_event(event)
 
+        # Load some more messages on start:
+        asyncio.async(self._load_more(max_events=5))
+
         # Start timer routine
         threading.Timer(settings.get('check_routine_timeout'), self.check_routine).start()
 
@@ -89,6 +92,7 @@ class ConversationController:
                              "time": get_message_timestr(conv_event.timestamp)
                          },
                          insert_mode)
+        self.set_title()
 
     def handle_rename(self, conv_event, user):
         self.set_title()
@@ -144,9 +148,6 @@ class ConversationController:
         elif isinstance(conv_event, hangups.MembershipChangeEvent):
             self.handle_membership_change(conv_event, user)
 
-        # Update the title in case unread count or conversation name changed.
-        if set_title:
-            self.set_title()
 
     def on_watermark_notification(self, watermark_notification):
         print("watermark_notification", self.conv.latest_read_timestamp)
@@ -195,6 +196,11 @@ class ConversationController:
         except hangups.NetworkError:
             print('Failed to send message')
 
+    def load_more_messages(self):
+        def callback(future=None):
+            pyotherside.send('on-more-messages-loaded', self.conv.id_)
+        self.load_more(callback)
+
     def load_more(self, callback=lambda future: future.result()):
         asyncio.async(self._load_more()).add_done_callback(callback)
 
@@ -210,12 +216,13 @@ class ConversationController:
         asyncio.async(client.settyping(self.conv.id_, t))
 
     @asyncio.coroutine
-    def _load_more(self):
+    def _load_more(self, max_events=30):
         if not self.loading and not self.first_loaded:
             self.loading = True
             try:
                 conv_events = yield from self.conv.get_events(
-                    self.conv.events[0].id_
+                    self.conv.events[0].id_,
+                    max_events=max_events,
                 )
                 for conv_event in reversed(conv_events):
                     if (isinstance(conv_event, hangups.ChatMessageEvent)):
@@ -351,25 +358,7 @@ def on_connect():
 
     print("Showing conversations")
     for conv in convs:
-        conv_data = {
-            "title": get_conv_name(conv),
-            "status_message": "",
-            "icon": get_conv_icon(conv),
-            "id_": conv.id_,
-            "first_message_loaded": False,
-            "unread_count": get_unread_messages_count(conv),
-            "is_quiet": conv.is_quiet,
-            "online": False,
-            "loaded": False,
-            "users": [{
-                          "id_": user.id_[0],
-                          "full_name": user.full_name,
-                          "first_name": user.first_name,
-                          "photo_url": "https:" + user.photo_url if user.photo_url else None,
-                          "emails": user.emails,
-                          "is_self": user.is_self
-                      } for user in conv.users]
-        }
+        conv_data = model.get_conv_data(conv)
         pyotherside.send('add-conversation', conv_data)
         ctrl = ConversationController(conv)
         ctrl.update_online_status()
@@ -392,25 +381,7 @@ def on_event(conv_event):
         for conv in convs:
             if conv.id_ == conv_event.conversation_id:
                 break
-        conv_data = {
-            "title": get_conv_name(conv),
-            "status_message": "",
-            "icon": get_conv_icon(conv),
-            "id_": conv.id_,
-            "first_message_loaded": False,
-            "unread_count": get_unread_messages_count(conv),
-            "is_quiet": conv.is_quiet,
-            "online": False,
-            "loaded": False,
-            "users": [{
-                          "id_": user.id_[0],
-                          "full_name": user.full_name,
-                          "first_name": user.first_name,
-                          "photo_url": "https:" + user.photo_url if user.photo_url else None,
-                          "emails": user.emails,
-                          "is_self": user.is_self
-                      } for user in conv.users]
-        }
+        conv_data = model.get_conv_data(conv)
         pyotherside.send('add-conversation', conv_data, True)
         ctrl = ConversationController(conv)
         ctrl.update_online_status()
@@ -494,7 +465,7 @@ def send_image(conv_id, filename):
 
 
 def load_more_messages(conv_id):
-    call_threadsafe(conv_controllers[conv_id].load_more)
+    call_threadsafe(conv_controllers[conv_id].load_more_messages)
 
 
 def set_typing(conv_id, typing):

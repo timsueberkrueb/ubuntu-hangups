@@ -206,7 +206,7 @@ MainView {
                 else if (insert_mode === "top") {
                     chatModels[conv_id].insert(0, data);
                     chatPage.pullToRefresh.refreshing = false;
-                    if (pageStack.currentPage === chatPage && chatPage.conv_id === conv_id) {
+                    if (pageStack.currentPage === chatPage && chatPage.conv_id === conv_id && !chatPage.pullToRefreshLoading) {
                         chatPage.listView.positionViewAtEnd();
                     }
                 }
@@ -266,9 +266,17 @@ MainView {
                 }
             });
 
+            setHandler('on-more-messages-loaded', function(conv_id){
+                console.log('on-more-messages-loaded of ', conv_id);
+                if (pageStack.currentPage === chatPage && chatPage.conv_id === conv_id) {
+                    chatPage.pullToRefresh.refreshing = false;
+                    chatPage.pullToRefreshLoading = false;
+                }
+            });
+
             importModule('backend', function(){
                 console.log("python loaded");
-                call('backend.start')
+                call('backend.start');
             });
         }
         onError: {

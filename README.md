@@ -33,6 +33,7 @@ Contact me via Gitter: https://gitter.im/tim-sueberkrueb/
   * requests
   * reparser
 * pymmh3 (or another python MurmurHash3 implementation, e.g. mmh3)
+* dateutil
 
 ## Install and run on Ubuntu Desktop
 
@@ -83,6 +84,7 @@ qmlscene Main.qml
   * requests (https://github.com/kennethreitz/requests)
   * pymmh3.py (https://github.com/wc-duck/pymmh3)
   * reparser (https://github.com/xmikos/reparser)
+  * dateutil (https://github.com/dateutil/dateutil)
 
 ### Build and run
 * Open ubuntu-hangups.qmlproject with the Ubuntu-SDK, add the appropriate build kit and run!

@@ -11,7 +11,7 @@ ListItem {
     property color foregroundColor: "black" //is_self ? "white" : "black"
 
     divider.visible: false
-    height: rect.height
+    height: modelData.type === "chat/message" ? rect.height :  infoItem.height
 
     trailingActions: ListItemActions {
 
@@ -79,14 +79,54 @@ ListItem {
         }
     }
 
-    Component.onCompleted: {}
+    Item {
+        id: infoItem
+        visible: modelData.type !== "chat/message"
+
+        width: parent.width < units.gu(60) ? parent.width - units.gu(15): units.gu(60) - units.gu(15)
+        height: visible ? childrenRect.height : 0
+        anchors.horizontalCenter: parent.horizontalCenter
+
+        Rectangle {
+            color: UbuntuColors.lightGrey
+            height: childrenRect.height
+            width: parent.width
+            radius: units.dp(3)
+
+            Item {
+                anchors.top: parent.top
+                anchors.left: parent.left
+                anchors.right: parent.right
+                anchors.margins: units.gu(1)
+                height: childrenRect.height + 2*anchors.margins
+
+                FlexibleLabel {
+                    width: parent.width
+                    color: "white"
+                    text: if (modelData.type === "chat/rename") {
+                              i18n.tr("%1 renamed the conversation to %2").arg(modelData.username).arg(modelData.new_name)
+                          }
+                          else if (modelData.type === "chat/add") {
+                              i18n.tr("%1 added %2 to the conversation").arg(modelData.username).arg(modelData.name)
+                          }
+                          else if (modelData.type === "chat/leave") {
+                              i18n.tr("%1 left the conversation").arg(modelData.name)
+                          }
+                }
+
+            }
+
+
+        }
+
+    }
 
     Item {
         id: chatItem
         visible: modelData.type === "chat/message"
 
         width: parent.width < units.gu(60) ? parent.width - units.gu(15): units.gu(60) - units.gu(15)
-        height: childrenRect.height
+        height: visible ? childrenRect.height : 0
 
         anchors.right: is_self ? parent.right: undefined
         anchors.left: !is_self ? parent.left: undefined
@@ -188,26 +228,6 @@ ListItem {
                 }
 
             }
-        }
-    }
-
-    Item {
-        id: infoItem
-        visible: modelData.type !== "chat/message"
-        anchors.fill: parent
-        anchors.margins: units.gu(4)
-
-        FlexibleLabel {
-            anchors.verticalCenter: parent.verticalCenter
-            text: if (modelData.type === "chat/rename") {
-                      i18n.tr("%1 renamed the conversation to %2.").arg(modelData.username).arg(modelData.new_name)
-                  }
-                  else if (modelData.type === "chat/add") {
-                      i18n.tr("%1 added %2 to the conversation.").arg(modelData.username).arg(modelData.name)
-                  }
-                  else if (modelData.type === "chat/leave") {
-                      i18n.tr("%1 left the conversation.").arg(modelData.name)
-                  }
         }
     }
 

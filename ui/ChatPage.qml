@@ -18,9 +18,11 @@ Page {
     property alias pullToRefresh: pullToRefresh
 
     property bool initialMessagesLoaded: false
+    property bool pullToRefreshLoading: false
 
     onActiveChanged: {
         if (!active) {
+            pullToRefreshLoading = false;
             py.call('backend.left_conversation', [conv_id]);
         }
         else {
@@ -99,12 +101,16 @@ Page {
         spacing: units.gu(1)
         delegate: ChatListItem {}
 
-        // Workaround for "positionViewAtEnd" not scrolling to the very bottom
-
         header: Component {
             Item {
                 height: units.gu(5)
-                width: parent.height
+                width: parent.width
+
+                ActivityIndicator {
+                    running: !loaded
+                    anchors.horizontalCenter: parent.horizontalCenter
+                    anchors.verticalCenter: parent.verticalCenter
+                }
             }
         }
 
@@ -112,24 +118,7 @@ Page {
         footer: Component {
             Item {
                 height: units.gu(5)
-                width: parent.height
-
-                Row {
-                    visible: !loaded
-                    anchors.fill: parent
-                    anchors.margins: units.gu(2)
-                    spacing: units.gu(2)
-
-                    ActivityIndicator {
-                        running: !loaded
-                        anchors.verticalCenter: parent.verticalCenter
-                    }
-
-                    Label {
-                        text: i18n.tr("Loading messages ...")
-                        anchors.verticalCenter: parent.verticalCenter
-                    }
-                }
+                width: parent.width
             }
         }
 
@@ -152,6 +141,7 @@ Page {
 
             onRefresh: {
                 refreshing = true;
+                pullToRefreshLoading = true;
                 py.call('backend.load_more_messages', [conv_id]);
             }
         }

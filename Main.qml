@@ -286,7 +286,6 @@ MainView {
         }
     }
 
-
     NewConversationWelcomeDialog {
         id: newConversationWelcomeDialog
     }

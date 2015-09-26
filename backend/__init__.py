@@ -188,10 +188,16 @@ class ConversationController:
         ).add_done_callback(self.on_message_sent)
 
     def on_message_sent(self, future):
-        global loop
+        global loop, client
         try:
             future.result()
-            asyncio.async(client.setfocus(self.conv.id_))
+            request = hangouts_pb2.SetFocusRequest(
+                request_header=client.get_request_header(),
+                conversation_id=hangouts_pb2.ConversationId(id=self.conv.id_),
+                type=hangouts_pb2.FOCUS_TYPE_FOCUSED,
+                timeout_secs=20,
+            )
+            asyncio.async(client.set_focus(request))
             print('Message sent successful')
         except hangups.NetworkError:
             print('Failed to send message')
@@ -213,7 +219,13 @@ class ConversationController:
         else:
             t = hangouts_pb2.TYPING_TYPE_STOPPED
 
-        asyncio.async(client.settyping(self.conv.id_, t))
+        request = hangouts_pb2.SetTypingRequest(
+            request_header=client.get_request_header(),
+            conversation_id=hangouts_pb2.ConversationId(id=self.conv.id_),
+            type=t,
+        )
+
+        asyncio.async(client.set_typing(request))
 
     @asyncio.coroutine
     def _load_more(self, max_events=30):
@@ -244,7 +256,13 @@ class ConversationController:
         future = asyncio.async(self.conv.update_read_timestamp())
         future.add_done_callback(lambda future: future.result())
 
-        asyncio.async(client.setfocus(self.conv.id_))
+        request = hangouts_pb2.SetFocusRequest(
+            request_header=client.get_request_header(),
+            conversation_id=hangouts_pb2.ConversationId(id=self.conv.id_),
+            type=hangouts_pb2.FOCUS_TYPE_FOCUSED,
+            timeout_secs=20,
+        )
+        asyncio.async(client.set_focus(request))
 
     def on_leave(self):
         self.set_title()
@@ -255,15 +273,25 @@ class ConversationController:
 
     def add_users(self, users):
         global client
-        asyncio.async(client.adduser(self.conv.id_, users))
+
+        request = hangouts_pb2.AddUserRequest(
+            request_header=client.get_request_header(),
+            invitee_id=[hangouts_pb2.InviteeID(gaia_id=chat_id)
+                        for chat_id in users],
+            event_request_header=hangouts_pb2.EventRequestHeader(
+                conversation_id=hangouts_pb2.ConversationId(
+                    id=self.conv.id_,
+                ),
+                client_generated_id=client.get_client_generated_id(),
+                expected_otr=hangouts_pb2.OFF_THE_RECORD_STATUS_ON_THE_RECORD,
+            ),
+        )
+
+        asyncio.async(client.add_user(request))
 
     def delete(self):
         global client
-        users_len = len(self.conv.users)
-        if users_len == 2:
-            asyncio.async(client.deleteconversation(self.conv.id_)).add_done_callback(self.on_deleted)
-        elif users_len > 2:
-            asyncio.async(client.removeuser(self.conv.id_)).add_done_callback(self.on_deleted)
+        asyncio.async(self.conv.leave()).add_done_callback(self.on_deleted)
 
     def on_deleted(self, future):
         pyotherside.send('delete-conversation', self.conv.id_)
@@ -285,10 +313,20 @@ class ConversationController:
         asyncio.async(self.conv.rename(name))
 
     def update_online_status(self):
+        global client
         if len(self.conv.users) == 2:
             for user in self.conv.users:
                 if not user.is_self:
-                    asyncio.async(client.querypresence(user.id_.chat_id)).add_done_callback(self.online_status_updated)
+
+                    request = hangouts_pb2.QueryPresenceRequest(
+                        request_header=client.get_request_header(),
+                        participant_id=[hangouts_pb2.ParticipantId(gaia_id=user.id_.chat_id)],
+                        field_mask=[hangouts_pb2.FIELD_MASK_REACHABLE,
+                                    hangouts_pb2.FIELD_MASK_AVAILABLE,
+                                    hangouts_pb2.FIELD_MASK_DEVICE],
+                    )
+
+                    asyncio.async(client.query_presence(request)).add_done_callback(self.online_status_updated)
                     break
 
     def online_status_updated(self, future):
@@ -395,7 +433,8 @@ def set_client_presence(online):
     print("Trying to set presence ...")
     global client
     try:
-        asyncio.async(client.setpresence(online))
+        pass
+        #asyncio.async(client.set_presence(online))
     except hangups.exceptions.NetworkError as e:
         print("Failed to set presence:", str(e))
 

@@ -1,10 +1,10 @@
 import QtQuick 2.0
-import Ubuntu.Components 1.2
+import Ubuntu.Components 1.3
 //import Ubuntu.Web 0.2
 import com.canonical.Oxide 1.0
 
- Page {
-    title: i18n.tr("Authenticate with Google")
+ Item {
+    //title: i18n.tr("Authenticate with Google")
     visible: false
 
     property string usContext: "messaging://"
@@ -17,6 +17,8 @@ import com.canonical.Oxide 1.0
         anchors.margins: units.gu(2)
         spacing: units.gu(1)
         height: childrenRect.height + units.gu(1)
+
+        property bool detailsMode: false
 
         visible: height !== 0 && opacity !== 0
 
@@ -36,15 +38,23 @@ import com.canonical.Oxide 1.0
             text: i18n.tr("In order to use Hangups you need to authenticate this app with Google")
         }
 
+        FlexibleLabel {
+            visible: infoContainer.detailsMode
+            text: i18n.tr("This app uses an inoffical Google Hangouts API called 'Hangups'." +
+                          " In order to have the relevant access it connects as an iOS device. " +
+                          "You can always deny the access <a href='https://security.google.com/settings/security/permissions'>here</a>.")
+            onLinkActivated: Qt.openUrlExternally(link);
+        }
+
         Row {
             anchors.margins: units.gu(1)
             spacing: units.gu(1)
             width: parent.width
 
             Button {
-                text: i18n.tr("About")
-                color: UbuntuColors.blue
-                onClicked: pageStack.push(aboutPage)
+                text: infoContainer.detailsMode ? i18n.tr("Hide details") : i18n.tr("More info")
+                color: infoContainer.detailsMode ? UbuntuColors.orange : UbuntuColors.blue
+                onClicked: infoContainer.detailsMode = !infoContainer.detailsMode;
             }
 
             Button {
@@ -206,8 +216,8 @@ import com.canonical.Oxide 1.0
         color: UbuntuColors.green
         onClicked: {
             webview.getAuthCode(function callback(code) {
-                pageStack.clear();
-                pageStack.push(loadingPage);
+                loginScreen.visible = false;
+                loadingScreen.visible = true;
                 py.call('backend.auth_with_code', [code])
             });
         }

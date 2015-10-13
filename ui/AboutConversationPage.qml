@@ -1,5 +1,5 @@
 import QtQuick 2.0
-import Ubuntu.Components 1.2
+import Ubuntu.Components 1.3
 
 Page {
     title: i18n.tr("About Conversation")
@@ -77,6 +77,8 @@ Page {
         anchors.left: parent.left
         anchors.right: parent.right
         anchors.bottom: parent.bottom
+
+        clip: true
 
         delegate: ListItem {
             property QtObject modelData: listView.model.get(index)

@@ -1,5 +1,5 @@
 import QtQuick 2.0
-import Ubuntu.Components 1.2
+import Ubuntu.Components 1.3
 import Ubuntu.Content 1.1
 import QtGraphicalEffects 1.0
 
@@ -20,8 +20,8 @@ Page {
     property bool initialMessagesLoaded: false
     property bool pullToRefreshLoading: false
 
-    onActiveChanged: {
-        if (!active) {
+    onVisibleChanged: {
+        if (!visible) {
             pullToRefreshLoading = false;
             py.call('backend.left_conversation', [conv_id]);
         }
@@ -37,7 +37,7 @@ Page {
         Action {
             iconName: "info"
             text: i18n.tr("Info")
-            onTriggered: pageStack.push(aboutConversationPage, {mData: conversationsModel.get(getConversationModelIndexById(conv_id))})
+            onTriggered: pageLayout.addPageToNextColumn(chatPage, aboutConversationPage, {mData: conversationsModel.get(getConversationModelIndexById(conv_id))})
         },
         Action {
             iconName: "add"
@@ -48,7 +48,7 @@ Page {
                 for (var i=0; i<users.count; i++) {
                     user_ids.push(users.get(i).id_.toString());
                 }
-                pageStack.push(selectUsersPage, {headTitle: i18n.tr("Add users"), excludedUsers: user_ids, callback: function onUsersSelected(users){
+                pageLayout.addPageToNextColumn(chatPage, selectUsersPage, {headTitle: i18n.tr("Add users"), excludedUsers: user_ids, callback: function onUsersSelected(users){
                     py.call('backend.add_users', [conv_id, users]);
                 }});
             }

@@ -1,5 +1,5 @@
 import QtQuick 2.0
-import Ubuntu.Components 1.2
+import Ubuntu.Components 1.3
 
 ListItem {
     id: listItem
@@ -17,6 +17,7 @@ ListItem {
 
         actions: [
             Action {
+                text: i18n.tr("Copy")
                 iconName: "edit-copy"
                 enabled: textMimeData.text !== ""
                 visible: textMimeData.text !== ""
@@ -29,7 +30,7 @@ ListItem {
 
     onClicked: {
         if (modelData.attachments && modelData.attachments.count > 0) {
-            pageStack.push(viewImagePage, {images: modelData.attachments});
+            pageLayout.addPageToNextColumn(chatPage, viewImagePage, {images: modelData.attachments});
         }
     }
 
@@ -82,7 +83,6 @@ ListItem {
     Item {
         id: infoItem
         visible: modelData.type !== "chat/message"
-
         width: parent.width < units.gu(60) ? parent.width - units.gu(15): units.gu(60) - units.gu(15)
         height: visible ? childrenRect.height : 0
         anchors.horizontalCenter: parent.horizontalCenter
@@ -98,7 +98,7 @@ ListItem {
                 anchors.left: parent.left
                 anchors.right: parent.right
                 anchors.margins: units.gu(1)
-                height: childrenRect.height + 2*anchors.margins
+                height: childrenRect.height + 2 * anchors.margins
 
                 FlexibleLabel {
                     width: parent.width
@@ -111,6 +111,9 @@ ListItem {
                           }
                           else if (modelData.type === "chat/leave") {
                               i18n.tr("%1 left the conversation").arg(modelData.name)
+                          }
+                          else {
+                              ""
                           }
                 }
 
@@ -133,7 +136,6 @@ ListItem {
 
         Row {
             anchors.fill: parent
-            height: childrenRect.height
             layoutDirection: is_self ? Qt.RightToLeft: Qt.LeftToRight
 
             Canvas {
@@ -192,14 +194,14 @@ ListItem {
                         onLinkActivated: Qt.openUrlExternally(link)
                         width: parent.width
                         color: foregroundColor
-                        text: modelData.text
+                        text: modelData.html ? modelData.html : ""
                         font.pixelSize: units.dp(14)
                     }
 
                     MimeData {
                         id: textMimeData
                         color: "green"
-                        text: messageLabel.text
+                        text: modelData.text
                     }
 
                     Item {
@@ -209,7 +211,7 @@ ListItem {
                     }
 
                     Component.onCompleted: {
-                        if (modelData.attachments.count  > 0) {
+                        if (modelData.attachments && modelData.attachments.count  > 0) {
                             attachedImage.createObject(imageContainer, {url: modelData.attachments.get(0).url});
                         }
                     }

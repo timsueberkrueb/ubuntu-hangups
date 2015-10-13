@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-09-24 11:57+0200\n"
+"POT-Creation-Date: 2015-10-09 17:10+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,49 +17,69 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: Main.qml:178 .ubuntu-sdk-deploy/Main.qml:178
-#, qt-format
-msgid "%1 is typing ..."
+#: ui/LoadingPage.qml:79 ui/LoginPage.qml:145 ui/LoadingScreen.qml:78
+#: .ubuntu-sdk-deploy/ui/LoadingPage.qml:79
+#: .ubuntu-sdk-deploy/ui/LoginPage.qml:145
+msgid "Loading, please wait ..."
 msgstr ""
 
-#: Main.qml:297 .ubuntu-sdk-deploy/Main.qml:298
-msgid "Error"
+#: ui/ViewImagePage.qml:8 .ubuntu-sdk-deploy/ui/ViewImagePage.qml:8
+msgid "Image"
 msgstr ""
 
-#: Main.qml:301 .ubuntu-sdk-deploy/Main.qml:302
-#, qt-format
-msgid "An error has occured: %1"
+#: ui/ViewImagePage.qml:33 .ubuntu-sdk-deploy/ui/ViewImagePage.qml:33
+msgid "Save"
 msgstr ""
 
-#: Main.qml:307 ui/NetworkErrorDialog.qml:16 .ubuntu-sdk-deploy/Main.qml:308
-#: .ubuntu-sdk-deploy/ui/NetworkErrorDialog.qml:16
-msgid "Close"
+#: ui/ViewImagePage.qml:40 .ubuntu-sdk-deploy/ui/ViewImagePage.qml:40
+msgid "Share"
 msgstr ""
 
-#: ui/NewConversationWelcomeDialog.qml:8 ui/ConversationsPage.qml:14
-#: .ubuntu-sdk-deploy/ui/NewConversationWelcomeDialog.qml:8
-#: .ubuntu-sdk-deploy/ui/ConversationsPage.qml:14
-msgid "New Conversation"
+#: ui/ViewImagePage.qml:81 .ubuntu-sdk-deploy/ui/ViewImagePage.qml:81
+msgid "Retrieving image"
 msgstr ""
 
-#: ui/NewConversationWelcomeDialog.qml:9
-#: .ubuntu-sdk-deploy/ui/NewConversationWelcomeDialog.qml:9
-msgid "Send a welcoming message to invite the conversations members"
+#: ui/ViewImagePage.qml:82 .ubuntu-sdk-deploy/ui/ViewImagePage.qml:82
+msgid "Retrieving image, please wait ..."
 msgstr ""
 
-#: ui/NewConversationWelcomeDialog.qml:15
-#: .ubuntu-sdk-deploy/ui/NewConversationWelcomeDialog.qml:15
-msgid "Write message"
+#: ui/ContactsPage.qml:5 ui/ConversationsPage.qml:21
+#: .ubuntu-sdk-deploy/ui/ContactsPage.qml:5
+#: .ubuntu-sdk-deploy/ui/ConversationsPage.qml:21
+msgid "Contacts"
 msgstr ""
 
-#: ui/NewConversationWelcomeDialog.qml:16
-#: .ubuntu-sdk-deploy/ui/NewConversationWelcomeDialog.qml:16
-msgid "Hi there :)"
+#: ui/ContactsPage.qml:81 ui/SelectUsersPage.qml:153
+#: .ubuntu-sdk-deploy/ui/ContactsPage.qml:81
+#: .ubuntu-sdk-deploy/ui/SelectUsersPage.qml:140
+msgid "No contacts"
 msgstr ""
 
-#: ui/NewConversationWelcomeDialog.qml:20
-#: .ubuntu-sdk-deploy/ui/NewConversationWelcomeDialog.qml:20
-msgid "Send"
+#: ui/LoginPage.qml:7 .ubuntu-sdk-deploy/ui/LoginPage.qml:7
+msgid "Authenticate with Google"
+msgstr ""
+
+#: ui/LoginPage.qml:36 .ubuntu-sdk-deploy/ui/LoginPage.qml:36
+msgid "In order to use Hangups you need to authenticate this app with Google"
+msgstr ""
+
+#: ui/LoginPage.qml:45 ui/ConversationsPage.qml:31 ui/AboutPage.qml:5
+#: .ubuntu-sdk-deploy/ui/LoginPage.qml:45
+#: .ubuntu-sdk-deploy/ui/ConversationsPage.qml:31
+#: .ubuntu-sdk-deploy/ui/AboutPage.qml:5
+msgid "About"
+msgstr ""
+
+#: ui/LoginPage.qml:51 .ubuntu-sdk-deploy/ui/LoginPage.qml:51
+msgid "Got it"
+msgstr ""
+
+#: ui/LoginPage.qml:192 .ubuntu-sdk-deploy/ui/LoginPage.qml:192
+msgid "Welcome to Hangups!"
+msgstr ""
+
+#: ui/LoginPage.qml:205 .ubuntu-sdk-deploy/ui/LoginPage.qml:205
+msgid "Get started"
 msgstr ""
 
 #: ui/AboutConversationPage.qml:5
@@ -67,11 +87,10 @@ msgstr ""
 msgid "About Conversation"
 msgstr ""
 
-#: ui/AboutConversationPage.qml:26 ui/SettingsPage.qml:7
-#: ui/ConversationsPage.qml:26
-#: .ubuntu-sdk-deploy/ui/AboutConversationPage.qml:26
-#: .ubuntu-sdk-deploy/ui/SettingsPage.qml:7
+#: ui/AboutConversationPage.qml:26 ui/ConversationsPage.qml:26
+#: ui/SettingsPage.qml:7 .ubuntu-sdk-deploy/ui/AboutConversationPage.qml:26
 #: .ubuntu-sdk-deploy/ui/ConversationsPage.qml:26
+#: .ubuntu-sdk-deploy/ui/SettingsPage.qml:7
 msgid "Settings"
 msgstr ""
 
@@ -90,10 +109,52 @@ msgstr ""
 msgid "Users"
 msgstr ""
 
-#: ui/LoadingPage.qml:79 ui/LoginPage.qml:145
-#: .ubuntu-sdk-deploy/ui/LoadingPage.qml:79
-#: .ubuntu-sdk-deploy/ui/LoginPage.qml:145
-msgid "Loading, please wait ..."
+#: ui/ConversationsPage.qml:6 .ubuntu-sdk-deploy/ui/ConversationsPage.qml:6
+msgid "Conversations"
+msgstr ""
+
+#: ui/ConversationsPage.qml:12 ui/ChatPage.qml:44
+#: .ubuntu-sdk-deploy/ui/ConversationsPage.qml:12
+#: .ubuntu-sdk-deploy/ui/ChatPage.qml:44
+msgid "Add"
+msgstr ""
+
+#: ui/ConversationsPage.qml:14 ui/NewConversationWelcomeDialog.qml:8
+#: .ubuntu-sdk-deploy/ui/ConversationsPage.qml:14
+#: .ubuntu-sdk-deploy/ui/NewConversationWelcomeDialog.qml:8
+msgid "New Conversation"
+msgstr ""
+
+#: ui/ConversationsPage.qml:158 ui/ChatPage.qml:51
+#: .ubuntu-sdk-deploy/ui/ConversationsPage.qml:158
+#: .ubuntu-sdk-deploy/ui/ChatPage.qml:51
+msgid "Add users"
+msgstr ""
+
+#: ui/ConversationsPage.qml:179
+#: .ubuntu-sdk-deploy/ui/ConversationsPage.qml:180
+msgid "Delete Conversation"
+msgstr ""
+
+#: ui/ConversationsPage.qml:180
+#: .ubuntu-sdk-deploy/ui/ConversationsPage.qml:181
+msgid "Are you really sure to delete this conversation?"
+msgstr ""
+
+#: ui/ConversationsPage.qml:185
+#: .ubuntu-sdk-deploy/ui/ConversationsPage.qml:186
+msgid "Delete"
+msgstr ""
+
+#: ui/ConversationsPage.qml:195 ui/SettingsPage.qml:123
+#: .ubuntu-sdk-deploy/ui/ConversationsPage.qml:196
+#: .ubuntu-sdk-deploy/ui/SettingsPage.qml:123
+msgid "Cancel"
+msgstr ""
+
+#: ui/ConversationsPage.qml:204
+#: .ubuntu-sdk-deploy/ui/ConversationsPage.qml:205
+msgid "Nothing here, yet"
 msgstr ""
 
 #: ui/SettingsPage.qml:23 .ubuntu-sdk-deploy/ui/SettingsPage.qml:23
@@ -139,12 +200,6 @@ msgstr ""
 msgid "Working ..."
 msgstr ""
 
-#: ui/SettingsPage.qml:123 ui/ConversationsPage.qml:196
-#: .ubuntu-sdk-deploy/ui/SettingsPage.qml:123
-#: .ubuntu-sdk-deploy/ui/ConversationsPage.qml:196
-msgid "Cancel"
-msgstr ""
-
 #: ui/SettingsPage.qml:134 .ubuntu-sdk-deploy/ui/SettingsPage.qml:134
 msgid "Cache cleared"
 msgstr ""
@@ -156,97 +211,6 @@ msgstr ""
 
 #: ui/SettingsPage.qml:139 .ubuntu-sdk-deploy/ui/SettingsPage.qml:139
 msgid "Okay"
-msgstr ""
-
-#: ui/ContactsPage.qml:5 ui/ConversationsPage.qml:21
-#: .ubuntu-sdk-deploy/ui/ContactsPage.qml:5
-#: .ubuntu-sdk-deploy/ui/ConversationsPage.qml:21
-msgid "Contacts"
-msgstr ""
-
-#: ui/ContactsPage.qml:81 ui/SelectUsersPage.qml:140
-#: .ubuntu-sdk-deploy/ui/ContactsPage.qml:81
-#: .ubuntu-sdk-deploy/ui/SelectUsersPage.qml:140
-msgid "No contacts"
-msgstr ""
-
-#: ui/LoginPage.qml:7 .ubuntu-sdk-deploy/ui/LoginPage.qml:7
-msgid "Authenticate with Google"
-msgstr ""
-
-#: ui/LoginPage.qml:36 .ubuntu-sdk-deploy/ui/LoginPage.qml:36
-msgid "In order to use Hangups you need to authenticate this app with Google"
-msgstr ""
-
-#: ui/LoginPage.qml:45 ui/ConversationsPage.qml:31 ui/AboutPage.qml:5
-#: .ubuntu-sdk-deploy/ui/LoginPage.qml:45
-#: .ubuntu-sdk-deploy/ui/ConversationsPage.qml:31
-#: .ubuntu-sdk-deploy/ui/AboutPage.qml:5
-msgid "About"
-msgstr ""
-
-#: ui/LoginPage.qml:51 .ubuntu-sdk-deploy/ui/LoginPage.qml:51
-msgid "Got it"
-msgstr ""
-
-#: ui/LoginPage.qml:192 .ubuntu-sdk-deploy/ui/LoginPage.qml:192
-msgid "Welcome to Hangups!"
-msgstr ""
-
-#: ui/LoginPage.qml:205 .ubuntu-sdk-deploy/ui/LoginPage.qml:205
-msgid "Get started"
-msgstr ""
-
-#: ui/ConversationsPage.qml:6 .ubuntu-sdk-deploy/ui/ConversationsPage.qml:6
-msgid "Conversations"
-msgstr ""
-
-#: ui/ConversationsPage.qml:12 ui/ChatPage.qml:44
-#: .ubuntu-sdk-deploy/ui/ConversationsPage.qml:12
-#: .ubuntu-sdk-deploy/ui/ChatPage.qml:44
-msgid "Add"
-msgstr ""
-
-#: ui/ConversationsPage.qml:158 ui/ChatPage.qml:51
-#: .ubuntu-sdk-deploy/ui/ConversationsPage.qml:158
-#: .ubuntu-sdk-deploy/ui/ChatPage.qml:51
-msgid "Add users"
-msgstr ""
-
-#: ui/ConversationsPage.qml:180
-#: .ubuntu-sdk-deploy/ui/ConversationsPage.qml:180
-msgid "Delete Conversation"
-msgstr ""
-
-#: ui/ConversationsPage.qml:181
-#: .ubuntu-sdk-deploy/ui/ConversationsPage.qml:181
-msgid "Are you really sure to delete this conversation?"
-msgstr ""
-
-#: ui/ConversationsPage.qml:186
-#: .ubuntu-sdk-deploy/ui/ConversationsPage.qml:186
-msgid "Delete"
-msgstr ""
-
-#: ui/ConversationsPage.qml:205
-#: .ubuntu-sdk-deploy/ui/ConversationsPage.qml:205
-msgid "Nothing here, yet"
-msgstr ""
-
-#: ui/SelectUsersPage.qml:7 .ubuntu-sdk-deploy/ui/SelectUsersPage.qml:7
-msgid "Select users"
-msgstr ""
-
-#: ui/NetworkErrorDialog.qml:8 .ubuntu-sdk-deploy/ui/NetworkErrorDialog.qml:8
-msgid "Network Error"
-msgstr ""
-
-#: ui/NetworkErrorDialog.qml:14
-#: .ubuntu-sdk-deploy/ui/NetworkErrorDialog.qml:14
-#, qt-format
-msgid ""
-"A network error (%1) has occurred: %2 \n"
-"Please make sure that you are connected to a network."
 msgstr ""
 
 #: ui/AboutPage.qml:27 .ubuntu-sdk-deploy/ui/AboutPage.qml:27
@@ -294,24 +258,22 @@ msgid ""
 "Ubuntu and Canonical are registered trademarks of Canonical Ltd."
 msgstr ""
 
-#: ui/ViewImagePage.qml:8 .ubuntu-sdk-deploy/ui/ViewImagePage.qml:8
-msgid "Image"
+#: ui/NetworkErrorDialog.qml:8 .ubuntu-sdk-deploy/ui/NetworkErrorDialog.qml:8
+msgid "Network Error"
 msgstr ""
 
-#: ui/ViewImagePage.qml:33 .ubuntu-sdk-deploy/ui/ViewImagePage.qml:33
-msgid "Save"
+#: ui/NetworkErrorDialog.qml:14
+#: .ubuntu-sdk-deploy/ui/NetworkErrorDialog.qml:14
+#, qt-format
+msgid ""
+"A network error (%1) has occurred: %2 \n"
+"Please make sure that you are connected to a network."
 msgstr ""
 
-#: ui/ViewImagePage.qml:40 .ubuntu-sdk-deploy/ui/ViewImagePage.qml:40
-msgid "Share"
-msgstr ""
-
-#: ui/ViewImagePage.qml:81 .ubuntu-sdk-deploy/ui/ViewImagePage.qml:81
-msgid "Retrieving image"
-msgstr ""
-
-#: ui/ViewImagePage.qml:82 .ubuntu-sdk-deploy/ui/ViewImagePage.qml:82
-msgid "Retrieving image, please wait ..."
+#: ui/NetworkErrorDialog.qml:16
+#: .ubuntu-sdk-deploy/ui/NetworkErrorDialog.qml:16
+#: .ubuntu-sdk-deploy/Main.qml:307 Main.qml:338
+msgid "Close"
 msgstr ""
 
 #: ui/ChatListItem.qml:68 .ubuntu-sdk-deploy/ui/ChatListItem.qml:68
@@ -347,4 +309,42 @@ msgstr ""
 
 #: ui/ChatPage.qml:170 .ubuntu-sdk-deploy/ui/ChatPage.qml:170
 msgid "Write a message"
+msgstr ""
+
+#: ui/NewConversationWelcomeDialog.qml:9
+#: .ubuntu-sdk-deploy/ui/NewConversationWelcomeDialog.qml:9
+msgid "Send a welcoming message to invite the conversations members"
+msgstr ""
+
+#: ui/NewConversationWelcomeDialog.qml:15
+#: .ubuntu-sdk-deploy/ui/NewConversationWelcomeDialog.qml:15
+msgid "Write message"
+msgstr ""
+
+#: ui/NewConversationWelcomeDialog.qml:16
+#: .ubuntu-sdk-deploy/ui/NewConversationWelcomeDialog.qml:16
+msgid "Hi there :)"
+msgstr ""
+
+#: ui/NewConversationWelcomeDialog.qml:20
+#: .ubuntu-sdk-deploy/ui/NewConversationWelcomeDialog.qml:20
+msgid "Send"
+msgstr ""
+
+#: ui/SelectUsersPage.qml:7 .ubuntu-sdk-deploy/ui/SelectUsersPage.qml:7
+msgid "Select users"
+msgstr ""
+
+#: .ubuntu-sdk-deploy/Main.qml:178 Main.qml:209
+#, qt-format
+msgid "%1 is typing ..."
+msgstr ""
+
+#: .ubuntu-sdk-deploy/Main.qml:297 Main.qml:328
+msgid "Error"
+msgstr ""
+
+#: .ubuntu-sdk-deploy/Main.qml:301 Main.qml:332
+#, qt-format
+msgid "An error has occured: %1"
 msgstr ""

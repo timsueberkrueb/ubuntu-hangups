@@ -1,5 +1,5 @@
-import QtQuick 2.0
-import Ubuntu.Components 1.2
+import QtQuick 2.4
+import Ubuntu.Components 1.3
  import Ubuntu.Components.Popups 1.0
 import QtMultimedia 5.2
 import io.thp.pyotherside 1.4
@@ -15,9 +15,6 @@ MainView {
 
     // automatically anchor items to keyboard that are anchored to the bottom
     anchorToKeyboard: true
-
-    // Set theme
-    Component.onCompleted: Theme.name = "theme"
 
     width: units.dp(540*3/4)
     height: units.dp(960*3/4)
@@ -51,17 +48,34 @@ MainView {
         id: networkErrorDialog
     }
 
-    PageStack {
-        id: pageStack
-        Component.onCompleted: push(loadingPage)
+    LoadingScreen {
+        id: loadingScreen
+        anchors.fill: parent
+    }
 
-        LoadingPage {
-            id: loadingPage
-        }
-
-        LoginPage {
-            id: loginPage
-        }
+    AdaptivePageLayout {
+        id: pageLayout
+        anchors.fill: parent
+        layouts: [
+          PageColumnsLayout {
+              when: pageLayout.width > units.gu(80)
+              PageColumn {
+                  minimumWidth: units.gu(20)
+                  maximumWidth: units.gu(60)
+                  preferredWidth: units.gu(40)
+              }
+              PageColumn {
+                  fillWidth: true
+              }
+          },
+          PageColumnsLayout {
+              when: true
+              PageColumn {
+                  minimumWidth: units.gu(20)
+                  fillWidth: true
+              }
+          }
+      ]
 
         ContactsPage {
             id: contactsPage
@@ -95,6 +109,13 @@ MainView {
             id: selectUsersPage
         }
 
+
+    }
+
+    LoginScreen {
+        z: 5
+        id: loginScreen
+        anchors.fill: parent
     }
 
     Audio {
@@ -118,13 +139,14 @@ MainView {
             });
 
             setHandler('show-login-page', function() {
-                pageStack.clear();
-                pageStack.push(loginPage);
+                loadingScreen.visible = false;
+                loginScreen.visible = true;
             });
 
             setHandler('show-conversations-page', function() {
-                pageStack.clear();
-                pageStack.push(conversationsPage);
+                console.log("show-conversations-page")
+                pageLayout.primaryPage = conversationsPage;
+                loadingScreen.visible = false;
             });
 
             setHandler('move-conversation-to-top', function(conv_id){
@@ -152,8 +174,8 @@ MainView {
                 conversationsModel.get(getConversationModelIndexById(conv_id)).title = title;
                 conversationsModel.get(getConversationModelIndexById(conv_id)).status_message = status_message;
 
-                if ((pageStack.currentPage == chatPage && chatPage.conv_id == conv_id) ||
-                        (pageStack.currentPage == aboutConversationPage && aboutConversationPage.mData.id_ == conv_id)) {
+                if ((chatPage.visible && chatPage.conv_id == conv_id) ||
+                        (aboutConversationPage.visible && aboutConversationPage.mData.id_ == conv_id)) {
                     py.call("backend.read_messages", [conv_id]);
                     chatPage.status_message = status_message;
                 }
@@ -172,7 +194,7 @@ MainView {
 
             setHandler('set-conversation-status', function(conv_id, status_message, typers){
                 console.log('set-conversation-status of', conv_id)
-                if (pageStack.currentPage == chatPage && chatPage.conv_id == conv_id) {
+                if (chatPage.visible && chatPage.conv_id == conv_id) {
                     if (typers) {
                         if (typers.length === 1) {
                             status_message = i18n.tr("%1 is typing ...").arg(typers[0]);
@@ -199,14 +221,14 @@ MainView {
                 console.log('add-conversation-message to ', conv_id, data.type)
                 if (insert_mode === "bottom") {
                     chatModels[conv_id].append(data);
-                    if (pageStack.currentPage === chatPage && chatPage.conv_id === conv_id) {
+                    if (chatPage.visible && chatPage.conv_id === conv_id) {
                         chatPage.listView.positionViewAtEnd();
                     }
                 }
                 else if (insert_mode === "top") {
                     chatModels[conv_id].insert(0, data);
                     chatPage.pullToRefresh.refreshing = false;
-                    if (pageStack.currentPage === chatPage && chatPage.conv_id === conv_id && !chatPage.pullToRefreshLoading) {
+                    if (chatPage.visible && chatPage.conv_id === conv_id && !chatPage.pullToRefreshLoading) {
                         chatPage.listView.positionViewAtEnd();
                     }
                 }
@@ -229,6 +251,11 @@ MainView {
             setHandler('add-contact', function(data) {
                 console.log("add contact", data.name)
                 contactsModel.append(data);
+            });
+
+            setHandler('set-loading-status', function(status) {
+                console.log("set-loading-status", status)
+                loadingScreen.setLoadingStatus(status);
             });
 
             // Events
@@ -261,14 +288,14 @@ MainView {
             setHandler('on-conversation-loaded', function(conv_id){
                 console.log('on-conversation-loaded');
                 conversationsModel.get(getConversationModelIndexById(conv_id)).loaded = true;
-                if (pageStack.currentPage === chatPage && chatPage.conv_id === conv_id) {
+                if (chatPage.visible && chatPage.conv_id === conv_id) {
                     chatPage.loaded = true;
                 }
             });
 
             setHandler('on-more-messages-loaded', function(conv_id){
                 console.log('on-more-messages-loaded of ', conv_id);
-                if (pageStack.currentPage === chatPage && chatPage.conv_id === conv_id) {
+                if (chatPage.visible && chatPage.conv_id === conv_id) {
                     chatPage.pullToRefresh.refreshing = false;
                     chatPage.pullToRefreshLoading = false;
                 }

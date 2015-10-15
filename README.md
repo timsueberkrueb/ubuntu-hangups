@@ -9,8 +9,9 @@ Powered by <a href='https://github.com/thp'>Thomas Perl's</a> <a href='https://g
 ## Third-party software
 Ubuntu Hangups includes the following third-party software:
 * Notification sound (media/notification-sound.wav) by TheGertz is licensed under the Creative Commons 0 License (cc-0, http://creativecommons.org/publicdomain/zero/1.0/): https://www.freesound.org/people/TheGertz/sounds/235911/
-* Send icon from Googles Material Design icons (media/google-md-send-icon.svg) is licensed under the Creative Commons Attribution-Share Alike 3.0 Unported License (cc-by-sa): https://design.google.com/
-* The loading animation (media/loading-animation.gif) by Fabian Süberkrüb is licensed under the Creative Commons Attribution License 4.0 (cc-by, https://creativecommons.org/licenses/by/4.0/)
+* Send icon from Googles Material Design icons (media/google-md-send-icon.svg) is licensed under the Creative Commons Attribution-Share Alike 3.0 Unported License (CC BY SA 3.0): https://design.google.com/
+* The loading animation (media/loading-animation.gif) by Fabian Süberkrüb is licensed under the Creative Commons Attribution License 4.0 (CC BY 4.0, https://creativecommons.org/licenses/by/4.0/)
+* The default chat background (media/default_chat_wallpaper.jpg) was created by Nick Russill and is licensed under the Creative Commons Attribution 2.0 Generic (CC BY 2.0) license.
 
 The application icon was created using <a href='https://github.com/halfsail'>Kevin Feyder</a>'s <a href='https://github.com/halfsail/Ubuntu-UI-Toolkit#suru-icon-template-kit'>Suru Icon Template kit</a>
 

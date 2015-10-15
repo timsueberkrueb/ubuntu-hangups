@@ -57,6 +57,11 @@ Page {
            }
 
            FlexibleLabel {
+                text: i18n.tr("The <a href='https://www.flickr.com/photos/nickrussill/150410498/'>default chat background</a> was created by <a href='https://www.flickr.com/photos/nickrussill/'>Nick Russill</a> and is licensed under the <a href='https://creativecommons.org/licenses/by/2.0/'>Creative Commons Attribution 2.0 Generic (CC BY 2.0) license.</a>")
+                onLinkActivated: Qt.openUrlExternally(link)
+           }
+
+           FlexibleLabel {
                text: i18n.tr("This application is not endorsed by or affiliated with Ubuntu or Canonical. Ubuntu and Canonical are registered trademarks of Canonical Ltd.")
            }
 

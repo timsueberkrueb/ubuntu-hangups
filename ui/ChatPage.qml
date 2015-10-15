@@ -28,7 +28,7 @@ Page {
             py.call('backend.left_conversation', [conv_id]);
         }
         else {
-            //listView.positionViewAtEnd();
+            listView.positionViewAtEnd();
             if (!loaded) {
                 py.call('backend.load_conversation', [conv_id])
             }
@@ -158,15 +158,15 @@ Page {
                 property double maxOpacity: 0.5
                 property double opacityFromViewPosition: ((1-(listView.visibleArea.yPosition + listView.visibleArea.heightRatio))*listView.contentHeight) / (listView.height)
                 opacity: (opacityFromViewPosition < maxOpacity ? opacityFromViewPosition : maxOpacity)
-                width: units.dp(48)
+                width: units.dp(32)
                 height: width
                 anchors.bottom: parent.bottom
                 anchors.horizontalCenter: parent.horizontalCenter
-                anchors.bottomMargin: units.gu(2)
+                anchors.bottomMargin: units.gu(1)
 
                 Icon {
                     anchors.centerIn: parent
-                    width: units.dp(40)
+                    width: units.dp(24)
                     height: width
                     name: "down"
                     color: "white"

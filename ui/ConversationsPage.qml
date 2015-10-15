@@ -51,30 +51,19 @@ Page {
                 anchors.rightMargin: units.gu(1)
                 spacing: units.gu(2)
 
-                Icon {
-                    id: contactIcon
-                    height: units.dp(32)
-                    width: units.dp(32)
-                    visible: modelData.icon === "unknown/contact"
-                    name: "contact"
-                    color: UbuntuColors.warmGrey
-                }
-
-                Icon {
-                    id: groupIcon
-                    height: units.dp(32)
-                    width: units.dp(32)
-                    name: "contact-group"
+                GroupAvatar {
                     visible: modelData.icon === "unknown/group"
-                    color: UbuntuColors.warmGrey
                 }
 
-                Image {
-                    id: remoteIcon
+                DefaultUserAvatar {
+                    visible: modelData.icon === "unknown/contact"
+                    name: modelData.title
+                }
+
+                UserAvatar {
                     visible: modelData.icon.lastIndexOf("http", 0) === 0
-                    height: units.dp(32)
-                    width: units.dp(32)
-                    source: visible ? modelData.icon : ""
+                    name: modelData.title
+                    photoUrl: visible ? modelData.icon : ""
                 }
 
                 Label {

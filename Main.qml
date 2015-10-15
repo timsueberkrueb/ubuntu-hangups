@@ -16,8 +16,8 @@ MainView {
     // automatically anchor items to keyboard that are anchored to the bottom
     anchorToKeyboard: true
 
-    width: units.dp(540*3/4)
-    height: units.dp(960*3/4)
+    width: 720
+    height: 540
 
     property ListModel conversationsModel: ListModel {}
     property ListModel contactsModel: ListModel {}

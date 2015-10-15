@@ -20,13 +20,15 @@ Page {
     property bool initialMessagesLoaded: false
     property bool pullToRefreshLoading: false
 
+    flickable: listView
+
     onVisibleChanged: {
         if (!visible) {
             pullToRefreshLoading = false;
             py.call('backend.left_conversation', [conv_id]);
         }
         else {
-            listView.positionViewAtEnd();
+            //listView.positionViewAtEnd();
             if (!loaded) {
                 py.call('backend.load_conversation', [conv_id])
             }
@@ -89,61 +91,93 @@ Page {
         }
     }
 
-    UbuntuListView {
-        id: listView
-
+    Image {
         anchors.top: parent.top
         anchors.left: parent.left
         anchors.right: parent.right
         anchors.bottom: bottomContainer.top
+        source: Qt.resolvedUrl('../media/default_chat_wallpaper.jpg')
 
-        model: currentChatModel
-        spacing: units.gu(1)
-        delegate: ChatListItem {}
+        UbuntuListView {
+            id: listView
 
-        header: Component {
-            Item {
-                height: units.gu(5)
-                width: parent.width
+            anchors.fill: parent
 
-                ActivityIndicator {
-                    running: !loaded
-                    anchors.horizontalCenter: parent.horizontalCenter
-                    anchors.verticalCenter: parent.verticalCenter
+            model: currentChatModel
+            spacing: units.gu(1)
+            delegate: ChatListItem {}
+
+            header: Component {
+                Item {
+                    height: units.gu(5)
+                    width: parent.width
+
+                    ActivityIndicator {
+                        running: !loaded
+                        anchors.horizontalCenter: parent.horizontalCenter
+                        anchors.verticalCenter: parent.verticalCenter
+                    }
                 }
             }
-        }
 
-
-        footer: Component {
-            Item {
-                height: units.gu(5)
-                width: parent.width
+            footer: Component {
+                Item {
+                    height: units.gu(5)
+                    width: parent.width
+                }
             }
-        }
 
-        PullToRefresh {
-            id: pullToRefresh
-            width: parent.width
+            PullToRefresh {
+                id: pullToRefresh
+                width: parent.width
 
-            enabled: !first_message_loaded
+                enabled: !first_message_loaded
 
-            content: Item {
-                height: parent.height
-                width: height
+                content: Item {
+                    height: parent.height
+                    width: height
 
-                Label {
+                    Label {
+                        anchors.centerIn: parent
+                        color: "white"
+                        text: !pullToRefresh.releaseToRefresh ? i18n.tr("Pull to load more") : i18n.tr("Release to load more")
+                    }
+
+                }
+
+                onRefresh: {
+                    refreshing = true;
+                    pullToRefreshLoading = true;
+                    py.call('backend.load_more_messages', [conv_id]);
+                }
+            }
+
+            UbuntuShape {
+                id: btnScrollToBottom
+                color: "black"
+                property double maxOpacity: 0.5
+                property double opacityFromViewPosition: ((1-(listView.visibleArea.yPosition + listView.visibleArea.heightRatio))*listView.contentHeight) / (listView.height)
+                opacity: (opacityFromViewPosition < maxOpacity ? opacityFromViewPosition : maxOpacity)
+                width: units.dp(48)
+                height: width
+                anchors.bottom: parent.bottom
+                anchors.horizontalCenter: parent.horizontalCenter
+                anchors.bottomMargin: units.gu(2)
+
+                Icon {
                     anchors.centerIn: parent
-                    text: !pullToRefresh.releaseToRefresh ? i18n.tr("Pull to load more") : i18n.tr("Release to load more")
+                    width: units.dp(40)
+                    height: width
+                    name: "down"
+                    color: "white"
                 }
 
+                MouseArea {
+                    anchors.fill: parent
+                    onClicked: listView.positionViewAtEnd();
+                }
             }
 
-            onRefresh: {
-                refreshing = true;
-                pullToRefreshLoading = true;
-                py.call('backend.load_more_messages', [conv_id]);
-            }
         }
 
     }

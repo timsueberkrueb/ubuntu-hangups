@@ -222,7 +222,7 @@ MainView {
                 if (insert_mode === "bottom") {
                     chatModels[conv_id].append(data);
                     if (chatPage.visible && chatPage.conv_id === conv_id) {
-                        chatPage.listView.positionViewAtEnd();
+
                     }
                 }
                 else if (insert_mode === "top") {

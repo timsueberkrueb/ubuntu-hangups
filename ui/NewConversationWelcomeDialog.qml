@@ -20,7 +20,6 @@ Component {
              text: i18n.tr("Send")
              color: UbuntuColors.green
              onClicked: {
-                 console.log("onClicked")
                  py.call('backend.send_new_conversation_welcome_message', [conv_id, messageField.text]);
                  PopupUtils.close(dialog);
              }

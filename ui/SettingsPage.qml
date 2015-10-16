@@ -9,7 +9,7 @@ Page {
 
     Flickable {
         anchors.fill: parent
-        contentHeight: col.height
+        contentHeight: col.height + col.anchors.margins * 2
 
         Column {
             id: col
@@ -18,6 +18,57 @@ Page {
             anchors.right: parent.right
             anchors.margins: units.gu(2)
             spacing: units.gu(1)
+
+            Label {
+                text: i18n.tr("Chat Background")
+                fontSize: "x-large"
+            }
+
+            UbuntuShape {
+                height: source.height
+                width: source.width
+                source: Image {
+                    id: backgroundImage
+
+                    property bool isDefault: source == Qt.resolvedUrl('../media/default_chat_background.jpg')
+
+                    width: units.dp(256)
+                    fillMode: Image.PreserveAspectFit
+                    source: Qt.resolvedUrl('../media/default_chat_background.jpg')
+
+                    Component.onCompleted: {
+                        py.call('backend.settings_get', ['custom_chat_background'], function callback(value){
+                            if (value) {
+                                source = value;
+                            }
+                        });
+                    }
+
+                }
+            }
+
+            Row {
+                spacing: units.gu(1)
+
+                Button {
+                    text: i18n.tr("Change")
+                    color: UbuntuColors.green
+                    onClicked: {
+                        importContentPopup.show();
+                    }
+                }
+
+                Button {
+                    text: i18n.tr("Reset default")
+
+                    enabled: !backgroundImage.isDefault
+
+                    onClicked: {
+
+                    }
+                }
+            }
+
 
             Label {
                 text: i18n.tr("Cache")
@@ -144,6 +195,17 @@ Page {
              }
          }
     }
+
+    ImportContentPopup {
+        id: importContentPopup
+        contentType: ContentType.Pictures
+        onItemsImported: {
+            var picture = importItems[0];
+            var url = picture.url;
+            //py.call('backend.send_image', [conv_id, url.toString()]);
+        }
+    }
+
 
 }
 

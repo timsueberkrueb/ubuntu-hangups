@@ -26,7 +26,7 @@ Contact me via Gitter: https://gitter.im/tim-sueberkrueb/
 # Installation on Ubuntu
 
 ## Dependencies
-* ubuntu-ui-toolkit 1.2
+* ubuntu-ui-toolkit 1.3
 * pyotherside (https://thp.io/2011/pyotherside/)
 * hangups (https://github.com/tdryer/hangups)
   * aiohttp

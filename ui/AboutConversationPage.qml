@@ -6,9 +6,8 @@ Page {
     visible: false
     property var mData
 
-    onVisibleChanged: {
-        if (visible) {
-            //title = mData.title + " - " + i18n.tr("About");
+    onActiveChanged: {
+        if (active) {
             isQuietCheckbox.checked = mData.is_quiet;
             listView.model = mData.users;
         }

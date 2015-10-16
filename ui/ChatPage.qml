@@ -5,13 +5,13 @@ import QtGraphicalEffects 1.0
 
 Page {
     id: chatPage
-    title: conv_name || "Chat"
+    title: convName || "Chat"
     visible: false
 
-    property string conv_name
-    property string conv_id
-    property string status_message: ""
-    property bool first_message_loaded: false
+    property string convName
+    property string convId
+    property string statusMessage: ""
+    property bool firstMessageLoaded: false
     property bool loaded: false
 
     property alias listView: listView
@@ -20,18 +20,21 @@ Page {
     property bool initialMessagesLoaded: false
     property bool pullToRefreshLoading: false
 
+    property alias chatModel: listView.model
+
     flickable: listView
 
-    onVisibleChanged: {
-        if (!visible) {
+    onActiveChanged: {
+        if (!active) {
             pullToRefreshLoading = false;
-            py.call('backend.left_conversation', [conv_id]);
+            py.call('backend.left_conversation', [convId]);
         }
         else {
-            listView.positionViewAtEnd();
             if (!loaded) {
-                py.call('backend.load_conversation', [conv_id])
+                listView.positionViewAtEnd();
+                py.call('backend.load_conversation', [convId])
             }
+            conversationsModel.get(getConversationModelIndexById(convId)).unread_count = 0;
         }
     }
 
@@ -39,19 +42,19 @@ Page {
         Action {
             iconName: "info"
             text: i18n.tr("Info")
-            onTriggered: pageLayout.addPageToNextColumn(chatPage, aboutConversationPage, {mData: conversationsModel.get(getConversationModelIndexById(conv_id))})
+            onTriggered: pageLayout.addPageToNextColumn(chatPage, aboutConversationPage, {mData: conversationsModel.get(getConversationModelIndexById(convId))})
         },
         Action {
             iconName: "add"
             text: i18n.tr("Add")
             onTriggered: {
                 var user_ids = [];
-                var users = conversationsModel.get(getConversationModelIndexById(conv_id)).users;
+                var users = conversationsModel.get(getConversationModelIndexById(convId)).users;
                 for (var i=0; i<users.count; i++) {
                     user_ids.push(users.get(i).id_.toString());
                 }
                 pageLayout.addPageToNextColumn(chatPage, selectUsersPage, {headTitle: i18n.tr("Add users"), excludedUsers: user_ids, callback: function onUsersSelected(users){
-                    py.call('backend.add_users', [conv_id, users]);
+                    py.call('backend.add_users', [convId, users]);
                 }});
             }
         }
@@ -66,7 +69,7 @@ Page {
             text: title
             fontSize: "x-large"
             elide: Text.ElideRight
-            visible: status_message == ""
+            visible: statusMessage == ""
         }
 
         Label {
@@ -75,15 +78,15 @@ Page {
             text: title
             fontSize: "large"
             elide: Text.ElideRight
-            visible: status_message != ""
+            visible: statusMessage != ""
         }
 
         Label {
             width: parent.width
-            opacity: status_message != "" ? 1.0: 0
+            opacity: statusMessage != "" ? 1.0: 0
             color: UbuntuColors.green
             anchors.bottom: parent.bottom
-            text: status_message
+            text: statusMessage
             elide: Text.ElideRight
             Behavior on opacity {
                 NumberAnimation { duration: 500 }
@@ -96,14 +99,15 @@ Page {
         anchors.left: parent.left
         anchors.right: parent.right
         anchors.bottom: bottomContainer.top
-        source: Qt.resolvedUrl('../media/default_chat_wallpaper.jpg')
+        source: Qt.resolvedUrl('../media/default_chat_background.jpg')
 
         UbuntuListView {
             id: listView
 
             anchors.fill: parent
 
-            model: currentChatModel
+            property bool isAtBottomArea: contentHeight*(1-(listView.visibleArea.yPosition + listView.visibleArea.heightRatio)) < listView.height
+
             spacing: units.gu(1)
             delegate: ChatListItem {}
 
@@ -131,7 +135,7 @@ Page {
                 id: pullToRefresh
                 width: parent.width
 
-                enabled: !first_message_loaded
+                enabled: !firstMessageLoaded
 
                 content: Item {
                     height: parent.height
@@ -148,13 +152,13 @@ Page {
                 onRefresh: {
                     refreshing = true;
                     pullToRefreshLoading = true;
-                    py.call('backend.load_more_messages', [conv_id]);
+                    py.call('backend.load_more_messages', [convId]);
                 }
             }
 
             UbuntuShape {
                 id: btnScrollToBottom
-                color: "black"
+                backgroundColor: "black"
                 property double maxOpacity: 0.5
                 property double opacityFromViewPosition: ((1-(listView.visibleArea.yPosition + listView.visibleArea.heightRatio))*listView.contentHeight) / (listView.height)
                 opacity: (opacityFromViewPosition < maxOpacity ? opacityFromViewPosition : maxOpacity)
@@ -205,9 +209,9 @@ Page {
 
             onAccepted: {
                 if (messageField.text !== "") {
-                    py.call('backend.send_message', [conv_id, messageField.text]);
+                    py.call('backend.send_message', [convId, messageField.text]);
                     messageField.text = "";
-                    py.call('backend.set_typing', [conv_id, "stopped"]);
+                    py.call('backend.set_typing', [convId, "stopped"]);
                     pausedTypingTimer.stop();
                     stoppedTypingTimer.stop();
                 }
@@ -217,7 +221,7 @@ Page {
                 id: pausedTypingTimer
                 interval: 1500
                 onTriggered: {
-                    py.call('backend.set_typing', [conv_id, "paused"]);
+                    py.call('backend.set_typing', [convId, "paused"]);
                     stoppedTypingTimer.start();
                 }
             }
@@ -225,11 +229,11 @@ Page {
             Timer {
                 id: stoppedTypingTimer
                 interval: 3000
-                onTriggered: py.call('backend.set_typing', [conv_id, "stopped"]);
+                onTriggered: py.call('backend.set_typing', [convId, "stopped"]);
             }
 
             onTextChanged: {
-                py.call('backend.set_typing', [conv_id, "typing"]);
+                py.call('backend.set_typing', [convId, "typing"]);
                 pausedTypingTimer.stop();
                 stoppedTypingTimer.stop();
                 pausedTypingTimer.start();
@@ -282,9 +286,9 @@ Page {
                     Qt.inputMethod.commit();
                     Qt.inputMethod.hide();
                     if (messageField.text !== "") {
-                        py.call('backend.send_message', [conv_id, messageField.text]);
+                        py.call('backend.send_message', [convId, messageField.text]);
                         messageField.text = "";
-                        py.call('backend.set_typing', [conv_id, "stopped"]);
+                        py.call('backend.set_typing', [convId, "stopped"]);
                         pausedTypingTimer.stop();
                         stoppedTypingTimer.stop();
                     }
@@ -308,7 +312,7 @@ Page {
         onItemsImported: {
             var picture = importItems[0];
             var url = picture.url;
-            py.call('backend.send_image', [conv_id, url.toString()]);
+            py.call('backend.send_image', [convId, url.toString()]);
         }
     }
 

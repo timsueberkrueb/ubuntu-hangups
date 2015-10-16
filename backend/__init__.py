@@ -95,6 +95,7 @@ class ConversationController:
                                              for a in conv_event.attachments],
                              "user_is_self": user.is_self,
                              "username": user.full_name,
+                             "user_photo": "https:" + user.photo_url if user.photo_url else None,
                              "time": get_message_timestr(conv_event.timestamp)
                          },
                          insert_mode)
@@ -259,7 +260,6 @@ class ConversationController:
         future.add_done_callback(lambda future: future.result())
 
         future = asyncio.async(self.conv.update_read_timestamp())
-        future.add_done_callback(lambda future: future.result())
 
         request = hangouts_pb2.SetFocusRequest(
             request_header=client.get_request_header(),

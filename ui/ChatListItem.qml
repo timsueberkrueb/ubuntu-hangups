@@ -13,14 +13,15 @@ ListItem {
     divider.visible: false
     height: modelData.type === "chat/message" ? rect.height :  infoItem.height
 
-    trailingActions: ListItemActions {
+    trailingActions: textMimeData.text !== "" ? messageTrailingActions : null
+
+    ListItemActions {
+        id: messageTrailingActions
 
         actions: [
             Action {
                 text: i18n.tr("Copy")
                 iconName: "edit-copy"
-                enabled: textMimeData.text !== ""
-                visible: textMimeData.text !== ""
                 onTriggered: {
                     Clipboard.push(textMimeData);
                 }
@@ -115,6 +116,7 @@ ListItem {
                           else {
                               ""
                           }
+                    font.pixelSize: units.dp(13)
                 }
 
             }
@@ -137,6 +139,19 @@ ListItem {
         Row {
             anchors.fill: parent
             layoutDirection: is_self ? Qt.RightToLeft: Qt.LeftToRight
+
+            Item {
+                visible: !is_self
+                width: units.gu(1)
+                height: rect.height
+            }
+
+            UserAvatar {
+                visible: !is_self && conversationsModel.get(getConversationModelIndexById(convId)).users.count > 2
+                anchors.verticalCenter: rect.verticalCenter
+                name: visible ? modelData.username : ""
+                photoUrl: visible ? modelData.user_photo : ""
+            }
 
             Canvas {
                 id: canvas
@@ -176,8 +191,10 @@ ListItem {
                     anchors.top: parent.top
                     anchors.left: parent.left
                     anchors.right: parent.right
-                    anchors.margins: units.gu(1)
-                    spacing: (units.gu(1) / 2)
+                    anchors.margins: units.dp(4)
+                    anchors.leftMargin: units.dp(8)
+                    anchors.rightMargin: units.dp(8)
+                    spacing: (units.dp(4))
                     height: childrenRect.height + spacing + 2*anchors.margins
 
                     Label {
@@ -185,7 +202,8 @@ ListItem {
                         visible: !modelData.user_is_self
                         color: UbuntuColors.green
                         text: modelData.username
-                        font.pixelSize: units.dp(14)
+                        font.pixelSize: units.dp(13)
+                        font.bold: true
                     }
 
                     FlexibleLabel {
@@ -195,7 +213,7 @@ ListItem {
                         width: parent.width
                         color: foregroundColor
                         text: modelData.html ? modelData.html : ""
-                        font.pixelSize: units.dp(14)
+                        font.pixelSize: units.dp(13)
                     }
 
                     MimeData {
@@ -223,7 +241,7 @@ ListItem {
                         Label {
                             color: UbuntuColors.darkGrey
                             text: modelData.time
-                            font.pixelSize: units.dp(14)
+                            font.pixelSize: units.dp(12)
                         }
                     }
 

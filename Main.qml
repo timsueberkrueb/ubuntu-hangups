@@ -27,13 +27,14 @@ MainView {
         ListModel {}
     }
 
-    property var chatModels: ({})
-    property var currentChatModel
-
-
-    function setCurrentConversation (conv_id) {
-        currentChatModel = chatModels[conv_id];
+    Component {
+        id: chatPageComponent
+        ChatPage {}
     }
+
+    property var chatPages: ({})
+
+    property var chatModels: ({})
 
     function getConversationModelIndexById(conv_id) {
         for (var i=0; i<conversationsModel.count; i++) {
@@ -57,25 +58,25 @@ MainView {
         id: pageLayout
         anchors.fill: parent
         layouts: [
-          PageColumnsLayout {
-              when: pageLayout.width > units.gu(80)
-              PageColumn {
-                  minimumWidth: units.gu(20)
-                  maximumWidth: units.gu(60)
-                  preferredWidth: units.gu(40)
-              }
-              PageColumn {
-                  fillWidth: true
-              }
-          },
-          PageColumnsLayout {
-              when: true
-              PageColumn {
-                  minimumWidth: units.gu(20)
-                  fillWidth: true
-              }
-          }
-      ]
+            PageColumnsLayout {
+                when: pageLayout.width > units.gu(80)
+                PageColumn {
+                    minimumWidth: units.gu(20)
+                    maximumWidth: units.gu(60)
+                    preferredWidth: units.gu(40)
+                }
+                PageColumn {
+                    fillWidth: true
+                }
+            },
+            PageColumnsLayout {
+                when: true
+                PageColumn {
+                    minimumWidth: units.gu(20)
+                    fillWidth: true
+                }
+            }
+       ]
 
         ContactsPage {
             id: contactsPage
@@ -101,15 +102,9 @@ MainView {
             id: settingsPage
         }
 
-        ChatPage {
-            id: chatPage
-        }
-
         SelectUsersPage {
             id: selectUsersPage
         }
-
-
     }
 
     LoginScreen {
@@ -159,6 +154,10 @@ MainView {
                 conversationsModel.append(data);
                 var chatModel = chatModelComponent.createObject(root);
                 chatModels[data.id_] = chatModel;
+
+                var chatPage = chatPageComponent.createObject(null, {convId: data.id_, chatModel: chatModel, convName: data.title, firstMessageLoaded: data.first_message_loaded, statusMessage: data.statusMessage, loaded: data.loaded});
+                chatPages[data.id_] = chatPage;
+
                 if (sound)
                     notificationSound.play();
             });
@@ -169,15 +168,17 @@ MainView {
             });
 
 
-            setHandler('set-conversation-title', function(conv_id, title, unread_count, status_message) {
-                console.log("set conversation title of ", conv_id, "to", title, "|", status_message)
+            setHandler('set-conversation-title', function(conv_id, title, unread_count, statusMessage) {
+                console.log("set conversation title of ", conv_id, "to", title, "|", statusMessage)
                 conversationsModel.get(getConversationModelIndexById(conv_id)).title = title;
-                conversationsModel.get(getConversationModelIndexById(conv_id)).status_message = status_message;
+                conversationsModel.get(getConversationModelIndexById(conv_id)).statusMessage = statusMessage;
 
-                if ((chatPage.visible && chatPage.conv_id == conv_id) ||
+                var chatPage = chatPages[conv_id];
+
+                if (chatPage.visible ||
                         (aboutConversationPage.visible && aboutConversationPage.mData.id_ == conv_id)) {
                     py.call("backend.read_messages", [conv_id]);
-                    chatPage.status_message = status_message;
+                    chatPage.statusMessage = statusMessage;
                 }
                 else {
                     if (unread_count > conversationsModel.get(getConversationModelIndexById(conv_id)).unread_count && !conversationsModel.get(getConversationModelIndexById(conv_id)).is_quiet) {
@@ -192,12 +193,15 @@ MainView {
                 conversationsModel.get(getConversationModelIndexById(conv_id)).is_quiet = is_quiet;
             });
 
-            setHandler('set-conversation-status', function(conv_id, status_message, typers){
+            setHandler('set-conversation-status', function(conv_id, statusMessage, typers){
                 console.log('set-conversation-status of', conv_id)
-                if (chatPage.visible && chatPage.conv_id == conv_id) {
+
+                var chatPage = chatPages[conv_id];
+
+                if (chatPage.visible) {
                     if (typers) {
                         if (typers.length === 1) {
-                            status_message = i18n.tr("%1 is typing ...").arg(typers[0]);
+                            statusMessage = i18n.tr("%1 is typing ...").arg(typers[0]);
                         }
                         else if (typers.length > 1) {
                             var t = ""
@@ -205,10 +209,10 @@ MainView {
                                 t += typers[i] + ', '
                             }
                             t = t.slice(0, t.length-2);
-                            status_message = i18n.tr('%1 are typing ...').arg(t);
+                            statusMessage = i18n.tr('%1 are typing ...').arg(t);
                         }
                     }
-                    chatPage.status_message = status_message;
+                    chatPage.statusMessage = statusMessage;
                 }
             });
 
@@ -219,17 +223,22 @@ MainView {
 
             setHandler('add-conversation-message', function(conv_id, data, insert_mode) {
                 console.log('add-conversation-message to ', conv_id, data.type)
+
+                var chatPage = chatPages[conv_id];
+
                 if (insert_mode === "bottom") {
                     chatModels[conv_id].append(data);
-                    if (chatPage.visible && chatPage.conv_id === conv_id) {
-
+                    if (chatPage.visible) {
+                        if (chatPage.listView.isAtBottomArea)
+                            chatPage.listView.positionViewAtEnd();
                     }
                 }
                 else if (insert_mode === "top") {
                     chatModels[conv_id].insert(0, data);
                     chatPage.pullToRefresh.refreshing = false;
-                    if (chatPage.visible && chatPage.conv_id === conv_id && !chatPage.pullToRefreshLoading) {
-                        chatPage.listView.positionViewAtEnd();
+                    if (chatPage.visible && !chatPage.pullToRefreshLoading) {
+                        chatPage.listView.positionViewAtIndex(chatPage.listView.model.count - 1, ListView.Beginning)
+                        //chatPage.listView.positionViewAtEnd(); // TODO: only if view is on bottom?
                     }
                 }
             });
@@ -264,17 +273,14 @@ MainView {
                 console.log('on-message-sent', conv_id);
             });
 
-            setHandler('on-more-messages-loaded', function(conv_id){
-                console.log('on-more-messages-loaded')
-            });
-
             setHandler('on-first-message-loaded', function(conv_id){
                 console.log('on-first-message-loaded')
-                conversationsModel.get(getConversationModelIndexById(conv_id)).first_message_loaded = true;
-                if (chatPage.conv_id === conv_id){
-                    chatPage.first_message_loaded = true;
-                    chatPage.pullToRefresh.refreshing = false;
-                }
+
+                var chatPage = chatPages[conv_id];
+
+                conversationsModel.get(getConversationModelIndexById(conv_id)).firstMessageLoaded = true;
+                chatPage.firstMessageLoaded = true;
+                chatPage.pullToRefresh.refreshing = false;
 
             });
 
@@ -287,15 +293,21 @@ MainView {
 
             setHandler('on-conversation-loaded', function(conv_id){
                 console.log('on-conversation-loaded');
+
+                var chatPage = chatPages[conv_id];
+
                 conversationsModel.get(getConversationModelIndexById(conv_id)).loaded = true;
-                if (chatPage.visible && chatPage.conv_id === conv_id) {
+                if (chatPage.visible) {
                     chatPage.loaded = true;
                 }
             });
 
             setHandler('on-more-messages-loaded', function(conv_id){
+
+                var chatPage = chatPages[conv_id];
+
                 console.log('on-more-messages-loaded of ', conv_id);
-                if (chatPage.visible && chatPage.conv_id === conv_id) {
+                if (chatPage.visible) {
                     chatPage.pullToRefresh.refreshing = false;
                     chatPage.pullToRefreshLoading = false;
                 }

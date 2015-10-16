@@ -136,7 +136,7 @@ Page {
                     Action {
                         text: i18n.tr("About")
                         iconName: "info"
-                        onTriggered: pageLayout.addPageToNextColumn(chatPage.visible && chatPage.conv_id === modelData.id_ ? chatPage : conversationsPage, aboutConversationPage, {mData: conversationsModel.get(getConversationModelIndexById(modelData.id_))});
+                        onTriggered: pageLayout.addPageToNextColumn(chatPages[modelData.id_].visible ? chatPages[modelData.id_] : conversationsPage, aboutConversationPage, {mData: conversationsModel.get(getConversationModelIndexById(modelData.id_))});
                     },
                     Action {
                         text: i18n.tr("Add users")
@@ -147,7 +147,7 @@ Page {
                             for (var i=0; i<users.count; i++) {
                                 user_ids.push(users.get(i).id_.toString());
                             }
-                            pageLayout.addPageToNextColumn(chatPage.visible && chatPage.conv_id === modelData.id_ ? chatPage : conversationsPage, selectUsersPage, {headTitle: i18n.tr("Add users"), excludedUsers: user_ids, callback: function onUsersSelected(users){
+                            pageLayout.addPageToNextColumn(chatPages[modelData.id_].visible ? chatPages[modelData.id_] : conversationsPage, selectUsersPage, {headTitle: i18n.tr("Add users"), excludedUsers: user_ids, callback: function onUsersSelected(users){
                                 py.call('backend.add_users', [modelData.id_, users]);
                             }});
                         }
@@ -156,9 +156,8 @@ Page {
             }
 
             onClicked: {
-                setCurrentConversation(modelData.id_);
                 py.call('backend.entered_conversation', [modelData.id_]);
-                pageLayout.addPageToNextColumn(conversationsPage, chatPage, {conv_id: modelData.id_, conv_name: modelData.title, first_message_loaded: modelData.first_message_loaded, status_message: modelData.status_message, loaded: modelData.loaded});
+                pageLayout.addPageToNextColumn(conversationsPage, chatPages[modelData.id_]);
             }
         }
 

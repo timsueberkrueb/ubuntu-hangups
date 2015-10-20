@@ -8,6 +8,7 @@ import com.canonical.Oxide 1.0
     visible: false
 
     property string usContext: "messaging://"
+    property alias loginInfo: infoLabel.text
 
     Column {
         id: infoContainer
@@ -39,6 +40,7 @@ import com.canonical.Oxide 1.0
         }
 
         FlexibleLabel {
+            id: infoLabel
             visible: infoContainer.detailsMode
             text: i18n.tr("This app uses an inoffical Google Hangouts API called 'Hangups'." +
                           " In order to have the relevant access it connects as an iOS device. " +

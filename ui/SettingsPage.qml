@@ -152,6 +152,22 @@ Page {
 
             }
 
+            Label {
+                text: i18n.tr("Account")
+                fontSize: "x-large"
+            }
+
+            FlexibleLabel {
+                text: loginScreen.loginInfo
+                onLinkActivated: Qt.openUrlExternally(link)
+            }
+
+            Button {
+                text: "Logout"
+                color: UbuntuColors.red
+                onClicked: PopupUtils.open(logoutDialog)
+            }
+
 
         }
 
@@ -201,6 +217,36 @@ Page {
                      PopupUtils.close(dialog)
                      Qt.quit();
                  }
+             }
+         }
+    }
+
+
+    Component {
+         id: logoutDialog
+         Dialog {
+             id: dialog
+             title: i18n.tr("Logout")
+             text: i18n.tr("Are you sure to logout? This will quit the application.")
+
+             Button {
+                 text: i18n.tr("Logout")
+                 color: UbuntuColors.orange
+                 onClicked: {
+                     enabled = false;
+                     cancelButton.enabled = false;
+                     dialog.text = i18n.tr("Working ...")
+                     py.call('backend.logout', [], function callback() {
+                         PopupUtils.close(dialog);
+                         Qt.quit();
+                     });
+                 }
+             }
+
+             Button {
+                 id: cancelButton
+                 text: i18n.tr("Cancel")
+                 onClicked: PopupUtils.close(dialog)
              }
          }
     }

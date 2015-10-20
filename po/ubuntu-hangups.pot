@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-10-20 18:13+0200\n"
+"POT-Creation-Date: 2015-10-20 18:31+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ui/LoadingPage.qml:79 ui/LoadingScreen.qml:78 ui/LoginScreen.qml:155
+#: ui/LoadingPage.qml:79 ui/LoadingScreen.qml:78 ui/LoginScreen.qml:157
 #: .ubuntu-sdk-deploy/ui/LoadingPage.qml:79
 #: .ubuntu-sdk-deploy/ui/LoginPage.qml:145
 msgid "Loading, please wait ..."
@@ -126,8 +126,8 @@ msgstr ""
 msgid "Are you really sure to delete this conversation?"
 msgstr ""
 
-#: ui/ConversationsPage.qml:186 ui/SettingsPage.qml:183
-#: .ubuntu-sdk-deploy/ui/ConversationsPage.qml:196
+#: ui/ConversationsPage.qml:186 ui/SettingsPage.qml:199
+#: ui/SettingsPage.qml:248 .ubuntu-sdk-deploy/ui/ConversationsPage.qml:196
 #: .ubuntu-sdk-deploy/ui/SettingsPage.qml:123
 msgid "Cancel"
 msgstr ""
@@ -179,7 +179,7 @@ msgstr ""
 msgid "Cache images"
 msgstr ""
 
-#: ui/SettingsPage.qml:118 ui/SettingsPage.qml:164
+#: ui/SettingsPage.qml:118 ui/SettingsPage.qml:180
 #: .ubuntu-sdk-deploy/ui/SettingsPage.qml:58
 #: .ubuntu-sdk-deploy/ui/SettingsPage.qml:104
 msgid "Clear cache"
@@ -195,30 +195,43 @@ msgid ""
 "in seconds."
 msgstr ""
 
-#: ui/SettingsPage.qml:165 .ubuntu-sdk-deploy/ui/SettingsPage.qml:105
+#: ui/SettingsPage.qml:156
+msgid "Account"
+msgstr ""
+
+#: ui/SettingsPage.qml:181 .ubuntu-sdk-deploy/ui/SettingsPage.qml:105
 msgid ""
 "Are you sure to clear the cache? All images will have to be redownloaded."
 msgstr ""
 
-#: ui/SettingsPage.qml:168 .ubuntu-sdk-deploy/ui/SettingsPage.qml:108
+#: ui/SettingsPage.qml:184 .ubuntu-sdk-deploy/ui/SettingsPage.qml:108
 msgid "Clear now"
 msgstr ""
 
-#: ui/SettingsPage.qml:173 .ubuntu-sdk-deploy/ui/SettingsPage.qml:113
+#: ui/SettingsPage.qml:189 ui/SettingsPage.qml:238
+#: .ubuntu-sdk-deploy/ui/SettingsPage.qml:113
 msgid "Working ..."
 msgstr ""
 
-#: ui/SettingsPage.qml:194 .ubuntu-sdk-deploy/ui/SettingsPage.qml:134
+#: ui/SettingsPage.qml:210 .ubuntu-sdk-deploy/ui/SettingsPage.qml:134
 msgid "Cache cleared"
 msgstr ""
 
-#: ui/SettingsPage.qml:195 .ubuntu-sdk-deploy/ui/SettingsPage.qml:135
+#: ui/SettingsPage.qml:211 .ubuntu-sdk-deploy/ui/SettingsPage.qml:135
 msgid ""
 "The cache was cleared successful. Please restart the application to continue."
 msgstr ""
 
-#: ui/SettingsPage.qml:199 .ubuntu-sdk-deploy/ui/SettingsPage.qml:139
+#: ui/SettingsPage.qml:215 .ubuntu-sdk-deploy/ui/SettingsPage.qml:139
 msgid "Okay"
+msgstr ""
+
+#: ui/SettingsPage.qml:229 ui/SettingsPage.qml:233
+msgid "Logout"
+msgstr ""
+
+#: ui/SettingsPage.qml:230
+msgid "Are you sure to logout? This will quit the application."
 msgstr ""
 
 #: ui/AboutPage.qml:27 .ubuntu-sdk-deploy/ui/AboutPage.qml:27
@@ -352,31 +365,31 @@ msgstr ""
 msgid "Send"
 msgstr ""
 
-#: ui/LoginScreen.qml:38 .ubuntu-sdk-deploy/ui/LoginPage.qml:36
+#: ui/LoginScreen.qml:39 .ubuntu-sdk-deploy/ui/LoginPage.qml:36
 msgid "In order to use Hangups you need to authenticate this app with Google"
 msgstr ""
 
-#: ui/LoginScreen.qml:43
+#: ui/LoginScreen.qml:45
 msgid "This app uses an inoffical Google Hangouts API called 'Hangups'."
 msgstr ""
 
-#: ui/LoginScreen.qml:55
+#: ui/LoginScreen.qml:57
 msgid "Hide details"
 msgstr ""
 
-#: ui/LoginScreen.qml:55
+#: ui/LoginScreen.qml:57
 msgid "More info"
 msgstr ""
 
-#: ui/LoginScreen.qml:61 .ubuntu-sdk-deploy/ui/LoginPage.qml:51
+#: ui/LoginScreen.qml:63 .ubuntu-sdk-deploy/ui/LoginPage.qml:51
 msgid "Got it"
 msgstr ""
 
-#: ui/LoginScreen.qml:202 .ubuntu-sdk-deploy/ui/LoginPage.qml:192
+#: ui/LoginScreen.qml:204 .ubuntu-sdk-deploy/ui/LoginPage.qml:192
 msgid "Welcome to Hangups!"
 msgstr ""
 
-#: ui/LoginScreen.qml:215 .ubuntu-sdk-deploy/ui/LoginPage.qml:205
+#: ui/LoginScreen.qml:217 .ubuntu-sdk-deploy/ui/LoginPage.qml:205
 msgid "Get started"
 msgstr ""
 

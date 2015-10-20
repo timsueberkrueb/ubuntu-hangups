@@ -312,6 +312,7 @@ class ConversationController:
         pyotherside.send('set-conversation-is-quiet', self.conv.id_, quiet)
 
     def on_quiet_set(self, future):
+        # Disabled as is_quiet doesn't always hold the right value
         #pyotherside.send('set-conversation-is-quiet', self.conv.id_, self.conv.is_quiet)
         pass
 
@@ -588,6 +589,11 @@ def set_chat_background(custom, filename=None):
         new_filename = False
         settings.set('custom_chat_background', False)
     pyotherside.send('on-chat-background-changed', new_filename)
+
+
+def logout():
+    os.remove(refresh_token_filename)
+
 
 def run_asyncio_loop_in_thread(loop):
     asyncio.set_event_loop(loop)

@@ -307,6 +307,7 @@ Page {
     }
 
     ImportContentPopup {
+        parent: root
         id: importContentPopup
         contentType: ContentType.Pictures
         onItemsImported: {

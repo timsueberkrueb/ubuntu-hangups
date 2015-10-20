@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-10-20 18:03+0200\n"
+"POT-Creation-Date: 2015-10-20 18:13+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -72,12 +72,12 @@ msgstr ""
 msgid "Rename"
 msgstr ""
 
-#: ui/AboutConversationPage.qml:69
+#: ui/AboutConversationPage.qml:68
 #: .ubuntu-sdk-deploy/ui/AboutConversationPage.qml:62
 msgid "Quiet"
 msgstr ""
 
-#: ui/AboutConversationPage.qml:74
+#: ui/AboutConversationPage.qml:73
 #: .ubuntu-sdk-deploy/ui/AboutConversationPage.qml:67
 msgid "Users"
 msgstr ""

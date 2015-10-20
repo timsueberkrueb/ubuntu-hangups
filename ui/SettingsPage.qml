@@ -42,9 +42,9 @@ Page {
                     id: backgroundImage
 
                     property bool isDefault: source == Qt.resolvedUrl('../media/default_chat_background.jpg')
-
                     width: units.dp(256)
-                    fillMode: Image.PreserveAspectFit
+                    height: units.dp(256)
+                    fillMode: Image.PreserveAspectCrop
                     source: Qt.resolvedUrl('../media/default_chat_background.jpg')
 
                     Component.onCompleted: {

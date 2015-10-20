@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: Ubuntu Hangups\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-10-16 21:48+0200\n"
-"PO-Revision-Date: 2015-10-16 19:53+0000\n"
-"Last-Translator: Tim Süberkrüb <tim.sueberkrueb@gmail.com>\n"
+"PO-Revision-Date: 2015-10-19 13:23+0000\n"
+"Last-Translator: Diego Ferreiro\n"
 "Language-Team: Galician (Spain) (http://www.transifex.com/tim-sueberkrueb/ubuntu-hangups/language/gl_ES/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -140,31 +140,31 @@ msgstr "Nada por aquí, polo de agora"
 
 #: ui/LoadingScreen.qml:7
 msgid "Authenticating ..."
-msgstr ""
+msgstr "Autenticando..."
 
 #: ui/LoadingScreen.qml:8
 msgid "Creating Hangups client ..."
-msgstr ""
+msgstr "Creando o cliente de Hangups..."
 
 #: ui/LoadingScreen.qml:9
 msgid "Adding client observer ..."
-msgstr ""
+msgstr "Engadindo o vixía do cliente..."
 
 #: ui/LoadingScreen.qml:10
 msgid "Loading chats ..."
-msgstr ""
+msgstr "Cargando conversas..."
 
 #: ui/SettingsPage.qml:23
 msgid "Chat Background"
-msgstr ""
+msgstr "Fondo da conversa"
 
 #: ui/SettingsPage.qml:54
 msgid "Change"
-msgstr ""
+msgstr "Mudar"
 
 #: ui/SettingsPage.qml:62
 msgid "Reset default"
-msgstr ""
+msgstr "Restablecer o predefinido"
 
 #: ui/SettingsPage.qml:74 .ubuntu-sdk-deploy/ui/SettingsPage.qml:23
 msgid "Cache"
@@ -272,7 +272,7 @@ msgid ""
 "licensed under the <a "
 "href='https://creativecommons.org/licenses/by/2.0/'>Creative Commons "
 "Attribution 2.0 Generic (CC BY 2.0) license.</a>"
-msgstr ""
+msgstr "O <a href='https://www.flickr.com/photos/nickrussill/150410498/'>fondo de conversa predeterminado</a> foi creado por <a href='https://www.flickr.com/photos/nickrussill/'>Nick Russill</a> e está rexistrado baixo a licenza <a href='https://creativecommons.org/licenses/by/2.0/'>Creative Commons Attribution 2.0 Generic (CC BY 2.0) license.</a>"
 
 #: ui/AboutPage.qml:65 .ubuntu-sdk-deploy/ui/AboutPage.qml:60
 msgid ""
@@ -300,7 +300,7 @@ msgstr "Pechar"
 
 #: ui/ChatListItem.qml:23
 msgid "Copy"
-msgstr ""
+msgstr "Copiar"
 
 #: ui/ChatListItem.qml:70 .ubuntu-sdk-deploy/ui/ChatListItem.qml:68
 msgid "An error occurred while loading the image."
@@ -363,15 +363,15 @@ msgstr "Para poder usares Hangups precisas autenticar a aplicación con Google"
 
 #: ui/LoginScreen.qml:43
 msgid "This app uses an inoffical Google Hangouts API called 'Hangups'."
-msgstr ""
+msgstr "Esta aplicación usa unha API non oficial de Google Hangouts chamada 'Hangups'."
 
 #: ui/LoginScreen.qml:55
 msgid "Hide details"
-msgstr ""
+msgstr "Agochar detalles"
 
 #: ui/LoginScreen.qml:55
 msgid "More info"
-msgstr ""
+msgstr "Máis info"
 
 #: ui/LoginScreen.qml:61 .ubuntu-sdk-deploy/ui/LoginPage.qml:51
 msgid "Got it"

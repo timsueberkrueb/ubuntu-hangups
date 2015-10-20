@@ -7,6 +7,7 @@ import pyotherside
 import mimetypes
 import asyncio
 import threading
+import shutil
 
 mimetypes.knownfiles = []  # Workaround for PermissionError
 import os
@@ -308,10 +309,11 @@ class ConversationController:
     def set_quiet(self, quiet):
         level = hangouts_pb2.NOTIFICATION_LEVEL_QUIET if quiet else hangouts_pb2.NOTIFICATION_LEVEL_RING
         asyncio.async(self.conv.set_notification_level(level)).add_done_callback(self.on_quiet_set)
+        pyotherside.send('set-conversation-is-quiet', self.conv.id_, quiet)
 
     def on_quiet_set(self, future):
-        pyotherside.send('set-conversation-is-quiet', self.conv.id_, self.conv.is_quiet)
-        future.result()
+        #pyotherside.send('set-conversation-is-quiet', self.conv.id_, self.conv.is_quiet)
+        pass
 
     def rename(self, name):
         global client
@@ -576,6 +578,17 @@ def set_loading_status(status):
     pyotherside.send('set-loading-status', status)
 
 
+def set_chat_background(custom, filename=None):
+    if custom:
+        filename = filename[filename.find("/home"):]
+        new_filename = app_data_path+'custom_chat_background'+os.path.splitext(filename)[1]
+        shutil.copyfile(filename, new_filename)
+        settings.set('custom_chat_background', new_filename)
+    else:
+        new_filename = False
+        settings.set('custom_chat_background', False)
+    pyotherside.send('on-chat-background-changed', new_filename)
+
 def run_asyncio_loop_in_thread(loop):
     asyncio.set_event_loop(loop)
     try:
@@ -618,8 +631,6 @@ def start():
 
 def on_quit():
     print("Exiting ...")
-    print('Saving settings ...')
-    settings.save()
     print("Setting presence")
     call_threadsafe(set_client_presence, False)
     client.disconnect()

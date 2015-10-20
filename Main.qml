@@ -313,6 +313,11 @@ MainView {
                 }
             });
 
+            setHandler('on-chat-background-changed', function(custom){
+                console.log('on-chat-background-changed', custom);
+                settingsPage.setChatBackround(custom);
+            });
+
             importModule('backend', function(){
                 console.log("python loaded");
                 call('backend.start');

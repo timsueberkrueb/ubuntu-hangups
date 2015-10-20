@@ -99,7 +99,7 @@ Page {
         anchors.left: parent.left
         anchors.right: parent.right
         anchors.bottom: bottomContainer.top
-        source: Qt.resolvedUrl('../media/default_chat_background.jpg')
+        source: settingsPage.backgroundImage.source
 
         UbuntuListView {
             id: listView

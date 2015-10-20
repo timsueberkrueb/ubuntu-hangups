@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-10-16 21:48+0200\n"
+"POT-Creation-Date: 2015-10-20 18:03+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -72,12 +72,12 @@ msgstr ""
 msgid "Rename"
 msgstr ""
 
-#: ui/AboutConversationPage.qml:61
+#: ui/AboutConversationPage.qml:69
 #: .ubuntu-sdk-deploy/ui/AboutConversationPage.qml:62
 msgid "Quiet"
 msgstr ""
 
-#: ui/AboutConversationPage.qml:66
+#: ui/AboutConversationPage.qml:74
 #: .ubuntu-sdk-deploy/ui/AboutConversationPage.qml:67
 msgid "Users"
 msgstr ""
@@ -126,7 +126,7 @@ msgstr ""
 msgid "Are you really sure to delete this conversation?"
 msgstr ""
 
-#: ui/ConversationsPage.qml:186 ui/SettingsPage.qml:174
+#: ui/ConversationsPage.qml:186 ui/SettingsPage.qml:183
 #: .ubuntu-sdk-deploy/ui/ConversationsPage.qml:196
 #: .ubuntu-sdk-deploy/ui/SettingsPage.qml:123
 msgid "Cancel"
@@ -153,71 +153,71 @@ msgstr ""
 msgid "Loading chats ..."
 msgstr ""
 
-#: ui/SettingsPage.qml:23
+#: ui/SettingsPage.qml:34
 msgid "Chat Background"
 msgstr ""
 
-#: ui/SettingsPage.qml:54
+#: ui/SettingsPage.qml:63
 msgid "Change"
 msgstr ""
 
-#: ui/SettingsPage.qml:62
+#: ui/SettingsPage.qml:71
 msgid "Reset default"
 msgstr ""
 
-#: ui/SettingsPage.qml:74 .ubuntu-sdk-deploy/ui/SettingsPage.qml:23
+#: ui/SettingsPage.qml:83 .ubuntu-sdk-deploy/ui/SettingsPage.qml:23
 msgid "Cache"
 msgstr ""
 
-#: ui/SettingsPage.qml:79 .ubuntu-sdk-deploy/ui/SettingsPage.qml:28
+#: ui/SettingsPage.qml:88 .ubuntu-sdk-deploy/ui/SettingsPage.qml:28
 msgid ""
 "It is recommended to cache images offline so that they only get downloaded "
 "once."
 msgstr ""
 
-#: ui/SettingsPage.qml:104 .ubuntu-sdk-deploy/ui/SettingsPage.qml:53
+#: ui/SettingsPage.qml:113 .ubuntu-sdk-deploy/ui/SettingsPage.qml:53
 msgid "Cache images"
 msgstr ""
 
-#: ui/SettingsPage.qml:109 ui/SettingsPage.qml:155
+#: ui/SettingsPage.qml:118 ui/SettingsPage.qml:164
 #: .ubuntu-sdk-deploy/ui/SettingsPage.qml:58
 #: .ubuntu-sdk-deploy/ui/SettingsPage.qml:104
 msgid "Clear cache"
 msgstr ""
 
-#: ui/SettingsPage.qml:118 .ubuntu-sdk-deploy/ui/SettingsPage.qml:67
+#: ui/SettingsPage.qml:127 .ubuntu-sdk-deploy/ui/SettingsPage.qml:67
 msgid "Routine Timer"
 msgstr ""
 
-#: ui/SettingsPage.qml:123 .ubuntu-sdk-deploy/ui/SettingsPage.qml:72
+#: ui/SettingsPage.qml:132 .ubuntu-sdk-deploy/ui/SettingsPage.qml:72
 msgid ""
 "Specify the timeout period of the status update routine called periodically "
 "in seconds."
 msgstr ""
 
-#: ui/SettingsPage.qml:156 .ubuntu-sdk-deploy/ui/SettingsPage.qml:105
+#: ui/SettingsPage.qml:165 .ubuntu-sdk-deploy/ui/SettingsPage.qml:105
 msgid ""
 "Are you sure to clear the cache? All images will have to be redownloaded."
 msgstr ""
 
-#: ui/SettingsPage.qml:159 .ubuntu-sdk-deploy/ui/SettingsPage.qml:108
+#: ui/SettingsPage.qml:168 .ubuntu-sdk-deploy/ui/SettingsPage.qml:108
 msgid "Clear now"
 msgstr ""
 
-#: ui/SettingsPage.qml:164 .ubuntu-sdk-deploy/ui/SettingsPage.qml:113
+#: ui/SettingsPage.qml:173 .ubuntu-sdk-deploy/ui/SettingsPage.qml:113
 msgid "Working ..."
 msgstr ""
 
-#: ui/SettingsPage.qml:185 .ubuntu-sdk-deploy/ui/SettingsPage.qml:134
+#: ui/SettingsPage.qml:194 .ubuntu-sdk-deploy/ui/SettingsPage.qml:134
 msgid "Cache cleared"
 msgstr ""
 
-#: ui/SettingsPage.qml:186 .ubuntu-sdk-deploy/ui/SettingsPage.qml:135
+#: ui/SettingsPage.qml:195 .ubuntu-sdk-deploy/ui/SettingsPage.qml:135
 msgid ""
 "The cache was cleared successful. Please restart the application to continue."
 msgstr ""
 
-#: ui/SettingsPage.qml:190 .ubuntu-sdk-deploy/ui/SettingsPage.qml:139
+#: ui/SettingsPage.qml:199 .ubuntu-sdk-deploy/ui/SettingsPage.qml:139
 msgid "Okay"
 msgstr ""
 
@@ -289,7 +289,7 @@ msgstr ""
 
 #: ui/NetworkErrorDialog.qml:16
 #: .ubuntu-sdk-deploy/ui/NetworkErrorDialog.qml:16
-#: .ubuntu-sdk-deploy/Main.qml:307 Main.qml:346
+#: .ubuntu-sdk-deploy/Main.qml:307 Main.qml:351
 msgid "Close"
 msgstr ""
 
@@ -393,11 +393,11 @@ msgstr ""
 msgid "%1 is typing ..."
 msgstr ""
 
-#: .ubuntu-sdk-deploy/Main.qml:297 Main.qml:336
+#: .ubuntu-sdk-deploy/Main.qml:297 Main.qml:341
 msgid "Error"
 msgstr ""
 
-#: .ubuntu-sdk-deploy/Main.qml:301 Main.qml:340
+#: .ubuntu-sdk-deploy/Main.qml:301 Main.qml:345
 #, qt-format
 msgid "An error has occured: %1"
 msgstr ""

@@ -14,15 +14,13 @@ default_settings = {
 }
 settings = default_settings
 filename = "settings.json"
-unsaved_changes = False
 
 
-def save(force=False):
-    global settings, filename, unsaved_changes
-    if unsaved_changes or force:
-        with open(filename, 'w') as file:
-            file.write(json.dumps(settings, sort_keys=True, indent=4))
-            unsaved_changes = False
+def save():
+    global settings, filename
+    with open(filename, 'w') as file:
+        file.write(json.dumps(settings, sort_keys=True, indent=4))
+        unsaved_changes = False
 
 
 def load(path='settings.json'):
@@ -30,7 +28,7 @@ def load(path='settings.json'):
     filename = path + 'settings.json'
 
     if not os.path.isfile(filename):
-        save(force=True)
+        save()
         return
 
     with open(filename, 'r') as file:
@@ -42,7 +40,7 @@ def get(key):
 
 
 def set(key, value):
-    global settings, unsaved_changes
+    global settings
     if settings[key] != value:
-        unsaved_changes = True
         settings[key] = value
+        save()

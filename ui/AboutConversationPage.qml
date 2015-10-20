@@ -49,10 +49,17 @@ Page {
             spacing: units.gu(1)
 
             CheckBox {
+                property bool userInitiated: false
                 anchors.verticalCenter: parent.verticalCenter
                 id: isQuietCheckbox
                 onClicked: {
-                    py.call('backend.set_conversation_quiet', [mData.id_, checked]);
+                    userInitiated = true;
+                }
+                onCheckedChanged: {
+                    if (userInitiated) {
+                        py.call('backend.set_conversation_quiet', [mData.id_, checked]);
+                        userInitiated = false;
+                    }
                 }
             }
 

@@ -1,11 +1,22 @@
 import QtQuick 2.0
 import Ubuntu.Components 1.3
 import Ubuntu.Components.Popups 1.0
-
+import Ubuntu.Content 1.1
 
 Page {
     title: i18n.tr("Settings")
     visible: false
+
+    property alias backgroundImage: backgroundImage
+
+    function setChatBackround (custom) {
+        if (custom !== false) {
+            backgroundImage.source =  Qt.resolvedUrl(custom);
+        }
+        else {
+            backgroundImage.source =  Qt.resolvedUrl('../media/default_chat_background.jpg');
+        }
+    }
 
     Flickable {
         anchors.fill: parent
@@ -37,10 +48,8 @@ Page {
                     source: Qt.resolvedUrl('../media/default_chat_background.jpg')
 
                     Component.onCompleted: {
-                        py.call('backend.settings_get', ['custom_chat_background'], function callback(value){
-                            if (value) {
-                                source = value;
-                            }
+                        py.call('backend.settings_get', ['custom_chat_background'], function callback(custom){
+                            setChatBackround(custom);
                         });
                     }
 
@@ -64,7 +73,7 @@ Page {
                     enabled: !backgroundImage.isDefault
 
                     onClicked: {
-
+                        py.call('backend.set_chat_background', [false]);
                     }
                 }
             }
@@ -202,7 +211,7 @@ Page {
         onItemsImported: {
             var picture = importItems[0];
             var url = picture.url;
-            //py.call('backend.send_image', [conv_id, url.toString()]);
+            py.call('backend.set_chat_background', [true, url.toString()]);
         }
     }
 

@@ -49,7 +49,6 @@ dist/
 downloads/
 eggs/
 .eggs/
-lib/
 lib64/
 parts/
 sdist/
@@ -99,6 +98,5 @@ target/
 
 # Hangups
 cache/
-ui/experimental/
 refresh_token.txt
 TransportSecurity

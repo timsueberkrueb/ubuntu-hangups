@@ -1,5 +1,5 @@
 import QtQuick 2.0
-import Ubuntu.Components 1.2
+import Ubuntu.Components 1.3
 import Ubuntu.Components.Popups 1.0
 
 Component {
@@ -20,7 +20,6 @@ Component {
              text: i18n.tr("Send")
              color: UbuntuColors.green
              onClicked: {
-                 console.log("onClicked")
                  py.call('backend.send_new_conversation_welcome_message', [conv_id, messageField.text]);
                  PopupUtils.close(dialog);
              }

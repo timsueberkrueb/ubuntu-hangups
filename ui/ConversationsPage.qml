@@ -1,5 +1,5 @@
 import QtQuick 2.0
-import Ubuntu.Components 1.2
+import Ubuntu.Components 1.3
 import Ubuntu.Components.Popups 1.0
 
 Page {
@@ -11,7 +11,7 @@ Page {
             iconName: "add"
             text: i18n.tr("Add")
             onTriggered: {
-                pageStack.push(selectUsersPage, {headTitle: i18n.tr("New Conversation"), callback: function callback(users){
+                pageLayout.addPageToNextColumn(conversationsPage, selectUsersPage, {headTitle: i18n.tr("New Conversation"), callback: function callback(users){
                     py.call('backend.create_conversation', [users]);
                 }});
             }
@@ -19,17 +19,17 @@ Page {
         Action {
             iconName: "contact-group"
             text: i18n.tr("Contacts")
-            onTriggered: pageStack.push(contactsPage, {});
+            onTriggered: pageLayout.addPageToNextColumn(conversationsPage, contactsPage);
         },
         Action {
             iconName: "settings"
             text: i18n.tr("Settings")
-            onTriggered: pageStack.push(settingsPage, {});
+            onTriggered: pageLayout.addPageToNextColumn(conversationsPage, settingsPage);
         },
         Action {
             iconName: "info"
             text: i18n.tr("About")
-            onTriggered: pageStack.push(aboutPage, {});
+            onTriggered: pageLayout.addPageToNextColumn(conversationsPage, aboutPage);
         }
     ]
 
@@ -51,30 +51,19 @@ Page {
                 anchors.rightMargin: units.gu(1)
                 spacing: units.gu(2)
 
-                Icon {
-                    id: contactIcon
-                    height: units.dp(32)
-                    width: units.dp(32)
-                    visible: modelData.icon === "unknown/contact"
-                    name: "contact"
-                    color: UbuntuColors.warmGrey
-                }
-
-                Icon {
-                    id: groupIcon
-                    height: units.dp(32)
-                    width: units.dp(32)
-                    name: "contact-group"
+                GroupAvatar {
                     visible: modelData.icon === "unknown/group"
-                    color: UbuntuColors.warmGrey
                 }
 
-                Image {
-                    id: remoteIcon
+                DefaultUserAvatar {
+                    visible: modelData.icon === "unknown/contact"
+                    name: modelData.title
+                }
+
+                UserAvatar {
                     visible: modelData.icon.lastIndexOf("http", 0) === 0
-                    height: units.dp(32)
-                    width: units.dp(32)
-                    source: visible ? modelData.icon : ""
+                    name: modelData.title
+                    photoUrl: visible ? modelData.icon : ""
                 }
 
                 Label {
@@ -132,6 +121,7 @@ Page {
             leadingActions: ListItemActions {
                 actions: [
                     Action {
+                        text: i18n.tr("Delete")
                         iconName: "delete"
                         onTriggered: {
                             var  dialog = PopupUtils.open(deleteConversationDialog);
@@ -144,10 +134,12 @@ Page {
             trailingActions: ListItemActions {
                 actions: [
                     Action {
+                        text: i18n.tr("About")
                         iconName: "info"
-                        onTriggered: pageStack.push(aboutConversationPage, {mData: conversationsModel.get(getConversationModelIndexById(modelData.id_))});
+                        onTriggered: pageLayout.addPageToNextColumn(chatPages[modelData.id_].visible ? chatPages[modelData.id_] : conversationsPage, aboutConversationPage, {mData: conversationsModel.get(getConversationModelIndexById(modelData.id_))});
                     },
                     Action {
+                        text: i18n.tr("Add users")
                         iconName: "add"
                         onTriggered: {
                             var user_ids = [];
@@ -155,7 +147,7 @@ Page {
                             for (var i=0; i<users.count; i++) {
                                 user_ids.push(users.get(i).id_.toString());
                             }
-                            pageStack.push(selectUsersPage, {headTitle: i18n.tr("Add users"), excludedUsers: user_ids, callback: function onUsersSelected(users){
+                            pageLayout.addPageToNextColumn(chatPages[modelData.id_].visible ? chatPages[modelData.id_] : conversationsPage, selectUsersPage, {headTitle: i18n.tr("Add users"), excludedUsers: user_ids, callback: function onUsersSelected(users){
                                 py.call('backend.add_users', [modelData.id_, users]);
                             }});
                         }
@@ -164,10 +156,8 @@ Page {
             }
 
             onClicked: {
-                setCurrentConversation(modelData.id_);
                 py.call('backend.entered_conversation', [modelData.id_]);
-                pageStack.push(chatPage, {conv_id: modelData.id_, conv_name: modelData.title, first_message_loaded: modelData.first_message_loaded, status_message: modelData.status_message, loaded: modelData.loaded})
-                //chatPage.listView.positionViewAtEnd();
+                pageLayout.addPageToNextColumn(conversationsPage, chatPages[modelData.id_]);
             }
         }
 

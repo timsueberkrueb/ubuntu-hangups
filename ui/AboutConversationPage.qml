@@ -1,14 +1,13 @@
 import QtQuick 2.0
-import Ubuntu.Components 1.2
+import Ubuntu.Components 1.3
 
 Page {
     title: i18n.tr("About Conversation")
     visible: false
     property var mData
 
-    onVisibleChanged: {
-        if (visible) {
-            //title = mData.title + " - " + i18n.tr("About");
+    onActiveChanged: {
+        if (active) {
             isQuietCheckbox.checked = mData.is_quiet;
             listView.model = mData.users;
         }
@@ -50,10 +49,17 @@ Page {
             spacing: units.gu(1)
 
             CheckBox {
+                property bool userInitiated: false
                 anchors.verticalCenter: parent.verticalCenter
                 id: isQuietCheckbox
                 onClicked: {
-                    py.call('backend.set_conversation_quiet', [mData.id_, checked]);
+                    userInitiated = true;
+                }
+                onCheckedChanged: {
+                    if (userInitiated) {
+                        py.call('backend.set_conversation_quiet', [mData.id_, checked]);
+                        userInitiated = false;
+                    }
                 }
             }
 
@@ -77,6 +83,8 @@ Page {
         anchors.left: parent.left
         anchors.right: parent.right
         anchors.bottom: parent.bottom
+
+        clip: true
 
         delegate: ListItem {
             property QtObject modelData: listView.model.get(index)

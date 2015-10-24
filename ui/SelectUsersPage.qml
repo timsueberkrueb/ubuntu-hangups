@@ -1,5 +1,5 @@
 import QtQuick 2.0
-import Ubuntu.Components 1.2
+import Ubuntu.Components 1.3
 
 Page {
     id: page
@@ -26,24 +26,32 @@ Page {
     signal usersSelected (var users)
 
     onUsersSelected: {
-        pageStack.pop();
         callback(users);
     }
 
     head.actions: [
         Action {
+            id: actionOk
             iconName: "ok"
             onTriggered: {
-                var selectedUsers = new Array();
-                for (var i=0; i<listView.selectedModel.length; i++) {
-                    var modelIndex = listView.selectedModel[i];
-                    var modelData = contactsModel.get(modelIndex);
-                    selectedUsers.push(modelData.id_);
+                if (listView.selectedModel.length > 0) {
+                    var selectedUsers = new Array();
+                    for (var i=0; i<listView.selectedModel.length; i++) {
+                        var modelIndex = listView.selectedModel[i];
+                        var modelData = contactsModel.get(modelIndex);
+                        selectedUsers.push(modelData.id_);
+                    }
+                    usersSelected(selectedUsers);
                 }
-                usersSelected(selectedUsers);
+                pageLayout.removePages(selectUsersPage);
+            }
+        },
+        Action {
+            iconName: "close"
+            onTriggered: {
+                pageLayout.removePages(selectUsersPage);
             }
         }
-
     ]
 
     UbuntuListView {
@@ -70,14 +78,22 @@ Page {
 
                 CheckBox {
                     id: selectCheckbox
+
+                    property bool userInitiated
+
                     enabled: page.excludedUsers.indexOf(modelData.id_) == -1
                     checked: listView.selectedModel.indexOf(index) > -1
-                    onClicked: {
-                        if (checked)
-                            listView.selectedModel.push(index);
-                        else {
-                            var i = listView.selectedModel.indexOf(index);
-                            listView.selectedModel.splice(i, 1);
+                    onClicked: userInitiated = true;
+                    onCheckedChanged: {
+                        if (userInitiated) {
+                            if (checked) {
+                                listView.selectedModel.push(index);
+                            }
+                            else {
+                                var i = listView.selectedModel.indexOf(index);
+                                listView.selectedModel.splice(i, 1);
+                            }
+                            userInitiated = false;
                         }
                     }
                 }
@@ -103,6 +119,10 @@ Page {
                     anchors.verticalCenter: parent.verticalCenter
                     text: modelData.name
                 }
+            }
+
+            onClicked: {
+                selectCheckbox.clicked();
             }
 
             /*leadingActions: ListItemActions {

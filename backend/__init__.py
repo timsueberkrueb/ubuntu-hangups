@@ -7,6 +7,7 @@ import pyotherside
 import mimetypes
 import asyncio
 import threading
+import shutil
 
 mimetypes.knownfiles = []  # Workaround for PermissionError
 import os
@@ -14,9 +15,14 @@ import hangups
 from hangups.ui.utils import get_conv_name
 from hangups.ui.notify import Notifier
 from hangups import hangouts_pb2
+from hangups import pblite
 
 import requests.adapters
-from .utils import get_conv_icon, get_message_timestr, get_message_html, get_unread_messages_count
+from .utils import get_conv_icon, \
+    get_message_timestr, \
+    get_message_html,\
+    get_unread_messages_count,\
+    get_message_plain_text
 from . import model
 
 try:
@@ -57,7 +63,6 @@ class ConversationController:
         conv.on_event.add_observer(self.on_event)
         conv.on_watermark_notification.add_observer(self.on_watermark_notification)
         conv.on_typing.add_observer(self.on_typing)
-        print(conv.events)
         for event in conv.events:
             self.on_event(event)
 
@@ -79,35 +84,40 @@ class ConversationController:
         threading.Timer(settings.get('check_routine_timeout'), self.check_routine).start()
 
     def handle_message(self, conv_event, user, set_unread, insert_mode="bottom"):
-        message = get_message_html(conv_event.segments)
+        html = get_message_html(conv_event.segments)
+        text = get_message_plain_text(conv_event.segments)
         pyotherside.send('add-conversation-message',
                          self.conv.id_,
                          {
                              "type": "chat/message",
-                             "text": message,
+                             "html": html,
+                             "text": text,
                              "attachments": [{'url': cache.get_image_cached(a) if settings.get('cache_images') else a}
                                              for a in conv_event.attachments],
                              "user_is_self": user.is_self,
                              "username": user.full_name,
+                             "user_photo": "https:" + user.photo_url if user.photo_url else None,
                              "time": get_message_timestr(conv_event.timestamp)
                          },
                          insert_mode)
         self.set_title()
 
-    def handle_rename(self, conv_event, user):
+    def handle_rename(self, conv_event, user, insert_mode="bottom"):
         self.set_title()
         pyotherside.send('add-conversation-message',
                          self.conv.id_,
                          {
                              "type": "chat/rename",
+                             "text": "",
+                             "attachments": [],
                              "new_name": conv_event.new_name,
                              "user_is_self": user.is_self,
                              "username": user.full_name,
                              "time": get_message_timestr(conv_event.timestamp)
                          },
-                         "bottom")
+                         insert_mode)
 
-    def handle_membership_change(self, conv_event, user):
+    def handle_membership_change(self, conv_event, user, insert_mode="bottom"):
         self.set_title()
         users = model.get_conv_users(self.conv)
         pyotherside.send('set-conversation-users', self.conv.id_, users)
@@ -124,7 +134,7 @@ class ConversationController:
                                      "username": user.full_name,
                                      "time": get_message_timestr(conv_event.timestamp)
                                  },
-                                 "bottom")
+                                 insert_mode)
         else:
             for name in names:
                 pyotherside.send('add-conversation-message',
@@ -136,17 +146,16 @@ class ConversationController:
                                      "username": user.full_name,
                                      "time": get_message_timestr(conv_event.timestamp)
                                  },
-                                 "bottom")
+                                 insert_mode)
 
-    def on_event(self, conv_event, set_title=True, set_unread=True):
+    def on_event(self, conv_event, set_title=True, set_unread=True, insert_mode="bottom"):
         user = self.conv.get_user(conv_event.user_id)
-
         if isinstance(conv_event, hangups.ChatMessageEvent):
-            self.handle_message(conv_event, user, set_unread=set_unread)
+            self.handle_message(conv_event, user, set_unread=set_unread, insert_mode=insert_mode)
         elif isinstance(conv_event, hangups.RenameEvent):
-            self.handle_rename(conv_event, user)
+            self.handle_rename(conv_event, user, insert_mode=insert_mode)
         elif isinstance(conv_event, hangups.MembershipChangeEvent):
-            self.handle_membership_change(conv_event, user)
+            self.handle_membership_change(conv_event, user, insert_mode=insert_mode)
 
 
     def on_watermark_notification(self, watermark_notification):
@@ -237,9 +246,7 @@ class ConversationController:
                     max_events=max_events,
                 )
                 for conv_event in reversed(conv_events):
-                    if (isinstance(conv_event, hangups.ChatMessageEvent)):
-                        user = self.conv.get_user(conv_event.user_id)
-                        self.handle_message(conv_event, user, False, "top")
+                    self.on_event(conv_event, insert_mode="top")
             except (IndexError, hangups.NetworkError):
                 conv_events = []
             if len(conv_events) == 0:
@@ -254,7 +261,6 @@ class ConversationController:
         future.add_done_callback(lambda future: future.result())
 
         future = asyncio.async(self.conv.update_read_timestamp())
-        future.add_done_callback(lambda future: future.result())
 
         request = hangouts_pb2.SetFocusRequest(
             request_header=client.get_request_header(),
@@ -303,10 +309,12 @@ class ConversationController:
     def set_quiet(self, quiet):
         level = hangouts_pb2.NOTIFICATION_LEVEL_QUIET if quiet else hangouts_pb2.NOTIFICATION_LEVEL_RING
         asyncio.async(self.conv.set_notification_level(level)).add_done_callback(self.on_quiet_set)
+        pyotherside.send('set-conversation-is-quiet', self.conv.id_, quiet)
 
     def on_quiet_set(self, future):
-        pyotherside.send('set-conversation-is-quiet', self.conv.id_, self.conv.is_quiet)
-        future.result()
+        # Disabled as is_quiet doesn't always hold the right value
+        #pyotherside.send('set-conversation-is-quiet', self.conv.id_, self.conv.is_quiet)
+        pass
 
     def rename(self, name):
         global client
@@ -354,6 +362,7 @@ def auth_with_code(code):
 def auth_with_token():
     try:
         print('Authenticating with refresh token')
+        set_loading_status("authenticating")
         access_token = hangups.auth._auth_with_refresh_token(refresh_token_filename)
         print('Authentication successful')
         cookies = hangups.auth._get_session_cookies(access_token)
@@ -369,7 +378,7 @@ def on_connect():
     """Handle connecting for the first time."""
     global client, disable_notifier, conv_list, user_list
 
-    print("Building converstion and user list")
+    print("Building conversation and user list")
     user_list, conv_list = (
         yield from hangups.build_user_conversation_list(client)
     )
@@ -386,7 +395,7 @@ def on_connect():
         if not user.is_self:
             pyotherside.send('add-contact', user_data)
 
-    print("Added conversations oveserver")
+    print("Added conversations observer")
     conv_list.on_event.add_observer(on_event)
     if not disable_notifier:
         notifier = Notifier(conv_list)
@@ -469,13 +478,23 @@ def create_conversation(users):
 
 def _create_conversation(users):
     global client
-    future = asyncio.async(client.createconversation(users))
+    is_group = len(users) > 1
+    request = hangouts_pb2.CreateConversationRequest(
+        request_header=client.get_request_header(),
+        type=(hangouts_pb2.CONVERSATION_TYPE_GROUP if is_group else
+              hangouts_pb2.CONVERSATION_TYPE_ONE_TO_ONE),
+        client_generated_id=client.get_client_generated_id(),
+        invitee_id=[hangouts_pb2.InviteeID(gaia_id=chat_id)
+                    for chat_id in users],
+    )
+
+    future = asyncio.async(client.create_conversation(request))
     future.add_done_callback(on_conversation_created)
 
 
 def on_conversation_created(future):
     global conv_list
-    conv_id = future.result()['conversation']['id']['id']
+    conv_id = future.result().conversation.conversation_id.id
     pyotherside.send('on-new-conversation-created', conv_id)
 
 
@@ -485,10 +504,27 @@ def send_new_conversation_welcome_message(conv_id, text):
 
 def _send_new_conversation_welcome_message(conv_id, text):
     global last_newly_created_conv_id
+    global client
     last_newly_created_conv_id = conv_id
     segments = hangups.ChatMessageSegment.from_str(text)
+
+    request = hangouts_pb2.SendChatMessageRequest(
+        request_header=client.get_request_header(),
+        message_content=hangouts_pb2.MessageContent(
+            segment=[seg.serialize() for seg in segments],
+        ),
+        event_request_header=hangouts_pb2.EventRequestHeader(
+            conversation_id=hangouts_pb2.ConversationId(
+                 id=conv_id,
+             ),
+             client_generated_id=client.get_client_generated_id(),
+             expected_otr=hangouts_pb2.OFF_THE_RECORD_STATUS_ON_THE_RECORD,
+             delivery_medium=hangouts_pb2.DeliveryMedium(medium_type=hangouts_pb2.DELIVERY_MEDIUM_BABEL),
+             event_type=hangouts_pb2.EVENT_TYPE_REGULAR_CHAT_MESSAGE,
+         ),
+    )
     asyncio.async(
-        client.sendchatmessage(conv_id, [seg.serialize() for seg in segments])
+        client.send_chat_message(request)
     ).add_done_callback(on_new_conversation_welcome_message_sent)
 
 
@@ -539,6 +575,26 @@ def load_conversation(conv_id):
     call_threadsafe(conv_controllers[conv_id].load)
 
 
+def set_loading_status(status):
+    pyotherside.send('set-loading-status', status)
+
+
+def set_chat_background(custom, filename=None):
+    if custom:
+        filename = filename[filename.find("/home"):]
+        new_filename = app_data_path+'custom_chat_background'+os.path.splitext(filename)[1]
+        shutil.copyfile(filename, new_filename)
+        settings.set('custom_chat_background', new_filename)
+    else:
+        new_filename = False
+        settings.set('custom_chat_background', False)
+    pyotherside.send('on-chat-background-changed', new_filename)
+
+
+def logout():
+    os.remove(refresh_token_filename)
+
+
 def run_asyncio_loop_in_thread(loop):
     asyncio.set_event_loop(loop)
     try:
@@ -557,10 +613,12 @@ def load(cookies):
     global client, loop
     print("Loading ...")
     print("Creating client ...")
+    set_loading_status("creatingClient")
     client = hangups.Client(cookies)
     print("Adding client observer")
+    set_loading_status("addingObserver")
     client.on_connect.add_observer(on_connect)
-
+    set_loading_status("loadingChats")
     loop = asyncio.get_event_loop()
 
     t = threading.Thread(target=run_asyncio_loop_in_thread, args=(loop,))
@@ -579,8 +637,6 @@ def start():
 
 def on_quit():
     print("Exiting ...")
-    print('Saving settings ...')
-    settings.save()
     print("Setting presence")
     call_threadsafe(set_client_presence, False)
     client.disconnect()

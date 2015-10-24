@@ -1,15 +1,26 @@
 import QtQuick 2.0
-import Ubuntu.Components 1.2
+import Ubuntu.Components 1.3
 import Ubuntu.Components.Popups 1.0
-
+import Ubuntu.Content 1.1
 
 Page {
     title: i18n.tr("Settings")
     visible: false
 
+    property alias backgroundImage: backgroundImage
+
+    function setChatBackround (custom) {
+        if (custom !== false) {
+            backgroundImage.source =  Qt.resolvedUrl(custom);
+        }
+        else {
+            backgroundImage.source =  Qt.resolvedUrl('../media/default_chat_background.jpg');
+        }
+    }
+
     Flickable {
         anchors.fill: parent
-        contentHeight: col.height
+        contentHeight: col.height + col.anchors.margins * 2
 
         Column {
             id: col
@@ -18,6 +29,55 @@ Page {
             anchors.right: parent.right
             anchors.margins: units.gu(2)
             spacing: units.gu(1)
+
+            Label {
+                text: i18n.tr("Chat Background")
+                fontSize: "x-large"
+            }
+
+            UbuntuShape {
+                height: source.height
+                width: source.width
+                source: Image {
+                    id: backgroundImage
+
+                    property bool isDefault: source == Qt.resolvedUrl('../media/default_chat_background.jpg')
+                    width: units.dp(256)
+                    height: units.dp(256)
+                    fillMode: Image.PreserveAspectCrop
+                    source: Qt.resolvedUrl('../media/default_chat_background.jpg')
+
+                    Component.onCompleted: {
+                        py.call('backend.settings_get', ['custom_chat_background'], function callback(custom){
+                            setChatBackround(custom);
+                        });
+                    }
+
+                }
+            }
+
+            Row {
+                spacing: units.gu(1)
+
+                Button {
+                    text: i18n.tr("Change")
+                    color: UbuntuColors.green
+                    onClicked: {
+                        importContentPopup.show();
+                    }
+                }
+
+                Button {
+                    text: i18n.tr("Reset default")
+
+                    enabled: !backgroundImage.isDefault
+
+                    onClicked: {
+                        py.call('backend.set_chat_background', [false]);
+                    }
+                }
+            }
+
 
             Label {
                 text: i18n.tr("Cache")
@@ -92,6 +152,22 @@ Page {
 
             }
 
+            Label {
+                text: i18n.tr("Account")
+                fontSize: "x-large"
+            }
+
+            FlexibleLabel {
+                text: loginScreen.loginInfo
+                onLinkActivated: Qt.openUrlExternally(link)
+            }
+
+            Button {
+                text: "Logout"
+                color: UbuntuColors.red
+                onClicked: PopupUtils.open(logoutDialog)
+            }
+
 
         }
 
@@ -144,6 +220,47 @@ Page {
              }
          }
     }
+
+
+    Component {
+         id: logoutDialog
+         Dialog {
+             id: dialog
+             title: i18n.tr("Logout")
+             text: i18n.tr("Are you sure to logout? This will quit the application.")
+
+             Button {
+                 text: i18n.tr("Logout")
+                 color: UbuntuColors.orange
+                 onClicked: {
+                     enabled = false;
+                     cancelButton.enabled = false;
+                     dialog.text = i18n.tr("Working ...")
+                     py.call('backend.logout', [], function callback() {
+                         PopupUtils.close(dialog);
+                         Qt.quit();
+                     });
+                 }
+             }
+
+             Button {
+                 id: cancelButton
+                 text: i18n.tr("Cancel")
+                 onClicked: PopupUtils.close(dialog)
+             }
+         }
+    }
+
+    ImportContentPopup {
+        id: importContentPopup
+        contentType: ContentType.Pictures
+        onItemsImported: {
+            var picture = importItems[0];
+            var url = picture.url;
+            py.call('backend.set_chat_background', [true, url.toString()]);
+        }
+    }
+
 
 }
 

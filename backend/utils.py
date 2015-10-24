@@ -39,6 +39,10 @@ def get_message_html(segments):
     return html
 
 
+def get_message_plain_text(segments):
+    return "".join(segment.text for segment in segments)
+
+
 def get_message_timestr(timestamp):
     from_zone = tz.tzutc()
     to_zone = tz.tzlocal()

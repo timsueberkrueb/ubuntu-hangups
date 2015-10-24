@@ -1,5 +1,5 @@
 import QtQuick 2.0
-import Ubuntu.Components 1.2
+import Ubuntu.Components 1.3
 
 ListItem {
     id: listItem
@@ -13,13 +13,15 @@ ListItem {
     divider.visible: false
     height: modelData.type === "chat/message" ? rect.height :  infoItem.height
 
-    trailingActions: ListItemActions {
+    trailingActions: textMimeData.text !== "" ? messageTrailingActions : null
+
+    ListItemActions {
+        id: messageTrailingActions
 
         actions: [
             Action {
+                text: i18n.tr("Copy")
                 iconName: "edit-copy"
-                enabled: textMimeData.text !== ""
-                visible: textMimeData.text !== ""
                 onTriggered: {
                     Clipboard.push(textMimeData);
                 }
@@ -29,7 +31,7 @@ ListItem {
 
     onClicked: {
         if (modelData.attachments && modelData.attachments.count > 0) {
-            pageStack.push(viewImagePage, {images: modelData.attachments});
+            pageLayout.addPageToNextColumn(chatPage, viewImagePage, {images: modelData.attachments});
         }
     }
 
@@ -82,7 +84,6 @@ ListItem {
     Item {
         id: infoItem
         visible: modelData.type !== "chat/message"
-
         width: parent.width < units.gu(60) ? parent.width - units.gu(15): units.gu(60) - units.gu(15)
         height: visible ? childrenRect.height : 0
         anchors.horizontalCenter: parent.horizontalCenter
@@ -98,7 +99,7 @@ ListItem {
                 anchors.left: parent.left
                 anchors.right: parent.right
                 anchors.margins: units.gu(1)
-                height: childrenRect.height + 2*anchors.margins
+                height: childrenRect.height + 2 * anchors.margins
 
                 FlexibleLabel {
                     width: parent.width
@@ -112,6 +113,10 @@ ListItem {
                           else if (modelData.type === "chat/leave") {
                               i18n.tr("%1 left the conversation").arg(modelData.name)
                           }
+                          else {
+                              ""
+                          }
+                    font.pixelSize: units.dp(13)
                 }
 
             }
@@ -133,8 +138,20 @@ ListItem {
 
         Row {
             anchors.fill: parent
-            height: childrenRect.height
             layoutDirection: is_self ? Qt.RightToLeft: Qt.LeftToRight
+
+            Item {
+                visible: !is_self
+                width: units.gu(1)
+                height: rect.height
+            }
+
+            UserAvatar {
+                visible: !is_self && conversationsModel.get(getConversationModelIndexById(convId)).users.count > 2
+                anchors.verticalCenter: rect.verticalCenter
+                name: visible ? modelData.username : ""
+                photoUrl: visible ? modelData.user_photo : ""
+            }
 
             Canvas {
                 id: canvas
@@ -174,8 +191,10 @@ ListItem {
                     anchors.top: parent.top
                     anchors.left: parent.left
                     anchors.right: parent.right
-                    anchors.margins: units.gu(1)
-                    spacing: (units.gu(1) / 2)
+                    anchors.margins: units.dp(4)
+                    anchors.leftMargin: units.dp(8)
+                    anchors.rightMargin: units.dp(8)
+                    spacing: (units.dp(4))
                     height: childrenRect.height + spacing + 2*anchors.margins
 
                     Label {
@@ -183,7 +202,8 @@ ListItem {
                         visible: !modelData.user_is_self
                         color: UbuntuColors.green
                         text: modelData.username
-                        font.pixelSize: units.dp(14)
+                        font.pixelSize: units.dp(13)
+                        font.bold: true
                     }
 
                     FlexibleLabel {
@@ -192,14 +212,14 @@ ListItem {
                         onLinkActivated: Qt.openUrlExternally(link)
                         width: parent.width
                         color: foregroundColor
-                        text: modelData.text
-                        font.pixelSize: units.dp(14)
+                        text: modelData.html ? modelData.html : ""
+                        font.pixelSize: units.dp(13)
                     }
 
                     MimeData {
                         id: textMimeData
                         color: "green"
-                        text: messageLabel.text
+                        text: modelData.text
                     }
 
                     Item {
@@ -209,7 +229,7 @@ ListItem {
                     }
 
                     Component.onCompleted: {
-                        if (modelData.attachments.count  > 0) {
+                        if (modelData.attachments && modelData.attachments.count  > 0) {
                             attachedImage.createObject(imageContainer, {url: modelData.attachments.get(0).url});
                         }
                     }
@@ -221,7 +241,7 @@ ListItem {
                         Label {
                             color: UbuntuColors.darkGrey
                             text: modelData.time
-                            font.pixelSize: units.dp(14)
+                            font.pixelSize: units.dp(12)
                         }
                     }
 

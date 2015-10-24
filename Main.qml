@@ -56,6 +56,7 @@ MainView {
 
     AdaptivePageLayout {
         id: pageLayout
+        primaryPage: conversationsPage
         anchors.fill: parent
         layouts: [
             PageColumnsLayout {
@@ -140,7 +141,6 @@ MainView {
 
             setHandler('show-conversations-page', function() {
                 console.log("show-conversations-page")
-                pageLayout.primaryPage = conversationsPage;
                 loadingScreen.visible = false;
             });
 

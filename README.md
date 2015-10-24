@@ -75,19 +75,11 @@ qmlscene Main.qml
 * Make sure you have the Ubuntu SDK installed
 
   https://developer.ubuntu.com/en/start/ubuntu-sdk/installing-the-sdk/
-* Run from the ubuntu-hangups directory:
-  
-  ```
-  python3 get_libs.py
-  ```
-* Download the sources of the following python packages and include them in lib/py/:
-  * aiohttp (https://github.com/KeepSafe/aiohttp)
-  * purplex (https://github.com/mtomwing/purplex)
-  * requests (https://github.com/kennethreitz/requests)
-  * pymmh3.py (https://github.com/wc-duck/pymmh3)
-  * reparser (https://github.com/xmikos/reparser)
-  * dateutil (https://github.com/dateutil/dateutil)
-  * google.protobuf (https://github.com/google/protobuf)
+
+* In order to get the dependencies run from the ubuntu-hangups directory:
+
+ `git submodule update --init --recursive` 
+
 
 ### Build and run
 * Open ubuntu-hangups.qmlproject with the Ubuntu-SDK, add the appropriate build kit and run!

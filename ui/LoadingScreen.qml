@@ -72,43 +72,67 @@ import Ubuntu.Components 1.3
             source: "../media/loading-animation.gif"
         }
 
-        Label {
+        FadeLabel {
             id: loadingStatusLabel
             color: UbuntuColors.coolGrey
             text: i18n.tr("Loading, please wait ...")
             anchors.horizontalCenter: parent.horizontalCenter
             anchors.top: animation.bottom
             anchors.topMargin: units.gu(3) + units.gu(1) * opacity
-
-            function fadeText (text) {
-                fadeOutAnimation.running = true;
-                fadeOutAnimation.stopped.connect(function () {
-                    loadingStatusLabel.text = text;
-                    fadeInAnimation.running = true;
-                });
-            }
-
-            NumberAnimation {
-                id: fadeOutAnimation
-                target: loadingStatusLabel;
-                property: "opacity";
-                duration: 500;
-                easing.type: Easing.InOutQuad
-                from: 1
-                to: 0
-            }
-
-            NumberAnimation {
-                id: fadeInAnimation
-                target: loadingStatusLabel;
-                property: "opacity";
-                duration: 500;
-                easing.type: Easing.InOutQuad
-                from: 0
-                to: 1
-            }
         }
 
+    }
+
+
+
+    FadeLabel {
+        id: poweredByLabel
+        text: "Powered by"
+
+        anchors.bottom: parent.bottom
+        anchors.bottomMargin: units.gu(1) + units.gu(1) * opacity
+        x: parent.width/2 - width
+    }
+
+    FadeLabel {
+        font.bold: true
+
+        anchors.left: poweredByLabel.right
+        anchors.leftMargin: units.gu(1)
+        anchors.bottom: parent.bottom
+        anchors.bottomMargin: units.gu(1) + units.gu(1) * opacity
+
+        duration: 200
+
+        Timer {
+            interval: 1000
+            repeat: true
+            running: true
+            triggeredOnStart: true
+
+            property string thanksToText: i18n.tr("Thanks to")
+
+            property var texts: [
+                ["Powered by", "Python"],
+                ["Powered by", "PyOtherSide"],
+                ["Powered by", "Hangups"],
+                [thanksToText, "Tom Dryer"],
+                [thanksToText, "Fabian"],
+                /*: This is the "you all ツ" part of "Thanks to you all ツ" */
+                [thanksToText, i18n.tr("you all ツ")],
+            ]
+
+            property int currentIndex: -1
+
+            onTriggered: {
+                currentIndex++;
+                if (currentIndex ===  texts.length)
+                     currentIndex = 0;
+                parent.fadeText(texts[currentIndex][1]);
+                if (texts[currentIndex][0] !== poweredByLabel.text)
+                    poweredByLabel.fadeText(texts[currentIndex][0])
+            }
+        }
     }
 
 }

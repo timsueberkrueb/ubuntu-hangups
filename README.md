@@ -13,7 +13,7 @@ Ubuntu Hangups includes the following third-party software:
 * The loading animation (media/loading-animation.gif) by Fabian Süberkrüb is licensed under the Creative Commons Attribution License 4.0 (CC BY 4.0, https://creativecommons.org/licenses/by/4.0/)
 * The default chat background (media/default_chat_wallpaper.jpg) was created by Nick Russill and is licensed under the Creative Commons Attribution 2.0 Generic (CC BY 2.0) license.
 
-The application icon was created using <a href='https://github.com/halfsail'>Kevin Feyder</a>'s <a href='https://github.com/halfsail/Ubuntu-UI-Toolkit#suru-icon-template-kit'>Suru Icon Template kit</a>
+The application icon was created by <a href="http://samuelhewitt.com/">Sam Hewitt</a>, thanks so much :)
 
 ## Translations
 Ubuntu Hangups is on Transifex! Please help me translating this app and contribute:

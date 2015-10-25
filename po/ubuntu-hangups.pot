@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-10-24 21:23+0200\n"
+"POT-Creation-Date: 2015-10-25 12:58+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -141,7 +141,7 @@ msgstr ""
 msgid "Third-party Software"
 msgstr ""
 
-#: .ubuntu-sdk-deploy/ui/AboutPage.qml:41 ui/AboutPage.qml:41
+#: .ubuntu-sdk-deploy/ui/AboutPage.qml:41
 msgid ""
 "The application icon was created using <a href='https://github.com/"
 "halfsail'>Kevin Feyder</a>'s <a href='https://github.com/halfsail/Ubuntu-UI-"
@@ -406,7 +406,7 @@ msgstr ""
 msgid "Thanks to"
 msgstr ""
 
-#: .ubuntu-sdk-deploy/ui/LoadingScreen.qml:121 ui/LoadingScreen.qml:121
+#: .ubuntu-sdk-deploy/ui/LoadingScreen.qml:122 ui/LoadingScreen.qml:125
 msgid "you all ツ"
 msgstr ""
 
@@ -422,4 +422,14 @@ msgstr ""
 #: .ubuntu-sdk-deploy/Main.qml:345 Main.qml:345
 #, qt-format
 msgid "An error has occured: %1"
+msgstr ""
+
+#: ui/AboutPage.qml:41
+msgid ""
+"The application icon was created by <a href='http://samuelhewitt.com/'>Sam "
+"Hewitt</a>"
+msgstr ""
+
+#: ui/LoadingScreen.qml:115
+msgid "Powered by"
 msgstr ""

@@ -111,14 +111,17 @@ import Ubuntu.Components 1.3
             triggeredOnStart: true
 
             property string thanksToText: i18n.tr("Thanks to")
+            //: This may be the originial text if it sounds good in your language
+            property string poweredByText: i18n.tr("Powered by")
 
             property var texts: [
-                ["Powered by", "Python"],
-                ["Powered by", "PyOtherSide"],
-                ["Powered by", "Hangups"],
+                [poweredByText, "Python"],
+                [poweredByText, "PyOtherSide"],
+                [poweredByText, "Hangups"],
                 [thanksToText, "Tom Dryer"],
                 [thanksToText, "Fabian"],
-                /*: This is the "you all ツ" part of "Thanks to you all ツ" */
+                [thanksToText, "Sam Hewitt"],
+                //: This is the "you all ツ" part of "Thanks to you all ツ"
                 [thanksToText, i18n.tr("you all ツ")],
             ]
 

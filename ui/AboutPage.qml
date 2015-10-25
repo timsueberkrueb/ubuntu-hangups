@@ -38,7 +38,7 @@ Page {
            }
 
            FlexibleLabel {
-                text: i18n.tr("The application icon was created using <a href='https://github.com/halfsail'>Kevin Feyder</a>'s <a href='https://github.com/halfsail/Ubuntu-UI-Toolkit#suru-icon-template-kit'>Suru Icon Template kit</a>")
+                text: i18n.tr("The application icon was created by <a href='http://samuelhewitt.com/'>Sam Hewitt</a>")
                 onLinkActivated: Qt.openUrlExternally(link)
            }
 

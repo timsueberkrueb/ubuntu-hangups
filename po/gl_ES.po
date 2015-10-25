@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Ubuntu Hangups\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-10-24 21:23+0200\n"
-"PO-Revision-Date: 2015-10-24 19:34+0000\n"
+"POT-Creation-Date: 2015-10-25 12:58+0100\n"
+"PO-Revision-Date: 2015-10-25 12:11+0000\n"
 "Last-Translator: Tim Süberkrüb <tim.sueberkrueb@gmail.com>\n"
 "Language-Team: Galician (Spain) (http://www.transifex.com/tim-sueberkrueb/ubuntu-hangups/language/gl_ES/)\n"
 "MIME-Version: 1.0\n"
@@ -142,7 +142,7 @@ msgstr "O código fonte está dispoñíbel en <a href='https://github.com/tim-su
 msgid "Third-party Software"
 msgstr "Software de terceiros"
 
-#: .ubuntu-sdk-deploy/ui/AboutPage.qml:41 ui/AboutPage.qml:41
+#: .ubuntu-sdk-deploy/ui/AboutPage.qml:41
 msgid ""
 "The application icon was created using <a "
 "href='https://github.com/halfsail'>Kevin Feyder</a>'s <a "
@@ -411,7 +411,7 @@ msgstr "Cargando conversas..."
 msgid "Thanks to"
 msgstr ""
 
-#: .ubuntu-sdk-deploy/ui/LoadingScreen.qml:121 ui/LoadingScreen.qml:121
+#: .ubuntu-sdk-deploy/ui/LoadingScreen.qml:122 ui/LoadingScreen.qml:125
 msgid "you all ツ"
 msgstr ""
 
@@ -428,3 +428,13 @@ msgstr "Error"
 #, qt-format
 msgid "An error has occured: %1"
 msgstr "Ocorreu un erro: %1"
+
+#: ui/AboutPage.qml:41
+msgid ""
+"The application icon was created by <a href='http://samuelhewitt.com/'>Sam "
+"Hewitt</a>"
+msgstr ""
+
+#: ui/LoadingScreen.qml:115
+msgid "Powered by"
+msgstr ""

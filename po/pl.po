@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Ubuntu Hangups\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-10-24 21:23+0200\n"
-"PO-Revision-Date: 2015-10-24 19:34+0000\n"
+"POT-Creation-Date: 2015-10-25 12:58+0100\n"
+"PO-Revision-Date: 2015-10-25 12:11+0000\n"
 "Last-Translator: Tim Süberkrüb <tim.sueberkrueb@gmail.com>\n"
 "Language-Team: Polish (http://www.transifex.com/tim-sueberkrueb/ubuntu-hangups/language/pl/)\n"
 "MIME-Version: 1.0\n"
@@ -144,7 +144,7 @@ msgstr "Kod źródłowy dostępny na <a href='https://github.com/tim-sueberkrueb
 msgid "Third-party Software"
 msgstr "Oprogramowanie firm trzecich"
 
-#: .ubuntu-sdk-deploy/ui/AboutPage.qml:41 ui/AboutPage.qml:41
+#: .ubuntu-sdk-deploy/ui/AboutPage.qml:41
 msgid ""
 "The application icon was created using <a "
 "href='https://github.com/halfsail'>Kevin Feyder</a>'s <a "
@@ -352,7 +352,7 @@ msgstr "Określ w sekundach limit czasu występującego pomiędzy kolejnymi aktu
 
 #: .ubuntu-sdk-deploy/ui/SettingsPage.qml:156 ui/SettingsPage.qml:156
 msgid "Account"
-msgstr ""
+msgstr "Konto"
 
 #: .ubuntu-sdk-deploy/ui/SettingsPage.qml:181 ui/SettingsPage.qml:181
 msgid ""
@@ -387,7 +387,7 @@ msgstr "Ok"
 #: .ubuntu-sdk-deploy/ui/SettingsPage.qml:233 ui/SettingsPage.qml:229
 #: ui/SettingsPage.qml:233
 msgid "Logout"
-msgstr ""
+msgstr "Wyloguj"
 
 #: .ubuntu-sdk-deploy/ui/SettingsPage.qml:230 ui/SettingsPage.qml:230
 msgid "Are you sure to logout? This will quit the application."
@@ -413,7 +413,7 @@ msgstr ""
 msgid "Thanks to"
 msgstr ""
 
-#: .ubuntu-sdk-deploy/ui/LoadingScreen.qml:121 ui/LoadingScreen.qml:121
+#: .ubuntu-sdk-deploy/ui/LoadingScreen.qml:122 ui/LoadingScreen.qml:125
 msgid "you all ツ"
 msgstr ""
 
@@ -430,3 +430,13 @@ msgstr "Błąd"
 #, qt-format
 msgid "An error has occured: %1"
 msgstr "Wystąpił błąd: %1"
+
+#: ui/AboutPage.qml:41
+msgid ""
+"The application icon was created by <a href='http://samuelhewitt.com/'>Sam "
+"Hewitt</a>"
+msgstr ""
+
+#: ui/LoadingScreen.qml:115
+msgid "Powered by"
+msgstr ""

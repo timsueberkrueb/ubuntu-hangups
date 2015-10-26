@@ -99,12 +99,15 @@ Page {
         anchors.left: parent.left
         anchors.right: parent.right
         anchors.bottom: bottomContainer.top
+
         source: settingsPage.backgroundImage.source
 
         UbuntuListView {
             id: listView
 
             anchors.fill: parent
+
+            clip: true
 
             property bool isAtBottomArea: contentHeight*(1-(listView.visibleArea.yPosition + listView.visibleArea.heightRatio)) < listView.height
 
@@ -160,9 +163,13 @@ Page {
                 id: btnScrollToBottom
                 backgroundColor: "black"
                 property double maxOpacity: 0.5
-                property double opacityFromViewPosition: ((1-(listView.visibleArea.yPosition + listView.visibleArea.heightRatio))*listView.contentHeight) / (listView.height)
+                property double opacityFromViewPosition: ((1-(listView.visibleArea.yPosition + listView.visibleArea.heightRatio))*listView.contentHeight-units.gu(16)) / (listView.height)
                 opacity: (opacityFromViewPosition < maxOpacity ? opacityFromViewPosition : maxOpacity)
                 width: units.dp(32)
+                visible: opacity > 0.1
+                onVisibleChanged: {
+                    console.log(visible)
+                }
                 height: width
                 anchors.bottom: parent.bottom
                 anchors.horizontalCenter: parent.horizontalCenter
@@ -184,7 +191,10 @@ Page {
 
         }
 
+
     }
+
+
 
     Rectangle {
         id: bottomContainer

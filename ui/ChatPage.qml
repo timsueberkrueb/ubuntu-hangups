@@ -163,12 +163,13 @@ Page {
                 id: btnScrollToBottom
                 backgroundColor: "black"
                 property double maxOpacity: 0.5
-                property double opacityFromViewPosition: ((1-(listView.visibleArea.yPosition + listView.visibleArea.heightRatio))*listView.contentHeight-units.gu(16)) / (listView.height)
-                opacity: (opacityFromViewPosition < maxOpacity ? opacityFromViewPosition : maxOpacity)
                 width: units.dp(32)
-                visible: opacity > 0.1
-                onVisibleChanged: {
-                    console.log(visible)
+                opacity: !listView.isAtBottomArea ? 0.5 : 0
+                Behavior on opacity {
+                    NumberAnimation {
+                        duration: 300
+                        easing.type: Easing.InOutQuad
+                    }
                 }
                 height: width
                 anchors.bottom: parent.bottom

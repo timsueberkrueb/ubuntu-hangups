@@ -165,6 +165,7 @@ Page {
                 property double maxOpacity: 0.5
                 width: units.dp(32)
                 opacity: !listView.isAtBottomArea ? 0.5 : 0
+                visible: opacity !== 0
                 Behavior on opacity {
                     NumberAnimation {
                         duration: 300

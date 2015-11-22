@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-11-04 17:57+0100\n"
+"POT-Creation-Date: 2015-11-22 15:22+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -34,15 +34,15 @@ msgstr ""
 msgid "Add users"
 msgstr ""
 
-#: .ubuntu-sdk-deploy/ui/ChatPage.qml:151 ui/ChatPage.qml:150
+#: .ubuntu-sdk-deploy/ui/ChatPage.qml:150 ui/ChatPage.qml:150
 msgid "Pull to load more"
 msgstr ""
 
-#: .ubuntu-sdk-deploy/ui/ChatPage.qml:151 ui/ChatPage.qml:150
+#: .ubuntu-sdk-deploy/ui/ChatPage.qml:150 ui/ChatPage.qml:150
 msgid "Release to load more"
 msgstr ""
 
-#: .ubuntu-sdk-deploy/ui/ChatPage.qml:219 ui/ChatPage.qml:219
+#: .ubuntu-sdk-deploy/ui/ChatPage.qml:219 ui/ChatPage.qml:220
 msgid "Write a message"
 msgstr ""
 
@@ -165,11 +165,11 @@ msgstr ""
 msgid "The loading animation was created by %1."
 msgstr ""
 
-#: .ubuntu-sdk-deploy/ui/AboutPage.qml:60
+#: .ubuntu-sdk-deploy/ui/AboutPage.qml:60 ui/AboutPage.qml:60
 msgid ""
-"The <a href='https://www.flickr.com/photos/nickrussill/150410498/'>default "
+"The <a href='https://www.flickr.com/photos/zooboing/5127310748/'>default "
 "chat background</a> was created by <a href='https://www.flickr.com/photos/"
-"nickrussill/'>Nick Russill</a> and is licensed under the <a href='https://"
+"zooboing/'>Patrick Hoesly</a> and is licensed under the <a href='https://"
 "creativecommons.org/licenses/by/2.0/'>Creative Commons Attribution 2.0 "
 "Generic (CC BY 2.0) license.</a>"
 msgstr ""
@@ -425,13 +425,4 @@ msgstr ""
 #: .ubuntu-sdk-deploy/Main.qml:345 Main.qml:345
 #, qt-format
 msgid "An error has occured: %1"
-msgstr ""
-
-#: ui/AboutPage.qml:60
-msgid ""
-"The <a href='https://www.flickr.com/photos/zooboing/5127310748/'>default "
-"chat background</a> was created by <a href='https://www.flickr.com/photos/"
-"zooboing/'>Patrick Hoesly</a> and is licensed under the <a href='https://"
-"creativecommons.org/licenses/by/2.0/'>Creative Commons Attribution 2.0 "
-"Generic (CC BY 2.0) license.</a>"
 msgstr ""

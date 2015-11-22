@@ -230,13 +230,21 @@ ListItem {
 
                     Component.onCompleted: {
                         if (modelData.attachments && modelData.attachments.count  > 0) {
-                            attachedImage.createObject(imageContainer, {url: modelData.attachments.get(0).url});
+                            attachedImage.createObject(imageContainer, {url: Qt.resolvedUrl(modelData.attachments.get(0).url)});
                         }
                     }
 
                     Row {
                         width: parent.width
                         layoutDirection: Qt.RightToLeft
+
+                        spacing: units.dp(8)
+
+                        Label {
+                            visible: is_self
+                            text: modelData.sent ? "✓" : "🕐"
+                            font.pixelSize: units.dp(10)
+                        }
 
                         Label {
                             color: UbuntuColors.darkGrey

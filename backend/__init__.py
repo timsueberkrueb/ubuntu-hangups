@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from _threading_local import local
 
 __author__ = 'Tim Süberkrüb'
 __version__ = '0.1'
@@ -6,6 +7,7 @@ __version__ = '0.1'
 import pyotherside
 import mimetypes
 import asyncio
+import functools
 import threading
 import shutil
 
@@ -60,6 +62,8 @@ class ConversationController:
         self.typing_statuses = {}
         self.status_message = ""
 
+        self.current_local_id = 0
+
         conv.on_event.add_observer(self.on_event)
         conv.on_watermark_notification.add_observer(self.on_watermark_notification)
         conv.on_typing.add_observer(self.on_typing)
@@ -97,7 +101,9 @@ class ConversationController:
                              "user_is_self": user.is_self,
                              "username": user.full_name,
                              "user_photo": "https:" + user.photo_url if user.photo_url else None,
-                             "time": get_message_timestr(conv_event.timestamp)
+                             "time": get_message_timestr(conv_event.timestamp),
+                             "sent": True,
+                             "local_id": -1
                          },
                          insert_mode)
         self.set_title()
@@ -113,7 +119,9 @@ class ConversationController:
                              "new_name": conv_event.new_name,
                              "user_is_self": user.is_self,
                              "username": user.full_name,
-                             "time": get_message_timestr(conv_event.timestamp)
+                             "time": get_message_timestr(conv_event.timestamp),
+                             "sent": True,
+                             "local_id": -1
                          },
                          insert_mode)
 
@@ -132,7 +140,9 @@ class ConversationController:
                                      "name": name,
                                      "user_is_self": user.is_self,
                                      "username": user.full_name,
-                                     "time": get_message_timestr(conv_event.timestamp)
+                                     "time": get_message_timestr(conv_event.timestamp),
+                                     "sent": True,
+                                     "local_id": -1
                                  },
                                  insert_mode)
         else:
@@ -144,7 +154,9 @@ class ConversationController:
                                      "name": name,
                                      "user_is_self": user.is_self,
                                      "username": user.full_name,
-                                     "time": get_message_timestr(conv_event.timestamp)
+                                     "time": get_message_timestr(conv_event.timestamp),
+                                     "sent": True,
+                                     "local_id": -1
                                  },
                                  insert_mode)
 
@@ -189,17 +201,37 @@ class ConversationController:
         if future:
             future.result()
 
-    def send_message(self, text, image_file=None):
+    def send_message(self, text, image_file=None, image_filename=None):
         global loop
         segments = hangups.ChatMessageSegment.from_str(text)
+        local_id = self.current_local_id
+        self.current_local_id += 1
+
+        # Create dummy message
+        pyotherside.send('add-conversation-message',
+                 self.conv.id_,
+                 {
+                     "type": "chat/message",
+                     "html": text,
+                     "text": text,
+                     "attachments": [{'url': image_filename}] if image_filename else [],
+                     "user_is_self": True,
+                     "username": "",
+                     "user_photo": None,
+                     "time": "",
+                     "sent": False,
+                     "local_id": local_id
+                 },
+                 "bottom")
+
         asyncio.async(
             self.conv.send_message(segments, image_file=image_file)
-        ).add_done_callback(self.on_message_sent)
+        ).add_done_callback(functools.partial(self.on_message_sent, local_id=local_id))
 
-    def on_message_sent(self, future):
+    def on_message_sent(self, future, local_id=None):
         global loop, client
         try:
-            future.result()
+            pyotherside.send("remove-dummy-message", self.conv.id_, local_id)
             request = hangouts_pb2.SetFocusRequest(
                 request_header=client.get_request_header(),
                 conversation_id=hangouts_pb2.ConversationId(id=self.conv.id_),
@@ -536,7 +568,7 @@ def on_new_conversation_welcome_message_sent(future):
 def send_image(conv_id, filename):
     filename = filename[filename.find("/home"):]
     image_file = open(filename, 'rb')
-    call_threadsafe(conv_controllers[conv_id].send_message, "", image_file);
+    call_threadsafe(conv_controllers[conv_id].send_message, "", image_file, filename);
 
 
 def load_more_messages(conv_id):

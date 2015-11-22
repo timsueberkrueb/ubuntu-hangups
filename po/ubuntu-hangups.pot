@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-11-22 15:22+0100\n"
+"POT-Creation-Date: 2015-11-22 16:22+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -42,7 +42,7 @@ msgstr ""
 msgid "Release to load more"
 msgstr ""
 
-#: .ubuntu-sdk-deploy/ui/ChatPage.qml:219 ui/ChatPage.qml:220
+#: .ubuntu-sdk-deploy/ui/ChatPage.qml:220 ui/ChatPage.qml:220
 msgid "Write a message"
 msgstr ""
 
@@ -199,7 +199,7 @@ msgid ""
 msgstr ""
 
 #: .ubuntu-sdk-deploy/ui/NetworkErrorDialog.qml:16
-#: .ubuntu-sdk-deploy/Main.qml:351 ui/NetworkErrorDialog.qml:16 Main.qml:351
+#: .ubuntu-sdk-deploy/Main.qml:365 ui/NetworkErrorDialog.qml:16 Main.qml:365
 msgid "Close"
 msgstr ""
 
@@ -418,11 +418,11 @@ msgstr ""
 msgid "%1 is typing ..."
 msgstr ""
 
-#: .ubuntu-sdk-deploy/Main.qml:341 Main.qml:341
+#: .ubuntu-sdk-deploy/Main.qml:355 Main.qml:355
 msgid "Error"
 msgstr ""
 
-#: .ubuntu-sdk-deploy/Main.qml:345 Main.qml:345
+#: .ubuntu-sdk-deploy/Main.qml:359 Main.qml:359
 #, qt-format
 msgid "An error has occured: %1"
 msgstr ""

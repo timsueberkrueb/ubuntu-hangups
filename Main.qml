@@ -318,6 +318,20 @@ MainView {
                 settingsPage.setChatBackround(custom);
             });
 
+
+            setHandler('remove-dummy-message', function(conv_id, local_id) {
+                console.log('remove-dummy-message')
+                var model = chatModels[conv_id];
+
+                for (var i=model.count; i>0; i--) {
+                    if (model.get(i-1).local_id === local_id) {
+                        model.remove(i-1);
+                        break;
+                    }
+                }
+
+            });
+
             importModule('backend', function(){
                 console.log("python loaded");
                 call('backend.start');

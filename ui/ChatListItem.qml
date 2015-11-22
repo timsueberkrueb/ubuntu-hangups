@@ -243,7 +243,7 @@ ListItem {
                         Label {
                             visible: is_self
                             text: modelData.sent ? "✓" : "🕐"
-                            font.pixelSize: units.dp(10)
+                            font.pixelSize: units.dp(12)
                         }
 
                         Label {

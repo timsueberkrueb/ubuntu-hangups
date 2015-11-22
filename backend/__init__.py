@@ -92,37 +92,32 @@ class ConversationController:
         text = get_message_plain_text(conv_event.segments)
         pyotherside.send('add-conversation-message',
                          self.conv.id_,
-                         {
-                             "type": "chat/message",
-                             "html": html,
-                             "text": text,
-                             "attachments": [{'url': cache.get_image_cached(a) if settings.get('cache_images') else a}
+                         model.get_message_model_data(
+                             type="chat/message",
+                             html=html,
+                             text=text,
+                             attachments=[{'url': cache.get_image_cached(a) if settings.get('cache_images') else a}
                                              for a in conv_event.attachments],
-                             "user_is_self": user.is_self,
-                             "username": user.full_name,
-                             "user_photo": "https:" + user.photo_url if user.photo_url else None,
-                             "time": get_message_timestr(conv_event.timestamp),
-                             "sent": True,
-                             "local_id": -1
-                         },
+                             user_is_self=user.is_self,
+                             username=user.full_name,
+                             user_photo= "https:" + user.photo_url if user.photo_url else None,
+                             time=get_message_timestr(conv_event.timestamp)
+                         ),
                          insert_mode)
+
         self.set_title()
 
     def handle_rename(self, conv_event, user, insert_mode="bottom"):
         self.set_title()
         pyotherside.send('add-conversation-message',
                          self.conv.id_,
-                         {
-                             "type": "chat/rename",
-                             "text": "",
-                             "attachments": [],
-                             "new_name": conv_event.new_name,
-                             "user_is_self": user.is_self,
-                             "username": user.full_name,
-                             "time": get_message_timestr(conv_event.timestamp),
-                             "sent": True,
-                             "local_id": -1
-                         },
+                         model.get_message_model_data(
+                             type="chat/rename",
+                             new_name=conv_event.new_name,
+                             user_is_self=user.is_self,
+                             username=user.full_name,
+                             time=get_message_timestr(conv_event.timestamp)
+                         ),
                          insert_mode)
 
     def handle_membership_change(self, conv_event, user, insert_mode="bottom"):
@@ -135,29 +130,25 @@ class ConversationController:
             for name in names:
                 pyotherside.send('add-conversation-message',
                                  self.conv.id_,
-                                 {
-                                     "type": "chat/add",
-                                     "name": name,
-                                     "user_is_self": user.is_self,
-                                     "username": user.full_name,
-                                     "time": get_message_timestr(conv_event.timestamp),
-                                     "sent": True,
-                                     "local_id": -1
-                                 },
+                                 model.get_message_model_data(
+                                     type="chat/add",
+                                     name=name,
+                                     user_is_self=user.is_self,
+                                     username=user.full_name,
+                                     time=get_message_timestr(conv_event.timestamp)
+                                 ),
                                  insert_mode)
         else:
             for name in names:
                 pyotherside.send('add-conversation-message',
                                  self.conv.id_,
-                                 {
-                                     "type": "chat/leave",
-                                     "name": name,
-                                     "user_is_self": user.is_self,
-                                     "username": user.full_name,
-                                     "time": get_message_timestr(conv_event.timestamp),
-                                     "sent": True,
-                                     "local_id": -1
-                                 },
+                                 model.get_message_model_data(
+                                     type="chat/leave",
+                                     name=name,
+                                     user_is_self=user.is_self,
+                                     username=user.full_name,
+                                     time=get_message_timestr(conv_event.timestamp)
+                                 ),
                                  insert_mode)
 
     def on_event(self, conv_event, set_title=True, set_unread=True, insert_mode="bottom"):

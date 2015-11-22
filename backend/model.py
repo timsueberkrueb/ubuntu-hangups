@@ -38,3 +38,20 @@ def get_conv_data(conv):
                           "is_self": user.is_self
                       } for user in conv.users]
            }
+
+def get_message_model_data(type="chat/message", html="", text="", attachments=[], user_is_self=True, username="",
+                           user_photo=None, time="", sent=True, local_id=-1, new_name="", name=""):
+    return {
+         "type": type,
+         "html": html,
+         "text": text,
+         "attachments": attachments,
+         "user_is_self": user_is_self,
+         "username": username,
+         "user_photo": user_photo,
+         "time": time,
+         "sent": sent,
+         "local_id": local_id,
+         "new_name": new_name,
+         "name": name
+    }

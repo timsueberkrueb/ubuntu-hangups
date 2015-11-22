@@ -201,18 +201,14 @@ class ConversationController:
         # Create dummy message
         pyotherside.send('add-conversation-message',
                  self.conv.id_,
-                 {
-                     "type": "chat/message",
-                     "html": text,
-                     "text": text,
-                     "attachments": [{'url': image_filename}] if image_filename else [],
-                     "user_is_self": True,
-                     "username": "",
-                     "user_photo": None,
-                     "time": "",
-                     "sent": False,
-                     "local_id": local_id
-                 },
+                 model.get_message_model_data(
+                     type="chat/message",
+                     html=text,
+                     text=text,
+                     attachments=[{'url': image_filename}] if image_filename else [],
+                     sent= False,
+                     local_id=local_id,
+                 ),
                  "bottom")
 
         asyncio.async(

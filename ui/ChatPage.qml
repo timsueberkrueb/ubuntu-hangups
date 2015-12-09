@@ -1,6 +1,8 @@
 import QtQuick 2.0
 import Ubuntu.Components 1.3
+import Ubuntu.Components.Popups 1.3
 import Ubuntu.Content 1.1
+import QtQuick.Layouts 1.0
 import QtGraphicalEffects 1.0
 
 Page {
@@ -95,108 +97,107 @@ Page {
     }
 
     Image {
+        anchors.fill: parent
+        source: settingsPage.backgroundImage.source
+    }
+
+    UbuntuListView {
+        id: listView
+
         anchors.top: parent.top
         anchors.left: parent.left
         anchors.right: parent.right
         anchors.bottom: bottomContainer.top
 
-        source: settingsPage.backgroundImage.source
+        verticalLayoutDirection: ListView.BottomToTop
+        // this is to keep the scrolling smooth
+        cacheBuffer: units.gu(10)*20
 
-        UbuntuListView {
-            id: listView
+        clip: true
 
-            anchors.fill: parent
+        property bool isAtBottomArea: contentHeight*(1-(listView.visibleArea.yPosition + listView.visibleArea.heightRatio)) < listView.height
 
-            clip: true
+        spacing: units.gu(1)
+        delegate: ChatListItem {}
 
-            property bool isAtBottomArea: contentHeight*(1-(listView.visibleArea.yPosition + listView.visibleArea.heightRatio)) < listView.height
-
-            spacing: units.gu(1)
-            delegate: ChatListItem {}
-
-            header: Component {
-                Item {
-                    height: units.gu(5)
-                    width: parent.width
-
-                    ActivityIndicator {
-                        running: !loaded
-                        anchors.horizontalCenter: parent.horizontalCenter
-                        anchors.verticalCenter: parent.verticalCenter
-                    }
-                }
-            }
-
-            footer: Component {
-                Item {
-                    height: units.gu(5)
-                    width: parent.width
-                }
-            }
-
-            PullToRefresh {
-                id: pullToRefresh
+        header: Component {
+            Item {
+                height: units.gu(5)
                 width: parent.width
 
-                enabled: !firstMessageLoaded
-
-                content: Item {
-                    height: parent.height
-                    width: height
-
-                    Label {
-                        anchors.centerIn: parent
-                        color: "white"
-                        text: !pullToRefresh.releaseToRefresh ? i18n.tr("Pull to load more") : i18n.tr("Release to load more")
-                    }
-
-                }
-
-                onRefresh: {
-                    refreshing = true;
-                    pullToRefreshLoading = true;
-                    py.call('backend.load_more_messages', [convId]);
+                ActivityIndicator {
+                    running: !loaded
+                    anchors.horizontalCenter: parent.horizontalCenter
+                    anchors.verticalCenter: parent.verticalCenter
                 }
             }
-
-            UbuntuShape {
-                id: btnScrollToBottom
-                backgroundColor: "black"
-                property double maxOpacity: 0.5
-                width: units.dp(32)
-                opacity: !listView.isAtBottomArea ? 0.5 : 0
-                visible: opacity !== 0
-                Behavior on opacity {
-                    NumberAnimation {
-                        duration: 300
-                        easing.type: Easing.InOutQuad
-                    }
-                }
-                height: width
-                anchors.bottom: parent.bottom
-                anchors.horizontalCenter: parent.horizontalCenter
-                anchors.bottomMargin: units.gu(1)
-
-                Icon {
-                    anchors.centerIn: parent
-                    width: units.dp(24)
-                    height: width
-                    name: "down"
-                    color: "white"
-                }
-
-                MouseArea {
-                    anchors.fill: parent
-                    onClicked: listView.positionViewAtEnd();
-                }
-            }
-
         }
 
+        footer: Component {
+            Item {
+                height: units.gu(5)
+                width: parent.width
+            }
+        }
+
+        PullToRefresh {
+            id: pullToRefresh
+            width: parent.width
+
+            enabled: !firstMessageLoaded
+
+            content: Item {
+                height: parent.height
+                width: height
+
+                Label {
+                    anchors.centerIn: parent
+                    color: "white"
+                    text: !pullToRefresh.releaseToRefresh ? i18n.tr("Pull to load more") : i18n.tr("Release to load more")
+                }
+
+            }
+
+            onRefresh: {
+                refreshing = true;
+                pullToRefreshLoading = true;
+                py.call('backend.load_more_messages', [convId]);
+            }
+        }
+
+        UbuntuShape {
+            id: btnScrollToBottom
+            backgroundColor: "black"
+            property double maxOpacity: 0.5
+            width: units.dp(32)
+            opacity: !listView.isAtBottomArea ? 0.5 : 0
+            visible: opacity !== 0
+            Behavior on opacity {
+                NumberAnimation {
+                    duration: 300
+                    easing.type: Easing.InOutQuad
+                }
+            }
+            height: width
+            anchors.bottom: parent.bottom
+            anchors.horizontalCenter: parent.horizontalCenter
+            anchors.bottomMargin: units.gu(1)
+
+            Icon {
+                anchors.centerIn: parent
+                width: units.dp(24)
+                height: width
+                name: "down"
+                color: "white"
+            }
+
+            MouseArea {
+                anchors.fill: parent
+                onClicked: listView.positionViewAtBeginning();
+            }
+        }
 
     }
-
-
 
     Rectangle {
         id: bottomContainer
@@ -208,95 +209,20 @@ Page {
 
         color: "white"
 
-        TextField {
-            id: messageField
-
-            anchors.left: parent.left
-            anchors.top: parent.top
-            anchors.right: attachmentIcon.left
-            anchors.bottom: parent.bottom
-            anchors.margins: units.gu(1)
-
-            placeholderText: i18n.tr("Write a message")
-
-            onAccepted: {
-                if (messageField.text !== "") {
-                    py.call('backend.send_message', [convId, messageField.text]);
-                    messageField.text = "";
-                    py.call('backend.set_typing', [convId, "stopped"]);
-                    pausedTypingTimer.stop();
-                    stoppedTypingTimer.stop();
-                }
+        RowLayout {
+            anchors {
+                fill: parent
+                leftMargin: units.dp(16)
+                rightMargin: units.dp(16)
             }
+            spacing: units.dp(8)
 
-            Timer {
-                id: pausedTypingTimer
-                interval: 1500
-                onTriggered: {
-                    py.call('backend.set_typing', [convId, "paused"]);
-                    stoppedTypingTimer.start();
-                }
-            }
+            TextField {
+                id: messageField
+                placeholderText: i18n.tr("Write a message")
+                Layout.fillWidth: true
 
-            Timer {
-                id: stoppedTypingTimer
-                interval: 3000
-                onTriggered: py.call('backend.set_typing', [convId, "stopped"]);
-            }
-
-            onTextChanged: {
-                py.call('backend.set_typing', [convId, "typing"]);
-                pausedTypingTimer.stop();
-                stoppedTypingTimer.stop();
-                pausedTypingTimer.start();
-            }
-        }
-
-        Icon {
-            id: attachmentIcon
-
-            anchors.top: parent.top
-            anchors.right: sendIcon.left
-            anchors.bottom: parent.bottom
-            anchors.margins: units.gu(1)
-            anchors.rightMargin: units.gu(2)
-            anchors.leftMargin: units.gu(2)
-
-            name: 'insert-image'
-            width: height
-            height: parent.height - units.gu(1)
-
-            MouseArea {
-                anchors.fill: parent
-                onClicked: {
-                    importContentPopup.show();
-                }
-
-            }
-
-        }
-
-        Image {
-            id: sendIcon
-
-            property bool send_icon_clicked: false
-
-            anchors.top: parent.top
-            anchors.right: parent.right
-            anchors.bottom: parent.bottom
-            anchors.margins: units.gu(1)
-            anchors.rightMargin: units.gu(2)
-            anchors.leftMargin: units.gu(2)
-
-            source: Qt.resolvedUrl("../media/google-md-send-icon.svg")
-            width: height
-            height: parent.height - units.gu(1)
-
-            MouseArea {
-                anchors.fill: parent
-                onClicked: {
-                    Qt.inputMethod.commit();
-                    Qt.inputMethod.hide();
+                onAccepted: {
                     if (messageField.text !== "") {
                         py.call('backend.send_message', [convId, messageField.text]);
                         messageField.text = "";
@@ -306,16 +232,141 @@ Page {
                     }
                 }
 
+                Timer {
+                    id: pausedTypingTimer
+                    interval: 1500
+                    onTriggered: {
+                        py.call('backend.set_typing', [convId, "paused"]);
+                        stoppedTypingTimer.start();
+                    }
+                }
+
+                Timer {
+                    id: stoppedTypingTimer
+                    interval: 3000
+                    onTriggered: py.call('backend.set_typing', [convId, "stopped"]);
+                }
+
+                onTextChanged: {
+                    py.call('backend.set_typing', [convId, "typing"]);
+                    pausedTypingTimer.stop();
+                    stoppedTypingTimer.stop();
+                    pausedTypingTimer.start();
+                }
+            }
+
+            Icon {
+                name: "attachment"
+                width: height
+                height: messageField.height
+
+                MouseArea {
+                    anchors.fill: parent
+                    onClicked: {
+                        PopupUtils.open(attachmentPopover, parent)
+                    }
+                }
+
+            }
+
+            Image {
+                id: sendIcon
+                visible: false
+                source: Qt.resolvedUrl("../media/google-md-send-icon.svg")
+                width: messageField.height
+                height: messageField.height
+                sourceSize: Qt.size(width, height)
+
+
+            }
+
+            ColorOverlay {
+                width: sendIcon.width
+                height: sendIcon.height
+                source: sendIcon
+                color: UbuntuColors.blue
+
+                MouseArea {
+                    anchors.fill: parent
+                    onClicked: {
+                        Qt.inputMethod.commit();
+                        Qt.inputMethod.hide();
+                        if (messageField.text !== "") {
+                            py.call('backend.send_message', [convId, messageField.text]);
+                            messageField.text = "";
+                            py.call('backend.set_typing', [convId, "stopped"]);
+                            pausedTypingTimer.stop();
+                            stoppedTypingTimer.stop();
+                        }
+                    }
+
+                }
             }
 
         }
 
-        ColorOverlay {
-            anchors.fill: sendIcon
-            source: sendIcon
-            color: UbuntuColors.blue
-        }
+    }
 
+    Component {
+        id: attachmentPopover
+        Popover {
+            id: popover
+            Column {
+                id: containerLayout
+                anchors {
+                    left: parent.left
+                    top: parent.top
+                    right: parent.right
+                }
+                ListItem {
+                    RowLayout {
+                        anchors.fill: parent
+                        anchors.margins: units.dp(16)
+                        spacing: units.dp(8)
+
+                        Icon {
+                            name: 'insert-image'
+                            width: units.dp(24)
+                            height: width
+                        }
+
+                        Label {
+                            text: i18n.tr("Send image")
+                        }
+                    }
+                    MouseArea {
+                        anchors.fill: parent
+                        onClicked: {
+                            PopupUtils.close(popover);
+                            importContentPopup.show();
+                        }
+                    }
+                }
+                ListItem {
+                    RowLayout {
+                        anchors.fill: parent
+                        anchors.margins: units.dp(16)
+                        spacing: units.dp(8)
+
+                        Icon {
+                            name: 'other-actions'
+                            width: units.dp(24)
+                            height: width
+                        }
+
+                        Label {
+                            text: i18n.tr("Send sticker")
+                        }
+                    }
+                    MouseArea {
+                        anchors.fill: parent
+                        onClicked: {
+                            PopupUtils.close(popover);
+                        }
+                    }
+                }
+            }
+        }
     }
 
     ImportContentPopup {

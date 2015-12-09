@@ -230,18 +230,17 @@ MainView {
                 var chatPage = chatPages[conv_id];
 
                 if (insert_mode === "bottom") {
-                    chatModels[conv_id].append(data);
+                    chatModels[conv_id].insert(0, data);
                     if (chatPage.visible) {
                         if (chatPage.listView.isAtBottomArea)
-                            chatPage.listView.positionViewAtEnd();
+                            chatPage.listView.positionViewAtBeginning();
                     }
                 }
                 else if (insert_mode === "top") {
-                    chatModels[conv_id].insert(0, data);
+                    chatModels[conv_id].append(data);
                     chatPage.pullToRefresh.refreshing = false;
                     if (chatPage.visible && !chatPage.pullToRefreshLoading) {
-                        chatPage.listView.positionViewAtIndex(chatPage.listView.model.count - 1, ListView.Beginning)
-                        //chatPage.listView.positionViewAtEnd(); // TODO: only if view is on bottom?
+                        chatPage.listView.positionViewAtBeginning();
                     }
                 }
             });

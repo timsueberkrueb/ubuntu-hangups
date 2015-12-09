@@ -201,6 +201,7 @@ Page {
 
     Rectangle {
         id: bottomContainer
+        visible: !stickersOverlay.visible
         anchors.left: parent.left
         anchors.right: parent.right
         anchors.bottom: parent.bottom
@@ -361,10 +362,29 @@ Page {
                     MouseArea {
                         anchors.fill: parent
                         onClicked: {
+                            stickersOverlay.show();
                             PopupUtils.close(popover);
                         }
                     }
                 }
+            }
+        }
+    }
+
+    StickersOverlay {
+        id: stickersOverlay
+        anchors {
+            left: parent.left
+            bottom: parent.bottom
+            right: parent.right
+        }
+
+        height: showing ? Math.min(parent.height*(1/2), units.dp(356)) : 0
+        onHeightChanged: console.log(height)
+
+        Behavior on height {
+            NumberAnimation {
+                duration: 200
             }
         }
     }

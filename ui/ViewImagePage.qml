@@ -16,7 +16,7 @@ Page {
     }
     property alias source: img.source
     property url image_filename
-
+    onSourceChanged: console.log(source)
 
     function shareImage() {
         PopupUtils.open(downloadProgressDialog);

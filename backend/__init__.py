@@ -215,6 +215,9 @@ class ConversationController:
             self.conv.send_message(segments, image_file=image_file)
         ).add_done_callback(functools.partial(self.on_message_sent, local_id=local_id))
 
+    def send_sticker(self, url):
+        pass
+
     def on_message_sent(self, future, local_id=None):
         global loop, client
         try:
@@ -557,6 +560,8 @@ def send_image(conv_id, filename):
     image_file = open(filename, 'rb')
     call_threadsafe(conv_controllers[conv_id].send_message, "", image_file, filename);
 
+def send_sticker(conv_id, url):
+    call_threadsafe(conv_controllers[conv_id].send_sticker, url);
 
 def load_more_messages(conv_id):
     call_threadsafe(conv_controllers[conv_id].load_more_messages)

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-12-09 17:55+0100\n"
+"POT-Creation-Date: 2015-12-09 19:38+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -42,8 +42,16 @@ msgstr ""
 msgid "Release to load more"
 msgstr ""
 
-#: .ubuntu-sdk-deploy/ui/ChatPage.qml:222 ui/ChatPage.qml:222
+#: .ubuntu-sdk-deploy/ui/ChatPage.qml:223 ui/ChatPage.qml:223
 msgid "Write a message"
+msgstr ""
+
+#: .ubuntu-sdk-deploy/ui/ChatPage.qml:335 ui/ChatPage.qml:335
+msgid "Send image"
+msgstr ""
+
+#: .ubuntu-sdk-deploy/ui/ChatPage.qml:359 ui/ChatPage.qml:359
+msgid "Send sticker"
 msgstr ""
 
 #: .ubuntu-sdk-deploy/ui/ConversationsPage.qml:6 ui/ConversationsPage.qml:6
@@ -425,12 +433,4 @@ msgstr ""
 #: .ubuntu-sdk-deploy/Main.qml:361 Main.qml:361
 #, qt-format
 msgid "An error has occured: %1"
-msgstr ""
-
-#: ui/ChatPage.qml:334
-msgid "Send image"
-msgstr ""
-
-#: ui/ChatPage.qml:358
-msgid "Send sticker"
 msgstr ""

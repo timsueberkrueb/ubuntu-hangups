@@ -1,3 +1,5 @@
 {
-    "cache_images": true
+    "cache_images": false,
+    "check_routine_timeout": 30,
+    "custom_chat_background": false
 }

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-12-09 17:44+0100\n"
+"POT-Creation-Date: 2015-12-09 17:55+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -34,15 +34,15 @@ msgstr ""
 msgid "Add users"
 msgstr ""
 
-#: .ubuntu-sdk-deploy/ui/ChatPage.qml:161 ui/ChatPage.qml:156
+#: .ubuntu-sdk-deploy/ui/ChatPage.qml:156 ui/ChatPage.qml:156
 msgid "Pull to load more"
 msgstr ""
 
-#: .ubuntu-sdk-deploy/ui/ChatPage.qml:161 ui/ChatPage.qml:156
+#: .ubuntu-sdk-deploy/ui/ChatPage.qml:156 ui/ChatPage.qml:156
 msgid "Release to load more"
 msgstr ""
 
-#: .ubuntu-sdk-deploy/ui/ChatPage.qml:227 ui/ChatPage.qml:222
+#: .ubuntu-sdk-deploy/ui/ChatPage.qml:222 ui/ChatPage.qml:222
 msgid "Write a message"
 msgstr ""
 
@@ -199,7 +199,7 @@ msgid ""
 msgstr ""
 
 #: .ubuntu-sdk-deploy/ui/NetworkErrorDialog.qml:16
-#: .ubuntu-sdk-deploy/Main.qml:368 ui/NetworkErrorDialog.qml:16 Main.qml:367
+#: .ubuntu-sdk-deploy/Main.qml:367 ui/NetworkErrorDialog.qml:16 Main.qml:367
 msgid "Close"
 msgstr ""
 
@@ -418,11 +418,19 @@ msgstr ""
 msgid "%1 is typing ..."
 msgstr ""
 
-#: .ubuntu-sdk-deploy/Main.qml:358 Main.qml:357
+#: .ubuntu-sdk-deploy/Main.qml:357 Main.qml:357
 msgid "Error"
 msgstr ""
 
-#: .ubuntu-sdk-deploy/Main.qml:362 Main.qml:361
+#: .ubuntu-sdk-deploy/Main.qml:361 Main.qml:361
 #, qt-format
 msgid "An error has occured: %1"
+msgstr ""
+
+#: ui/ChatPage.qml:334
+msgid "Send image"
+msgstr ""
+
+#: ui/ChatPage.qml:358
+msgid "Send sticker"
 msgstr ""

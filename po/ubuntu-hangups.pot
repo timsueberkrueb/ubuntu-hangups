@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-11-22 16:22+0100\n"
+"POT-Creation-Date: 2015-12-09 16:26+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -199,7 +199,7 @@ msgid ""
 msgstr ""
 
 #: .ubuntu-sdk-deploy/ui/NetworkErrorDialog.qml:16
-#: .ubuntu-sdk-deploy/Main.qml:365 ui/NetworkErrorDialog.qml:16 Main.qml:365
+#: .ubuntu-sdk-deploy/Main.qml:365 ui/NetworkErrorDialog.qml:16 Main.qml:368
 msgid "Close"
 msgstr ""
 
@@ -247,37 +247,37 @@ msgstr ""
 msgid "Select users"
 msgstr ""
 
-#: .ubuntu-sdk-deploy/ui/LoginScreen.qml:39 ui/LoginScreen.qml:39
+#: .ubuntu-sdk-deploy/ui/LoginScreen.qml:37 ui/LoginScreen.qml:37
 msgid "In order to use Hangups you need to authenticate this app with Google"
 msgstr ""
 
-#: .ubuntu-sdk-deploy/ui/LoginScreen.qml:45 ui/LoginScreen.qml:45
+#: .ubuntu-sdk-deploy/ui/LoginScreen.qml:43 ui/LoginScreen.qml:43
 msgid "This app uses an inoffical Google Hangouts API called 'Hangups'."
 msgstr ""
 
-#: .ubuntu-sdk-deploy/ui/LoginScreen.qml:57 ui/LoginScreen.qml:57
+#: .ubuntu-sdk-deploy/ui/LoginScreen.qml:55 ui/LoginScreen.qml:55
 msgid "Hide details"
 msgstr ""
 
-#: .ubuntu-sdk-deploy/ui/LoginScreen.qml:57 ui/LoginScreen.qml:57
+#: .ubuntu-sdk-deploy/ui/LoginScreen.qml:55 ui/LoginScreen.qml:55
 msgid "More info"
 msgstr ""
 
-#: .ubuntu-sdk-deploy/ui/LoginScreen.qml:63 ui/LoginScreen.qml:63
+#: .ubuntu-sdk-deploy/ui/LoginScreen.qml:61 ui/LoginScreen.qml:61
 msgid "Got it"
 msgstr ""
 
-#: .ubuntu-sdk-deploy/ui/LoginScreen.qml:157
-#: .ubuntu-sdk-deploy/ui/LoadingScreen.qml:78 ui/LoginScreen.qml:157
-#: ui/LoadingScreen.qml:78
+#: .ubuntu-sdk-deploy/ui/LoginScreen.qml:155
+#: .ubuntu-sdk-deploy/ui/LoadingScreen.qml:77 ui/LoginScreen.qml:155
+#: ui/LoadingScreen.qml:77
 msgid "Loading, please wait ..."
 msgstr ""
 
-#: .ubuntu-sdk-deploy/ui/LoginScreen.qml:204 ui/LoginScreen.qml:204
+#: .ubuntu-sdk-deploy/ui/LoginScreen.qml:202 ui/LoginScreen.qml:202
 msgid "Welcome to Hangups!"
 msgstr ""
 
-#: .ubuntu-sdk-deploy/ui/LoginScreen.qml:217 ui/LoginScreen.qml:217
+#: .ubuntu-sdk-deploy/ui/LoginScreen.qml:215 ui/LoginScreen.qml:215
 msgid "Get started"
 msgstr ""
 
@@ -385,44 +385,44 @@ msgstr ""
 msgid "Are you sure to logout? This will quit the application."
 msgstr ""
 
-#: .ubuntu-sdk-deploy/ui/LoadingScreen.qml:7 ui/LoadingScreen.qml:7
+#: .ubuntu-sdk-deploy/ui/LoadingScreen.qml:6 ui/LoadingScreen.qml:6
 msgid "Authenticating ..."
 msgstr ""
 
-#: .ubuntu-sdk-deploy/ui/LoadingScreen.qml:8 ui/LoadingScreen.qml:8
+#: .ubuntu-sdk-deploy/ui/LoadingScreen.qml:7 ui/LoadingScreen.qml:7
 msgid "Creating Hangups client ..."
 msgstr ""
 
-#: .ubuntu-sdk-deploy/ui/LoadingScreen.qml:9 ui/LoadingScreen.qml:9
+#: .ubuntu-sdk-deploy/ui/LoadingScreen.qml:8 ui/LoadingScreen.qml:8
 msgid "Adding client observer ..."
 msgstr ""
 
-#: .ubuntu-sdk-deploy/ui/LoadingScreen.qml:10 ui/LoadingScreen.qml:10
+#: .ubuntu-sdk-deploy/ui/LoadingScreen.qml:9 ui/LoadingScreen.qml:9
 msgid "Loading chats ..."
 msgstr ""
 
-#: .ubuntu-sdk-deploy/ui/LoadingScreen.qml:113 ui/LoadingScreen.qml:113
+#: .ubuntu-sdk-deploy/ui/LoadingScreen.qml:112 ui/LoadingScreen.qml:112
 msgid "Thanks to"
 msgstr ""
 
-#: .ubuntu-sdk-deploy/ui/LoadingScreen.qml:115 ui/LoadingScreen.qml:115
+#: .ubuntu-sdk-deploy/ui/LoadingScreen.qml:114 ui/LoadingScreen.qml:114
 msgid "Powered by"
 msgstr ""
 
-#: .ubuntu-sdk-deploy/ui/LoadingScreen.qml:125 ui/LoadingScreen.qml:125
+#: .ubuntu-sdk-deploy/ui/LoadingScreen.qml:124 ui/LoadingScreen.qml:124
 msgid "you all ツ"
 msgstr ""
 
-#: .ubuntu-sdk-deploy/Main.qml:204 Main.qml:204
+#: .ubuntu-sdk-deploy/Main.qml:204 Main.qml:207
 #, qt-format
 msgid "%1 is typing ..."
 msgstr ""
 
-#: .ubuntu-sdk-deploy/Main.qml:355 Main.qml:355
+#: .ubuntu-sdk-deploy/Main.qml:355 Main.qml:358
 msgid "Error"
 msgstr ""
 
-#: .ubuntu-sdk-deploy/Main.qml:359 Main.qml:359
+#: .ubuntu-sdk-deploy/Main.qml:359 Main.qml:362
 #, qt-format
 msgid "An error has occured: %1"
 msgstr ""

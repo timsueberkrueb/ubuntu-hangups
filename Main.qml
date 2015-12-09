@@ -58,6 +58,7 @@ MainView {
         id: pageLayout
         primaryPage: conversationsPage
         anchors.fill: parent
+        visible: false
         layouts: [
             PageColumnsLayout {
                 when: pageLayout.width > units.gu(80)
@@ -137,11 +138,13 @@ MainView {
             setHandler('show-login-page', function() {
                 loadingScreen.visible = false;
                 loginScreen.visible = true;
+                pageLayout.visible = false;
             });
 
             setHandler('show-conversations-page', function() {
                 console.log("show-conversations-page")
                 loadingScreen.visible = false;
+                pageLayout.visible = true;
             });
 
             setHandler('move-conversation-to-top', function(conv_id){

@@ -1,10 +1,8 @@
 import QtQuick 2.0
 import Ubuntu.Components 1.3
-//import Ubuntu.Web 0.2
 import com.canonical.Oxide 1.0
 
- Item {
-    //title: i18n.tr("Authenticate with Google")
+ FocusScope {
     visible: false
 
     property string usContext: "messaging://"

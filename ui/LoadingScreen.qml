@@ -1,8 +1,7 @@
 import QtQuick 2.0
 import Ubuntu.Components 1.3
-//import Ubuntu.Web 0.2
 
- Item {
+ FocusScope {
     z: 5
     property string statusAuthenticating: i18n.tr("Authenticating ...")
     property string statusCreatingClient: i18n.tr("Creating Hangups client ...")

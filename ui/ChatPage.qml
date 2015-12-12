@@ -373,6 +373,11 @@ Page {
 
     StickersOverlay {
         id: stickersOverlay
+
+        onStickerTabbed: {
+            py.call("backend.send_sticker", [convId, imageID]);
+        }
+
         anchors {
             left: parent.left
             bottom: parent.bottom

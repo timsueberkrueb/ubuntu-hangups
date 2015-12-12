@@ -1,12 +1,20 @@
 import QtQuick 2.4
 import QtQuick.Layouts 1.0
 import Ubuntu.Components 1.3
-import "stickerset.js" as StickerSet
+import "."
 
 Rectangle {
     id: stickersOverlay
-    property string currentStickerSet: "Callouts_Internet"
+    property int currentStickerSet: 0
     property bool showing: false
+
+    signal stickerTabbed (var imageID)
+
+    onShowingChanged: {
+        if (!Stickers.loaded)
+            Stickers.load();
+    }
+
     visible: height > 0
 
     function hide() {
@@ -22,19 +30,20 @@ Rectangle {
         anchors.fill: parent
         anchors.rightMargin: units.dp(8)
 
-        RowLayout {
-            height: units.dp(64)
+        Flickable {
             Layout.fillWidth: true
 
+            contentWidth: row.childrenRect.width + units.dp(64)
+            height: units.dp(64)
             Row {
-                Layout.fillWidth: true
-
+                id: row
+                height: parent.height
                 Repeater {
                     id: repeater
-                    model: Object.keys(StickerSet.tabs)
+                    model: Stickers.stickers
                     delegate: Rectangle {
-                        color: currentStickerSet === modelData ? UbuntuColors.lightGrey : "transparent"
-                        property url imageSource: StickerSet.tabs[modelData];
+                        color: currentStickerSet === index ? UbuntuColors.lightGrey : "transparent"
+                        property url imageSource: modelData !== undefined ? modelData["icon"] : Qt.resolvedUrl("");
                         width: childrenRect.width
                         height: childrenRect.height
                         Image {
@@ -45,22 +54,9 @@ Rectangle {
                         MouseArea {
                             anchors.fill: parent
                             onClicked: {
-                                currentStickerSet = modelData;
+                                currentStickerSet = index;
                             }
                         }
-                    }
-                }
-
-            }
-
-            Icon {
-                name: "close"
-                height: units.dp(24)
-                width: height
-                MouseArea {
-                    anchors.fill: parent
-                    onClicked: {
-                        hide();
                     }
                 }
             }
@@ -76,12 +72,48 @@ Rectangle {
                 id: flow
                 anchors.fill: parent
                 Repeater {
-                    model: StickerSet.stickers[currentStickerSet]
+                    model: Stickers.stickers.length === 0 ? [] : Stickers.stickers[currentStickerSet]["stickers"]
                     delegate: Image {
                         fillMode: Image.PreserveAspectFit
-                        source: modelData
+                        source: modelData["url"];
                         width: units.dp(96)
+
+                        MouseArea {
+                            anchors.fill: parent
+                            onClicked: {
+                                stickerTabbed(modelData["gphoto_id"])
+                                hide();
+                            }
+                        }
                     }
+                }
+            }
+        }
+    }
+
+    ActivityIndicator {
+        anchors.centerIn: parent
+        visible: Object.keys(Stickers.stickers).length === 0
+        running: visible
+    }
+
+    Rectangle {
+        anchors {
+            right: parent.right
+            top: parent.top
+        }
+        width: units.dp(64)
+        height: units.dp(64)
+
+        Icon {
+            anchors.centerIn: parent
+            height: units.dp(24)
+            width: height
+            name: "close"
+            MouseArea {
+                anchors.fill: parent
+                onClicked: {
+                    hide();
                 }
             }
         }

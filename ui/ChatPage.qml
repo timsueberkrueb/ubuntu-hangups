@@ -122,12 +122,6 @@ Page {
             Item {
                 height: units.gu(5)
                 width: parent.width
-
-                ActivityIndicator {
-                    running: !loaded
-                    anchors.horizontalCenter: parent.horizontalCenter
-                    anchors.verticalCenter: parent.verticalCenter
-                }
             }
         }
 
@@ -135,6 +129,12 @@ Page {
             Item {
                 height: units.gu(5)
                 width: parent.width
+
+                ActivityIndicator {
+                    running: !loaded
+                    anchors.horizontalCenter: parent.horizontalCenter
+                    anchors.verticalCenter: parent.verticalCenter
+                }
             }
         }
 

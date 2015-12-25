@@ -110,8 +110,6 @@ Page {
         anchors.bottom: bottomContainer.top
 
         verticalLayoutDirection: ListView.BottomToTop
-        // this is to keep the scrolling smooth
-        cacheBuffer: units.gu(10)*20
 
         clip: true
 

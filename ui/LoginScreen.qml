@@ -40,9 +40,7 @@ import com.canonical.Oxide 1.0
         FlexibleLabel {
             id: infoLabel
             visible: infoContainer.detailsMode
-            text: i18n.tr("This app uses an inoffical Google Hangouts API called 'Hangups'." +
-                          " In order to have the relevant access it connects as an iOS device. " +
-                          "You can always deny the access <a href='https://security.google.com/settings/security/permissions'>here</a>.")
+            text: i18n.tr("This app uses an inoffical Google Hangouts API called 'Hangups'. In order to have the relevant access it connects as an iOS device. You can always deny the access <a href='https://security.google.com/settings/security/permissions'>here</a>.")
             onLinkActivated: Qt.openUrlExternally(link);
         }
 

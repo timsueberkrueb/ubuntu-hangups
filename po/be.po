@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Ubuntu Hangups\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-11-22 16:22+0100\n"
-"PO-Revision-Date: 2015-11-23 10:10+0000\n"
+"POT-Creation-Date: 2015-12-12 14:33+0100\n"
+"PO-Revision-Date: 2015-12-10 10:17+0000\n"
 "Last-Translator: Tim Süberkrüb <tim.sueberkrueb@gmail.com>\n"
 "Language-Team: Belarusian (http://www.transifex.com/tim-sueberkrueb/ubuntu-hangups/language/be/)\n"
 "MIME-Version: 1.0\n"
@@ -18,34 +18,42 @@ msgstr ""
 "Language: be\n"
 "Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n%100>=11 && n%100<=14)? 2 : 3);\n"
 
-#: .ubuntu-sdk-deploy/ui/ChatPage.qml:44 ui/ChatPage.qml:44
+#: .ubuntu-sdk-deploy/ui/ChatPage.qml:46 ui/ChatPage.qml:46
 msgid "Info"
 msgstr "Інфармацыя"
 
-#: .ubuntu-sdk-deploy/ui/ChatPage.qml:49
-#: .ubuntu-sdk-deploy/ui/ConversationsPage.qml:12 ui/ChatPage.qml:49
+#: .ubuntu-sdk-deploy/ui/ChatPage.qml:51
+#: .ubuntu-sdk-deploy/ui/ConversationsPage.qml:12 ui/ChatPage.qml:51
 #: ui/ConversationsPage.qml:12
 msgid "Add"
 msgstr "Дадаць"
 
-#: .ubuntu-sdk-deploy/ui/ChatPage.qml:56
+#: .ubuntu-sdk-deploy/ui/ChatPage.qml:58
 #: .ubuntu-sdk-deploy/ui/ConversationsPage.qml:142
-#: .ubuntu-sdk-deploy/ui/ConversationsPage.qml:150 ui/ChatPage.qml:56
+#: .ubuntu-sdk-deploy/ui/ConversationsPage.qml:150 ui/ChatPage.qml:58
 #: ui/ConversationsPage.qml:142 ui/ConversationsPage.qml:150
 msgid "Add users"
 msgstr "Дадаць карыстальніка"
 
-#: .ubuntu-sdk-deploy/ui/ChatPage.qml:150 ui/ChatPage.qml:150
+#: .ubuntu-sdk-deploy/ui/ChatPage.qml:156 ui/ChatPage.qml:156
 msgid "Pull to load more"
 msgstr "Пацягнуць, каб загрузіць болей"
 
-#: .ubuntu-sdk-deploy/ui/ChatPage.qml:150 ui/ChatPage.qml:150
+#: .ubuntu-sdk-deploy/ui/ChatPage.qml:156 ui/ChatPage.qml:156
 msgid "Release to load more"
 msgstr "Адпусціць, каб загрузіць болей"
 
-#: .ubuntu-sdk-deploy/ui/ChatPage.qml:220 ui/ChatPage.qml:220
+#: .ubuntu-sdk-deploy/ui/ChatPage.qml:223 ui/ChatPage.qml:223
 msgid "Write a message"
 msgstr "Напісаць паведамленне"
+
+#: .ubuntu-sdk-deploy/ui/ChatPage.qml:335 ui/ChatPage.qml:335
+msgid "Send image"
+msgstr ""
+
+#: .ubuntu-sdk-deploy/ui/ChatPage.qml:359 ui/ChatPage.qml:359
+msgid "Send sticker"
+msgstr ""
 
 #: .ubuntu-sdk-deploy/ui/ConversationsPage.qml:6 ui/ConversationsPage.qml:6
 msgid "Conversations"
@@ -202,7 +210,7 @@ msgid ""
 msgstr ""
 
 #: .ubuntu-sdk-deploy/ui/NetworkErrorDialog.qml:16
-#: .ubuntu-sdk-deploy/Main.qml:365 ui/NetworkErrorDialog.qml:16 Main.qml:365
+#: .ubuntu-sdk-deploy/Main.qml:367 ui/NetworkErrorDialog.qml:16 Main.qml:367
 msgid "Close"
 msgstr "Зачыніць"
 
@@ -250,37 +258,37 @@ msgstr "Атрыманне выявы, пачакайце, калі ласка..
 msgid "Select users"
 msgstr "Выбраць карыстальнікаў"
 
-#: .ubuntu-sdk-deploy/ui/LoginScreen.qml:39 ui/LoginScreen.qml:39
+#: .ubuntu-sdk-deploy/ui/LoginScreen.qml:37 ui/LoginScreen.qml:37
 msgid "In order to use Hangups you need to authenticate this app with Google"
 msgstr "Каб выкарыстоўваць Hangups, патрэбна аўтэнтыфікаваць гэтую праграму з Google"
 
-#: .ubuntu-sdk-deploy/ui/LoginScreen.qml:45 ui/LoginScreen.qml:45
+#: .ubuntu-sdk-deploy/ui/LoginScreen.qml:43 ui/LoginScreen.qml:43
 msgid "This app uses an inoffical Google Hangouts API called 'Hangups'."
 msgstr ""
 
-#: .ubuntu-sdk-deploy/ui/LoginScreen.qml:57 ui/LoginScreen.qml:57
+#: .ubuntu-sdk-deploy/ui/LoginScreen.qml:55 ui/LoginScreen.qml:55
 msgid "Hide details"
 msgstr ""
 
-#: .ubuntu-sdk-deploy/ui/LoginScreen.qml:57 ui/LoginScreen.qml:57
+#: .ubuntu-sdk-deploy/ui/LoginScreen.qml:55 ui/LoginScreen.qml:55
 msgid "More info"
 msgstr ""
 
-#: .ubuntu-sdk-deploy/ui/LoginScreen.qml:63 ui/LoginScreen.qml:63
+#: .ubuntu-sdk-deploy/ui/LoginScreen.qml:61 ui/LoginScreen.qml:61
 msgid "Got it"
 msgstr "Зразумела"
 
-#: .ubuntu-sdk-deploy/ui/LoginScreen.qml:157
-#: .ubuntu-sdk-deploy/ui/LoadingScreen.qml:78 ui/LoginScreen.qml:157
-#: ui/LoadingScreen.qml:78
+#: .ubuntu-sdk-deploy/ui/LoginScreen.qml:155
+#: .ubuntu-sdk-deploy/ui/LoadingScreen.qml:77 ui/LoginScreen.qml:155
+#: ui/LoadingScreen.qml:77
 msgid "Loading, please wait ..."
 msgstr "Загрузка, пачакайце, калі ласка..."
 
-#: .ubuntu-sdk-deploy/ui/LoginScreen.qml:204 ui/LoginScreen.qml:204
+#: .ubuntu-sdk-deploy/ui/LoginScreen.qml:202 ui/LoginScreen.qml:202
 msgid "Welcome to Hangups!"
 msgstr "Вітаю ў Hangups!"
 
-#: .ubuntu-sdk-deploy/ui/LoginScreen.qml:217 ui/LoginScreen.qml:217
+#: .ubuntu-sdk-deploy/ui/LoginScreen.qml:215 ui/LoginScreen.qml:215
 msgid "Get started"
 msgstr "Спачатку"
 
@@ -389,44 +397,44 @@ msgstr ""
 msgid "Are you sure to logout? This will quit the application."
 msgstr ""
 
-#: .ubuntu-sdk-deploy/ui/LoadingScreen.qml:7 ui/LoadingScreen.qml:7
+#: .ubuntu-sdk-deploy/ui/LoadingScreen.qml:6 ui/LoadingScreen.qml:6
 msgid "Authenticating ..."
 msgstr ""
 
-#: .ubuntu-sdk-deploy/ui/LoadingScreen.qml:8 ui/LoadingScreen.qml:8
+#: .ubuntu-sdk-deploy/ui/LoadingScreen.qml:7 ui/LoadingScreen.qml:7
 msgid "Creating Hangups client ..."
 msgstr ""
 
-#: .ubuntu-sdk-deploy/ui/LoadingScreen.qml:9 ui/LoadingScreen.qml:9
+#: .ubuntu-sdk-deploy/ui/LoadingScreen.qml:8 ui/LoadingScreen.qml:8
 msgid "Adding client observer ..."
 msgstr ""
 
-#: .ubuntu-sdk-deploy/ui/LoadingScreen.qml:10 ui/LoadingScreen.qml:10
+#: .ubuntu-sdk-deploy/ui/LoadingScreen.qml:9 ui/LoadingScreen.qml:9
 msgid "Loading chats ..."
 msgstr ""
 
-#: .ubuntu-sdk-deploy/ui/LoadingScreen.qml:113 ui/LoadingScreen.qml:113
+#: .ubuntu-sdk-deploy/ui/LoadingScreen.qml:112 ui/LoadingScreen.qml:112
 msgid "Thanks to"
 msgstr ""
 
-#: .ubuntu-sdk-deploy/ui/LoadingScreen.qml:115 ui/LoadingScreen.qml:115
+#: .ubuntu-sdk-deploy/ui/LoadingScreen.qml:114 ui/LoadingScreen.qml:114
 msgid "Powered by"
 msgstr ""
 
-#: .ubuntu-sdk-deploy/ui/LoadingScreen.qml:125 ui/LoadingScreen.qml:125
+#: .ubuntu-sdk-deploy/ui/LoadingScreen.qml:124 ui/LoadingScreen.qml:124
 msgid "you all ツ"
 msgstr ""
 
-#: .ubuntu-sdk-deploy/Main.qml:204 Main.qml:204
+#: .ubuntu-sdk-deploy/Main.qml:207 Main.qml:207
 #, qt-format
 msgid "%1 is typing ..."
 msgstr "%1 друкуе..."
 
-#: .ubuntu-sdk-deploy/Main.qml:355 Main.qml:355
+#: .ubuntu-sdk-deploy/Main.qml:357 Main.qml:357
 msgid "Error"
 msgstr "Памылка"
 
-#: .ubuntu-sdk-deploy/Main.qml:359 Main.qml:359
+#: .ubuntu-sdk-deploy/Main.qml:361 Main.qml:361
 #, qt-format
 msgid "An error has occured: %1"
 msgstr "Адбылася памылка: %1"

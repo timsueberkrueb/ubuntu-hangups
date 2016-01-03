@@ -337,6 +337,13 @@ MainView {
             importModule('backend', function(){
                 console.log("python loaded");
                 call('backend.start');
+
+                // Load stickers
+                console.log("loading stickers")
+                call('backend.settings_get', ['load_stickers_on_start'], function callback(value){
+                    if (value)
+                        Stickers.load();
+                });
             });
         }
         onError: {

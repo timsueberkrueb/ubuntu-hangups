@@ -276,8 +276,6 @@ Page {
                 width: messageField.height
                 height: messageField.height
                 sourceSize: Qt.size(width, height)
-
-
             }
 
             ColorOverlay {
@@ -384,7 +382,6 @@ Page {
         }
 
         height: showing ? Math.min(parent.height*(1/2), units.dp(356)) : 0
-        onHeightChanged: console.log(height)
 
         Behavior on height {
             NumberAnimation {

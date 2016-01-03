@@ -124,6 +124,36 @@ Page {
             }
 
             Label {
+                text: i18n.tr("Stickers")
+                fontSize: "x-large"
+            }
+
+            Row {
+                spacing: units.gu(1)
+
+                CheckBox {
+                    anchors.verticalCenter: parent.verticalCenter
+                    enabled: false
+                    checked: true
+                    Component.onCompleted: {
+                        py.call('backend.settings_get', ['load_stickers_on_start'], function callback(value){
+                            checked = value;
+                            enabled = true;
+                        });
+                    }
+
+                    onCheckedChanged: {
+                        py.call('backend.settings_set', ['load_stickers_on_start', checked]);
+                    }
+                }
+
+                Label {
+                    anchors.verticalCenter: parent.verticalCenter
+                    text: i18n.tr("Load stickers on start")
+                }
+            }
+
+            Label {
                 text: i18n.tr("Routine Timer")
                 fontSize: "x-large"
             }

@@ -177,6 +177,7 @@ Page {
                  text: i18n.tr("Delete")
                  color: UbuntuColors.orange
                  onClicked: {
+                     pageLayout.removePages(chatPages[id_]);
                      py.call('backend.delete_conversation', [id_]);
                      PopupUtils.close(dialog);
                  }

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-01-03 14:43+0100\n"
+"POT-Creation-Date: 2016-01-03 16:31+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -103,7 +103,7 @@ msgstr ""
 #: .ubuntu-sdk-deploy/ui/ConversationsPage.qml:188
 #: .ubuntu-sdk-deploy/ui/SettingsPage.qml:229
 #: .ubuntu-sdk-deploy/ui/SettingsPage.qml:278 ui/ConversationsPage.qml:188
-#: ui/SettingsPage.qml:229 ui/SettingsPage.qml:278
+#: ui/SettingsPage.qml:227 ui/SettingsPage.qml:276
 msgid "Cancel"
 msgstr ""
 
@@ -259,33 +259,37 @@ msgstr ""
 msgid "In order to use Hangups you need to authenticate this app with Google"
 msgstr ""
 
-#: .ubuntu-sdk-deploy/ui/LoginScreen.qml:43
-msgid "This app uses an inoffical Google Hangouts API called 'Hangups'."
+#: .ubuntu-sdk-deploy/ui/LoginScreen.qml:43 ui/LoginScreen.qml:43
+msgid ""
+"This app uses an inoffical Google Hangouts API called 'Hangups'. In order to "
+"have the relevant access it connects as an iOS device. You can always deny "
+"the access <a href='https://security.google.com/settings/security/"
+"permissions'>here</a>."
 msgstr ""
 
-#: .ubuntu-sdk-deploy/ui/LoginScreen.qml:55 ui/LoginScreen.qml:53
+#: .ubuntu-sdk-deploy/ui/LoginScreen.qml:53 ui/LoginScreen.qml:53
 msgid "Hide details"
 msgstr ""
 
-#: .ubuntu-sdk-deploy/ui/LoginScreen.qml:55 ui/LoginScreen.qml:53
+#: .ubuntu-sdk-deploy/ui/LoginScreen.qml:53 ui/LoginScreen.qml:53
 msgid "More info"
 msgstr ""
 
-#: .ubuntu-sdk-deploy/ui/LoginScreen.qml:61 ui/LoginScreen.qml:59
+#: .ubuntu-sdk-deploy/ui/LoginScreen.qml:59 ui/LoginScreen.qml:59
 msgid "Got it"
 msgstr ""
 
-#: .ubuntu-sdk-deploy/ui/LoginScreen.qml:155
+#: .ubuntu-sdk-deploy/ui/LoginScreen.qml:153
 #: .ubuntu-sdk-deploy/ui/LoadingScreen.qml:77 ui/LoginScreen.qml:153
 #: ui/LoadingScreen.qml:77
 msgid "Loading, please wait ..."
 msgstr ""
 
-#: .ubuntu-sdk-deploy/ui/LoginScreen.qml:202 ui/LoginScreen.qml:200
+#: .ubuntu-sdk-deploy/ui/LoginScreen.qml:200 ui/LoginScreen.qml:200
 msgid "Welcome to Hangups!"
 msgstr ""
 
-#: .ubuntu-sdk-deploy/ui/LoginScreen.qml:215 ui/LoginScreen.qml:213
+#: .ubuntu-sdk-deploy/ui/LoginScreen.qml:213 ui/LoginScreen.qml:213
 msgid "Get started"
 msgstr ""
 
@@ -337,7 +341,7 @@ msgstr ""
 
 #: .ubuntu-sdk-deploy/ui/SettingsPage.qml:118
 #: .ubuntu-sdk-deploy/ui/SettingsPage.qml:210 ui/SettingsPage.qml:118
-#: ui/SettingsPage.qml:210
+#: ui/SettingsPage.qml:208
 msgid "Clear cache"
 msgstr ""
 
@@ -363,41 +367,41 @@ msgstr ""
 msgid "Account"
 msgstr ""
 
-#: .ubuntu-sdk-deploy/ui/SettingsPage.qml:211 ui/SettingsPage.qml:211
+#: .ubuntu-sdk-deploy/ui/SettingsPage.qml:211 ui/SettingsPage.qml:209
 msgid ""
 "Are you sure to clear the cache? All images will have to be redownloaded."
 msgstr ""
 
-#: .ubuntu-sdk-deploy/ui/SettingsPage.qml:214 ui/SettingsPage.qml:214
+#: .ubuntu-sdk-deploy/ui/SettingsPage.qml:214 ui/SettingsPage.qml:212
 msgid "Clear now"
 msgstr ""
 
 #: .ubuntu-sdk-deploy/ui/SettingsPage.qml:219
-#: .ubuntu-sdk-deploy/ui/SettingsPage.qml:268 ui/SettingsPage.qml:219
-#: ui/SettingsPage.qml:268
+#: .ubuntu-sdk-deploy/ui/SettingsPage.qml:268 ui/SettingsPage.qml:217
+#: ui/SettingsPage.qml:266
 msgid "Working ..."
 msgstr ""
 
-#: .ubuntu-sdk-deploy/ui/SettingsPage.qml:240 ui/SettingsPage.qml:240
+#: .ubuntu-sdk-deploy/ui/SettingsPage.qml:240 ui/SettingsPage.qml:238
 msgid "Cache cleared"
 msgstr ""
 
-#: .ubuntu-sdk-deploy/ui/SettingsPage.qml:241 ui/SettingsPage.qml:241
+#: .ubuntu-sdk-deploy/ui/SettingsPage.qml:241 ui/SettingsPage.qml:239
 msgid ""
 "The cache was cleared successful. Please restart the application to continue."
 msgstr ""
 
-#: .ubuntu-sdk-deploy/ui/SettingsPage.qml:245 ui/SettingsPage.qml:245
+#: .ubuntu-sdk-deploy/ui/SettingsPage.qml:245 ui/SettingsPage.qml:243
 msgid "Okay"
 msgstr ""
 
 #: .ubuntu-sdk-deploy/ui/SettingsPage.qml:259
-#: .ubuntu-sdk-deploy/ui/SettingsPage.qml:263 ui/SettingsPage.qml:259
-#: ui/SettingsPage.qml:263
+#: .ubuntu-sdk-deploy/ui/SettingsPage.qml:263 ui/SettingsPage.qml:257
+#: ui/SettingsPage.qml:261
 msgid "Logout"
 msgstr ""
 
-#: .ubuntu-sdk-deploy/ui/SettingsPage.qml:260 ui/SettingsPage.qml:260
+#: .ubuntu-sdk-deploy/ui/SettingsPage.qml:260 ui/SettingsPage.qml:258
 msgid "Are you sure to logout? This will quit the application."
 msgstr ""
 
@@ -441,12 +445,4 @@ msgstr ""
 #: .ubuntu-sdk-deploy/Main.qml:368 Main.qml:368
 #, qt-format
 msgid "An error has occured: %1"
-msgstr ""
-
-#: ui/LoginScreen.qml:43
-msgid ""
-"This app uses an inoffical Google Hangouts API called 'Hangups'. In order to "
-"have the relevant access it connects as an iOS device. You can always deny "
-"the access <a href='https://security.google.com/settings/security/"
-"permissions'>here</a>."
 msgstr ""

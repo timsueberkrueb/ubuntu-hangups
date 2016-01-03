@@ -197,8 +197,6 @@ Page {
                 color: UbuntuColors.red
                 onClicked: PopupUtils.open(logoutDialog)
             }
-
-
         }
 
     }

@@ -141,6 +141,7 @@ Page {
                     Action {
                         text: i18n.tr("Add users")
                         iconName: "add"
+                        enabled: modelData.users.count > 2
                         onTriggered: {
                             var user_ids = [];
                             var users = modelData.users

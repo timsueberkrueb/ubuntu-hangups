@@ -49,11 +49,12 @@ Page {
         Action {
             iconName: "add"
             text: i18n.tr("Add")
+            property var userModel: conversationsModel.get(getConversationModelIndexById(convId)).users
+            enabled: userModel.count > 2
             onTriggered: {
                 var user_ids = [];
-                var users = conversationsModel.get(getConversationModelIndexById(convId)).users;
-                for (var i=0; i<users.count; i++) {
-                    user_ids.push(users.get(i).id_.toString());
+                for (var i=0; i<userModel.count; i++) {
+                    user_ids.push(userModel.get(i).id_.toString());
                 }
                 pageLayout.addPageToNextColumn(chatPage, selectUsersPage, {headTitle: i18n.tr("Add users"), excludedUsers: user_ids, callback: function onUsersSelected(users){
                     py.call('backend.add_users', [convId, users]);

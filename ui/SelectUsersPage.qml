@@ -29,30 +29,35 @@ Page {
         callback(users);
     }
 
-    head.actions: [
-        Action {
-            id: actionOk
-            iconName: "ok"
-            onTriggered: {
-                if (listView.selectedModel.length > 0) {
-                    var selectedUsers = new Array();
-                    for (var i=0; i<listView.selectedModel.length; i++) {
-                        var modelIndex = listView.selectedModel[i];
-                        var modelData = contactsModel.get(modelIndex);
-                        selectedUsers.push(modelData.id_);
+    head {
+        locked: true
+        visible: false
+        actions: [
+            Action {
+                id: actionOk
+                iconName: "ok"
+                onTriggered: {
+                    if (listView.selectedModel.length > 0) {
+                        var selectedUsers = new Array();
+                        for (var i=0; i<listView.selectedModel.length; i++) {
+                            var modelIndex = listView.selectedModel[i];
+                            var modelData = contactsModel.get(modelIndex);
+                            selectedUsers.push(modelData.id_);
+                        }
+                        usersSelected(selectedUsers);
                     }
-                    usersSelected(selectedUsers);
+                    pageLayout.removePages(selectUsersPage);
                 }
-                pageLayout.removePages(selectUsersPage);
+            },
+            Action {
+                iconName: "close"
+                onTriggered: {
+                    pageLayout.removePages(selectUsersPage);
+                }
             }
-        },
-        Action {
-            iconName: "close"
-            onTriggered: {
-                pageLayout.removePages(selectUsersPage);
-            }
-        }
-    ]
+        ]
+    }
+
 
     UbuntuListView {
         id: listView

@@ -71,7 +71,7 @@ class ConversationController:
             self.on_event(event)
 
         # Load some more messages on start:
-        asyncio.ensure_future(self._load_more(max_events=5))
+        asyncio.async(self._load_more(max_events=5))
 
         # Start timer routine
         threading.Timer(settings.get('check_routine_timeout'), self.check_routine).start()
@@ -211,12 +211,12 @@ class ConversationController:
                  ),
                  "bottom")
 
-        asyncio.ensure_future(
+        asyncio.async(
             self.conv.send_message(segments, image_file=image_file)
         ).add_done_callback(functools.partial(self.on_message_sent, local_id=local_id))
 
     def send_sticker(self, image_id):
-        asyncio.ensure_future(
+        asyncio.async(
             self.conv.send_message(
                 hangups.ChatMessageSegment.from_str(""),
                 image_user_id='108618507921641169817',
@@ -234,7 +234,7 @@ class ConversationController:
                 type=hangouts_pb2.FOCUS_TYPE_FOCUSED,
                 timeout_secs=20,
             )
-            asyncio.ensure_future(client.set_focus(request))
+            asyncio.async(client.set_focus(request))
             print('Message sent successful')
         except hangups.NetworkError:
             print('Failed to send message')
@@ -245,7 +245,7 @@ class ConversationController:
         self.load_more(callback)
 
     def load_more(self, callback=lambda future: future.result()):
-        asyncio.ensure_future(self._load_more()).add_done_callback(callback)
+        asyncio.async(self._load_more()).add_done_callback(callback)
 
     def set_typing(self, typing):
         global client
@@ -262,7 +262,7 @@ class ConversationController:
             type=t,
         )
 
-        asyncio.ensure_future(client.set_typing(request))
+        asyncio.async(client.set_typing(request))
 
     @asyncio.coroutine
     def _load_more(self, max_events=30):
@@ -285,10 +285,10 @@ class ConversationController:
     def on_entered(self):
         global client
         # Set the client as active.
-        future = asyncio.ensure_future(client.set_active())
+        future = asyncio.async(client.set_active())
         future.add_done_callback(lambda future: future.result())
 
-        future = asyncio.ensure_future(self.conv.update_read_timestamp())
+        future = asyncio.async(self.conv.update_read_timestamp())
 
         request = hangouts_pb2.SetFocusRequest(
             request_header=client.get_request_header(),
@@ -296,14 +296,14 @@ class ConversationController:
             type=hangouts_pb2.FOCUS_TYPE_FOCUSED,
             timeout_secs=20,
         )
-        asyncio.ensure_future(client.set_focus(request))
+        asyncio.async(client.set_focus(request))
 
     def on_leave(self):
         self.set_title()
 
     def on_messages_read(self):
         # Mark the newest event as read.
-        future = asyncio.ensure_future(self.conv.update_read_timestamp())
+        future = asyncio.async(self.conv.update_read_timestamp())
 
     def add_users(self, users):
         global client
@@ -321,11 +321,11 @@ class ConversationController:
             ),
         )
 
-        asyncio.ensure_future(client.add_user(request))
+        asyncio.async(client.add_user(request))
 
     def delete(self):
         global client
-        asyncio.ensure_future(self.conv.leave()).add_done_callback(self.on_deleted)
+        asyncio.async(self.conv.leave()).add_done_callback(self.on_deleted)
 
     def on_deleted(self, future):
         pyotherside.send('delete-conversation', self.conv.id_)
@@ -336,7 +336,7 @@ class ConversationController:
 
     def set_quiet(self, quiet):
         level = hangouts_pb2.NOTIFICATION_LEVEL_QUIET if quiet else hangouts_pb2.NOTIFICATION_LEVEL_RING
-        asyncio.ensure_future(self.conv.set_notification_level(level)).add_done_callback(self.on_quiet_set)
+        asyncio.async(self.conv.set_notification_level(level)).add_done_callback(self.on_quiet_set)
         pyotherside.send('set-conversation-is-quiet', self.conv.id_, quiet)
 
     def on_quiet_set(self, future):
@@ -346,7 +346,7 @@ class ConversationController:
 
     def rename(self, name):
         global client
-        asyncio.ensure_future(self.conv.rename(name))
+        asyncio.async(self.conv.rename(name))
 
     def update_online_status(self):
         global client
@@ -362,7 +362,7 @@ class ConversationController:
                                     hangouts_pb2.FIELD_MASK_DEVICE],
                     )
 
-                    asyncio.ensure_future(client.query_presence(request)).add_done_callback(self.online_status_updated)
+                    asyncio.async(client.query_presence(request)).add_done_callback(self.online_status_updated)
                     break
 
     def online_status_updated(self, future):
@@ -471,7 +471,7 @@ def set_client_presence(online):
     global client
     try:
         pass
-        #asyncio.ensure_future(client.set_presence(online))
+        #asyncio.async(client.set_presence(online))
     except hangups.exceptions.NetworkError as e:
         print("Failed to set presence:", str(e))
 
@@ -516,7 +516,7 @@ def _create_conversation(users):
                     for chat_id in users],
     )
 
-    future = asyncio.ensure_future(client.create_conversation(request))
+    future = asyncio.async(client.create_conversation(request))
     future.add_done_callback(on_conversation_created)
 
 
@@ -551,7 +551,7 @@ def _send_new_conversation_welcome_message(conv_id, text):
              event_type=hangouts_pb2.EVENT_TYPE_REGULAR_CHAT_MESSAGE,
          ),
     )
-    asyncio.ensure_future(
+    asyncio.async(
         client.send_chat_message(request)
     ).add_done_callback(on_new_conversation_welcome_message_sent)
 

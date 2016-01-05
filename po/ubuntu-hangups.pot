@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-01-03 16:31+0100\n"
+"POT-Creation-Date: 2016-01-05 13:48+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -23,14 +23,14 @@ msgstr ""
 
 #: .ubuntu-sdk-deploy/ui/ChatPage.qml:51
 #: .ubuntu-sdk-deploy/ui/ConversationsPage.qml:12 ui/ChatPage.qml:51
-#: ui/ConversationsPage.qml:12
+#: ui/ConversationsPage.qml:14
 msgid "Add"
 msgstr ""
 
 #: .ubuntu-sdk-deploy/ui/ChatPage.qml:59
 #: .ubuntu-sdk-deploy/ui/ConversationsPage.qml:142
 #: .ubuntu-sdk-deploy/ui/ConversationsPage.qml:151 ui/ChatPage.qml:59
-#: ui/ConversationsPage.qml:142 ui/ConversationsPage.qml:151
+#: ui/ConversationsPage.qml:144 ui/ConversationsPage.qml:153
 msgid "Add users"
 msgstr ""
 
@@ -60,55 +60,55 @@ msgstr ""
 
 #: .ubuntu-sdk-deploy/ui/ConversationsPage.qml:14
 #: .ubuntu-sdk-deploy/ui/NewConversationWelcomeDialog.qml:8
-#: ui/ConversationsPage.qml:14 ui/NewConversationWelcomeDialog.qml:8
+#: ui/ConversationsPage.qml:16 ui/NewConversationWelcomeDialog.qml:8
 msgid "New Conversation"
 msgstr ""
 
 #: .ubuntu-sdk-deploy/ui/ConversationsPage.qml:21
-#: .ubuntu-sdk-deploy/ui/ContactsPage.qml:5 ui/ConversationsPage.qml:21
+#: .ubuntu-sdk-deploy/ui/ContactsPage.qml:5 ui/ConversationsPage.qml:23
 #: ui/ContactsPage.qml:5
 msgid "Contacts"
 msgstr ""
 
 #: .ubuntu-sdk-deploy/ui/ConversationsPage.qml:26
 #: .ubuntu-sdk-deploy/ui/AboutConversationPage.qml:25
-#: .ubuntu-sdk-deploy/ui/SettingsPage.qml:7 ui/ConversationsPage.qml:26
+#: .ubuntu-sdk-deploy/ui/SettingsPage.qml:7 ui/ConversationsPage.qml:28
 #: ui/AboutConversationPage.qml:25 ui/SettingsPage.qml:7
 msgid "Settings"
 msgstr ""
 
 #: .ubuntu-sdk-deploy/ui/ConversationsPage.qml:31
 #: .ubuntu-sdk-deploy/ui/ConversationsPage.qml:137
-#: .ubuntu-sdk-deploy/ui/AboutPage.qml:5 ui/ConversationsPage.qml:31
-#: ui/ConversationsPage.qml:137 ui/AboutPage.qml:5
+#: .ubuntu-sdk-deploy/ui/AboutPage.qml:5 ui/ConversationsPage.qml:33
+#: ui/ConversationsPage.qml:139 ui/AboutPage.qml:5
 msgid "About"
 msgstr ""
 
 #: .ubuntu-sdk-deploy/ui/ConversationsPage.qml:124
 #: .ubuntu-sdk-deploy/ui/ConversationsPage.qml:177
-#: ui/ConversationsPage.qml:124 ui/ConversationsPage.qml:177
+#: ui/ConversationsPage.qml:126 ui/ConversationsPage.qml:179
 msgid "Delete"
 msgstr ""
 
 #: .ubuntu-sdk-deploy/ui/ConversationsPage.qml:171
-#: ui/ConversationsPage.qml:171
+#: ui/ConversationsPage.qml:173
 msgid "Delete Conversation"
 msgstr ""
 
 #: .ubuntu-sdk-deploy/ui/ConversationsPage.qml:172
-#: ui/ConversationsPage.qml:172
+#: ui/ConversationsPage.qml:174
 msgid "Are you really sure to delete this conversation?"
 msgstr ""
 
 #: .ubuntu-sdk-deploy/ui/ConversationsPage.qml:188
-#: .ubuntu-sdk-deploy/ui/SettingsPage.qml:229
-#: .ubuntu-sdk-deploy/ui/SettingsPage.qml:278 ui/ConversationsPage.qml:188
+#: .ubuntu-sdk-deploy/ui/SettingsPage.qml:227
+#: .ubuntu-sdk-deploy/ui/SettingsPage.qml:276 ui/ConversationsPage.qml:190
 #: ui/SettingsPage.qml:227 ui/SettingsPage.qml:276
 msgid "Cancel"
 msgstr ""
 
 #: .ubuntu-sdk-deploy/ui/ConversationsPage.qml:197
-#: ui/ConversationsPage.qml:197
+#: ui/ConversationsPage.qml:199
 msgid "Nothing here, yet"
 msgstr ""
 
@@ -189,8 +189,8 @@ msgid ""
 msgstr ""
 
 #: .ubuntu-sdk-deploy/ui/ContactsPage.qml:81
-#: .ubuntu-sdk-deploy/ui/SelectUsersPage.qml:160 ui/ContactsPage.qml:81
-#: ui/SelectUsersPage.qml:160
+#: .ubuntu-sdk-deploy/ui/SelectUsersPage.qml:165 ui/ContactsPage.qml:81
+#: ui/SelectUsersPage.qml:165
 msgid "No contacts"
 msgstr ""
 
@@ -340,7 +340,7 @@ msgid "Cache images"
 msgstr ""
 
 #: .ubuntu-sdk-deploy/ui/SettingsPage.qml:118
-#: .ubuntu-sdk-deploy/ui/SettingsPage.qml:210 ui/SettingsPage.qml:118
+#: .ubuntu-sdk-deploy/ui/SettingsPage.qml:208 ui/SettingsPage.qml:118
 #: ui/SettingsPage.qml:208
 msgid "Clear cache"
 msgstr ""
@@ -367,41 +367,41 @@ msgstr ""
 msgid "Account"
 msgstr ""
 
-#: .ubuntu-sdk-deploy/ui/SettingsPage.qml:211 ui/SettingsPage.qml:209
+#: .ubuntu-sdk-deploy/ui/SettingsPage.qml:209 ui/SettingsPage.qml:209
 msgid ""
 "Are you sure to clear the cache? All images will have to be redownloaded."
 msgstr ""
 
-#: .ubuntu-sdk-deploy/ui/SettingsPage.qml:214 ui/SettingsPage.qml:212
+#: .ubuntu-sdk-deploy/ui/SettingsPage.qml:212 ui/SettingsPage.qml:212
 msgid "Clear now"
 msgstr ""
 
-#: .ubuntu-sdk-deploy/ui/SettingsPage.qml:219
-#: .ubuntu-sdk-deploy/ui/SettingsPage.qml:268 ui/SettingsPage.qml:217
+#: .ubuntu-sdk-deploy/ui/SettingsPage.qml:217
+#: .ubuntu-sdk-deploy/ui/SettingsPage.qml:266 ui/SettingsPage.qml:217
 #: ui/SettingsPage.qml:266
 msgid "Working ..."
 msgstr ""
 
-#: .ubuntu-sdk-deploy/ui/SettingsPage.qml:240 ui/SettingsPage.qml:238
+#: .ubuntu-sdk-deploy/ui/SettingsPage.qml:238 ui/SettingsPage.qml:238
 msgid "Cache cleared"
 msgstr ""
 
-#: .ubuntu-sdk-deploy/ui/SettingsPage.qml:241 ui/SettingsPage.qml:239
+#: .ubuntu-sdk-deploy/ui/SettingsPage.qml:239 ui/SettingsPage.qml:239
 msgid ""
 "The cache was cleared successful. Please restart the application to continue."
 msgstr ""
 
-#: .ubuntu-sdk-deploy/ui/SettingsPage.qml:245 ui/SettingsPage.qml:243
+#: .ubuntu-sdk-deploy/ui/SettingsPage.qml:243 ui/SettingsPage.qml:243
 msgid "Okay"
 msgstr ""
 
-#: .ubuntu-sdk-deploy/ui/SettingsPage.qml:259
-#: .ubuntu-sdk-deploy/ui/SettingsPage.qml:263 ui/SettingsPage.qml:257
+#: .ubuntu-sdk-deploy/ui/SettingsPage.qml:257
+#: .ubuntu-sdk-deploy/ui/SettingsPage.qml:261 ui/SettingsPage.qml:257
 #: ui/SettingsPage.qml:261
 msgid "Logout"
 msgstr ""
 
-#: .ubuntu-sdk-deploy/ui/SettingsPage.qml:260 ui/SettingsPage.qml:258
+#: .ubuntu-sdk-deploy/ui/SettingsPage.qml:258 ui/SettingsPage.qml:258
 msgid "Are you sure to logout? This will quit the application."
 msgstr ""
 

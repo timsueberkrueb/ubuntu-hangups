@@ -109,11 +109,11 @@ MainView {
         }
     }
 
-    LoginScreen {
+    /*LoginScreen {
         z: 5
         id: loginScreen
         anchors.fill: parent
-    }
+    }*/
 
     Audio {
         id: notificationSound

@@ -6,6 +6,8 @@ Page {
     title: i18n.tr("Conversations")
     visible: false
 
+    flickable: listView
+
     head.actions: [
         Action {
             iconName: "add"

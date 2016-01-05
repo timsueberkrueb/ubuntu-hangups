@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: Ubuntu Hangups\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-01-03 16:31+0100\n"
-"PO-Revision-Date: 2016-01-03 16:51+0000\n"
-"Last-Translator: Tim Süberkrüb <tim.sueberkrueb@gmail.com>\n"
+"PO-Revision-Date: 2016-01-04 10:12+0000\n"
+"Last-Translator: Heimen Stoffels <vistausss@outlook.com>\n"
 "Language-Team: Dutch (http://www.transifex.com/tim-sueberkrueb/ubuntu-hangups/language/nl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -268,7 +268,7 @@ msgid ""
 " have the relevant access it connects as an iOS device. You can always deny "
 "the access <a "
 "href='https://security.google.com/settings/security/permissions'>here</a>."
-msgstr ""
+msgstr "Deze app gebruikt een onofficiële Google Hangouts API genaamd 'Hangups' Om de juiste toegang te verkrijgen, doet het zich voor als een iOS-apparaatverbinding. U kunt de toestemming altijd intrekken op <a href='https://security.google.com/settings/security/permissions'>deze pagina</a>."
 
 #: .ubuntu-sdk-deploy/ui/LoginScreen.qml:53 ui/LoginScreen.qml:53
 msgid "Hide details"
@@ -350,11 +350,11 @@ msgstr "Cache wissen"
 
 #: .ubuntu-sdk-deploy/ui/SettingsPage.qml:127 ui/SettingsPage.qml:127
 msgid "Stickers"
-msgstr ""
+msgstr "Stickers"
 
 #: .ubuntu-sdk-deploy/ui/SettingsPage.qml:152 ui/SettingsPage.qml:152
 msgid "Load stickers on start"
-msgstr ""
+msgstr "Stickers laden bij het opstarten"
 
 #: .ubuntu-sdk-deploy/ui/SettingsPage.qml:157 ui/SettingsPage.qml:157
 msgid "Routine Timer"

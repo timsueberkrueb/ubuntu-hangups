@@ -3,14 +3,14 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
-# Diego Ferreiro, 2015
+# Diego Ferreiro, 2015-2016
 msgid ""
 msgstr ""
 "Project-Id-Version: Ubuntu Hangups\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-01-03 16:31+0100\n"
-"PO-Revision-Date: 2016-01-03 16:51+0000\n"
-"Last-Translator: Tim Süberkrüb <tim.sueberkrueb@gmail.com>\n"
+"PO-Revision-Date: 2016-01-04 10:38+0000\n"
+"Last-Translator: Diego Ferreiro\n"
 "Language-Team: Galician (http://www.transifex.com/tim-sueberkrueb/ubuntu-hangups/language/gl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -268,7 +268,7 @@ msgid ""
 " have the relevant access it connects as an iOS device. You can always deny "
 "the access <a "
 "href='https://security.google.com/settings/security/permissions'>here</a>."
-msgstr ""
+msgstr "Esta aplicación usa a API non oficial de Google Hangouts chamada 'Hangups'. Para acadar os accesos necesarios conéctase coma se fora un dispositivo iOS. En calquera momento poderás denegar o acceso <a href='https://security.google.com/settings/security/permissions'>aquí</a>."
 
 #: .ubuntu-sdk-deploy/ui/LoginScreen.qml:53 ui/LoginScreen.qml:53
 msgid "Hide details"
@@ -350,11 +350,11 @@ msgstr "Limpar a cache"
 
 #: .ubuntu-sdk-deploy/ui/SettingsPage.qml:127 ui/SettingsPage.qml:127
 msgid "Stickers"
-msgstr ""
+msgstr "Colantes"
 
 #: .ubuntu-sdk-deploy/ui/SettingsPage.qml:152 ui/SettingsPage.qml:152
 msgid "Load stickers on start"
-msgstr ""
+msgstr "Cargar colantes ao iniciar"
 
 #: .ubuntu-sdk-deploy/ui/SettingsPage.qml:157 ui/SettingsPage.qml:157
 msgid "Routine Timer"

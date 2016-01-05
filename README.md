@@ -86,7 +86,7 @@ qmlscene Main.qml
 
 
 ## Copyright and License
-(C) Copyright 2015 by Tim Süberkrüb and contributors
+(C) Copyright 2015-2016 by Tim Süberkrüb and contributors
 
 See CONTRIBUTORS.md for a full list of contributors.
 

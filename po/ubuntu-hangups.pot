@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-01-05 13:48+0100\n"
+"POT-Creation-Date: 2016-01-05 15:06+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -22,14 +22,14 @@ msgid "Info"
 msgstr ""
 
 #: .ubuntu-sdk-deploy/ui/ChatPage.qml:51
-#: .ubuntu-sdk-deploy/ui/ConversationsPage.qml:12 ui/ChatPage.qml:51
+#: .ubuntu-sdk-deploy/ui/ConversationsPage.qml:14 ui/ChatPage.qml:51
 #: ui/ConversationsPage.qml:14
 msgid "Add"
 msgstr ""
 
 #: .ubuntu-sdk-deploy/ui/ChatPage.qml:59
-#: .ubuntu-sdk-deploy/ui/ConversationsPage.qml:142
-#: .ubuntu-sdk-deploy/ui/ConversationsPage.qml:151 ui/ChatPage.qml:59
+#: .ubuntu-sdk-deploy/ui/ConversationsPage.qml:144
+#: .ubuntu-sdk-deploy/ui/ConversationsPage.qml:153 ui/ChatPage.qml:59
 #: ui/ConversationsPage.qml:144 ui/ConversationsPage.qml:153
 msgid "Add users"
 msgstr ""
@@ -58,56 +58,56 @@ msgstr ""
 msgid "Conversations"
 msgstr ""
 
-#: .ubuntu-sdk-deploy/ui/ConversationsPage.qml:14
+#: .ubuntu-sdk-deploy/ui/ConversationsPage.qml:16
 #: .ubuntu-sdk-deploy/ui/NewConversationWelcomeDialog.qml:8
 #: ui/ConversationsPage.qml:16 ui/NewConversationWelcomeDialog.qml:8
 msgid "New Conversation"
 msgstr ""
 
-#: .ubuntu-sdk-deploy/ui/ConversationsPage.qml:21
+#: .ubuntu-sdk-deploy/ui/ConversationsPage.qml:23
 #: .ubuntu-sdk-deploy/ui/ContactsPage.qml:5 ui/ConversationsPage.qml:23
 #: ui/ContactsPage.qml:5
 msgid "Contacts"
 msgstr ""
 
-#: .ubuntu-sdk-deploy/ui/ConversationsPage.qml:26
+#: .ubuntu-sdk-deploy/ui/ConversationsPage.qml:28
 #: .ubuntu-sdk-deploy/ui/AboutConversationPage.qml:25
 #: .ubuntu-sdk-deploy/ui/SettingsPage.qml:7 ui/ConversationsPage.qml:28
 #: ui/AboutConversationPage.qml:25 ui/SettingsPage.qml:7
 msgid "Settings"
 msgstr ""
 
-#: .ubuntu-sdk-deploy/ui/ConversationsPage.qml:31
-#: .ubuntu-sdk-deploy/ui/ConversationsPage.qml:137
-#: .ubuntu-sdk-deploy/ui/AboutPage.qml:5 ui/ConversationsPage.qml:33
-#: ui/ConversationsPage.qml:139 ui/AboutPage.qml:5
+#: .ubuntu-sdk-deploy/ui/ConversationsPage.qml:33
+#: .ubuntu-sdk-deploy/ui/ConversationsPage.qml:139
+#: .ubuntu-sdk-deploy/ui/AboutPage.qml:6 ui/ConversationsPage.qml:33
+#: ui/ConversationsPage.qml:139 ui/AboutPage.qml:6
 msgid "About"
 msgstr ""
 
-#: .ubuntu-sdk-deploy/ui/ConversationsPage.qml:124
-#: .ubuntu-sdk-deploy/ui/ConversationsPage.qml:177
+#: .ubuntu-sdk-deploy/ui/ConversationsPage.qml:126
+#: .ubuntu-sdk-deploy/ui/ConversationsPage.qml:179
 #: ui/ConversationsPage.qml:126 ui/ConversationsPage.qml:179
 msgid "Delete"
 msgstr ""
 
-#: .ubuntu-sdk-deploy/ui/ConversationsPage.qml:171
+#: .ubuntu-sdk-deploy/ui/ConversationsPage.qml:173
 #: ui/ConversationsPage.qml:173
 msgid "Delete Conversation"
 msgstr ""
 
-#: .ubuntu-sdk-deploy/ui/ConversationsPage.qml:172
+#: .ubuntu-sdk-deploy/ui/ConversationsPage.qml:174
 #: ui/ConversationsPage.qml:174
 msgid "Are you really sure to delete this conversation?"
 msgstr ""
 
-#: .ubuntu-sdk-deploy/ui/ConversationsPage.qml:188
+#: .ubuntu-sdk-deploy/ui/ConversationsPage.qml:190
 #: .ubuntu-sdk-deploy/ui/SettingsPage.qml:227
 #: .ubuntu-sdk-deploy/ui/SettingsPage.qml:276 ui/ConversationsPage.qml:190
 #: ui/SettingsPage.qml:227 ui/SettingsPage.qml:276
 msgid "Cancel"
 msgstr ""
 
-#: .ubuntu-sdk-deploy/ui/ConversationsPage.qml:197
+#: .ubuntu-sdk-deploy/ui/ConversationsPage.qml:199
 #: ui/ConversationsPage.qml:199
 msgid "Nothing here, yet"
 msgstr ""
@@ -135,45 +135,50 @@ msgstr ""
 msgid "%1 left the conversation"
 msgstr ""
 
-#: .ubuntu-sdk-deploy/ui/AboutPage.qml:27 ui/AboutPage.qml:27
+#: .ubuntu-sdk-deploy/ui/AboutPage.qml:46 ui/AboutPage.qml:45
+#, qt-format
+msgid "Version %1"
+msgstr ""
+
+#: .ubuntu-sdk-deploy/ui/AboutPage.qml:58 ui/AboutPage.qml:57
 msgid "Inofficial Google Hangouts client for Ubuntu Touch"
 msgstr ""
 
-#: .ubuntu-sdk-deploy/ui/AboutPage.qml:31 ui/AboutPage.qml:31
+#: .ubuntu-sdk-deploy/ui/AboutPage.qml:64 ui/AboutPage.qml:63
 msgid ""
 "Source code available on <a href='https://github.com/tim-sueberkrueb/ubuntu-"
 "hangups'>GitHub</a>"
 msgstr ""
 
-#: .ubuntu-sdk-deploy/ui/AboutPage.qml:36 ui/AboutPage.qml:36
+#: .ubuntu-sdk-deploy/ui/AboutPage.qml:69 ui/AboutPage.qml:68
 msgid "Third-party Software"
 msgstr ""
 
-#: .ubuntu-sdk-deploy/ui/AboutPage.qml:41 ui/AboutPage.qml:41
+#: .ubuntu-sdk-deploy/ui/AboutPage.qml:74 ui/AboutPage.qml:73
 msgid ""
 "The application icon was created by <a href='http://samuelhewitt.com/'>Sam "
 "Hewitt</a>"
 msgstr ""
 
-#: .ubuntu-sdk-deploy/ui/AboutPage.qml:46 ui/AboutPage.qml:46
+#: .ubuntu-sdk-deploy/ui/AboutPage.qml:79 ui/AboutPage.qml:78
 msgid ""
 "This application uses <a href='https://github.com/tdryer'>Tom Dryer</a>'s "
 "inofficial Google Hangouts Python library <a href='https://github.com/tdryer/"
 "hangups'>Hangups</a>. Hangups is released under the MIT license."
 msgstr ""
 
-#: .ubuntu-sdk-deploy/ui/AboutPage.qml:51 ui/AboutPage.qml:51
+#: .ubuntu-sdk-deploy/ui/AboutPage.qml:84 ui/AboutPage.qml:83
 msgid ""
 "Powered by <a href='https://github.com/thp'>Thomas Perl's</a> <a "
 "href='https://github.com/thp/pyotherside'>PyOtherSide</a>"
 msgstr ""
 
-#: .ubuntu-sdk-deploy/ui/AboutPage.qml:56 ui/AboutPage.qml:56
+#: .ubuntu-sdk-deploy/ui/AboutPage.qml:89 ui/AboutPage.qml:88
 #, qt-format
 msgid "The loading animation was created by %1."
 msgstr ""
 
-#: .ubuntu-sdk-deploy/ui/AboutPage.qml:60 ui/AboutPage.qml:60
+#: .ubuntu-sdk-deploy/ui/AboutPage.qml:93 ui/AboutPage.qml:92
 msgid ""
 "The <a href='https://www.flickr.com/photos/zooboing/5127310748/'>default "
 "chat background</a> was created by <a href='https://www.flickr.com/photos/"
@@ -182,7 +187,7 @@ msgid ""
 "Generic (CC BY 2.0) license.</a>"
 msgstr ""
 
-#: .ubuntu-sdk-deploy/ui/AboutPage.qml:65 ui/AboutPage.qml:65
+#: .ubuntu-sdk-deploy/ui/AboutPage.qml:98 ui/AboutPage.qml:97
 msgid ""
 "This application is not endorsed by or affiliated with Ubuntu or Canonical. "
 "Ubuntu and Canonical are registered trademarks of Canonical Ltd."

@@ -1,5 +1,6 @@
 import QtQuick 2.4
 import Ubuntu.Components 1.3
+import QtQuick.Layouts 1.1
 
 Page {
    title: i18n.tr("About")
@@ -19,17 +20,48 @@ Page {
            spacing: units.gu(1)
 
            Label {
+                width: parent.width
+                horizontalAlignment: Text.Center
                 text: "Ubuntu Hangups"
                 fontSize: "x-large"
            }
 
-           FlexibleLabel {
-                text: i18n.tr("Inofficial Google Hangouts client for Ubuntu Touch")
+           RowLayout {
+               width: parent.width
+               UbuntuShape {
+                   Layout.alignment: Qt.AlignHCenter
+                   width: units.dp(64)
+                   height: units.dp(64)
+                   source: Image {
+                       source: "../ubuntu-hangups.png"
+                   }
+               }
+           }
+
+           Label {
+               width: parent.width
+               horizontalAlignment: Text.Center
+               visible: false
+               text: i18n.tr("Version %1")
+               Component.onCompleted: {
+                    py.importModule("backend", function(){
+                        text = text.arg(py.evaluate("backend.__version__"));
+                        visible = true;
+                    })
+                }
            }
 
            FlexibleLabel {
-                text: i18n.tr("Source code available on <a href='https://github.com/tim-sueberkrueb/ubuntu-hangups'>GitHub</a>") + "<br/><br/>This application is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.<br/><br/> (C) Copyright 2015 by Tim Süberkrüb<br/>"
-                onLinkActivated: Qt.openUrlExternally(link)
+               width: parent.width
+               horizontalAlignment: Text.Center
+               text: i18n.tr("Inofficial Google Hangouts client for Ubuntu Touch")
+           }
+
+           Item { height: units.gu(2); width: parent.width }    // Spacer
+
+           FlexibleLabel {
+               text: i18n.tr("Source code available on <a href='https://github.com/tim-sueberkrueb/ubuntu-hangups'>GitHub</a>") + "<br/><br/>This application is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.<br/><br/> (C) Copyright 2015-2016 by Tim Süberkrüb<br/>"
+               onLinkActivated: Qt.openUrlExternally(link)
            }           
 
            FlexibleLabel {

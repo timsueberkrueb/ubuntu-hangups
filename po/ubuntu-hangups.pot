@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-01-05 15:06+0100\n"
+"POT-Creation-Date: 2016-01-05 20:54+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -135,50 +135,50 @@ msgstr ""
 msgid "%1 left the conversation"
 msgstr ""
 
-#: .ubuntu-sdk-deploy/ui/AboutPage.qml:46 ui/AboutPage.qml:45
+#: .ubuntu-sdk-deploy/ui/AboutPage.qml:45 ui/AboutPage.qml:45
 #, qt-format
 msgid "Version %1"
 msgstr ""
 
-#: .ubuntu-sdk-deploy/ui/AboutPage.qml:58 ui/AboutPage.qml:57
+#: .ubuntu-sdk-deploy/ui/AboutPage.qml:57 ui/AboutPage.qml:57
 msgid "Inofficial Google Hangouts client for Ubuntu Touch"
 msgstr ""
 
-#: .ubuntu-sdk-deploy/ui/AboutPage.qml:64 ui/AboutPage.qml:63
+#: .ubuntu-sdk-deploy/ui/AboutPage.qml:63 ui/AboutPage.qml:63
 msgid ""
 "Source code available on <a href='https://github.com/tim-sueberkrueb/ubuntu-"
 "hangups'>GitHub</a>"
 msgstr ""
 
-#: .ubuntu-sdk-deploy/ui/AboutPage.qml:69 ui/AboutPage.qml:68
+#: .ubuntu-sdk-deploy/ui/AboutPage.qml:68 ui/AboutPage.qml:68
 msgid "Third-party Software"
 msgstr ""
 
-#: .ubuntu-sdk-deploy/ui/AboutPage.qml:74 ui/AboutPage.qml:73
+#: .ubuntu-sdk-deploy/ui/AboutPage.qml:73 ui/AboutPage.qml:73
 msgid ""
 "The application icon was created by <a href='http://samuelhewitt.com/'>Sam "
 "Hewitt</a>"
 msgstr ""
 
-#: .ubuntu-sdk-deploy/ui/AboutPage.qml:79 ui/AboutPage.qml:78
+#: .ubuntu-sdk-deploy/ui/AboutPage.qml:78 ui/AboutPage.qml:78
 msgid ""
 "This application uses <a href='https://github.com/tdryer'>Tom Dryer</a>'s "
 "inofficial Google Hangouts Python library <a href='https://github.com/tdryer/"
 "hangups'>Hangups</a>. Hangups is released under the MIT license."
 msgstr ""
 
-#: .ubuntu-sdk-deploy/ui/AboutPage.qml:84 ui/AboutPage.qml:83
+#: .ubuntu-sdk-deploy/ui/AboutPage.qml:83 ui/AboutPage.qml:83
 msgid ""
 "Powered by <a href='https://github.com/thp'>Thomas Perl's</a> <a "
 "href='https://github.com/thp/pyotherside'>PyOtherSide</a>"
 msgstr ""
 
-#: .ubuntu-sdk-deploy/ui/AboutPage.qml:89 ui/AboutPage.qml:88
+#: .ubuntu-sdk-deploy/ui/AboutPage.qml:88 ui/AboutPage.qml:88
 #, qt-format
 msgid "The loading animation was created by %1."
 msgstr ""
 
-#: .ubuntu-sdk-deploy/ui/AboutPage.qml:93 ui/AboutPage.qml:92
+#: .ubuntu-sdk-deploy/ui/AboutPage.qml:92 ui/AboutPage.qml:92
 msgid ""
 "The <a href='https://www.flickr.com/photos/zooboing/5127310748/'>default "
 "chat background</a> was created by <a href='https://www.flickr.com/photos/"
@@ -187,7 +187,7 @@ msgid ""
 "Generic (CC BY 2.0) license.</a>"
 msgstr ""
 
-#: .ubuntu-sdk-deploy/ui/AboutPage.qml:98 ui/AboutPage.qml:97
+#: .ubuntu-sdk-deploy/ui/AboutPage.qml:97 ui/AboutPage.qml:97
 msgid ""
 "This application is not endorsed by or affiliated with Ubuntu or Canonical. "
 "Ubuntu and Canonical are registered trademarks of Canonical Ltd."

@@ -1,6 +1,6 @@
 import QtQuick 2.4
 import Ubuntu.Components 1.3
-import com.canonical.Oxide 1.0
+import com.canonical.Oxide 1.10
 
  FocusScope {
     visible: false
@@ -117,15 +117,11 @@ import com.canonical.Oxide 1.0
                 });
             }
 
-            onLoadingChanged: {
-                if (loadProgress === 100 && url.toString().lastIndexOf('https://accounts.google.com/o/oauth2/approval', 0) === 0) {
+            onLoadingStateChanged: {
+                if (url.toString().lastIndexOf('https://accounts.google.com/o/oauth2/approval', 0) === 0) {
                     onApproved();
                 }
             }
-
-            onLoadProgressChanged: {
-            }
-
         }
 
         WebContext {

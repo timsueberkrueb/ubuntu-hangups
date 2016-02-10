@@ -8,6 +8,7 @@ Page {
 
    Flickable {
        id: flickable
+       clip: true
        anchors.fill: parent
        contentHeight: col.childrenRect.height + units.gu(12)
 

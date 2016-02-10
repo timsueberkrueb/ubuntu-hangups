@@ -8,6 +8,7 @@ Page {
     UbuntuListView {
         id: listView
         anchors.fill: parent
+        clip: true
 
         model: contactsModel
 

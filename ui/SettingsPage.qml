@@ -21,6 +21,7 @@ Page {
     Flickable {
         anchors.fill: parent
         contentHeight: col.height + col.anchors.margins * 2
+        clip: true
 
         Column {
             id: col

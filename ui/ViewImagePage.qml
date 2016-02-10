@@ -47,6 +47,7 @@ Page {
     Flickable {
         anchors.fill: parent
         contentWidth: img.width
+        clip: true
 
         AnimatedImage {
             id: img

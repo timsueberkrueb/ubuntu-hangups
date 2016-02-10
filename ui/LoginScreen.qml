@@ -1,6 +1,6 @@
 import QtQuick 2.4
 import Ubuntu.Components 1.3
-import com.canonical.Oxide 1.10
+import com.canonical.Oxide 1.9
 
  FocusScope {
     visible: false

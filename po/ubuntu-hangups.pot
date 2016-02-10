@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-02-10 12:20+0100\n"
+"POT-Creation-Date: 2016-02-10 18:51+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -193,7 +193,7 @@ msgid ""
 "Ubuntu and Canonical are registered trademarks of Canonical Ltd."
 msgstr ""
 
-#: .ubuntu-sdk-deploy/ui/ContactsPage.qml:81
+#: .ubuntu-sdk-deploy/ui/ContactsPage.qml:82
 #: .ubuntu-sdk-deploy/ui/SelectUsersPage.qml:166 ui/ContactsPage.qml:82
 #: ui/SelectUsersPage.qml:166
 msgid "No contacts"
@@ -248,11 +248,11 @@ msgstr ""
 msgid "Share"
 msgstr ""
 
-#: .ubuntu-sdk-deploy/ui/ViewImagePage.qml:81 ui/ViewImagePage.qml:82
+#: .ubuntu-sdk-deploy/ui/ViewImagePage.qml:82 ui/ViewImagePage.qml:82
 msgid "Retrieving image"
 msgstr ""
 
-#: .ubuntu-sdk-deploy/ui/ViewImagePage.qml:82 ui/ViewImagePage.qml:83
+#: .ubuntu-sdk-deploy/ui/ViewImagePage.qml:83 ui/ViewImagePage.qml:83
 msgid "Retrieving image, please wait ..."
 msgstr ""
 

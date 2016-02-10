@@ -2,7 +2,7 @@
 from _threading_local import local
 
 __author__ = 'Tim Süberkrüb'
-__version__ = '0.3'
+__version__ = '0.3.1'
 
 import pyotherside
 import mimetypes

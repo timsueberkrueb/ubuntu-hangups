@@ -22,8 +22,8 @@ from hangups import pblite
 import requests.adapters
 from .utils import get_conv_icon, \
     get_message_timestr, \
-    get_message_html,\
-    get_unread_messages_count,\
+    get_message_html, \
+    get_unread_messages_count, \
     get_message_plain_text
 from . import model
 
@@ -73,19 +73,11 @@ class ConversationController:
         # Load some more messages on start:
         asyncio.async(self._load_more(max_events=5))
 
-        # Start timer routine
-        threading.Timer(settings.get('check_routine_timeout'), self.check_routine).start()
-
     def load(self):
         def loaded(future):
             pyotherside.send('on-conversation-loaded', self.conv.id_)
-        self.load_more(loaded)
 
-    def check_routine(self):
-        print("Running check routine of ", self.conv.id_)
-        call_threadsafe(self.update_online_status)
-        # Start new timer
-        threading.Timer(settings.get('check_routine_timeout'), self.check_routine).start()
+        self.load_more(loaded)
 
     def handle_message(self, conv_event, user, set_unread, insert_mode="bottom"):
         html = get_message_html(conv_event.segments)
@@ -97,10 +89,10 @@ class ConversationController:
                              html=html,
                              text=text,
                              attachments=[{'url': cache.get_image_cached(a) if settings.get('cache_images') else a}
-                                             for a in conv_event.attachments],
+                                          for a in conv_event.attachments],
                              user_is_self=user.is_self,
                              username=user.full_name,
-                             user_photo= "https:" + user.photo_url if user.photo_url else None,
+                             user_photo="https:" + user.photo_url if user.photo_url else None,
                              time=get_message_timestr(conv_event.timestamp)
                          ),
                          insert_mode)
@@ -160,7 +152,6 @@ class ConversationController:
         elif isinstance(conv_event, hangups.MembershipChangeEvent):
             self.handle_membership_change(conv_event, user, insert_mode=insert_mode)
 
-
     def on_watermark_notification(self, watermark_notification):
         print("watermark_notification", self.conv.latest_read_timestamp)
 
@@ -200,16 +191,16 @@ class ConversationController:
 
         # Create dummy message
         pyotherside.send('add-conversation-message',
-                 self.conv.id_,
-                 model.get_message_model_data(
-                     type="chat/message",
-                     html=text,
-                     text=text,
-                     attachments=[{'url': image_filename}] if image_filename else [],
-                     sent= False,
-                     local_id=local_id,
-                 ),
-                 "bottom")
+                         self.conv.id_,
+                         model.get_message_model_data(
+                             type="chat/message",
+                             html=text,
+                             text=text,
+                             attachments=[{'url': image_filename}] if image_filename else [],
+                             sent=False,
+                             local_id=local_id,
+                         ),
+                         "bottom")
 
         asyncio.async(
             self.conv.send_message(segments, image_file=image_file)
@@ -242,6 +233,7 @@ class ConversationController:
     def load_more_messages(self):
         def callback(future=None):
             pyotherside.send('on-more-messages-loaded', self.conv.id_)
+
         self.load_more(callback)
 
     def load_more(self, callback=lambda future: future.result()):
@@ -341,7 +333,7 @@ class ConversationController:
 
     def on_quiet_set(self, future):
         # Disabled as is_quiet doesn't always hold the right value
-        #pyotherside.send('set-conversation-is-quiet', self.conv.id_, self.conv.is_quiet)
+        # pyotherside.send('set-conversation-is-quiet', self.conv.id_, self.conv.is_quiet)
         pass
 
     def rename(self, name):
@@ -353,7 +345,6 @@ class ConversationController:
         if len(self.conv.users) == 2:
             for user in self.conv.users:
                 if not user.is_self:
-
                     request = hangouts_pb2.QueryPresenceRequest(
                         request_header=client.get_request_header(),
                         participant_id=[hangouts_pb2.ParticipantId(gaia_id=user.id_.chat_id)],
@@ -368,6 +359,9 @@ class ConversationController:
     def online_status_updated(self, future):
         res = future.result()
         pyotherside.send('set-conversation-online', self.conv.id_, res.presence_result[0].presence.available)
+
+    def set_online_status(self, online):
+        pyotherside.send('set-conversation-online', self.conv.id_, online)
 
 
 def get_login_url():
@@ -466,12 +460,24 @@ def on_event(conv_event):
         pyotherside.send('move-conversation-to-top', conv_event.conversation_id)
 
 
+def presence_changed(state_update):
+    if state_update.HasField('presence_notification'):
+        user_id = state_update.presence_notification.presence[0].user_id.chat_id
+        reachable = state_update.presence_notification.presence[0].presence.reachable == 1
+        for ctrl in conv_controllers.values():
+            if len(ctrl.conv.users) == 2:
+                for user in ctrl.conv.users:
+                    if user.id_.chat_id == user_id and not user.is_self:
+                        ctrl.set_online_status(reachable)
+                        continue
+
+
 def set_client_presence(online):
     print("Trying to set presence ...")
     global client
     try:
         pass
-        #asyncio.async(client.set_presence(online))
+        # asyncio.async(client.set_presence(online))
     except hangups.exceptions.NetworkError as e:
         print("Failed to set presence:", str(e))
 
@@ -543,13 +549,13 @@ def _send_new_conversation_welcome_message(conv_id, text):
         ),
         event_request_header=hangouts_pb2.EventRequestHeader(
             conversation_id=hangouts_pb2.ConversationId(
-                 id=conv_id,
-             ),
-             client_generated_id=client.get_client_generated_id(),
-             expected_otr=hangouts_pb2.OFF_THE_RECORD_STATUS_ON_THE_RECORD,
-             delivery_medium=hangouts_pb2.DeliveryMedium(medium_type=hangouts_pb2.DELIVERY_MEDIUM_BABEL),
-             event_type=hangouts_pb2.EVENT_TYPE_REGULAR_CHAT_MESSAGE,
-         ),
+                id=conv_id,
+            ),
+            client_generated_id=client.get_client_generated_id(),
+            expected_otr=hangouts_pb2.OFF_THE_RECORD_STATUS_ON_THE_RECORD,
+            delivery_medium=hangouts_pb2.DeliveryMedium(medium_type=hangouts_pb2.DELIVERY_MEDIUM_BABEL),
+            event_type=hangouts_pb2.EVENT_TYPE_REGULAR_CHAT_MESSAGE,
+        ),
     )
     asyncio.async(
         client.send_chat_message(request)
@@ -566,8 +572,10 @@ def send_image(conv_id, filename):
     image_file = open(filename, 'rb')
     call_threadsafe(conv_controllers[conv_id].send_message, "", image_file, filename);
 
+
 def send_sticker(conv_id, image_id):
     call_threadsafe(conv_controllers[conv_id].send_sticker, image_id);
+
 
 def load_more_messages(conv_id):
     call_threadsafe(conv_controllers[conv_id].load_more_messages)
@@ -612,7 +620,7 @@ def set_loading_status(status):
 def set_chat_background(custom, filename=None):
     if custom:
         filename = filename[filename.find("/home"):]
-        new_filename = app_data_path+'custom_chat_background'+os.path.splitext(filename)[1]
+        new_filename = app_data_path + 'custom_chat_background' + os.path.splitext(filename)[1]
         shutil.copyfile(filename, new_filename)
         settings.set('custom_chat_background', new_filename)
     else:
@@ -645,6 +653,7 @@ def load(cookies):
     print("Creating client ...")
     set_loading_status("creatingClient")
     client = hangups.Client(cookies)
+    client.on_state_update.add_observer(presence_changed)
     print("Adding client observer")
     set_loading_status("addingObserver")
     client.on_connect.add_observer(on_connect)

@@ -155,35 +155,6 @@ Page {
             }
 
             Label {
-                text: i18n.tr("Routine Timer")
-                fontSize: "x-large"
-            }
-
-            FlexibleLabel {
-                text: i18n.tr("Specify the timeout period of the status update routine called periodically in seconds.")
-            }
-
-            TextField {
-                enabled: false
-
-                inputMethodHints: Qt.ImhDigitsOnly
-                validator: IntValidator{}
-
-                Component.onCompleted: {
-                    py.call('backend.settings_get', ['check_routine_timeout'], function callback(value){
-                        text = value;
-                        enabled = true;
-                    });
-                }
-
-                onTextChanged: {
-                    if (text !== "")
-                        py.call('backend.settings_set', ['check_routine_timeout', Number(text)]);
-                }
-
-            }
-
-            Label {
                 text: i18n.tr("Account")
                 fontSize: "x-large"
             }

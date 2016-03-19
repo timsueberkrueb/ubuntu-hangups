@@ -1,4 +1,5 @@
 import QtQuick 2.4
+import QtQuick.Layouts 1.1
 import Ubuntu.Components 1.3
 import Ubuntu.Components.Popups 1.3
 
@@ -45,33 +46,52 @@ Page {
         delegate: ListItem {
             property QtObject modelData: listView.model.get(index)
 
-            Row {
+            RowLayout {
                 id: rowItem
-                anchors.verticalCenter: parent.verticalCenter
-                anchors.left: parent.left
-                anchors.right: parent.right
-                anchors.leftMargin: units.gu(1)
-                anchors.rightMargin: units.gu(1)
+                anchors {
+                    verticalCenter: parent.verticalCenter
+                    left: parent.left
+                    right: parent.right
+                    leftMargin: units.gu(1)
+                    rightMargin: units.gu(1)
+                }
                 spacing: units.gu(2)
 
                 GroupAvatar {
+                    Layout.preferredHeight: height
+                    Layout.preferredWidth: width
                     visible: modelData.icon === "unknown/group"
                 }
 
                 DefaultUserAvatar {
+                    Layout.preferredHeight: height
+                    Layout.preferredWidth: width
                     visible: modelData.icon === "unknown/contact"
                     name: modelData.title
                 }
 
                 UserAvatar {
+                    Layout.preferredHeight: height
+                    Layout.preferredWidth: width
                     visible: modelData.icon.lastIndexOf("http", 0) === 0
                     name: modelData.title
                     photoUrl: visible ? modelData.icon : ""
                 }
 
-                Label {
-                    anchors.verticalCenter: parent.verticalCenter
-                    text: modelData.title
+                Column {
+                    Layout.fillWidth: true
+
+                    Label {
+                        text: modelData.title
+                        font.bold: true
+                    }
+
+                    Label {
+                        text: modelData.statusMessage || (chatModels[modelData.id_].count > 0 ? chatModels[modelData.id_].get(0).text: "")
+                        elide: Text.ElideRight
+                        width: parent.width
+                        color: modelData.statusMessage ? UbuntuColors.green : Theme.palette.selected.backgroundText
+                    }
                 }
             }
 

@@ -201,22 +201,21 @@ MainView {
 
                 var chatPage = chatPages[conv_id];
 
-                if (chatPage.visible) {
-                    if (typers) {
-                        if (typers.length === 1) {
-                            statusMessage = i18n.tr("%1 is typing ...").arg(typers[0]);
-                        }
-                        else if (typers.length > 1) {
-                            var t = ""
-                            for (var i=0; i<typers.length; i++) {
-                                t += typers[i] + ', '
-                            }
-                            t = t.slice(0, t.length-2);
-                            statusMessage = i18n.tr('%1 are typing ...').arg(t);
-                        }
+                if (typers) {
+                    if (typers.length === 1) {
+                        statusMessage = i18n.tr("%1 is typing ...").arg(typers[0]);
                     }
-                    chatPage.statusMessage = statusMessage;
+                    else if (typers.length > 1) {
+                        var t = ""
+                        for (var i=0; i<typers.length; i++) {
+                            t += typers[i] + ', '
+                        }
+                        t = t.slice(0, t.length-2);
+                        statusMessage = i18n.tr('%1 are typing ...').arg(t);
+                    }
                 }
+                chatPage.statusMessage = statusMessage;
+                conversationsModel.get(getConversationModelIndexById(conv_id)).statusMessage = statusMessage;
             });
 
             setHandler('set-conversation-online', function(conv_id, online){

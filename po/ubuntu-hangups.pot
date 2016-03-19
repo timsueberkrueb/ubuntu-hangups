@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-02-10 18:51+0100\n"
+"POT-Creation-Date: 2016-03-19 13:10+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -23,14 +23,14 @@ msgstr ""
 
 #: .ubuntu-sdk-deploy/ui/ChatPage.qml:51
 #: .ubuntu-sdk-deploy/ui/ConversationsPage.qml:14 ui/ChatPage.qml:51
-#: ui/ConversationsPage.qml:14
+#: ui/ConversationsPage.qml:15
 msgid "Add"
 msgstr ""
 
 #: .ubuntu-sdk-deploy/ui/ChatPage.qml:59
 #: .ubuntu-sdk-deploy/ui/ConversationsPage.qml:145
 #: .ubuntu-sdk-deploy/ui/ConversationsPage.qml:154 ui/ChatPage.qml:59
-#: ui/ConversationsPage.qml:145 ui/ConversationsPage.qml:154
+#: ui/ConversationsPage.qml:159 ui/ConversationsPage.qml:168
 msgid "Add users"
 msgstr ""
 
@@ -54,61 +54,61 @@ msgstr ""
 msgid "Send sticker"
 msgstr ""
 
-#: .ubuntu-sdk-deploy/ui/ConversationsPage.qml:6 ui/ConversationsPage.qml:6
+#: .ubuntu-sdk-deploy/ui/ConversationsPage.qml:6 ui/ConversationsPage.qml:7
 msgid "Conversations"
 msgstr ""
 
 #: .ubuntu-sdk-deploy/ui/ConversationsPage.qml:16
 #: .ubuntu-sdk-deploy/ui/NewConversationWelcomeDialog.qml:8
-#: ui/ConversationsPage.qml:16 ui/NewConversationWelcomeDialog.qml:8
+#: ui/ConversationsPage.qml:17 ui/NewConversationWelcomeDialog.qml:8
 msgid "New Conversation"
 msgstr ""
 
 #: .ubuntu-sdk-deploy/ui/ConversationsPage.qml:23
-#: .ubuntu-sdk-deploy/ui/ContactsPage.qml:5 ui/ConversationsPage.qml:23
+#: .ubuntu-sdk-deploy/ui/ContactsPage.qml:5 ui/ConversationsPage.qml:24
 #: ui/ContactsPage.qml:5
 msgid "Contacts"
 msgstr ""
 
 #: .ubuntu-sdk-deploy/ui/ConversationsPage.qml:28
 #: .ubuntu-sdk-deploy/ui/AboutConversationPage.qml:25
-#: .ubuntu-sdk-deploy/ui/SettingsPage.qml:7 ui/ConversationsPage.qml:28
+#: .ubuntu-sdk-deploy/ui/SettingsPage.qml:7 ui/ConversationsPage.qml:29
 #: ui/AboutConversationPage.qml:25 ui/SettingsPage.qml:7
 msgid "Settings"
 msgstr ""
 
 #: .ubuntu-sdk-deploy/ui/ConversationsPage.qml:33
 #: .ubuntu-sdk-deploy/ui/ConversationsPage.qml:140
-#: .ubuntu-sdk-deploy/ui/AboutPage.qml:6 ui/ConversationsPage.qml:33
-#: ui/ConversationsPage.qml:140 ui/AboutPage.qml:6
+#: .ubuntu-sdk-deploy/ui/AboutPage.qml:6 ui/ConversationsPage.qml:34
+#: ui/ConversationsPage.qml:154 ui/AboutPage.qml:6
 msgid "About"
 msgstr ""
 
 #: .ubuntu-sdk-deploy/ui/ConversationsPage.qml:127
 #: .ubuntu-sdk-deploy/ui/ConversationsPage.qml:180
-#: ui/ConversationsPage.qml:127 ui/ConversationsPage.qml:180
+#: ui/ConversationsPage.qml:141 ui/ConversationsPage.qml:194
 msgid "Delete"
 msgstr ""
 
 #: .ubuntu-sdk-deploy/ui/ConversationsPage.qml:174
-#: ui/ConversationsPage.qml:174
+#: ui/ConversationsPage.qml:188
 msgid "Delete Conversation"
 msgstr ""
 
 #: .ubuntu-sdk-deploy/ui/ConversationsPage.qml:175
-#: ui/ConversationsPage.qml:175
+#: ui/ConversationsPage.qml:189
 msgid "Are you really sure to delete this conversation?"
 msgstr ""
 
 #: .ubuntu-sdk-deploy/ui/ConversationsPage.qml:191
 #: .ubuntu-sdk-deploy/ui/SettingsPage.qml:228
-#: .ubuntu-sdk-deploy/ui/SettingsPage.qml:277 ui/ConversationsPage.qml:191
-#: ui/SettingsPage.qml:228 ui/SettingsPage.qml:277
+#: .ubuntu-sdk-deploy/ui/SettingsPage.qml:277 ui/ConversationsPage.qml:205
+#: ui/SettingsPage.qml:199 ui/SettingsPage.qml:248
 msgid "Cancel"
 msgstr ""
 
 #: .ubuntu-sdk-deploy/ui/ConversationsPage.qml:200
-#: ui/ConversationsPage.qml:200
+#: ui/ConversationsPage.qml:214
 msgid "Nothing here, yet"
 msgstr ""
 
@@ -346,7 +346,7 @@ msgstr ""
 
 #: .ubuntu-sdk-deploy/ui/SettingsPage.qml:119
 #: .ubuntu-sdk-deploy/ui/SettingsPage.qml:209 ui/SettingsPage.qml:119
-#: ui/SettingsPage.qml:209
+#: ui/SettingsPage.qml:180
 msgid "Clear cache"
 msgstr ""
 
@@ -358,55 +358,55 @@ msgstr ""
 msgid "Load stickers on start"
 msgstr ""
 
-#: .ubuntu-sdk-deploy/ui/SettingsPage.qml:158 ui/SettingsPage.qml:158
+#: .ubuntu-sdk-deploy/ui/SettingsPage.qml:158
 msgid "Routine Timer"
 msgstr ""
 
-#: .ubuntu-sdk-deploy/ui/SettingsPage.qml:163 ui/SettingsPage.qml:163
+#: .ubuntu-sdk-deploy/ui/SettingsPage.qml:163
 msgid ""
 "Specify the timeout period of the status update routine called periodically "
 "in seconds."
 msgstr ""
 
-#: .ubuntu-sdk-deploy/ui/SettingsPage.qml:187 ui/SettingsPage.qml:187
+#: .ubuntu-sdk-deploy/ui/SettingsPage.qml:187 ui/SettingsPage.qml:158
 msgid "Account"
 msgstr ""
 
-#: .ubuntu-sdk-deploy/ui/SettingsPage.qml:210 ui/SettingsPage.qml:210
+#: .ubuntu-sdk-deploy/ui/SettingsPage.qml:210 ui/SettingsPage.qml:181
 msgid ""
 "Are you sure to clear the cache? All images will have to be redownloaded."
 msgstr ""
 
-#: .ubuntu-sdk-deploy/ui/SettingsPage.qml:213 ui/SettingsPage.qml:213
+#: .ubuntu-sdk-deploy/ui/SettingsPage.qml:213 ui/SettingsPage.qml:184
 msgid "Clear now"
 msgstr ""
 
 #: .ubuntu-sdk-deploy/ui/SettingsPage.qml:218
-#: .ubuntu-sdk-deploy/ui/SettingsPage.qml:267 ui/SettingsPage.qml:218
-#: ui/SettingsPage.qml:267
+#: .ubuntu-sdk-deploy/ui/SettingsPage.qml:267 ui/SettingsPage.qml:189
+#: ui/SettingsPage.qml:238
 msgid "Working ..."
 msgstr ""
 
-#: .ubuntu-sdk-deploy/ui/SettingsPage.qml:239 ui/SettingsPage.qml:239
+#: .ubuntu-sdk-deploy/ui/SettingsPage.qml:239 ui/SettingsPage.qml:210
 msgid "Cache cleared"
 msgstr ""
 
-#: .ubuntu-sdk-deploy/ui/SettingsPage.qml:240 ui/SettingsPage.qml:240
+#: .ubuntu-sdk-deploy/ui/SettingsPage.qml:240 ui/SettingsPage.qml:211
 msgid ""
 "The cache was cleared successful. Please restart the application to continue."
 msgstr ""
 
-#: .ubuntu-sdk-deploy/ui/SettingsPage.qml:244 ui/SettingsPage.qml:244
+#: .ubuntu-sdk-deploy/ui/SettingsPage.qml:244 ui/SettingsPage.qml:215
 msgid "Okay"
 msgstr ""
 
 #: .ubuntu-sdk-deploy/ui/SettingsPage.qml:258
-#: .ubuntu-sdk-deploy/ui/SettingsPage.qml:262 ui/SettingsPage.qml:258
-#: ui/SettingsPage.qml:262
+#: .ubuntu-sdk-deploy/ui/SettingsPage.qml:262 ui/SettingsPage.qml:229
+#: ui/SettingsPage.qml:233
 msgid "Logout"
 msgstr ""
 
-#: .ubuntu-sdk-deploy/ui/SettingsPage.qml:259 ui/SettingsPage.qml:259
+#: .ubuntu-sdk-deploy/ui/SettingsPage.qml:259 ui/SettingsPage.qml:230
 msgid "Are you sure to logout? This will quit the application."
 msgstr ""
 

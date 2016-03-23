@@ -90,7 +90,7 @@ Page {
                         text: modelData.statusMessage || (chatModels[modelData.id_].count > 0 ? chatModels[modelData.id_].get(0).text: "")
                         elide: Text.ElideRight
                         width: parent.width
-                        color: modelData.statusMessage ? UbuntuColors.green : Theme.palette.selected.backgroundText
+                        color: modelData.statusMessage ? UbuntuColors.green : Theme.palette.normal.baseText
                     }
                 }
             }

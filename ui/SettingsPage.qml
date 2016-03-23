@@ -165,7 +165,7 @@ Page {
             }
 
             Button {
-                text: "Logout"
+                text: i18n.tr("Logout")
                 color: UbuntuColors.red
                 onClicked: PopupUtils.open(logoutDialog)
             }

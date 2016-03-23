@@ -117,7 +117,7 @@ Page {
 
                 Label {
                     anchors.verticalCenter: parent.verticalCenter
-                    text: modelData.is_self ? modelData.full_name + " (you)" : modelData.full_name
+                    text: modelData.is_self ? modelData.full_name + " (%1)".arg(i18n.tr("you")) : modelData.full_name
                 }
             }
 

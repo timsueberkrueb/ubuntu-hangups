@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-03-24 11:18+0100\n"
+"POT-Creation-Date: 2016-03-24 15:06+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -112,23 +112,23 @@ msgstr ""
 msgid "Nothing here, yet"
 msgstr ""
 
-#: .ubuntu-sdk-deploy/ui/ChatListItem.qml:54 ui/ChatListItem.qml:55
+#: .ubuntu-sdk-deploy/ui/ChatListItem.qml:63 ui/ChatListItem.qml:63
 msgid "An error occurred while loading the image."
 msgstr ""
 
-#: .ubuntu-sdk-deploy/ui/ChatListItem.qml:92 ui/ChatListItem.qml:93
+#: .ubuntu-sdk-deploy/ui/ChatListItem.qml:117 ui/ChatListItem.qml:117
 #, qt-format
-msgid "%1 renamed the conversation to %2"
+msgid "%1 renamed to %2"
 msgstr ""
 
-#: .ubuntu-sdk-deploy/ui/ChatListItem.qml:95 ui/ChatListItem.qml:96
+#: .ubuntu-sdk-deploy/ui/ChatListItem.qml:119 ui/ChatListItem.qml:119
 #, qt-format
-msgid "%1 added %2 to the conversation"
+msgid "%1 added %2"
 msgstr ""
 
-#: .ubuntu-sdk-deploy/ui/ChatListItem.qml:98 ui/ChatListItem.qml:99
+#: .ubuntu-sdk-deploy/ui/ChatListItem.qml:121 ui/ChatListItem.qml:121
 #, qt-format
-msgid "%1 left the conversation"
+msgid "%1 left"
 msgstr ""
 
 #: .ubuntu-sdk-deploy/ui/AboutPage.qml:46 ui/AboutPage.qml:46
@@ -208,7 +208,7 @@ msgid ""
 msgstr ""
 
 #: .ubuntu-sdk-deploy/ui/NetworkErrorDialog.qml:16
-#: .ubuntu-sdk-deploy/Main.qml:373 ui/NetworkErrorDialog.qml:16 Main.qml:373
+#: .ubuntu-sdk-deploy/Main.qml:374 ui/NetworkErrorDialog.qml:16 Main.qml:374
 msgid "Close"
 msgstr ""
 
@@ -430,16 +430,16 @@ msgstr ""
 msgid "you all ツ"
 msgstr ""
 
-#: .ubuntu-sdk-deploy/Main.qml:206 Main.qml:206
+#: .ubuntu-sdk-deploy/Main.qml:207 Main.qml:207
 #, qt-format
 msgid "%1 is typing ..."
 msgstr ""
 
-#: .ubuntu-sdk-deploy/Main.qml:363 Main.qml:363
+#: .ubuntu-sdk-deploy/Main.qml:364 Main.qml:364
 msgid "Error"
 msgstr ""
 
-#: .ubuntu-sdk-deploy/Main.qml:367 Main.qml:367
+#: .ubuntu-sdk-deploy/Main.qml:368 Main.qml:368
 #, qt-format
 msgid "An error has occured: %1"
 msgstr ""

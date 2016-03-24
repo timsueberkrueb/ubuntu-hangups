@@ -1,5 +1,6 @@
 import QtQuick 2.4
 import Ubuntu.Components 1.3
+import Ubuntu.Components.Themes.Ambiance 1.3
 
 ListItem {
     id: listItem
@@ -12,22 +13,6 @@ ListItem {
 
     divider.visible: false
     height: modelData.type === "chat/message" ? rect.height :  infoItem.height
-
-    trailingActions: textMimeData.text !== "" ? messageTrailingActions : null
-
-    ListItemActions {
-        id: messageTrailingActions
-
-        actions: [
-            Action {
-                text: i18n.tr("Copy")
-                iconName: "edit-copy"
-                onTriggered: {
-                    Clipboard.push(textMimeData);
-                }
-            }
-        ]
-    }
 
     onClicked: {
         if (modelData.attachments && modelData.attachments.count > 0) {
@@ -206,14 +191,66 @@ ListItem {
                         font.bold: true
                     }
 
-                    FlexibleLabel {
-                        id: messageLabel
-                        visible: text !== ""
-                        onLinkActivated: Qt.openUrlExternally(link)
+                    Item {
                         width: parent.width
-                        color: foregroundColor
-                        text: modelData.html ? modelData.html : ""
-                        font.pixelSize: units.dp(13)
+                        height: childrenRect.height
+
+                        FlexibleLabel {
+                            id: messageLabel
+                            visible: text !== ""
+                            onLinkActivated: Qt.openUrlExternally(link)
+                            width: parent.width
+                            color: foregroundColor
+                            text: modelData.html ? modelData.html : ""
+                            font.pixelSize: units.dp(13)
+
+                            MouseArea {
+                                anchors.fill: parent
+                                onPressed: { textAreaTimer.restart(); mouse.accepted = false; }
+                                onReleased: textAreaTimer.stop();
+
+                                onClicked: {
+                                    textAreaTimer.stop();
+                                }
+
+                                Timer {
+                                    id: textAreaTimer
+                                    interval: 300
+                                    onTriggered: {
+                                        messageTextArea.visible = true;
+                                        messageTextArea.focus = true;
+                                        messageLabel.visible = false;
+                                    }
+                                }
+                            }
+                        }
+
+                        TextArea {
+                            id: messageTextArea
+                            anchors.fill: messageLabel
+                            visible: false
+                            width: parent.width
+                            autoSize: true
+                            clip: true
+                            readOnly: true
+                            onLinkActivated: Qt.openUrlExternally(link)
+                            text: modelData.html ? modelData.html : ""
+                            font.pixelSize: units.dp(13)
+                            textFormat: TextEdit.RichText
+
+                            style: TextAreaStyle {
+                                frameSpacing: 0
+                                color: foregroundColor
+                                backgroundColor: backgroundColor
+                            }
+
+                            onActiveFocusChanged: {
+                                if (!activeFocus) {
+                                    visible = false;
+                                    messageLabel.visible = true;
+                                }
+                            }
+                        }
                     }
 
                     MimeData {

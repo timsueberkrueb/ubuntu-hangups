@@ -30,8 +30,6 @@ import Ubuntu.Components 1.3
             height: width
             anchors.horizontalCenter: parent.horizontalCenter
             anchors.verticalCenter: parent.verticalCenter
-
-
             opacity: 0
 
             Timer {
@@ -43,7 +41,6 @@ import Ubuntu.Components 1.3
                     shrinkTimer.start();
                 }
             }
-
 
             Timer {
                 id: shrinkTimer
@@ -81,8 +78,6 @@ import Ubuntu.Components 1.3
         }
 
     }
-
-
 
     FadeLabel {
         id: poweredByLabel
@@ -136,5 +131,4 @@ import Ubuntu.Components 1.3
             }
         }
     }
-
 }

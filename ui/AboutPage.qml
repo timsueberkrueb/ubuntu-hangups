@@ -61,7 +61,10 @@ Page {
            Item { height: units.gu(2); width: parent.width }    // Spacer
 
            FlexibleLabel {
-               text: i18n.tr("Source code available on <a href='https://github.com/tim-sueberkrueb/ubuntu-hangups'>GitHub</a>") + "<br/><br/>This application is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.<br/><br/> (C) Copyright 2015-2016 by Tim Süberkrüb<br/>"
+               text: i18n.tr("Source code available on <a href='%1'>GitHub</a>").arg("https://github.com/tim-sueberkrueb/ubuntu-hangups")
+                             + "<br/><br/>This application is free software: you can redistribute it and/or modify it under the terms of"
+                             + " the GNU General Public License as published by the Free Software Foundation, either version 3 of the "
+                             + "License, or (at your option) any later version.<br/><br/> (C) Copyright 2015-2016 by Tim Süberkrüb<br/>"
                onLinkActivated: Qt.openUrlExternally(link)
            }           
 
@@ -71,17 +74,19 @@ Page {
            }
 
            FlexibleLabel {
-                text: i18n.tr("The application icon was created by <a href='http://samuelhewitt.com/'>Sam Hewitt</a>")
+                text: i18n.tr("The application icon was created by <a href='%1'>Sam Hewitt</a>".arg("http://samuelhewitt.com/"))
                 onLinkActivated: Qt.openUrlExternally(link)
            }
 
            FlexibleLabel {
-                text: i18n.tr("This application uses <a href='https://github.com/tdryer'>Tom Dryer</a>'s inofficial Google Hangouts Python library <a href='https://github.com/tdryer/hangups'>Hangups</a>. Hangups is released under the MIT license.")
+                text: i18n.tr("This application uses <a href='%1'>Tom Dryer</a>'s inofficial Google Hangouts Python library "+
+                              "<a href='%2'>Hangups</a>."+
+                              " Hangups is released under the MIT license.").arg("https://github.com/tdryer").arg("https://github.com/tdryer/hangups")
                 onLinkActivated: Qt.openUrlExternally(link)
            }
 
            FlexibleLabel {
-                text: i18n.tr("Powered by <a href='https://github.com/thp'>Thomas Perl's</a> <a href='https://github.com/thp/pyotherside'>PyOtherSide</a>")
+                text: i18n.tr("Powered by <a href='%1'>Thomas Perl's</a> <a href='%2'>PyOtherSide</a>").arg("https://github.com/thp").arg("https://github.com/thp/pyotherside")
                 onLinkActivated: Qt.openUrlExternally(link)
            }
 
@@ -90,16 +95,17 @@ Page {
            }
 
            FlexibleLabel {
-                text: i18n.tr("The <a href='https://www.flickr.com/photos/zooboing/5127310748/'>default chat background</a> was created by <a href='https://www.flickr.com/photos/zooboing/'>Patrick Hoesly</a> and is licensed under the <a href='https://creativecommons.org/licenses/by/2.0/'>Creative Commons Attribution 2.0 Generic (CC BY 2.0) license.</a>")
+                text: i18n.tr("The <a href='%1'>default chat background</a> was created by <a href='%2'>Patrick Hoesly</a> and is licensed "+
+                              "under the <a href='%3'>Creative Commons Attribution 2.0 Generic (CC BY 2.0) license.</a>")
+                               .arg("https://www.flickr.com/photos/zooboing/5127310748/")
+                               .arg("https://www.flickr.com/photos/zooboing/")
+                               .arg("https://creativecommons.org/licenses/by/2.0/")
                 onLinkActivated: Qt.openUrlExternally(link)
            }
 
            FlexibleLabel {
                text: i18n.tr("This application is not endorsed by or affiliated with Ubuntu or Canonical. Ubuntu and Canonical are registered trademarks of Canonical Ltd.")
            }
-
        }
-
    }
-
 }

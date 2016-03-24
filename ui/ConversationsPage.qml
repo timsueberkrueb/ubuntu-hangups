@@ -184,7 +184,6 @@ Page {
                 pageLayout.addPageToNextColumn(conversationsPage, chatPages[modelData.id_]);
             }
         }
-
     }
 
     Component {
@@ -220,6 +219,5 @@ Page {
         text: i18n.tr("Nothing here, yet")
         anchors.centerIn: parent
     }
-
 }
 

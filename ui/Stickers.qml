@@ -18,5 +18,4 @@ QtObject {
         loaded = true;
         stickersWorker.sendMessage({"action": "load"});
     }
-
 }

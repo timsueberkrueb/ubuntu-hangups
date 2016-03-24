@@ -155,9 +155,7 @@ Page {
                     }
                 ]
             }
-
         }
-
     }
 
     Label {
@@ -166,6 +164,5 @@ Page {
         text: i18n.tr("No contacts")
         anchors.centerIn: parent
     }
-
 }
 

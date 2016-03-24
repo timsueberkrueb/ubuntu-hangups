@@ -25,5 +25,4 @@ Item {
         running: visible
 
     }
-
 }

@@ -49,9 +49,10 @@ Page {
             spacing: units.gu(1)
 
             CheckBox {
-                property bool userInitiated: false
-                anchors.verticalCenter: parent.verticalCenter
                 id: isQuietCheckbox
+                anchors.verticalCenter: parent.verticalCenter
+                property bool userInitiated: false
+
                 onClicked: {
                     userInitiated = true;
                 }
@@ -73,16 +74,17 @@ Page {
              text: i18n.tr("Users")
              fontSize: "x-large"
         }
-
     }
 
     UbuntuListView {
         id: listView
 
-        anchors.top: col.bottom
-        anchors.left: parent.left
-        anchors.right: parent.right
-        anchors.bottom: parent.bottom
+        anchors {
+            top: col.bottom
+            left: parent.left
+            right: parent.right
+            bottom: parent.bottom
+        }
 
         clip: true
 
@@ -120,9 +122,6 @@ Page {
                     text: modelData.is_self ? modelData.full_name + " (%1)".arg(i18n.tr("you")) : modelData.full_name
                 }
             }
-
         }
-
     }
-
 }

@@ -16,10 +16,9 @@ import com.canonical.Oxide 1.9
         anchors.margins: units.gu(2)
         spacing: units.gu(1)
         height: childrenRect.height + units.gu(1)
+        visible: height !== 0 && opacity !== 0
 
         property bool detailsMode: false
-
-        visible: height !== 0 && opacity !== 0
 
         Behavior on height {
             NumberAnimation {duration: 100}
@@ -215,7 +214,5 @@ import com.canonical.Oxide 1.9
                 py.call('backend.auth_with_code', [code])
             });
         }
-
     }
-
 }

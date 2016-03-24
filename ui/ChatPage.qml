@@ -400,5 +400,4 @@ Page {
             py.call('backend.send_image', [convId, url.toString()]);
         }
     }
-
 }

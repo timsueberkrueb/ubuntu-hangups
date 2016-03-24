@@ -47,22 +47,8 @@ Page {
                 }
             }
 
-            /*leadingActions: ListItemActions {
-                actions: [
-                    Action {
-                        iconName: "stop"
-                    }
-                ]
-            }*/
-
             trailingActions: ListItemActions {
                 actions: [
-                    /*Action {
-                        iconName: "compose"
-                        onTriggered: {
-
-                        }
-                    },*/
                     Action {
                         iconName: "googleplus-symbolic"
                         onTriggered: {

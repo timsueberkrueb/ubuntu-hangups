@@ -260,7 +260,5 @@ Page {
             py.call('backend.set_chat_background', [true, url.toString()]);
         }
     }
-
-
 }
 

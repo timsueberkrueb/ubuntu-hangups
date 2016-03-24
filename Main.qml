@@ -177,6 +177,7 @@ MainView {
                 conversationsModel.get(getConversationModelIndexById(conv_id)).statusMessage = statusMessage;
 
                 var chatPage = chatPages[conv_id];
+                chatPage.convName = title;
 
                 if (chatPage.visible ||
                         (aboutConversationPage.visible && aboutConversationPage.mData.id_ == conv_id)) {

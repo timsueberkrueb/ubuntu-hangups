@@ -230,6 +230,7 @@ MainView {
             setHandler('set-conversation-online', function(conv_id, online){
                 debugEvent('set-conversation-online of', conv_id)
                 conversationsModel.get(getConversationModelIndexById(conv_id)).online = online;
+                chatPages[conv_id].convOnline = online;
             });
 
             setHandler('add-conversation-message', function(conv_id, data, insert_mode) {

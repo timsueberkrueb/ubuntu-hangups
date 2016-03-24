@@ -12,6 +12,7 @@ Page {
 
     property string convName
     property string convId
+    property bool convOnline: false
     property string statusMessage: ""
     property bool firstMessageLoaded: false
     property bool loaded: false
@@ -72,7 +73,7 @@ Page {
             text: title
             fontSize: "x-large"
             elide: Text.ElideRight
-            visible: statusMessage == ""
+            visible: statusMessage == "" && !convOnline
         }
 
         Label {
@@ -81,15 +82,15 @@ Page {
             text: title
             fontSize: "large"
             elide: Text.ElideRight
-            visible: statusMessage != ""
+            visible: statusMessage != "" || convOnline
         }
 
         Label {
             width: parent.width
-            opacity: statusMessage != "" ? 1.0: 0
+            opacity: (statusMessage != "" || convOnline) ? 1.0: 0
             color: UbuntuColors.green
             anchors.bottom: parent.bottom
-            text: statusMessage
+            text: statusMessage || (convOnline ? i18n.tr("Online") : "")
             elide: Text.ElideRight
             Behavior on opacity {
                 NumberAnimation { duration: 500 }

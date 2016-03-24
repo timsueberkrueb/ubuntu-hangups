@@ -96,28 +96,6 @@ Page {
             }
 
             Rectangle {
-                id: onlineCircle
-
-                visible: false
-
-                x: rowItem.x + units.dp(24)
-                y: rowItem.y + units.dp(24)
-
-                width: units.gu(2)
-                height: width
-                color: UbuntuColors.green
-                radius: width*0.5
-
-                Icon {
-                    anchors.centerIn: parent
-                    width: parent.width
-                    height: parent.height
-                    name: "stock_website"
-                    color: "white"
-                }
-            }
-
-            Rectangle {
                 id: unreadCircle
 
                 visible: modelData.unread_count > 0 || modelData.online

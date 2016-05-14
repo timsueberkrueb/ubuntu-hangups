@@ -87,7 +87,7 @@ Page {
                     }
 
                     Label {
-                        text: modelData.statusMessage || (chatModels[modelData.id_].count > 0 ? chatModels[modelData.id_].get(0).text: "")
+                        text: modelData.statusMessage || (chatModels[modelData.id_].count > 0 ? chatModels[modelData.id_].get(0).text.split()[0] : "")
                         elide: Text.ElideRight
                         width: parent.width
                         color: modelData.statusMessage ? UbuntuColors.green : Theme.palette.normal.baseText

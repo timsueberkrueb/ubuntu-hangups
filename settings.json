@@ -1,6 +1,5 @@
 {
-    "cache_images": false,
-    "check_routine_timeout": 30,
+    "cache_images": true,
     "custom_chat_background": false,
     "load_stickers_on_start": true
 }

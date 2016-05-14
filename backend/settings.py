@@ -9,7 +9,6 @@ import os.path
 
 default_settings = {
     'cache_images': True,
-    'check_routine_timeout': 30,
     'custom_chat_background': False,
     'load_stickers_on_start': True
 }

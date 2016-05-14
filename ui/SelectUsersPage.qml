@@ -3,9 +3,44 @@ import Ubuntu.Components 1.3
 
 Page {
     id: page
+
     property string headTitle: ""
-    title: headTitle != "" ? headTitle : i18n.tr("Select users")
+    property var callback
+    property var excludedUsers: []
+
+    signal usersSelected (var users)
+
     visible: false
+    header: HangupsHeader {
+        title: headTitle != "" ? headTitle : i18n.tr("Select users")
+
+        flickable: listView
+
+        trailingActionBar.actions: [
+           Action {
+               id: actionOk
+               iconName: "ok"
+               onTriggered: {
+                   if (listView.selectedModel.length > 0) {
+                       var selectedUsers = new Array();
+                       for (var i=0; i<listView.selectedModel.length; i++) {
+                           var modelIndex = listView.selectedModel[i];
+                           var modelData = contactsModel.get(modelIndex);
+                           selectedUsers.push(modelData.id_);
+                       }
+                       usersSelected(selectedUsers);
+                   }
+                   pageLayout.removePages(selectUsersPage);
+               }
+           },
+           Action {
+               iconName: "close"
+               onTriggered: {
+                   pageLayout.removePages(selectUsersPage);
+               }
+           }
+       ]
+    }
 
     onVisibleChanged : {
         if (!visible) {
@@ -20,44 +55,9 @@ Page {
        }
     }
 
-    property var callback
-    property var excludedUsers: []
-
-    signal usersSelected (var users)
-
     onUsersSelected: {
         callback(users);
     }
-
-    head {
-        locked: true
-        visible: false
-        actions: [
-            Action {
-                id: actionOk
-                iconName: "ok"
-                onTriggered: {
-                    if (listView.selectedModel.length > 0) {
-                        var selectedUsers = new Array();
-                        for (var i=0; i<listView.selectedModel.length; i++) {
-                            var modelIndex = listView.selectedModel[i];
-                            var modelData = contactsModel.get(modelIndex);
-                            selectedUsers.push(modelData.id_);
-                        }
-                        usersSelected(selectedUsers);
-                    }
-                    pageLayout.removePages(selectUsersPage);
-                }
-            },
-            Action {
-                iconName: "close"
-                onTriggered: {
-                    pageLayout.removePages(selectUsersPage);
-                }
-            }
-        ]
-    }
-
 
     UbuntuListView {
         id: listView
@@ -75,9 +75,7 @@ Page {
 
             Row {
                 id: rowItem
-                anchors.verticalCenter: parent.verticalCenter
-                anchors.left: parent.left
-                anchors.right: parent.right
+                anchors.fill: parent
                 anchors.leftMargin: units.gu(1)
                 anchors.rightMargin: units.gu(1)
                 spacing: units.gu(2)
@@ -87,6 +85,7 @@ Page {
 
                     property bool userInitiated
 
+                    anchors.verticalCenter: parent.verticalCenter
                     enabled: page.excludedUsers.indexOf(modelData.id_) == -1
                     checked: listView.selectedModel.indexOf(index) > -1
                     onClicked: userInitiated = true;
@@ -106,6 +105,7 @@ Page {
 
                 Icon {
                     id: contactIcon
+                    anchors.verticalCenter: parent.verticalCenter
                     height: units.dp(32)
                     width: units.dp(32)
                     visible: !modelData.photo_url
@@ -115,6 +115,7 @@ Page {
 
                 Image {
                     id: remoteIcon
+                    anchors.verticalCenter: parent.verticalCenter
                     visible: modelData.photo_url
                     height: units.dp(32)
                     width: units.dp(32)
@@ -148,6 +149,7 @@ Page {
                         }
                     },*/
                     Action {
+                        text: "Google Plus"
                         iconName: "googleplus-symbolic"
                         onTriggered: {
                             Qt.openUrlExternally("https://plus.google.com/u/0/" + modelData.id_ + "/about")

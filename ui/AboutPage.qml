@@ -3,7 +3,10 @@ import Ubuntu.Components 1.3
 import QtQuick.Layouts 1.1
 
 Page {
-   title: i18n.tr("About")
+   header: HangupsHeader {
+       title: i18n.tr("About")
+       flickable: flickable
+   }
    visible: false
 
    Flickable {

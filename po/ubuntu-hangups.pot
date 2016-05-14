@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-05-14 11:51+0000\n"
+"POT-Creation-Date: 2016-05-14 12:00+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -48,43 +48,43 @@ msgstr ""
 
 #: ui/ConversationsPage.qml:36 ui/ConversationsPage.qml:141 ui/AboutPage.qml:7
 #: .ubuntu-sdk-deploy/ui/ConversationsPage.qml:36
-#: .ubuntu-sdk-deploy/ui/ConversationsPage.qml:147
+#: .ubuntu-sdk-deploy/ui/ConversationsPage.qml:141
 #: .ubuntu-sdk-deploy/ui/AboutPage.qml:7
 msgid "About"
 msgstr ""
 
 #: ui/ConversationsPage.qml:128 ui/ConversationsPage.qml:180
-#: .ubuntu-sdk-deploy/ui/ConversationsPage.qml:134
-#: .ubuntu-sdk-deploy/ui/ConversationsPage.qml:186
+#: .ubuntu-sdk-deploy/ui/ConversationsPage.qml:128
+#: .ubuntu-sdk-deploy/ui/ConversationsPage.qml:180
 msgid "Delete"
 msgstr ""
 
 #: ui/ConversationsPage.qml:146 ui/ConversationsPage.qml:155
-#: ui/ChatPage.qml:44 .ubuntu-sdk-deploy/ui/ConversationsPage.qml:152
-#: .ubuntu-sdk-deploy/ui/ConversationsPage.qml:161
+#: ui/ChatPage.qml:44 .ubuntu-sdk-deploy/ui/ConversationsPage.qml:146
+#: .ubuntu-sdk-deploy/ui/ConversationsPage.qml:155
 #: .ubuntu-sdk-deploy/ui/ChatPage.qml:44
 msgid "Add users"
 msgstr ""
 
 #: ui/ConversationsPage.qml:174
-#: .ubuntu-sdk-deploy/ui/ConversationsPage.qml:180
+#: .ubuntu-sdk-deploy/ui/ConversationsPage.qml:174
 msgid "Delete Conversation"
 msgstr ""
 
 #: ui/ConversationsPage.qml:175
-#: .ubuntu-sdk-deploy/ui/ConversationsPage.qml:181
+#: .ubuntu-sdk-deploy/ui/ConversationsPage.qml:175
 msgid "Are you really sure to delete this conversation?"
 msgstr ""
 
 #: ui/ConversationsPage.qml:191 ui/SettingsPage.qml:203
-#: ui/SettingsPage.qml:252 .ubuntu-sdk-deploy/ui/ConversationsPage.qml:197
+#: ui/SettingsPage.qml:252 .ubuntu-sdk-deploy/ui/ConversationsPage.qml:191
 #: .ubuntu-sdk-deploy/ui/SettingsPage.qml:203
 #: .ubuntu-sdk-deploy/ui/SettingsPage.qml:252
 msgid "Cancel"
 msgstr ""
 
 #: ui/ConversationsPage.qml:200
-#: .ubuntu-sdk-deploy/ui/ConversationsPage.qml:206
+#: .ubuntu-sdk-deploy/ui/ConversationsPage.qml:200
 msgid "Nothing here, yet"
 msgstr ""
 
@@ -92,27 +92,27 @@ msgstr ""
 msgid "Info"
 msgstr ""
 
-#: ui/ChatPage.qml:86 .ubuntu-sdk-deploy/ui/ChatPage.qml:84
+#: ui/ChatPage.qml:86 .ubuntu-sdk-deploy/ui/ChatPage.qml:86
 msgid "Online"
 msgstr ""
 
-#: ui/ChatPage.qml:169 .ubuntu-sdk-deploy/ui/ChatPage.qml:167
+#: ui/ChatPage.qml:169 .ubuntu-sdk-deploy/ui/ChatPage.qml:169
 msgid "Pull to load more"
 msgstr ""
 
-#: ui/ChatPage.qml:169 .ubuntu-sdk-deploy/ui/ChatPage.qml:167
+#: ui/ChatPage.qml:169 .ubuntu-sdk-deploy/ui/ChatPage.qml:169
 msgid "Release to load more"
 msgstr ""
 
-#: ui/ChatPage.qml:236 .ubuntu-sdk-deploy/ui/ChatPage.qml:234
+#: ui/ChatPage.qml:236 .ubuntu-sdk-deploy/ui/ChatPage.qml:236
 msgid "Write a message"
 msgstr ""
 
-#: ui/ChatPage.qml:346 .ubuntu-sdk-deploy/ui/ChatPage.qml:344
+#: ui/ChatPage.qml:346 .ubuntu-sdk-deploy/ui/ChatPage.qml:346
 msgid "Send image"
 msgstr ""
 
-#: ui/ChatPage.qml:370 .ubuntu-sdk-deploy/ui/ChatPage.qml:368
+#: ui/ChatPage.qml:370 .ubuntu-sdk-deploy/ui/ChatPage.qml:370
 msgid "Send sticker"
 msgstr ""
 

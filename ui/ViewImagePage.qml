@@ -21,7 +21,7 @@ Page {
     }
 
     visible: false
-    header: PageHeader {
+    header: HangupsHeader {
         title: i18n.tr("Image")
         trailingActionBar.actions: [
             Action {

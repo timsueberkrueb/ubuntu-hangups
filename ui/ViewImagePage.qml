@@ -5,18 +5,11 @@ import Ubuntu.Components.Popups 1.3
 
 Page {
     id: viewImagePage
-    title: i18n.tr("Image")
-    visible: false
 
     property var images
     property var dialog
-
-    onImagesChanged: {
-        source = images.get(0).url;
-    }
     property alias source: img.source
     property url image_filename
-    onSourceChanged: console.log(source)
 
     function shareImage() {
         PopupUtils.open(downloadProgressDialog);
@@ -27,22 +20,30 @@ Page {
         });
     }
 
-    head.actions: [
-        Action {
-            iconName: "save"
-            text: i18n.tr("Save")
-            onTriggered: {
-                shareImage();
+    visible: false
+    header: PageHeader {
+        title: i18n.tr("Image")
+        trailingActionBar.actions: [
+            Action {
+               iconName: "save"
+               text: i18n.tr("Save")
+               onTriggered: {
+                   shareImage();
+               }
+            },
+            Action {
+               iconName: "share"
+               text: i18n.tr("Share")
+               onTriggered: {
+                   shareImage();
+               }
             }
-        },
-        Action {
-            iconName: "share"
-            text: i18n.tr("Share")
-            onTriggered: {
-                shareImage();
-            }
-        }
-    ]
+        ]
+    }
+
+    onImagesChanged: {
+        source = images.get(0).url;
+    }
 
     Flickable {
         anchors.fill: parent

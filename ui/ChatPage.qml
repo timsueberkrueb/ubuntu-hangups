@@ -7,11 +7,10 @@ import QtGraphicalEffects 1.0
 
 Page {
     id: chatPage
-    title: convName || "Chat"
-    visible: false
 
     property string convName
     property string convId
+    property bool convOnline: false
     property string statusMessage: ""
     property bool firstMessageLoaded: false
     property bool loaded: false
@@ -23,6 +22,75 @@ Page {
     property bool pullToRefreshLoading: false
 
     property alias chatModel: listView.model
+
+    header: PageHeader {
+
+        trailingActionBar.actions: [
+            Action {
+                iconName: "info"
+                text: i18n.tr("Info")
+                onTriggered: pageLayout.addPageToNextColumn(chatPage, aboutConversationPage, {mData: conversationsModel.get(getConversationModelIndexById(convId))})
+            },
+            Action {
+                iconName: "add"
+                text: i18n.tr("Add")
+                property var userModel: conversationsModel.get(getConversationModelIndexById(convId)).users
+                enabled: userModel.count > 2
+                onTriggered: {
+                    var user_ids = [];
+                    for (var i=0; i<userModel.count; i++) {
+                        user_ids.push(userModel.get(i).id_.toString());
+                    }
+                    pageLayout.addPageToNextColumn(chatPage, selectUsersPage, {headTitle: i18n.tr("Add users"), excludedUsers: user_ids, callback: function onUsersSelected(users){
+                        py.call('backend.add_users', [convId, users]);
+                    }});
+                }
+            }
+        ]
+
+        contents: Item {
+            anchors {
+                fill: parent
+            }
+
+            Label {
+                width: parent.width
+                anchors.verticalCenter: parent.verticalCenter
+                text: convName
+                fontSize: "x-large"
+                elide: Text.ElideRight
+                visible: statusMessage == "" && !convOnline
+            }
+
+            Column {
+                anchors {
+                    left: parent.left
+                    right: parent.right
+                    verticalCenter: parent.verticalCenter
+                }
+
+                Label {
+                    width: parent.width
+                    text: convName
+                    fontSize: "large"
+                    elide: Text.ElideRight
+                    visible: statusMessage != "" || convOnline
+                }
+
+                Label {
+                    width: parent.width
+                    opacity: (statusMessage != "" || convOnline) ? 1.0: 0
+                    text: statusMessage || (convOnline ? i18n.tr("Online") : "")
+                    elide: Text.ElideRight
+                    Behavior on opacity {
+                        NumberAnimation { duration: 500 }
+                    }
+                }
+            }
+
+        }
+    }
+    visible: false
 
     flickable: listView
 
@@ -37,63 +105,6 @@ Page {
                 py.call('backend.load_conversation', [convId])
             }
             conversationsModel.get(getConversationModelIndexById(convId)).unread_count = 0;
-        }
-    }
-
-    head.actions: [
-        Action {
-            iconName: "info"
-            text: i18n.tr("Info")
-            onTriggered: pageLayout.addPageToNextColumn(chatPage, aboutConversationPage, {mData: conversationsModel.get(getConversationModelIndexById(convId))})
-        },
-        Action {
-            iconName: "add"
-            text: i18n.tr("Add")
-            property var userModel: conversationsModel.get(getConversationModelIndexById(convId)).users
-            enabled: userModel.count > 2
-            onTriggered: {
-                var user_ids = [];
-                for (var i=0; i<userModel.count; i++) {
-                    user_ids.push(userModel.get(i).id_.toString());
-                }
-                pageLayout.addPageToNextColumn(chatPage, selectUsersPage, {headTitle: i18n.tr("Add users"), excludedUsers: user_ids, callback: function onUsersSelected(users){
-                    py.call('backend.add_users', [convId, users]);
-                }});
-            }
-        }
-    ]
-
-    head.contents: Item {
-        height: units.gu(5)
-        width: parent ? parent.width - units.gu(2) : undefined
-        Label {
-            width: parent.width
-            anchors.verticalCenter: parent.verticalCenter
-            text: title
-            fontSize: "x-large"
-            elide: Text.ElideRight
-            visible: statusMessage == ""
-        }
-
-        Label {
-            width: parent.width
-            anchors.top: parent.top
-            text: title
-            fontSize: "large"
-            elide: Text.ElideRight
-            visible: statusMessage != ""
-        }
-
-        Label {
-            width: parent.width
-            opacity: statusMessage != "" ? 1.0: 0
-            color: UbuntuColors.green
-            anchors.bottom: parent.bottom
-            text: statusMessage
-            elide: Text.ElideRight
-            Behavior on opacity {
-                NumberAnimation { duration: 500 }
-            }
         }
     }
 

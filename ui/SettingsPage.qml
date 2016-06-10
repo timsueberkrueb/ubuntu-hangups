@@ -4,8 +4,11 @@ import Ubuntu.Components.Popups 1.3
 import Ubuntu.Content 1.3
 
 Page {
-    title: i18n.tr("Settings")
     visible: false
+    header: PageHeader {
+        title: i18n.tr("Settings")
+        flickable: flickable
+    }
 
     property alias backgroundImage: backgroundImage
 
@@ -19,6 +22,7 @@ Page {
     }
 
     Flickable {
+        id: flickable
         anchors.fill: parent
         contentHeight: col.height + col.anchors.margins * 2
         clip: true
@@ -43,8 +47,8 @@ Page {
                     id: backgroundImage
 
                     property bool isDefault: source == Qt.resolvedUrl('../media/default_chat_background.jpg')
-                    width: units.dp(256)
-                    height: units.dp(256)
+                    width: units.dp(64)
+                    height: units.dp(64)
                     fillMode: Image.PreserveAspectCrop
                     source: Qt.resolvedUrl('../media/default_chat_background.jpg')
 

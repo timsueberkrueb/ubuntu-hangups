@@ -7,33 +7,37 @@ Page {
     visible: false
 
     flickable: listView
+    header: PageHeader {
+        title: i18n.tr("Conversations")
+        flickable: listView
 
-    head.actions: [
-        Action {
-            iconName: "add"
-            text: i18n.tr("Add")
-            onTriggered: {
-                pageLayout.addPageToNextColumn(conversationsPage, selectUsersPage, {headTitle: i18n.tr("New Conversation"), callback: function callback(users){
-                    py.call('backend.create_conversation', [users]);
-                }});
+        trailingActionBar.actions: [
+            Action {
+                iconName: "add"
+                text: i18n.tr("Add")
+                onTriggered: {
+                    pageLayout.addPageToNextColumn(conversationsPage, selectUsersPage, {headTitle: i18n.tr("New Conversation"), callback: function callback(users){
+                        py.call('backend.create_conversation', [users]);
+                    }});
+                }
+            },
+            Action {
+                iconName: "contact-group"
+                text: i18n.tr("Contacts")
+                onTriggered: pageLayout.addPageToNextColumn(conversationsPage, contactsPage);
+            },
+            Action {
+                iconName: "settings"
+                text: i18n.tr("Settings")
+                onTriggered: pageLayout.addPageToNextColumn(conversationsPage, settingsPage);
+            },
+            Action {
+                iconName: "info"
+                text: i18n.tr("About")
+                onTriggered: pageLayout.addPageToNextColumn(conversationsPage, aboutPage);
             }
-        },
-        Action {
-            iconName: "contact-group"
-            text: i18n.tr("Contacts")
-            onTriggered: pageLayout.addPageToNextColumn(conversationsPage, contactsPage);
-        },
-        Action {
-            iconName: "settings"
-            text: i18n.tr("Settings")
-            onTriggered: pageLayout.addPageToNextColumn(conversationsPage, settingsPage);
-        },
-        Action {
-            iconName: "info"
-            text: i18n.tr("About")
-            onTriggered: pageLayout.addPageToNextColumn(conversationsPage, aboutPage);
-        }
-    ]
+        ]
+    }
 
     UbuntuListView {
         id: listView

@@ -3,9 +3,44 @@ import Ubuntu.Components 1.3
 
 Page {
     id: page
+
     property string headTitle: ""
-    title: headTitle != "" ? headTitle : i18n.tr("Select users")
+    property var callback
+    property var excludedUsers: []
+
+    signal usersSelected (var users)
+
     visible: false
+    header: PageHeader {
+        title: headTitle != "" ? headTitle : i18n.tr("Select users")
+
+        flickable: listView
+
+        trailingActionBar.actions: [
+           Action {
+               id: actionOk
+               iconName: "ok"
+               onTriggered: {
+                   if (listView.selectedModel.length > 0) {
+                       var selectedUsers = new Array();
+                       for (var i=0; i<listView.selectedModel.length; i++) {
+                           var modelIndex = listView.selectedModel[i];
+                           var modelData = contactsModel.get(modelIndex);
+                           selectedUsers.push(modelData.id_);
+                       }
+                       usersSelected(selectedUsers);
+                   }
+                   pageLayout.removePages(selectUsersPage);
+               }
+           },
+           Action {
+               iconName: "close"
+               onTriggered: {
+                   pageLayout.removePages(selectUsersPage);
+               }
+           }
+       ]
+    }
 
     onVisibleChanged : {
         if (!visible) {
@@ -20,44 +55,9 @@ Page {
        }
     }
 
-    property var callback
-    property var excludedUsers: []
-
-    signal usersSelected (var users)
-
     onUsersSelected: {
         callback(users);
     }
-
-    head {
-        locked: true
-        visible: false
-        actions: [
-            Action {
-                id: actionOk
-                iconName: "ok"
-                onTriggered: {
-                    if (listView.selectedModel.length > 0) {
-                        var selectedUsers = new Array();
-                        for (var i=0; i<listView.selectedModel.length; i++) {
-                            var modelIndex = listView.selectedModel[i];
-                            var modelData = contactsModel.get(modelIndex);
-                            selectedUsers.push(modelData.id_);
-                        }
-                        usersSelected(selectedUsers);
-                    }
-                    pageLayout.removePages(selectUsersPage);
-                }
-            },
-            Action {
-                iconName: "close"
-                onTriggered: {
-                    pageLayout.removePages(selectUsersPage);
-                }
-            }
-        ]
-    }
-
 
     UbuntuListView {
         id: listView

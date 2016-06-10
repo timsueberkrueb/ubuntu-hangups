@@ -16,5 +16,5 @@
     },
     "version": "0.3.3",
     "maintainer": "Tim Süberkrüb <tim.sueberkrueb@web.de>",
-    "framework": "ubuntu-sdk-15.04.1-qml"
+    "framework": "ubuntu-sdk-15.04.4"
 }

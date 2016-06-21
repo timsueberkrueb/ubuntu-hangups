@@ -92,8 +92,6 @@ Page {
     }
     visible: false
 
-    flickable: listView
-
     onActiveChanged: {
         if (!active) {
             pullToRefreshLoading = false;
@@ -116,7 +114,7 @@ Page {
     UbuntuListView {
         id: listView
 
-        anchors.top: parent.top
+        anchors.top: parent.header.bottom
         anchors.left: parent.left
         anchors.right: parent.right
         anchors.bottom: bottomContainer.top

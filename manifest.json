@@ -8,13 +8,13 @@
     ],
     "title": "Hangups",
     "hooks": {
-        "ubuntu-hangups.timsueberkrueb": {
+        "ubuntu-hangups": {
             "apparmor": "ubuntu-hangups.timsueberkrueb.apparmor",
             "desktop": "ubuntu-hangups.timsueberkrueb.desktop",
             "content-hub": "content-hub.json"
         }
     },
-    "version": "0.3.3",
+    "version": "0.3.4.1",
     "maintainer": "Tim Süberkrüb <tim.sueberkrueb@web.de>",
     "framework": "ubuntu-sdk-15.04.4"
 }

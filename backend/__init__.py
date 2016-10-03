@@ -2,7 +2,7 @@
 from _threading_local import local
 
 __author__ = 'Tim Süberkrüb'
-__version__ = '0.3.2'
+__version__ = '0.3.5'
 
 import pyotherside
 import mimetypes
@@ -370,30 +370,44 @@ class ConversationController:
         pyotherside.send('set-conversation-online', self.conv.id_, res.presence_result[0].presence.available)
 
 
+class CredentialsPrompt(object):
+    email = ""
+    password = ""
+
+    def __init__(self, email, password):
+        self.email = email
+        self.password = password
+
+    def get_email(self):
+        return self.email
+
+    def get_password(self):
+        return self.password
+
+
 def get_login_url():
     return hangups.auth.OAUTH2_LOGIN_URL
 
 
-def auth_with_code(code):
-    def get_code_f():
-        return code
-
+def auth_with_credentials(email, password):
+    print("Authentication with credentials")
     try:
-        access_token = hangups.auth._auth_with_code(get_code_f, refresh_token_filename)
-        print('Authentication successful')
-        cookies = hangups.auth._get_session_cookies(access_token)
-        load(cookies)
+        cookies = hangups.auth.get_auth(CredentialsPrompt(email, password), hangups.auth.RefreshTokenCache(refresh_token_filename))
     except hangups.GoogleAuthError as e:
-        print('Failed to authenticate using refresh token: {}'.format(e))
+        return False
+    load(cookies)
+    return True
 
 
 def auth_with_token():
+    session = requests.Session()
+    session.headers = {'user-agent': hangups.auth.USER_AGENT}
     try:
         print('Authenticating with refresh token')
         set_loading_status("authenticating")
-        access_token = hangups.auth._auth_with_refresh_token(refresh_token_filename)
+        access_token = hangups.auth._auth_with_refresh_token(session, hangups.auth.RefreshTokenCache(refresh_token_filename).get())
         print('Authentication successful')
-        cookies = hangups.auth._get_session_cookies(access_token)
+        cookies = hangups.auth._get_session_cookies(session, access_token)
         load(cookies)
     except hangups.GoogleAuthError as e:
         print('Failed to authenticate using refresh token: {}'.format(e))

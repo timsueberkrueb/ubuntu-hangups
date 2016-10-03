@@ -7,30 +7,73 @@ import com.canonical.Oxide 1.9
 
     property string usContext: "messaging://"
     property alias loginInfo: infoLabel.text
+    property bool loading: false
+    property bool error: false
+
+    /*
+        Fix for https://github.com/tim-sueberkrueb/ubuntu-hangups/issues/68
+    */
 
     Column {
-        id: infoContainer
-        anchors.top: parent.top
-        anchors.left: parent.left
-        anchors.right: parent.right
-        anchors.margins: units.gu(2)
-        spacing: units.gu(1)
-        height: childrenRect.height + units.gu(1)
-
-        property bool detailsMode: false
-
-        visible: height !== 0 && opacity !== 0
-
-        Behavior on height {
-            NumberAnimation {duration: 100}
+        anchors {
+            fill: parent
+            margins: units.gu(2)
         }
 
-        Behavior on opacity {
-            NumberAnimation {duration: 90}
+        visible: !loading
+        spacing: units.gu(2)
+
+        Label {
+            text: i18n.tr("Login")
+            fontSize: "large"
         }
 
-        function hide() {
-            height = 0;
+        FlexibleLabel {
+            visible: error
+            text: i18n.tr("Failed to authenticate. Please verify your login data again.")
+            color: UbuntuColors.red
+        }
+
+        TextField {
+            id: txtEmail
+            placeholderText: "Google email address"
+        }
+
+        TextField {
+            id: txtPassword
+            placeholderText: "Password"
+            echoMode: TextInput.Password
+        }
+
+        Row {
+            spacing: units.gu(2)
+
+            Button {
+                text: "Cancel"
+                color: UbuntuColors.red
+                onClicked: {
+                    Qt.quit();
+                }
+            }
+
+            Button {
+                text: "Login"
+                color: UbuntuColors.green
+                onClicked: {
+                    loading = true;
+                    error = false;
+                    py.call("backend.auth_with_credentials", [txtEmail.text, txtPassword.text], function(result){
+                        if (result) {
+                            loginScreen.visible = false;
+                            loadingScreen.visible = true;
+                        }
+                        else {
+                            loading = false;
+                            error = true;
+                        }
+                    });
+                }
+            }
         }
 
         FlexibleLabel {
@@ -39,183 +82,26 @@ import com.canonical.Oxide 1.9
 
         FlexibleLabel {
             id: infoLabel
-            visible: infoContainer.detailsMode
-            text: i18n.tr("This app uses an inoffical Google Hangouts API called 'Hangups'. In order to have the relevant access it connects as an iOS device. You can always deny the access <a href='https://security.google.com/settings/security/permissions'>here</a>.")
+            text: i18n.tr("This app uses an inoffical Google Hangouts API called 'Hangups'. You can always deny the access <a href='https://security.google.com/settings/security/permissions'>here</a>.")
             onLinkActivated: Qt.openUrlExternally(link);
         }
-
-        Row {
-            anchors.margins: units.gu(1)
-            spacing: units.gu(1)
-            width: parent.width
-
-            Button {
-                text: infoContainer.detailsMode ? i18n.tr("Hide details") : i18n.tr("More info")
-                color: infoContainer.detailsMode ? UbuntuColors.orange : UbuntuColors.blue
-                onClicked: infoContainer.detailsMode = !infoContainer.detailsMode;
-            }
-
-            Button {
-                text: i18n.tr("Got it")
-                color: UbuntuColors.green
-                onClicked: {
-                    infoContainer.hide();
-                }
-            }
-
-
-        }
-
     }
 
-    Item {
-        id: webviewContainer
-        anchors.top: infoContainer.bottom
-        anchors.bottom: parent.bottom
-        anchors.left: parent.left
-        anchors.right: parent.right
-
-        WebView {
-            id: webview
-            visible: !loading
-            anchors.fill: parent
-            property bool approved: false
-            context: webcontext
-
-            function getHTML(callback) {
-                var req = webview.rootFrame.sendMessage(usContext, "GET_HTML", {})
-                req.onreply = function (msg) {
-                    callback(msg.html);
-                }
-                req.onerror = function (code, explanation) {
-                    console.log("Error " + code + ": " + explanation)
-                }
-            }
-
-            function getAuthCode(callback) {
-                var req = webview.rootFrame.sendMessage(usContext, "GET_AUTH_CODE", {})
-                req.onreply = function (msg) {
-                    callback(msg.code);
-                }
-                req.onerror = function (code, explanation) {
-                    console.log("Error " + code + ": " + explanation)
-                }
-            }
-
-            function onApproved() {
-                if (!approved) {
-                    finishedIcon.opacity = 1;
-                    infoContainer.opacity = 0;
-                    approved = true;
-                    visible = false;
-                }
-            }
-
-            Component.onCompleted: {
-                py.call('backend.get_login_url', [], function(result){
-                    webview.url = result;
-                });
-            }
-
-            onLoadingStateChanged: {
-                if (url.toString().lastIndexOf('https://accounts.google.com/o/oauth2/approval', 0) === 0) {
-                    onApproved();
-                }
-            }
+    ActivityIndicator {
+        id: loadingIndicator
+        anchors {
+            bottom: loadingInfo.top
+            bottomMargin: units.gu(1)
+            horizontalCenter: parent.horizontalCenter
         }
-
-        WebContext {
-            id: webcontext
-            userScripts: [
-                UserScript {
-                    context: usContext
-                    url: Qt.resolvedUrl("oxide-user.js")
-                }
-            ]
-        }
-
-        ActivityIndicator {
-            id: loadingIndicator
-            anchors.bottom: loadingInfo.top
-            anchors.bottomMargin: units.gu(1)
-            anchors.horizontalCenter: parent.horizontalCenter
-            running: webview.loading
-            visible: webview.loading
-        }
-
-        Label {
-            id: loadingInfo
-            anchors.centerIn: parent
-            text: i18n.tr("Loading, please wait ...")
-            visible: webview.loading
-        }
-
-    }
-
-    Rectangle {
-        id: finishedIcon
-        opacity: 0
-        Behavior on opacity {
-            NumberAnimation { duration: 1000 }
-        }
-
-        Behavior on y {
-            SmoothedAnimation { duration: 1000 }
-        }
-
-        anchors.horizontalCenter: parent.horizontalCenter
-        y: if (opacity === 1) {parent.height/2 - height} else { parent.height/2 - height/2 }
-
-        width: if (parent.width<=256) { parent.width/2 } else { 256/2 }
-        height: width
-        color: UbuntuColors.green
-        border.color: UbuntuColors.warmGrey
-        border.width: 1
-        radius: width*0.5
-
-        Icon {
-             anchors.centerIn: parent
-             width: parent.width/2
-             height: width
-             name: "ok"
-             color: "white"
-        }
+        running: loading
+        visible: loading
     }
 
     Label {
-        id: successLabel
-        opacity: if (finishedIcon.opacity === 1) { 1 } else { 0 }
-        Behavior on opacity {
-            NumberAnimation { duration: 1000 }
-        }
-
-        anchors.top: finishedIcon.bottom
-        anchors.topMargin: units.gu(2)
-        anchors.horizontalCenter: parent.horizontalCenter
-
-        text: i18n.tr("Welcome to Hangups!")
-        fontSize: "large"
+        id: loadingInfo
+        anchors.centerIn: parent
+        text: i18n.tr("Loading, please wait ...")
+        visible: loading
     }
-
-    Button {
-        opacity: if (finishedIcon.opacity === 1) { 1 } else { 0 }
-        Behavior on opacity {
-            NumberAnimation { duration: 1000 }
-        }
-
-        anchors.top: successLabel.bottom
-        anchors.topMargin: units.gu(2)
-        anchors.horizontalCenter: parent.horizontalCenter
-        text: i18n.tr("Get started")
-        color: UbuntuColors.green
-        onClicked: {
-            webview.getAuthCode(function callback(code) {
-                loginScreen.visible = false;
-                loadingScreen.visible = true;
-                py.call('backend.auth_with_code', [code])
-            });
-        }
-
-    }
-
 }

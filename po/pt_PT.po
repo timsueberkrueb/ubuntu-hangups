@@ -11,8 +11,8 @@ msgstr ""
 "Project-Id-Version: Ubuntu Hangups\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-01-05 20:54+0100\n"
-"PO-Revision-Date: 2016-01-13 15:09+0000\n"
-"Last-Translator: Vitor Loureiro <hardsargent128@gmail.com>\n"
+"PO-Revision-Date: 2017-06-22 10:09+0000\n"
+"Last-Translator: Ivo Xavier <ivofernandes12@gmail.com>\n"
 "Language-Team: Portuguese (Portugal) (http://www.transifex.com/tim-sueberkrueb/ubuntu-hangups/language/pt_PT/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -35,7 +35,7 @@ msgstr "Adicionar"
 #: .ubuntu-sdk-deploy/ui/ConversationsPage.qml:153 ui/ChatPage.qml:59
 #: ui/ConversationsPage.qml:144 ui/ConversationsPage.qml:153
 msgid "Add users"
-msgstr "Adicionar Utilizadores"
+msgstr "Adicionar utilizadores"
 
 #: .ubuntu-sdk-deploy/ui/ChatPage.qml:155 ui/ChatPage.qml:155
 msgid "Pull to load more"
@@ -55,7 +55,7 @@ msgstr "Enviar imagem"
 
 #: .ubuntu-sdk-deploy/ui/ChatPage.qml:356 ui/ChatPage.qml:356
 msgid "Send sticker"
-msgstr "Enviar Sticker"
+msgstr "Enviar sticker"
 
 #: .ubuntu-sdk-deploy/ui/ConversationsPage.qml:6 ui/ConversationsPage.qml:6
 msgid "Conversations"
@@ -65,7 +65,7 @@ msgstr "Conversas"
 #: .ubuntu-sdk-deploy/ui/NewConversationWelcomeDialog.qml:8
 #: ui/ConversationsPage.qml:16 ui/NewConversationWelcomeDialog.qml:8
 msgid "New Conversation"
-msgstr "Nova Conversa"
+msgstr "Nova conversa"
 
 #: .ubuntu-sdk-deploy/ui/ConversationsPage.qml:23
 #: .ubuntu-sdk-deploy/ui/ContactsPage.qml:5 ui/ConversationsPage.qml:23
@@ -96,7 +96,7 @@ msgstr "Eliminar"
 #: .ubuntu-sdk-deploy/ui/ConversationsPage.qml:173
 #: ui/ConversationsPage.qml:173
 msgid "Delete Conversation"
-msgstr "Eliminar Conversa"
+msgstr "Eliminar conversa"
 
 #: .ubuntu-sdk-deploy/ui/ConversationsPage.qml:174
 #: ui/ConversationsPage.qml:174
@@ -151,7 +151,7 @@ msgstr "Google Hangouts não oficial para Ubuntu Touch"
 msgid ""
 "Source code available on <a href='https://github.com/tim-sueberkrueb/ubuntu-"
 "hangups'>GitHub</a>"
-msgstr "Código-Fonte disponivel no <a href='https://github.com/tim-sueberkrueb/ubuntu-hangups'>GitHub</a>"
+msgstr "Código-Fonte disponível no <a href='https://github.com/tim-sueberkrueb/ubuntu-hangups'>GitHub</a>"
 
 #: .ubuntu-sdk-deploy/ui/AboutPage.qml:68 ui/AboutPage.qml:68
 msgid "Third-party Software"
@@ -161,7 +161,7 @@ msgstr "Software de Terceiros"
 msgid ""
 "The application icon was created by <a href='http://samuelhewitt.com/'>Sam "
 "Hewitt</a>"
-msgstr "O ícone do aplicativo foi criado por <a href='http://samuelhewitt.com/'>Sam Hewitt</a>"
+msgstr "O ícone da aplicação foi criado por <a href='http://samuelhewitt.com/'>Sam Hewitt</a>"
 
 #: .ubuntu-sdk-deploy/ui/AboutPage.qml:78 ui/AboutPage.qml:78
 msgid ""
@@ -169,7 +169,7 @@ msgid ""
 "inofficial Google Hangouts Python library <a "
 "href='https://github.com/tdryer/hangups'>Hangups</a>. Hangups is released "
 "under the MIT license."
-msgstr "Esta aplicação usa <a href='https://github.com/tdryer'>Tom Dryer</a> Biblioteca Python não oficial do Google Hangouts <a href='https://github.com/tdryer/hangups'>Hangups</a>. Hangups é disponivel sob a licença MIT"
+msgstr "Esta aplicação usa a <a href='https://github.com/tdryer'>Tom Dryer</a> Biblioteca Python não oficial do Google Hangouts <a href='https://github.com/tdryer/hangups'>Hangups</a>. Hangups é disponivel sob a licença MIT"
 
 #: .ubuntu-sdk-deploy/ui/AboutPage.qml:83 ui/AboutPage.qml:83
 msgid ""
@@ -190,23 +190,23 @@ msgid ""
 "licensed under the <a "
 "href='https://creativecommons.org/licenses/by/2.0/'>Creative Commons "
 "Attribution 2.0 Generic (CC BY 2.0) license.</a>"
-msgstr "O <a href='https://www.flickr.com/photos/zooboing/5127310748/'>fundo de chat padrão</a> was created by <a href='https://www.flickr.com/photos/zooboing/'>Patrick Hoesly</a> e está licenciado sob a <a href='https://creativecommons.org/licenses/by/2.0/'>Creative Commons Attribution 2.0 Generic (CC BY 2.0) license.</a>"
+msgstr "O <a href='https://www.flickr.com/photos/zooboing/5127310748/'>fundo da conversa padrão</a> foi criado por <a href='https://www.flickr.com/photos/zooboing/'>Patrick Hoesly</a> e está licenciado sob a <a href='https://creativecommons.org/licenses/by/2.0/'>Creative Commons Attribution 2.0 Generic (CC BY 2.0) license.</a>"
 
 #: .ubuntu-sdk-deploy/ui/AboutPage.qml:97 ui/AboutPage.qml:97
 msgid ""
 "This application is not endorsed by or affiliated with Ubuntu or Canonical. "
 "Ubuntu and Canonical are registered trademarks of Canonical Ltd."
-msgstr "Esta aplicação não é recomendada ou afiliada com o Ubuntu ou Canonical. Ubuntu e Canonical são marcas registradas da Canonical Ltd."
+msgstr "Esta aplicação não é afiliada com o Ubuntu ou a Canonical. Ubuntu e Canonical são marcas registradas da Canonical Ltd."
 
 #: .ubuntu-sdk-deploy/ui/ContactsPage.qml:81
 #: .ubuntu-sdk-deploy/ui/SelectUsersPage.qml:165 ui/ContactsPage.qml:81
 #: ui/SelectUsersPage.qml:165
 msgid "No contacts"
-msgstr "Nenhum Contacto"
+msgstr "Sem contactos"
 
 #: .ubuntu-sdk-deploy/ui/NetworkErrorDialog.qml:8 ui/NetworkErrorDialog.qml:8
 msgid "Network Error"
-msgstr "Erro de Conexão"
+msgstr "Erro de conexão"
 
 #: .ubuntu-sdk-deploy/ui/NetworkErrorDialog.qml:14
 #: ui/NetworkErrorDialog.qml:14
@@ -267,7 +267,7 @@ msgstr "Selecionar utilizadores"
 
 #: .ubuntu-sdk-deploy/ui/LoginScreen.qml:37 ui/LoginScreen.qml:37
 msgid "In order to use Hangups you need to authenticate this app with Google"
-msgstr "Para utilizar Hangups você precisa autenticar este aplicativo com Google"
+msgstr "Para utilizar o Hangups você precisa de autenticar este aplicativo com o Google"
 
 #: .ubuntu-sdk-deploy/ui/LoginScreen.qml:43 ui/LoginScreen.qml:43
 msgid ""
@@ -275,11 +275,11 @@ msgid ""
 " have the relevant access it connects as an iOS device. You can always deny "
 "the access <a "
 "href='https://security.google.com/settings/security/permissions'>here</a>."
-msgstr "Este aplicativo usa uma API não-oficial do Google Hangouts, chamada 'Hangups'. Para ter acesso relevantes, como se conecta a um dispositivo iOS. Você sempre pode negar o acesso <a href='https://security.google.com/settings/security/permissions'>aqui</a>."
+msgstr "Esta aplicação usa uma API não-oficial do Google Hangouts, chamada 'Hangups'. Para ter um acesso relevante liga-se como um dispositivo iOS. Você sempre pode negar o acesso <a href='https://security.google.com/settings/security/permissions'>aqui</a>."
 
 #: .ubuntu-sdk-deploy/ui/LoginScreen.qml:53 ui/LoginScreen.qml:53
 msgid "Hide details"
-msgstr "Detalhes ocultos"
+msgstr "Ocultar detalhes"
 
 #: .ubuntu-sdk-deploy/ui/LoginScreen.qml:53 ui/LoginScreen.qml:53
 msgid "More info"
@@ -325,7 +325,7 @@ msgstr "Utilizadores"
 
 #: .ubuntu-sdk-deploy/ui/SettingsPage.qml:34 ui/SettingsPage.qml:34
 msgid "Chat Background"
-msgstr "Ambiente de fundo do Chat"
+msgstr "Fundo da conversa"
 
 #: .ubuntu-sdk-deploy/ui/SettingsPage.qml:63 ui/SettingsPage.qml:63
 msgid "Change"
@@ -353,7 +353,7 @@ msgstr "Imagens de cache"
 #: .ubuntu-sdk-deploy/ui/SettingsPage.qml:208 ui/SettingsPage.qml:118
 #: ui/SettingsPage.qml:208
 msgid "Clear cache"
-msgstr "Eliminar Cache"
+msgstr "Eliminar cache"
 
 #: .ubuntu-sdk-deploy/ui/SettingsPage.qml:127 ui/SettingsPage.qml:127
 msgid "Stickers"
@@ -365,13 +365,13 @@ msgstr "Carregar stickers no arranque"
 
 #: .ubuntu-sdk-deploy/ui/SettingsPage.qml:157 ui/SettingsPage.qml:157
 msgid "Routine Timer"
-msgstr "Tempo de Rotina"
+msgstr "Tempo de rotina"
 
 #: .ubuntu-sdk-deploy/ui/SettingsPage.qml:162 ui/SettingsPage.qml:162
 msgid ""
 "Specify the timeout period of the status update routine called periodically "
 "in seconds."
-msgstr "Especifique o período de tempo limite da rotina de atualização de status em segundos."
+msgstr "Especifique o período de tempo limite da rotina de atualização de estado em segundos."
 
 #: .ubuntu-sdk-deploy/ui/SettingsPage.qml:186 ui/SettingsPage.qml:186
 msgid "Account"
@@ -380,7 +380,7 @@ msgstr "Conta"
 #: .ubuntu-sdk-deploy/ui/SettingsPage.qml:209 ui/SettingsPage.qml:209
 msgid ""
 "Are you sure to clear the cache? All images will have to be redownloaded."
-msgstr "Tem a certeza que quer eliminar o cache? Todas as imagens poderão ser baixadas novamente."
+msgstr "Tem a certeza que quer eliminar a cache? Todas as imagens serão transferidas novamente."
 
 #: .ubuntu-sdk-deploy/ui/SettingsPage.qml:212 ui/SettingsPage.qml:212
 msgid "Clear now"
@@ -394,13 +394,13 @@ msgstr "Trabalhando..."
 
 #: .ubuntu-sdk-deploy/ui/SettingsPage.qml:238 ui/SettingsPage.qml:238
 msgid "Cache cleared"
-msgstr "Cache eliminado"
+msgstr "Cache eliminada"
 
 #: .ubuntu-sdk-deploy/ui/SettingsPage.qml:239 ui/SettingsPage.qml:239
 msgid ""
 "The cache was cleared successful. Please restart the application to "
 "continue."
-msgstr "O cache foi eliminado corretamente. Por favor reinicie a aplicação para continuar."
+msgstr "A cache foi eliminada corretamente. Por favor, reinicie a aplicação para continuar."
 
 #: .ubuntu-sdk-deploy/ui/SettingsPage.qml:243 ui/SettingsPage.qml:243
 msgid "Okay"
@@ -422,15 +422,15 @@ msgstr "A autenticar ..."
 
 #: .ubuntu-sdk-deploy/ui/LoadingScreen.qml:7 ui/LoadingScreen.qml:7
 msgid "Creating Hangups client ..."
-msgstr "Criando cliente Hangups ..."
+msgstr "A criar cliente Hangups ..."
 
 #: .ubuntu-sdk-deploy/ui/LoadingScreen.qml:8 ui/LoadingScreen.qml:8
 msgid "Adding client observer ..."
-msgstr "Adicionando cliente observador..."
+msgstr "A adicionar cliente observador..."
 
 #: .ubuntu-sdk-deploy/ui/LoadingScreen.qml:9 ui/LoadingScreen.qml:9
 msgid "Loading chats ..."
-msgstr "Carregando chats ..."
+msgstr "Carregando conversas..."
 
 #: .ubuntu-sdk-deploy/ui/LoadingScreen.qml:112 ui/LoadingScreen.qml:112
 msgid "Thanks to"
@@ -447,7 +447,7 @@ msgstr "A todos ツ"
 #: .ubuntu-sdk-deploy/Main.qml:207 Main.qml:207
 #, qt-format
 msgid "%1 is typing ..."
-msgstr "%1 está digitando ..."
+msgstr "%1 está a escrever..."
 
 #: .ubuntu-sdk-deploy/Main.qml:364 Main.qml:364
 msgid "Error"

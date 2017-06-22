@@ -7,5 +7,7 @@ The list of contributors is sorted alphabetical based on the last names.
 * Tim Süberkrüb (https://github.com/tim-sueberkrueb)
 
 ## Translations
+* Ivo Xavier (https://github.com/ivoxavier)
+
 Thanks to all of you who contributed via transifex! 
 https://www.transifex.com/tim-sueberkrueb/teams/
